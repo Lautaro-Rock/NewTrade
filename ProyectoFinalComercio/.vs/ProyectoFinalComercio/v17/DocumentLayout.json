@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\dominio\\productoproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|solutionrelative:dominio\\productoproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\dominio\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|solutionrelative:dominio\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\dominio\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10532467-3F8A-4ADF-BA81-8F32502ABEA4}|Dominio\\Dominio.csproj|solutionrelative:dominio\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductoProveedor.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\ProductoProveedor.cs",
+              "RelativeDocumentMoniker": "Dominio\\ProductoProveedor.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\ProductoProveedor.cs",
+              "RelativeToolTip": "Dominio\\ProductoProveedor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T21:16:14.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DetalleCompra.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\DetalleCompra.cs",
+              "RelativeDocumentMoniker": "Dominio\\DetalleCompra.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\DetalleCompra.cs",
+              "RelativeToolTip": "Dominio\\DetalleCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T21:15:01.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DetalleVenta.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\DetalleVenta.cs",
+              "RelativeDocumentMoniker": "Dominio\\DetalleVenta.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Dominio\\DetalleVenta.cs",
+              "RelativeToolTip": "Dominio\\DetalleVenta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T21:11:33.151Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
