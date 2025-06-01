@@ -12,6 +12,6 @@ namespace Dominio
         string apellido { get; set; }
         string email { get; set; }
         string password { get; set; }
-        string rol { get; set; }
+        string rol { get; set; } // Puede ser "Administrador", "Vendedor" o "Cliente"
     }
-}
+}   
