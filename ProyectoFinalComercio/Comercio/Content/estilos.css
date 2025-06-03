@@ -1,0 +1,78 @@
+﻿body {
+    background-color: #1f093a;
+    
+}
+
+.color-nv {
+    background-color: #53096E;
+}
+
+.color-nv .navbar-brand,
+.color-nv .nav-link {
+ color: white;
+ }
+
+.color-nv .nav-link:hover {
+ color: #cccccc;
+
+}
+
+.navbar-brand{
+    font-size: 25px;
+    font-family:Rockwell;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Espaciado entre tarjetas (horizontal y vertical) */
+    justify-content: center; /* Centra si hay menos de 3 por fila */
+    padding: 2rem;
+}
+
+.card-wrapper {
+    flex: 0 0 calc((100% - 2 * 2rem) / 3);
+    /* 3 tarjetas por fila, con dos espacios de 2rem entre ellas */
+    box-sizing: border-box; /* Asegura que el padding/margin no rompa el ancho */
+}
+
+.card {
+    background-color: #53096E;
+    border-radius: 10px;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+    .card:hover {
+        transform: scale(1.05); 
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+        z-index: 10; 
+    }
+
+.card i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .card h5 {
+        margin-top: 0.9rem;
+        font-size: 1.6rem;
+    }
+
+ .card p {
+       font-size: 0.9rem;
+       margin-top: 0.5rem;
+       color: #ccc;
+ }
+
+ .card img {
+       width: 115px;
+       height: 115px;
+       margin-left: 100px; 
+    }
+
