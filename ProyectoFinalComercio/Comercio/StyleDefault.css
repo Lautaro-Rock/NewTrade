@@ -1,0 +1,70 @@
+﻿body {
+    background-color: #53096E;
+    color: #FFFFFF;
+}
+
+.Textos_de_bienvenida h1 {
+    font-size: 60px;
+}
+
+.Textos_de_bienvenida p {
+    font-size: 30px;
+}
+
+.Textos_de_bienvenida::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    width: 40vw;
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: url('/images/empty-cart.png') no-repeat center center;
+    background-size: contain;
+    filter: grayscale(100%) opacity(0.1);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@media (max-width: 400px) {
+    .Textos_de_bienvenida::before {
+        width: 20vw;
+        height: 20vw;
+    }
+}
+
+.btn_vendedor {
+    background-color: #FFA714;
+    color: #290152;
+    padding: 15px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+    .btn_vendedor:hover {
+        background-color: #dddddd;
+    }
+
+.btn_administrador {
+    background-color: #FFFFFF;
+    color: #120026;
+    padding: 15px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+    .btn_administrador:hover {
+        background-color: #dddddd;
+    }

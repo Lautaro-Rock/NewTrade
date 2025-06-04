@@ -3,15 +3,35 @@
   "WorkspaceRootPath": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\inicial.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\inicial.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\comercio\\inicial.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\inicial.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\comercio\\loginadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\loginadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\paneldecontrol.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\loginvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\loginvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\loginvendedor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\loginvendedor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\styleloginvendedor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\styleloginvendedor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\marcos\\desktop\\proyectofinal\\newtrade\\proyectofinalcomercio\\comercio\\styleloginadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\styleloginadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\comercio\\paneldecontrol.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\paneldecontrol.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -58,37 +78,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StyleLoginVendedor.css",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\StyleLoginVendedor.css",
+              "RelativeDocumentMoniker": "Comercio\\StyleLoginVendedor.css",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\StyleLoginVendedor.css",
+              "RelativeToolTip": "Comercio\\StyleLoginVendedor.css",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAwwFoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-04T03:41:01.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginVendedor.aspx",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginVendedor.aspx",
+              "RelativeDocumentMoniker": "Comercio\\LoginVendedor.aspx",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginVendedor.aspx",
+              "RelativeToolTip": "Comercio\\LoginVendedor.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-04T03:32:13.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StyleLoginAdmin.css",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\StyleLoginAdmin.css",
+              "RelativeDocumentMoniker": "Comercio\\StyleLoginAdmin.css",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\StyleLoginAdmin.css",
+              "RelativeToolTip": "Comercio\\StyleLoginAdmin.css",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAuwFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-03T23:02:54.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Inicial.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Inicial.aspx.cs",
-              "RelativeDocumentMoniker": "Comercio\\Inicial.aspx.cs",
-              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Inicial.aspx.cs*",
-              "RelativeToolTip": "Comercio\\Inicial.aspx.cs*",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAuwBkAAAAFAAAAAAAAAA==",
+              "Title": "Default.aspx",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Default.aspx",
+              "RelativeDocumentMoniker": "Comercio\\Default.aspx",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Default.aspx*",
+              "RelativeToolTip": "Comercio\\Default.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-02T01:50:04.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginAdmin.aspx",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginAdmin.aspx",
+              "RelativeDocumentMoniker": "Comercio\\LoginAdmin.aspx",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginAdmin.aspx",
+              "RelativeToolTip": "Comercio\\LoginAdmin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-03T22:36:05.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Default.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Default.aspx.cs",
+              "RelativeDocumentMoniker": "Comercio\\Default.aspx.cs",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Default.aspx.cs",
+              "RelativeToolTip": "Comercio\\Default.aspx.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwBMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T03:49:41.963Z",
+              "WhenOpened": "2025-06-04T03:45:44.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "LoginVendedor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginVendedor.aspx.cs",
+              "RelativeDocumentMoniker": "Comercio\\LoginVendedor.aspx.cs",
+              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\LoginVendedor.aspx.cs",
+              "RelativeToolTip": "Comercio\\LoginVendedor.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwBIAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T03:48:22.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "estilos.css",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Content\\estilos.css",
               "RelativeDocumentMoniker": "Comercio\\Content\\estilos.css",
               "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Content\\estilos.css",
               "RelativeToolTip": "Comercio\\Content\\estilos.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-06-02T13:42:39.747Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "PanelDeControl.aspx",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelDeControl.aspx",
               "RelativeDocumentMoniker": "Comercio\\PanelDeControl.aspx",
@@ -101,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Site1.Master",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Site1.Master",
               "RelativeDocumentMoniker": "Comercio\\Site1.Master",
@@ -114,20 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Inicial.aspx",
-              "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Inicial.aspx",
-              "RelativeDocumentMoniker": "Comercio\\Inicial.aspx",
-              "ToolTip": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Inicial.aspx*",
-              "RelativeToolTip": "Comercio\\Inicial.aspx*",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-02T01:50:04.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "PanelDeControl.aspx.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelDeControl.aspx.cs",
               "RelativeDocumentMoniker": "Comercio\\PanelDeControl.aspx.cs",
@@ -138,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "PanelDeControl.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelDeControl.aspx.cs",
               "RelativeDocumentMoniker": "Comercio\\PanelDeControl.aspx.cs",
@@ -150,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "PanelDeControl.aspx.designer.cs",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelDeControl.aspx.designer.cs",
               "RelativeDocumentMoniker": "Comercio\\PanelDeControl.aspx.designer.cs",
@@ -158,12 +243,11 @@
               "RelativeToolTip": "Comercio\\PanelDeControl.aspx.designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T00:37:54.044Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T00:37:54.044Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Venta.cs",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Dominio\\Venta.cs",
               "RelativeDocumentMoniker": "Dominio\\Venta.cs",
@@ -175,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "About.aspx",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\About.aspx",
               "RelativeDocumentMoniker": "Comercio\\About.aspx",
@@ -187,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Site.Master",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Comercio\\Site.Master",
               "RelativeDocumentMoniker": "Comercio\\Site.Master",
@@ -195,11 +279,12 @@
               "RelativeToolTip": "Comercio\\Site.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-02T01:32:53.954Z"
+              "WhenOpened": "2025-06-02T01:32:53.954Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\Marcos\\Desktop\\ProyectoFinal\\NewTrade\\ProyectoFinalComercio\\Dominio\\Usuario.cs",
               "RelativeDocumentMoniker": "Dominio\\Usuario.cs",
