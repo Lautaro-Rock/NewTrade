@@ -1,6 +1,6 @@
 ﻿body {
     background-color: #1f093a;
-    
+    overflow-x: hidden;
 }
 
 .color-nv {
@@ -25,15 +25,15 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem; /* Espaciado entre tarjetas (horizontal y vertical) */
-    justify-content: center; /* Centra si hay menos de 3 por fila */
+    gap: 2rem; 
+    justify-content: center; 
     padding: 2rem;
 }
 
 .card-wrapper {
     flex: 0 0 calc((100% - 2 * 2rem) / 3);
-    /* 3 tarjetas por fila, con dos espacios de 2rem entre ellas */
-    box-sizing: border-box; /* Asegura que el padding/margin no rompa el ancho */
+    
+    box-sizing: border-box; 
 }
 
 .card {
@@ -70,9 +70,10 @@
        color: #ccc;
  }
 
- .card img {
-       width: 115px;
-       height: 115px;
-       margin-left: 100px; 
+    .card img {
+        width: 115px;
+        height: 115px;
+        display: block;
+        margin: 0 auto;
     }
 
