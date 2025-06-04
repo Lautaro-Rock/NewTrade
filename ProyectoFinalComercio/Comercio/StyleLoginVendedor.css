@@ -1,0 +1,101 @@
+﻿html, body {
+    height: 100%; 
+    margin: 0; 
+}
+
+
+body {
+    background-color: #53096E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    width: 100%;
+    max-width: none;
+}
+
+.container_Vnd {
+    max-width: 430px;
+    min-height: 428px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #1f093a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.container_Vnd h1 {
+        text-align: center;
+        font-family: Rockwell;
+        color: #FFFFFF;
+        font-size: 35px;
+        margin-bottom: 0;
+}
+
+.container_Vnd h2 {
+        text-align: center;
+        font-family: Rockwell;
+        color: #FFFFFF;
+        font-size: 35px;
+        margin-top: 0;
+}
+
+
+.lbVndSty {
+    font-family: Rockwell;
+    color: #FFFFFF;
+    font-size: 21px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.txtVndSty {
+    font-family: Rockwell;
+    font-size: 19px;
+    background-color: #10041E;
+    color: #FFFFFF;
+    width: 405px;
+    height: 34px;
+    border: 1px solid #53096E;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.btnVndSty {
+    display: block;
+    margin: 0 auto;
+    background-color: #FFA714;
+    color: #1f093a;
+    width: 400px;
+    padding: 15px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+    margin-bottom:22px;
+}
+
+.lbPreguntaSty {
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-left:33px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.lbPreguntaSty:hover {
+  color: #FFA714; 
+  text-decoration: underline;}
+
+

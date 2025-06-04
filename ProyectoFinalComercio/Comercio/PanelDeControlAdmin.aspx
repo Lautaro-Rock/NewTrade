@@ -1,43 +1,46 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PanelDeControl.aspx.cs" Inherits="Comercio.PanelDeControl1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PanelDeControlAdmin.aspx.cs" Inherits="Comercio.PanelDeControlAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<link href="Content/StylePanelDeControlAdmn.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row">
   <div class="card-wrapper">
     <div class="card">
-      <img src="/images/package.png" alt="Caja"  />
+      <img src="/images/package-violeta.png" alt="Caja"  />
       <h5>Gestión de productos</h5>
     </div>
   </div>
   <div class="card-wrapper">
     <div class="card">
-      <img src="/images/shopping-cart (1).png" alt="Carro"  />
+      <img src="/images/shopping-cart-violeta.png" alt="Carro"  />
       <h5>Gestión de compras</h5>
     </div>
   </div>
   <div class="card-wrapper">
     <div class="card">
-      <img src="/images/acquisition.png" alt="Venta"  />
+      <img src="/images/profit-violeta.png" alt="Venta"  />
       <h5>Gestión de ventas</h5>
     </div>
   </div>
   <div class="card-wrapper">
   <div class="card">
-    <img src="/images/target.png" alt="Cliente"/>
+    <img src="/images/client.png" alt="Cliente"/>
     <h5>Gestión de clientes</h5>
   </div>
 </div>
   <div class="card-wrapper">
     <div class="card">
-      <img src="/images/loading.png" alt="Proveedor"/>
+      <img src="/images/delivery-truck.png" alt="Proveedor"/>
       <h5>Gestión de proveedores</h5>
     </div>
   </div>
   <div class="card-wrapper">
     <div class="card">
-      <img src="/images/paperwork.png" alt="Reporte"/>
+      <img src="/images/analysis.png" alt="Reporte"/>
       <h5>Reportes</h5>
     </div>
   </div>
 </div>
-    </asp:Content>
+
+
+</asp:Content>
