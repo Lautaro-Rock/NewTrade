@@ -40,7 +40,16 @@
       <h5>Reportes</h5>
     </div>
   </div>
+ <div class="card-wrapper card-wrapper-wide">
+  <div class="card card-horizontal">
+    <img src="/images/target-violeta.png" alt="Vendedores" class="icono-vendedor-horizontal" />
+    <div>
+      <h5>Gestión de vendedores</h5>
+    </div>
+  </div>
 </div>
+</div>
+
 
 
 </asp:Content>

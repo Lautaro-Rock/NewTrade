@@ -140,6 +140,7 @@
     <Content Include="images\shopping-cart-violeta.png" />
     <Content Include="images\shopping-cart.png" />
     <Content Include="images\shopping-carts.png" />
+    <Content Include="images\target-violeta.png" />
     <Content Include="images\target.png" />
     <Content Include="Default.aspx" />
     <Content Include="LoginAdmin.aspx" />
