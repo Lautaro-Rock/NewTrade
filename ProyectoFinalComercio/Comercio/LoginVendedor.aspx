@@ -19,7 +19,7 @@
          <asp:Label ID="lbContraUsuarioVnd" runat="server" Text="Contraseña" CssClass="lbVndSty" ></asp:Label><br />
          <asp:TextBox ID="txtContraVnd" runat="server" CssClass="txtVndSty"></asp:TextBox>
          <asp:Button ID="btnIngresarVnd" runat="server" Text="Ingresar" CssClass="btnVndSty" OnClick="btnIngresarVnd_Click"/>
-         <a href="FormularioAltaVendedor.aspx" class="lbVndSty lbPreguntaSty">¿Nuevo vendedor? Solicita tu alta :)</a>     
+         <a href="FormularioAltaVendedor.aspx" class="lbVndSty lbPreguntaSty">¿No tenes cuenta? Crea una cuenta</a>     
 </div>
     </form>
 </body>

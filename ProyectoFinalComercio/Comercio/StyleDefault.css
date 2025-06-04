@@ -1,7 +1,21 @@
 ﻿body {
     background-color: #53096E;
     color: #FFFFFF;
+    margin:0;
+    padding:0;
 }
+
+h2.styleRegister {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.form-label {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+
 
 .Textos_de_bienvenida h1 {
     font-size: 60px;
@@ -10,6 +24,7 @@
 .Textos_de_bienvenida p {
     font-size: 30px;
 }
+
 
 .Textos_de_bienvenida::before {
     content: "";

@@ -1,18 +1,59 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormularioAltaVendedor.aspx.cs" Inherits="Comercio.FormularioAltaVendedor" %>
+﻿<%@ Page Title="Formulario Alta Vendedor" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="FormularioAltaVendedor.aspx.cs" Inherits="Comercio.FormularioAltaVendedor" %>
 
-<!DOCTYPE html>
+<asp:Content ID="ContentHead" ContentPlaceHolderID="head" runat="server">
+  
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Comsys - Formulario de alta</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <h1>EN PROCESO DE CONSTRUCCIÓN...</h1>
-            <h2>ACÁ DEBERÍA IR EL FORMULARIO DE REGISTRO :)</h2>
+<asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="mb-4 text-center styleRegister">Bienvenido al registro de vendedores</h2>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="boxNombre" class="form-label text-center d-block">Ingrese su Nombre</label>
+                            <asp:TextBox ID="boxNombre" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="boxApellido" class="form-label text-center d-block">Ingrese su Apellido</label>
+                            <asp:TextBox ID="boxApellido" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="boxDNI" class="form-label text-center d-block">Ingrese su DNI</label>
+                            <asp:TextBox ID="boxDNI" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="boxEmail" class="form-label text-center d-block">Ingrese su Email</label>
+                            <asp:TextBox ID="boxEmail" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="boxPassword" class="form-label text-center d-block">Ingrese su Contraseña</label>
+                            <asp:TextBox ID="boxPassword" runat="server" TextMode="Password" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse en el sistema" CssClass="btn btn-warning w-100" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>
+
