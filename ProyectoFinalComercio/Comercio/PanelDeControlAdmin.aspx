@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row">
-  <div class="card-wrapper">
+    <div class="card-wrapper">
     <div class="card">
       <img src="/images/package-violeta.png" alt="Caja"  />
       <h5>Gestión de productos</h5>

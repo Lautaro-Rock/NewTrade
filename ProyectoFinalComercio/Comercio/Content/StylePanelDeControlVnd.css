@@ -30,11 +30,30 @@
     padding: 2rem;
 }
 
+
+
+
+
+
+
 .card-wrapper {
     flex: 0 0 calc((100% - 2 * 2rem) / 3);
     
     box-sizing: border-box; 
 }
+
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.card-link .card {
+        height: 100%;
+        width: 100%;
+    }
 
 .card {
     background-color: #53096E;
@@ -53,22 +72,13 @@
         z-index: 10; 
     }
 
-.card i {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        display: block;
-    }
+
 
     .card h5 {
         margin-top: 0.9rem;
         font-size: 1.6rem;
     }
 
- .card p {
-       font-size: 0.9rem;
-       margin-top: 0.5rem;
-       color: #ccc;
- }
 
     .card img {
         width: 115px;
