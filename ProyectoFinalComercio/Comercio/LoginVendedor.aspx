@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Login de vendedor</title>
+    <title>Comsys - Login de vendedor</title>
 <link href="StyleLoginVendedor.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -19,7 +19,7 @@
          <asp:Label ID="lbContraUsuarioVnd" runat="server" Text="Contraseña" CssClass="lbVndSty" ></asp:Label><br />
          <asp:TextBox ID="txtContraVnd" runat="server" CssClass="txtVndSty"></asp:TextBox>
          <asp:Button ID="btnIngresarVnd" runat="server" Text="Ingresar" CssClass="btnVndSty" OnClick="btnIngresarVnd_Click"/>
-         <a href="AltaVendedor.aspx" class="lbVndSty lbPreguntaSty">¿Nuevo vendedor? Solicita tu alta :)</a>     
+         <a href="FormularioAltaVendedor.aspx" class="lbVndSty lbPreguntaSty">¿Nuevo vendedor? Solicita tu alta :)</a>     
 </div>
     </form>
 </body>

@@ -119,6 +119,7 @@
     <Content Include="Content\StylePanelDeControlVnd.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FormularioAltaVendedor.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\acquisition.png" />
     <Content Include="images\analysis.png" />
@@ -211,6 +212,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="FormularioAltaVendedor.aspx.cs">
+      <DependentUpon>FormularioAltaVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioAltaVendedor.aspx.designer.cs">
+      <DependentUpon>FormularioAltaVendedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
