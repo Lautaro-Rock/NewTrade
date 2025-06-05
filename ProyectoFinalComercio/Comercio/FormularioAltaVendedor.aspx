@@ -48,7 +48,7 @@
 
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse en el sistema" CssClass="btn btn-warning w-100" />
+                            <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse en el sistema" CssClass="btn btn-warning w-100" OnClick="btnRegistrar_Click" />
                         </div>
                     </div>
                 </div>
