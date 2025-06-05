@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,29 @@ namespace Comercio
 
         protected void btnIngresarVnd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PanelDeControlVendedor.aspx");
+            string nombre = txtEmailUsuarioVnd.Text.Trim();
+            string password = txtContraVnd.Text.Trim();
+
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            try
+            {
+
+                bool esValido = negocio.validarCredenciales(nombre, password);
+
+                if (esValido)
+                {
+                    Response.Redirect("PanelDeControlVendedor.aspx");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Email o contraseña incorrectos');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error: {ex.Message}');", true);
+            }
         }
     }
 }

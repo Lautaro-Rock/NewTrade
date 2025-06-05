@@ -37,8 +37,8 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('Error al registrar el usuario: {ex.Message}');", true);
+
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al registrar el usuario: {ex.Message}');", true);
             }
            
         }

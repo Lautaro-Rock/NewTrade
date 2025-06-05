@@ -13,9 +13,9 @@
         <div class="container_Vnd">
          <h1>Acesso</h1>
          <h2>Vendedor</h2>
-         <asp:Label ID="lbUsuarioVnd" runat="server" Text="Usuario" CssClass="lbVndSty"></asp:Label>
+         <asp:Label ID="lbEmailUsuarioVnd" runat="server" Text="Email" CssClass="lbVndSty"></asp:Label>
          <br />
-         <asp:TextBox ID="txtUsuarioVnd" runat="server" CssClass="txtVndSty"></asp:TextBox>
+         <asp:TextBox ID="txtEmailUsuarioVnd" runat="server" CssClass="txtVndSty"></asp:TextBox>
          <asp:Label ID="lbContraUsuarioVnd" runat="server" Text="Contraseña" CssClass="lbVndSty" ></asp:Label><br />
          <asp:TextBox ID="txtContraVnd" runat="server" CssClass="txtVndSty"></asp:TextBox>
          <asp:Button ID="btnIngresarVnd" runat="server" Text="Ingresar" CssClass="btnVndSty" OnClick="btnIngresarVnd_Click"/>
