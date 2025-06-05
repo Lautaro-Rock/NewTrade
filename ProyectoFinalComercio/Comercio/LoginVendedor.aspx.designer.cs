@@ -24,22 +24,22 @@ namespace Comercio
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lbUsuarioVnd.
+        /// Control lbEmailUsuarioVnd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbUsuarioVnd;
+        protected global::System.Web.UI.WebControls.Label lbEmailUsuarioVnd;
 
         /// <summary>
-        /// Control txtUsuarioVnd.
+        /// Control txtEmailUsuarioVnd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioVnd;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailUsuarioVnd;
 
         /// <summary>
         /// Control lbContraUsuarioVnd.
