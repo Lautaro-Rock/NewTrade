@@ -16,7 +16,7 @@ namespace Comercio
 
         }
 
-        protected void btnRegistrar_Click(object sender, EventArgs e)
+        protected void BtnRegistrar_Click(object sender, EventArgs e)
         {
             UsuarioNegocio data = new UsuarioNegocio();
             Usuario usuario = new Usuario();
@@ -31,7 +31,7 @@ namespace Comercio
             try
             {
                 
-                data.agregar(usuario);
+                data.Agregar(usuario);
 
                 Response.Redirect("LoginVendedor.aspx");
             }

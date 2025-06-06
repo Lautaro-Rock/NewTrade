@@ -12,7 +12,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        public void agregar(Usuario nuevo)
+        public void Agregar(Usuario nuevo)
         {
   
             AccesoDatos data = new AccesoDatos();
@@ -33,7 +33,7 @@ namespace Negocio
             }
         }
 
-        public bool validarCredenciales(string email, string password)
+        public bool ValidarCredenciales(string email, string password)
         {
             AccesoDatos datos = new AccesoDatos();
 

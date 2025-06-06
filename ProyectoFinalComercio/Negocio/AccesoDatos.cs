@@ -22,12 +22,12 @@ namespace Negocio
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ComercioDB; integrated security=true");
             conexionCommand = new SqlCommand();
         }
-        public void setearConsulta(string consulta)
+        public void SetearConsulta(string consulta)
         {
             conexionCommand.CommandType = System.Data.CommandType.Text;
             conexionCommand.CommandText = consulta;
         }
-        public void ejecutarLectura()
+        public void EjecutarLectura()
         {
             conexionCommand.Connection = conexion;
             try
@@ -43,11 +43,11 @@ namespace Negocio
 
         }
 
-        public void setearParametro(string nombre, object valor)
+        public void SetearParametro(string nombre, object valor)
         {
             conexionCommand.Parameters.AddWithValue(nombre, valor);
         }
-        public void ejecutarAccion()
+        public void EjecutarAccion()
         {
             conexionCommand.Connection = conexion;
             try
@@ -62,7 +62,7 @@ namespace Negocio
         }
 
 
-        public void cerrarConexion()
+        public void CerrarConexion()
         {
             if (conexionDataReader != null)
             {

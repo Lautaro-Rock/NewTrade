@@ -234,3 +234,5 @@ C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio
 C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio\bin\es\System.Web.Optimization.resources.dll
 C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
 C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio\obj\Debug\Comercio.csproj.Up2Date
+C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Comercio\bin\Negocio.dll
+C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Comercio\bin\Negocio.pdb
