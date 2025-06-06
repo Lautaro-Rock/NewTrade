@@ -11,8 +11,9 @@ namespace Dominio
        // Cliente Cliente { get; set; }
         DateTime Fecha { get; set; }
         Usuario Usuario { get; set; }
-        List<Producto> Productos { get; set; }
+        List<Producto> Productos { get; set; } // mejorar relacion
         string numeroFactura { get; set; }
+
 
 
     }

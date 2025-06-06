@@ -21,19 +21,24 @@ namespace Comercio
             UsuarioNegocio data = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
+
             usuario.nombre = boxNombre.Text.Trim();
             usuario.apellido = boxApellido.Text.Trim();
             usuario.email = boxEmail.Text.Trim();
             usuario.dni = int.Parse(boxDNI.Text.Trim());
             usuario.password = boxPassword.Text.Trim();
             usuario.rol = "Vendedor";
+            bool yaExiste = false;
+            yaExiste = data.validarCredenciales(usuario);
 
             try
             {
-                
-                data.agregar(usuario);
+                //if (!yaExiste)
+                //{
+                    data.agregar(usuario);
 
-                Response.Redirect("LoginVendedor.aspx");
+                    Response.Redirect("LoginVendedor.aspx");
+                //} 
             }
             catch (Exception ex)
             {

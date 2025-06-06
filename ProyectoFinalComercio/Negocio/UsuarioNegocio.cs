@@ -33,10 +33,42 @@ namespace Negocio
             }
         }
 
+        public bool validarCredenciales(Usuario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Usuario WHERE Email = @email AND Nombre = @nombre AND Apellido = @apellido AND DNI = @dni AND Rol = 'Vendedor'");
+                datos.setearParametro("@email", nuevo.email);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@apellido", nuevo.apellido);
+                datos.setearParametro("@dni", nuevo.dni);
+
+                datos.ejecutarLectura();
+
+                if (datos.ConexionDataReader.Read())
+                {
+                    int count = (int)datos.ConexionDataReader[0];
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public bool validarCredenciales(string email, string password)
         {
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("SELECT COUNT(*) FROM Usuario WHERE Email = @email AND Password = @password");
