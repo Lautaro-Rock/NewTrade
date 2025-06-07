@@ -19,9 +19,9 @@ namespace Negocio
 
             try
             {
-                data.setearConsulta("INSERT Usuario (Nombre, Apellido, Email, DNI, Password, Rol) " +
+                data.SetearConsulta("INSERT Usuario (Nombre, Apellido, Email, DNI, Password, Rol) " +
                 "VALUES('" + nuevo.nombre + "', '" + nuevo.apellido + "', '" + nuevo.email + "', " + nuevo.dni + ", '" + nuevo.password + "', '" + nuevo.rol + "')");
-                data.ejecutarAccion();
+                data.EjecutarAccion();
             }
             catch (Exception ex)
             {
@@ -29,7 +29,7 @@ namespace Negocio
             }
             finally
             {
-                data.cerrarConexion();
+                data.CerrarConexion();
             }
         }
 
@@ -39,11 +39,11 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT COUNT(*) FROM Usuario WHERE Email = @email AND Password = @password");
-                datos.setearParametro("@email", email);
-                datos.setearParametro("@password", password);
+                datos.SetearConsulta("SELECT COUNT(*) FROM Usuario WHERE Email = @email AND Password = @password");
+                datos.SetearParametro("@email", email);
+                datos.SetearParametro("@password", password);
 
-                datos.ejecutarLectura();
+                datos.EjecutarLectura();
 
                 if (datos.ConexionDataReader.Read())
                 {
@@ -62,7 +62,7 @@ namespace Negocio
             }
             finally
             {
-                datos.cerrarConexion();
+                datos.CerrarConexion();
             }
         }
     }

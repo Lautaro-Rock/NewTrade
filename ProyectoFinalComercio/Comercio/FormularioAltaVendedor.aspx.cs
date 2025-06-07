@@ -16,7 +16,7 @@ namespace Comercio
 
         }
 
-        protected void BtnRegistrar_Click(object sender, EventArgs e)
+        protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             UsuarioNegocio data = new UsuarioNegocio();
             Usuario usuario = new Usuario();

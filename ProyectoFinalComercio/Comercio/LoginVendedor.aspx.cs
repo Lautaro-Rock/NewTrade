@@ -25,7 +25,7 @@ namespace Comercio
             try
             {
 
-                bool esValido = negocio.validarCredenciales(nombre, password);
+                bool esValido = negocio.ValidarCredenciales(nombre, password);
 
                 if (esValido)
                 {
