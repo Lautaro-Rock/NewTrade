@@ -7,12 +7,12 @@ namespace Dominio
 {
     public class Proveedor
     {
-        int id { get; set; }
-        string RazonSocial { get; set; }
-        string Cuit { get; set; }
-        string email { get; set; }
-        string telefono { get; set; }
-        string direccion { get; set; }
+        public int Id { get; set; }
+        public string RazonSocial { get; set; }
+        public string Cuit { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
+        public string Direccion { get; set; }
 
     }
 }

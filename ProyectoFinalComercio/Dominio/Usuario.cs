@@ -7,13 +7,13 @@ namespace Dominio
 {
     public class Usuario
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public int dni { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string rol { get; set; } // Puede ser "Administrador", "Vendedor" o "Cliente"
+        public int Dni { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Rol { get; set; } // Puede ser "Administrador", "Vendedor" o "Cliente"
     }
 }   

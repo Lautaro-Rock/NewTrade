@@ -14,27 +14,28 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-               data.SetearConsulta("INSERT INTO TipoProducto (Nombre) VALUES (@nombre);");
-                data.SetearParametro("@nombre", nuevo.nombre);
+                data.SetearConsulta("INSERT INTO TipoProducto (Nombre) VALUES (@nombre);");
+                data.SetearParametro("@nombre", nuevo.Nombre);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
             {
 
                 throw ex;
-            }finally
+            }
+            finally
             {
                 data.CerrarConexion();
             }
-    }
+        }
         public void ModificarTipoProducto(TipoProducto nuevo)
         {
             AccesoDatos data = new AccesoDatos();
             try
             {
                 data.SetearConsulta("UPDATE TipoProducto SET Nombre = @nombre WHERE Id = @id;");
-                data.SetearParametro("@nombre", nuevo.nombre);
-                data.SetearParametro("@id", nuevo.id);
+                data.SetearParametro("@nombre", nuevo.Nombre);
+                data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("DELETE FROM TipoProducto WHERE Id = @id;");
-                data.SetearParametro("@id", nuevo.id);
+                data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
@@ -65,3 +66,4 @@ namespace Negocio
             }
         }
     }
+ }

@@ -20,7 +20,7 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("INSERT Usuario (Nombre, Apellido, Email, DNI, Password, Rol) " +
-                "VALUES('" + nuevo.nombre + "', '" + nuevo.apellido + "', '" + nuevo.email + "', " + nuevo.dni + ", '" + nuevo.password + "', '" + nuevo.rol + "')");
+                "VALUES('" + nuevo.Nombre + "', '" + nuevo.Apellido + "', '" + nuevo.Email + "', " + nuevo.Dni + ", '" + nuevo.Password + "', '" + nuevo.Rol + "')");
                 data.EjecutarAccion();
             }
             catch (Exception ex)

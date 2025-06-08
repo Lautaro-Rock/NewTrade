@@ -7,8 +7,11 @@ namespace Dominio
 {
     public class Compra
     {
-        int id { get; set; }
+        int Id { get; set; }
         Proveedor Proveedor { get; set; }
+        
+        List<DetalleCompra> DetalleList { get; set; }
+
         DateTime Fecha { get; set; }
     }
 }

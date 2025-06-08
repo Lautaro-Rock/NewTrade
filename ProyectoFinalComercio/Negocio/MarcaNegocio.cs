@@ -15,7 +15,7 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("INSERT INTO Marca (Nombre) VALUES (@nombre);");
-                data.SetearParametro("@nombre", nuevo.nombre);
+                data.SetearParametro("@nombre", nuevo.Nombre);
                 data.EjecutarAccion();
             }
             catch (Exception)
@@ -34,8 +34,8 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("UPDATE Marca SET Nombre = @nombre WHERE Id = @id;");
-                data.SetearParametro("@nombre", nuevo.nombre);
-                data.SetearParametro("@id", nuevo.id);
+                data.SetearParametro("@nombre", nuevo.Nombre);
+                data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
             catch (Exception)
@@ -54,7 +54,7 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("DELETE FROM Marca WHERE Id = @id;");
-                data.SetearParametro("@id", nuevo.id);
+                data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
             catch (Exception)

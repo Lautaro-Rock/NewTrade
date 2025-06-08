@@ -21,12 +21,12 @@ namespace Comercio
             UsuarioNegocio data = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
-            usuario.nombre = boxNombre.Text.Trim();
-            usuario.apellido = boxApellido.Text.Trim();
-            usuario.email = boxEmail.Text.Trim();
-            usuario.dni = int.Parse(boxDNI.Text.Trim());
-            usuario.password = boxPassword.Text.Trim();
-            usuario.rol = "Vendedor";
+            usuario.Nombre = boxNombre.Text.Trim();
+            usuario.Apellido = boxApellido.Text.Trim();
+            usuario.Email = boxEmail.Text.Trim();
+            usuario.Dni = int.Parse(boxDNI.Text.Trim());
+            usuario.Password = boxPassword.Text.Trim();
+            usuario.Rol = "Vendedor";
 
             try
             {
