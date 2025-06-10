@@ -1,0 +1,47 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPanelDeControles.Master" AutoEventWireup="true" CodeBehind="PanelCtrlVendedor.aspx.cs" Inherits="Comercio.PanelCtrlVendedor" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container-fluid">
+  <div class="row justify-content-center g-5 mb-5 row-height">
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="package.png" alt="Caja" class="card-img">
+        <h5 class="card-title">Gestión de productos</h5>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="shopping-cart.png" alt="Carro" class="card-img">
+        <h5 class="card-title">Gestión de compras</h5>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="acquisition.png" alt="Venta" class="card-img">
+        <h5 class="card-title">Gestión de ventas</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center g-5 row-height">
+    <!-- Tarjetas fila 2 -->
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="target.png" alt="Cliente" class="card-img">
+        <h5 class="card-title">Gestión de clientes</h5>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="loading.png" alt="Proveedor" class="card-img">
+        <h5 class="card-title">Gestión de proveedores</h5>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-custom">
+        <img src="paperwork.png" alt="Reportes" class="card-img">
+        <h5 class="card-title">Reportes</h5>
+      </div>
+    </div>
+  </div>
+</div>
+</asp:Content>
