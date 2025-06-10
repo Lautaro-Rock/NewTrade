@@ -1,0 +1,143 @@
+﻿html, body, form {
+    height: 100%;
+}
+
+body {
+    background-color: #2b013a;
+    margin: 0;
+    color: white;
+    overflow-x: hidden;
+}
+
+#toggleSidebar {
+    position: fixed;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    z-index: 1060;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+    #toggleSidebar.move-right {
+        left: 265px;
+    }
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: #343a40;
+    padding: 2rem 1rem;
+    transition: left 0.3s ease;
+    z-index: 1050;
+}
+
+    #sidebar.show {
+        left: 0;
+    }
+
+.sidebar-link {
+    color: white;
+    display: block;
+    margin: 1rem 0;
+    text-decoration: none;
+}
+
+    .sidebar-link:hover {
+        text-decoration: underline;
+    }
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1040;
+    display: none;
+}
+
+    .blur-overlay.active {
+        display: block;
+    }
+
+.main-content {
+    margin-left: 30px;
+    transition: filter 0.3s ease;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.card-custom {
+    background-color: #52076d;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+    .card-custom:hover {
+        transform: scale(1.05);
+    }
+
+.card-img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.row-height {
+    min-height: 50vh;
+}
+
+.container-limited {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Colores por tipo de usuario */
+.body-vendedor {
+    background-color: #2b013a;
+}
+
+    .body-vendedor .card-custom {
+        background-color: #52076d;
+    }
+
+.body-admin {
+    background-color: #B34405;
+}
+
+    .body-admin .card-custom {
+        background-color: rgb(255, 146, 21);
+        box-shadow: 0 6px 16px #52076d;
+        color: #52076d;
+    }
