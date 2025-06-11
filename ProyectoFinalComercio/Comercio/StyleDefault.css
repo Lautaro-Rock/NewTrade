@@ -15,7 +15,10 @@ h2.styleRegister {
     color: black;
 }
 
-
+.tex-proveedores {
+    text-align: center;
+    color: black;
+}
 
 .Textos_de_bienvenida h1 {
     font-size: 60px;
@@ -24,7 +27,6 @@ h2.styleRegister {
 .Textos_de_bienvenida p {
     font-size: 30px;
 }
-
 
 .Textos_de_bienvenida::before {
     content: "";
@@ -83,3 +85,10 @@ h2.styleRegister {
     .btn_administrador:hover {
         background-color: #dddddd;
     }
+.hola {
+    text-align: center;
+    color: blue;
+    font-size: 30px;
+    background-color: yellow;
+    border: 2px solid red;
+}

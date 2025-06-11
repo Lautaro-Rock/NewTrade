@@ -7,8 +7,40 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class NegocioProveedores
+    public class NegocioProveedores
     {
+        public List<Proveedor> ListarProveedores()
+        {
+            AccesoDatos data = new AccesoDatos();
+            List<Proveedor> lista = new List<Proveedor>();
+            try
+            {
+                data.SetearConsulta("SELECT Id, RazonSocial, Cuit, Email, Telefono, Direccion FROM Proveedor;");
+                data.EjecutarLectura();
+                while (data.conexionDataReader.Read())
+                {
+                    Proveedor nuevo = new Proveedor
+                    {
+                        Id = (int)data.conexionDataReader["Id"],
+                        RazonSocial = (string)data.conexionDataReader["RazonSocial"],
+                        Cuit = (string)data.conexionDataReader["Cuit"],
+                        Email = (string)data.conexionDataReader["Email"],
+                        Telefono = (string)data.conexionDataReader["Telefono"],
+                        Direccion = (string)data.conexionDataReader["Direccion"]
+                    };
+                    lista.Add(nuevo);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
         public void AgregarProveedores(Proveedor nuevo)
         {
             AccesoDatos data = new AccesoDatos();

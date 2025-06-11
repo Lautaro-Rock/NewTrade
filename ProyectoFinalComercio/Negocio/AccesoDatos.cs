@@ -9,9 +9,9 @@ namespace Negocio
 {
     public class AccesoDatos
     {
-        private SqlConnection conexion;
-        private SqlCommand conexionCommand;
-        private SqlDataReader conexionDataReader;
+        public SqlConnection conexion;
+        public SqlCommand conexionCommand;
+        public SqlDataReader conexionDataReader;
         public SqlDataReader ConexionDataReader
         {
             get { return conexionDataReader; }
