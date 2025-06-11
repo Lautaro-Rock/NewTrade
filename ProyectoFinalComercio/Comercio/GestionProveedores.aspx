@@ -10,10 +10,10 @@
             Esta sección está diseñada para administrar de forma centralizada toda la información relacionada con los proveedores de la empresa. Desde aquí, el usuario puede consultar, agregar, modificar o eliminar registros de proveedores, asegurando que los datos estén siempre actualizados. Además, permite llevar un control organizado de los datos de contacto, condiciones comerciales y demás detalles relevantes, facilitando así los procesos de compra, abastecimiento y comunicación con los distintos proveedores.
         </p>
     </section>
-     <section class="section-two-proveedores">
-      <h2 class="Crud-Style">Funcionalidades crud</h2>
+     <section>
+      <h2 class="Crud-Style">Gestión Estratégica de Proveedores</h2>
      <p class="text-info-proveedores-dos">
-         Bienvenido! podrás realizar todas las operaciones necesarias para gestionar proveedores de manera eficiente. Se incluyen funcionalidades para crear nuevos registros, consultar información existente, modificar datos y eliminar proveedores cuando sea necesario. Esta herramienta está pensada para mantener actualizada la base de datos de proveedores, optimizando los procesos administrativos y asegurando una gestión ágil y centralizada.
+       Los proveedores son una pieza clave en el funcionamiento de nuestra empresa. Gracias a ellos, podemos garantizar el abastecimiento constante de productos y materiales esenciales para nuestra operación. Esta sección está destinada a facilitar una gestión eficaz y ordenada de todos nuestros proveedores, promoviendo relaciones comerciales sólidas, información actualizada y procesos de compra más ágiles. Un manejo eficiente de los proveedores contribuye directamente a la calidad del servicio que brindamos a nuestros clientes.
      </p>
  </section>
     <section>
