@@ -46,8 +46,9 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("INSERT INTO Proveedor (@RazonSocial, @Cuit, @Email, @Telefono, @Direccion) " +
-                "VALUES ('@RazonSocia', '@Cuit', '@Email', '@Telefono0', ' @Direccion');");
+                data.SetearConsulta("INSERT INTO Proveedor (RazonSocial, Cuit, Email, Telefono, Direccion) " +
+                 "VALUES (@RazonSocial, @Cuit, @Email, @Telefono, @Direccion);");
+
                 data.SetearParametro("@RazonSocial", nuevo.RazonSocial);
                 data.SetearParametro("@Cuit", nuevo.Cuit);
                 data.SetearParametro("@Email", nuevo.Email);

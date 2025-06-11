@@ -53,6 +53,103 @@
 <asp:GridView runat="server" ID="Proveedores" CssClass="table table-striped table-bordered table-hover tabla-proveedores"></asp:GridView>
 </div>
 </section>
+<section class="section-two-proveedores">
+    <h2 class="Crud-Style">Ingresar un nuevo proveedor</h2>
+    <p class="text-info-proveedores-dos">¡Esta sección está diseñada para ingresar un nuevo proveedor a nuestro sistema!</p>
+     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="mb-3">
+                    <asp:Label ID="Label1" runat="server" Text="Razón Social" CssClass="form-label text-white"></asp:Label>
+                    <asp:TextBox ID="TextRazonSocial" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                    <asp:Label ID="Label2" runat="server" Text="CUIT" CssClass="form-label text-white"></asp:Label>
+                    <asp:TextBox ID="TextCuit" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                    <asp:Label ID="Label3" runat="server" Text="Email" CssClass="form-label text-white"></asp:Label>
+                    <asp:TextBox ID="TextEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                    <asp:Label ID="Label4" runat="server" Text="Teléfono" CssClass="form-label text-white"></asp:Label>
+                    <asp:TextBox ID="TextTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                    <asp:Label ID="Label5" runat="server" Text="Dirección" CssClass="form-label text-white"></asp:Label>
+                    <asp:TextBox ID="TextDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                <asp:Button ID="RegisterProv" runat="server" OnClick="RegisterProv_Click" Text="Registrar proveedor" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+     <h2 class="Crud-Style pt-4">Editar un proveedor</h2>
+ <p class="text-info-proveedores-dos">¡Esta sección está diseñada para editar un  proveedor existense en nuestro sistema!</p>
+  <div class="container">
+     <div class="row justify-content-center">
+         <div class="col-md-6">
+               <div class="mb-3">
+                  <asp:Label ID="Label11" runat="server" Text="ID del proveedor" CssClass="form-label text-white"></asp:Label>
+                  <asp:TextBox ID="IdEdit" runat="server" CssClass="form-control"></asp:TextBox>
+              </div>
+             <div class="mb-3">
+                 <asp:Label ID="Label6" runat="server" Text="Razón Social" CssClass="form-label text-white"></asp:Label>
+                 <asp:TextBox ID="TextEditRazon" runat="server" CssClass="form-control"></asp:TextBox>
+             </div> 
+             <div class="mb-3">
+                 <asp:Label ID="Label7" runat="server" Text="CUIT" CssClass="form-label text-white"></asp:Label>
+                 <asp:TextBox ID="TextEditCuit" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
+
+             <div class="mb-3">
+                 <asp:Label ID="Label8" runat="server" Text="Email" CssClass="form-label text-white"></asp:Label>
+                 <asp:TextBox ID="TextEditEmail" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
+
+             <div class="mb-3">
+                 <asp:Label ID="Label9" runat="server" Text="Teléfono" CssClass="form-label text-white"></asp:Label>
+                 <asp:TextBox ID="TextEditTel" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
+
+             <div class="mb-3">
+                 <asp:Label ID="Label10" runat="server" Text="Dirección" CssClass="form-label text-white"></asp:Label>
+                 <asp:TextBox ID="TextEditDire" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
+
+             <div class="d-flex justify-content-center">
+             <asp:Button ID="EditProveedor" runat="server" OnClick="EditProveedor_Click"  Text="Editar proveedor" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3"/>
+             </div>
+         </div>
+     </div>
+ </div>
+</section>
+    <section class="section-two-proveedores ">
+     <h2 class="Crud-Style pt-4 ">Eliminar un proveedor</h2>
+ <p class="text-info-proveedores-dos">¡Esta sección está diseñada para eliminar un proveedor existense en nuestro sistema!</p>
+  <div class="container">
+     <div class="row justify-content-center">
+         <div class="col-md-6">
+               <div class="mb-3">
+                  <asp:Label ID="Label12" runat="server" Text="ID del proveedor" CssClass="form-label text-white"></asp:Label>
+                  <asp:TextBox ID="IdDelete" runat="server" CssClass="form-control"></asp:TextBox>
+              </div>
+             <div class="d-flex justify-content-center">
+             <asp:Button ID="DeleteProv" runat="server" OnClick="DeleteProv_Click"  Text="Eliminar proveedor" CssClass="btn btn-danger btn-md rounded-pill px-5 my-3"/>
+             </div>
+         </div>
+     </div>
+ </div>
+</section>
    
  
 </asp:Content>

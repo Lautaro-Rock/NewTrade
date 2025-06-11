@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gestionproveedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\negocio\\negocioproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\negocioproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\stylecss\\gestionproveedores.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\stylecss\\gestionproveedores.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NegocioProveedores.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\NegocioProveedores.cs",
+              "RelativeDocumentMoniker": "Negocio\\NegocioProveedores.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\NegocioProveedores.cs",
+              "RelativeToolTip": "Negocio\\NegocioProveedores.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:19:01.898Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,22 +49,9 @@
               "RelativeDocumentMoniker": "Comercio\\GestionProveedores.aspx.cs",
               "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx.cs",
               "RelativeToolTip": "Comercio\\GestionProveedores.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAqwD0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T00:24:06.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GestionProveedores.css",
-              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\GestionProveedores.css",
-              "RelativeDocumentMoniker": "Comercio\\StyleCss\\GestionProveedores.css",
-              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\GestionProveedores.css",
-              "RelativeToolTip": "Comercio\\StyleCss\\GestionProveedores.css",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAEYAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-10T22:45:50.367Z",
+              "WhenOpened": "2025-06-11T02:53:16.891Z",
               "EditorCaption": ""
             },
             {
@@ -69,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AccesoDatos.cs",
               "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\AccesoDatos.cs",
               "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
