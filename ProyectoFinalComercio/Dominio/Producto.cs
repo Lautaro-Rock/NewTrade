@@ -9,10 +9,12 @@ namespace Dominio
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        Marca Marca { get; set; }
-        TipoProducto TipoProducto { get; set; }
+        public Marca Marca { get; set; }
+        public TipoProducto TipoProducto { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-        List<Proveedor> Proveedores { get; set; }
+        
+        public int StockMin { get; set; }
+        public List<Proveedor> Proveedores { get; set; }
     }
 }
