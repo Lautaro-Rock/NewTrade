@@ -12,21 +12,24 @@ CREATE TABLE Usuario (
     DNI NVARCHAR(20),
     Email NVARCHAR(150) NOT NULL UNIQUE,
     Password NVARCHAR(100) NOT NULL,
-    Rol NVARCHAR(50) NOT NULL -- 'Cliente', 'Vendedor', 'Administrador'
+    Rol NVARCHAR(50) NOT NULL, -- 'Cliente', 'Vendedor', 'Administrador'
+    Activo BIT NOT NULL DEFAULT 1
 );
 GO
 
 -- Tabla de Marcas
 CREATE TABLE Marca (
     Id INT PRIMARY KEY IDENTITY(1,1),
-    Nombre NVARCHAR(100) NOT NULL
+    Nombre NVARCHAR(100) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1
 );
 GO
 
 -- Tabla de Tipos de Producto
 CREATE TABLE TipoProducto (
     Id INT PRIMARY KEY IDENTITY(1,1),
-    Nombre NVARCHAR(100) NOT NULL
+    Nombre NVARCHAR(100) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1
 );
 GO
 
@@ -37,7 +40,8 @@ CREATE TABLE Proveedor (
     Cuit NVARCHAR(20) NOT NULL,
     Email NVARCHAR(150),
     Telefono NVARCHAR(50),
-    Direccion NVARCHAR(200)
+    Direccion NVARCHAR(200),
+    Activo BIT NOT NULL DEFAULT 1
 );
 GO
 
@@ -51,6 +55,7 @@ CREATE TABLE Producto (
     PorcentajeGanancia DECIMAL(5,2) NOT NULL,
     IdMarca INT NOT NULL,
     IdTipoProducto INT NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdMarca) REFERENCES Marca(Id),
     FOREIGN KEY (IdTipoProducto) REFERENCES TipoProducto(Id)
 );
@@ -60,6 +65,7 @@ GO
 CREATE TABLE ProductoProveedor (
     IdProducto INT NOT NULL,
     IdProveedor INT NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
     PRIMARY KEY (IdProducto, IdProveedor),
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id),
     FOREIGN KEY (IdProveedor) REFERENCES Proveedor(Id)
@@ -71,6 +77,7 @@ CREATE TABLE Compra (
     Id INT PRIMARY KEY IDENTITY(1,1),
     IdProveedor INT NOT NULL,
     Fecha DATETIME NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdProveedor) REFERENCES Proveedor(Id)
 );
 GO
@@ -82,6 +89,7 @@ CREATE TABLE DetalleCompra (
     IdProducto INT NOT NULL,
     Cantidad INT NOT NULL,
     PrecioUnitario DECIMAL(18,2) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdCompra) REFERENCES Compra(Id),
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id)
 );
@@ -94,6 +102,7 @@ CREATE TABLE Venta (
     IdVendedor INT NOT NULL,
     Fecha DATETIME NOT NULL,
     NumeroFactura NVARCHAR(50) NOT NULL UNIQUE,
+    Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdCliente) REFERENCES Usuario(Id),
     FOREIGN KEY (IdVendedor) REFERENCES Usuario(Id)
 );
@@ -106,6 +115,8 @@ CREATE TABLE DetalleVenta (
     IdProducto INT NOT NULL,
     Cantidad INT NOT NULL,
     PrecioUnitario DECIMAL(18,2) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdVenta) REFERENCES Venta(Id),
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id)
 );
+
