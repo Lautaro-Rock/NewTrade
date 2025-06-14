@@ -14,5 +14,7 @@ namespace Dominio
         public string Telefono { get; set; }
         public string Direccion { get; set; }
 
+        public bool Activo { get; set; }
+
     }
 }

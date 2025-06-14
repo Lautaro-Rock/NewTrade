@@ -12,6 +12,7 @@ namespace Dominio
         
         List<DetalleCompra> DetalleList { get; set; }
 
+        public bool Activo { get; set; }
         DateTime Fecha { get; set; }
     }
 }

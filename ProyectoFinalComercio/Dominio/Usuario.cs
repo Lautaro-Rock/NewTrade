@@ -14,6 +14,8 @@ namespace Dominio
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Rol { get; set; } // Puede ser "Administrador", "Vendedor" o "Cliente"
+        public string Rol { get; set; } // Puede ser "Administrador" o "Vendedor"
+
+        public bool Activo { get; set; }
     }
 }   

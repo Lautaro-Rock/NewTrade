@@ -15,6 +15,7 @@ namespace Dominio
         List<DetalleVenta> DetalleList { get; set; }
         string numeroFactura { get; set; }
 
+        public bool Activo { get; set; }
 
     }
 }
