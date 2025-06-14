@@ -16,3 +16,9 @@ C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.pdb

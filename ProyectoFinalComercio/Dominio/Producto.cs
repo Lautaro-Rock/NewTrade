@@ -15,6 +15,8 @@ namespace Dominio
         public int Stock { get; set; }
         
         public int StockMin { get; set; }
+        
+        public string UrlImgProducto { get; set; }
         public List<Proveedor> Proveedores { get; set; }
     }
 }

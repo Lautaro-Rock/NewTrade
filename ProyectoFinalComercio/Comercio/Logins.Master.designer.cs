@@ -11,52 +11,52 @@ namespace Comercio
 {
 
 
-    public partial class PruebaAdmin
+    public partial class MasterLogins
     {
 
         /// <summary>
-        /// Control lbUsuarioAdmn.
+        /// Control head.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbUsuarioAdmn;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
-        /// Control txtUsuarioAdmn.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioAdmn;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lbContraUsuarioAdmn.
+        /// Control phSubtitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbContraUsuarioAdmn;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder phSubtitulo;
 
         /// <summary>
-        /// Control txtContraAdmn.
+        /// Control phFormulario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraAdmn;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder phFormulario;
 
         /// <summary>
-        /// Control btnIngresarAdmn.
+        /// Control phLinkExtra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresarAdmn;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder phLinkExtra;
     }
 }

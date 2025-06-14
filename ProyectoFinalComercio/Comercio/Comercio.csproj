@@ -122,9 +122,9 @@
     <Content Include="FormularioAltaVendedor.aspx" />
     <Content Include="GestionClientes.aspx" />
     <Content Include="GestionCompras.aspx" />
-    <Content Include="GestionProductos.aspx" />
     <Content Include="GestionProveedores.aspx" />
     <Content Include="GestionVentas.aspx" />
+    <Content Include="GestiónDeProductos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\acquisition.png" />
     <Content Include="images\analysis.png" />
@@ -148,11 +148,10 @@
     <Content Include="images\target-violeta.png" />
     <Content Include="images\target.png" />
     <Content Include="Default.aspx" />
-    <Content Include="LoginAdmin.aspx" />
-    <Content Include="LoginVendedor.aspx" />
     <Content Include="PanelCtrlVendedor.aspx" />
-    <Content Include="PanelDeControlAdmin.aspx" />
-    <Content Include="PanelDeControlVendedor.aspx" />
+    <Content Include="PanelCtrlAdmin.aspx" />
+    <Content Include="LoginVendedor.aspx" />
+    <Content Include="LoginAdmin.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -183,7 +182,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="MasterPanelDeControles.Master" />
-    <Content Include="PanelCtrlAdmin.Master" />
+    <Content Include="Logins.Master" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -213,8 +212,8 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="StyleCss\GestionProveedores.css" />
     <Content Include="StyleDefault.css" />
-    <Content Include="StyleLoginAdmin.css" />
-    <Content Include="StyleLoginVendedor.css" />
+    <Content Include="StyleLogins.css" />
+    <Content Include="StylePaginasDeGestiones.css" />
     <Content Include="StylesGeneralesPanelDeControles.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -245,13 +244,6 @@
     <Compile Include="GestionCompras.aspx.designer.cs">
       <DependentUpon>GestionCompras.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GestionProductos.aspx.cs">
-      <DependentUpon>GestionProductos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionProductos.aspx.designer.cs">
-      <DependentUpon>GestionProductos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GestionProveedores.aspx.cs">
       <DependentUpon>GestionProveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,6 +258,13 @@
     <Compile Include="GestionVentas.aspx.designer.cs">
       <DependentUpon>GestionVentas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GestiónDeProductos.aspx.cs">
+      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiónDeProductos.aspx.designer.cs">
+      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,19 +275,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LoginAdmin.aspx.cs">
-      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+    <Compile Include="Logins.Master.cs">
+      <DependentUpon>Logins.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LoginAdmin.aspx.designer.cs">
-      <DependentUpon>LoginAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LoginVendedor.aspx.cs">
-      <DependentUpon>LoginVendedor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginVendedor.aspx.designer.cs">
-      <DependentUpon>LoginVendedor.aspx</DependentUpon>
+    <Compile Include="Logins.Master.designer.cs">
+      <DependentUpon>Logins.Master</DependentUpon>
     </Compile>
     <Compile Include="MasterPanelDeControles.Master.cs">
       <DependentUpon>MasterPanelDeControles.Master</DependentUpon>
@@ -297,13 +289,6 @@
     <Compile Include="MasterPanelDeControles.Master.designer.cs">
       <DependentUpon>MasterPanelDeControles.Master</DependentUpon>
     </Compile>
-    <Compile Include="PanelCtrlAdmin.Master.cs">
-      <DependentUpon>PanelCtrlAdmin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PanelCtrlAdmin.Master.designer.cs">
-      <DependentUpon>PanelCtrlAdmin.Master</DependentUpon>
-    </Compile>
     <Compile Include="PanelCtrlVendedor.aspx.cs">
       <DependentUpon>PanelCtrlVendedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,21 +296,28 @@
     <Compile Include="PanelCtrlVendedor.aspx.designer.cs">
       <DependentUpon>PanelCtrlVendedor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PanelDeControlAdmin.aspx.cs">
-      <DependentUpon>PanelDeControlAdmin.aspx</DependentUpon>
+    <Compile Include="PanelCtrlAdmin.aspx.cs">
+      <DependentUpon>PanelCtrlAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PanelDeControlAdmin.aspx.designer.cs">
-      <DependentUpon>PanelDeControlAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PanelDeControlVendedor.aspx.cs">
-      <DependentUpon>PanelDeControlVendedor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PanelDeControlVendedor.aspx.designer.cs">
-      <DependentUpon>PanelDeControlVendedor.aspx</DependentUpon>
+    <Compile Include="PanelCtrlAdmin.aspx.designer.cs">
+      <DependentUpon>PanelCtrlAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LoginVendedor.aspx.cs">
+      <DependentUpon>LoginVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginVendedor.aspx.designer.cs">
+      <DependentUpon>LoginVendedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginAdmin.aspx.cs">
+      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginAdmin.aspx.designer.cs">
+      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

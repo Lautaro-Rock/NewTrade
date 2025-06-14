@@ -16,10 +16,10 @@ namespace Negocio
             List<Producto> lista = new List<Producto>();
             try
             {
-                data.SetearConsulta("SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, T.Nombre AS Categoria " +
-                    "FROM Producto P " +
-                    "INNER JOIN Marca M ON P.IdMarca = M.Id " +
-                    "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;");
+                data.SetearConsulta("SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
+    "FROM Producto P " +
+    "INNER JOIN Marca M ON P.IdMarca = M.Id " +
+    "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;");
                 data.EjecutarLectura();
                 while (data.conexionDataReader.Read())
                 {
@@ -32,6 +32,7 @@ namespace Negocio
                     nuevo.Precio = data.ConexionDataReader["Precio"] != DBNull.Value ? Convert.ToDecimal(data.ConexionDataReader["Precio"]) : 0m;
                     nuevo.Stock = (int)data.conexionDataReader["Stock"];
                     nuevo.StockMin = (int)data.conexionDataReader["StockMinimo"];
+                    nuevo.UrlImgProducto = (string)data.conexionDataReader["UrlImgProducto"];
                     nuevo.TipoProducto = new TipoProducto();
                     nuevo.TipoProducto.Nombre = (string)data.conexionDataReader["Categoria"];
 
@@ -48,6 +49,10 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
+       
+
+
         public void AgregarProductos(Producto nuevo)
         {
             AccesoDatos data = new AccesoDatos();
