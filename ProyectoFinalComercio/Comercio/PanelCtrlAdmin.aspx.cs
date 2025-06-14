@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Comercio
 {
-    public partial class PanelDeControlAdmin : System.Web.UI.Page
+    public partial class PanellCtrlAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

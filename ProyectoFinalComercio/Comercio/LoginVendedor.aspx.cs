@@ -8,13 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace Comercio
 {
-    public partial class LoginVendedor : System.Web.UI.Page
+    public partial class Prueba : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         protected void btnIngresarVnd_Click(object sender, EventArgs e)
         {
             string nombre = txtEmailUsuarioVnd.Text.Trim();
@@ -29,7 +28,9 @@ namespace Comercio
 
                 if (esValido)
                 {
-                    Response.Redirect("PanelDeControlVendedor.aspx");
+
+
+                    Response.Redirect("PanelCtrlVendedor.aspx");
                 }
                 else
                 {

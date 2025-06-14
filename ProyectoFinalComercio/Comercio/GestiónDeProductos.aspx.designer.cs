@@ -11,52 +11,43 @@ namespace Comercio
 {
 
 
-    public partial class PruebaAdmin
+    public partial class GestiónDeProductos
     {
 
         /// <summary>
-        /// Control lbUsuarioAdmn.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbUsuarioAdmn;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control txtUsuarioAdmn.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioAdmn;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control lbContraUsuarioAdmn.
+        /// Control Button2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbContraUsuarioAdmn;
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// Control txtContraAdmn.
+        /// Control Button3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraAdmn;
-
-        /// <summary>
-        /// Control btnIngresarAdmn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresarAdmn;
+        protected global::System.Web.UI.WebControls.Button Button3;
     }
 }

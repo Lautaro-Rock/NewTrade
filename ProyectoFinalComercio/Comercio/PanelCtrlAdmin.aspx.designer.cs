@@ -11,7 +11,7 @@ namespace Comercio
 {
 
 
-    public partial class PanelCtrlAdmin
+    public partial class PanellCtrlAdmin
     {
     }
 }
