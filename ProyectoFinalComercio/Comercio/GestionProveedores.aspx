@@ -92,7 +92,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="section-color">
      <h2 class="Crud-Style pt-4">Editar un proveedor</h2>
  <p class="text-info-proveedores-dos">¡Esta sección está diseñada para editar un  proveedor existense en nuestro sistema!</p>
   <div class="container">
