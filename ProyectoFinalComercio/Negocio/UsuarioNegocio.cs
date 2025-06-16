@@ -170,5 +170,24 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public void EliminarUsuarioLogico(Usuario nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE Usuario SET Activo = 0 WHERE Id = @id;");
+                data.SetearParametro("@id", nuevo.Id);
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
     }
 }

@@ -65,5 +65,24 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
+        public void EliminarTipoProductoLogico(TipoProducto nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE TipoProducto SET Activo = 0 WHERE Id = @id;");
+                data.SetearParametro("@id", nuevo.Id);
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
     }
  }

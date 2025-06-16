@@ -17,9 +17,10 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
-    "FROM Producto P " +
-    "INNER JOIN Marca M ON P.IdMarca = M.Id " +
-    "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;");
+                    "FROM Producto P " +
+                    "INNER JOIN Marca M ON P.IdMarca = M.Id " +
+                    "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;" +
+                    "WHERE P.Activo = 1;");
                 data.EjecutarLectura();
                 while (data.conexionDataReader.Read())
                 {
@@ -102,6 +103,25 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("DELETE FROM Producto WHERE Id = @id;");
+                data.SetearParametro("@id", nuevo.Id);
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+        public void EliminarProductoLogico(Producto nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE Producto SET Activo = 0 WHERE Id = @id;");
                 data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }

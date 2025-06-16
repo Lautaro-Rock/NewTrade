@@ -15,7 +15,7 @@ namespace Negocio
             List<Proveedor> lista = new List<Proveedor>();
             try
             {
-                data.SetearConsulta("SELECT Id, RazonSocial, Cuit, Email, Telefono, Direccion FROM Proveedor;");
+                data.SetearConsulta("SELECT Id, RazonSocial, Cuit, Email, Telefono, Direccion FROM Proveedor Where Activo = 1;");
                 data.EjecutarLectura();
                 while (data.conexionDataReader.Read())
                 {
@@ -95,6 +95,25 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("DELETE FROM Proveedor WHERE Id = @id;");
+                data.SetearParametro("@id", nuevo.Id);
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+        public void EliminarProveedoresLogico(Proveedor nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE Proveedor SET Activo = 0 WHERE Id = @id;");
                 data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
