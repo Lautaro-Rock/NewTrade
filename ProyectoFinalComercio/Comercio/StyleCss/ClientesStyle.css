@@ -1,0 +1,103 @@
+﻿.section-clientes-one{
+    background-color:white;
+}
+.h2Clientes {
+    text-align: center;
+    font-family: 'Verdana', 'Geneva', sans-serif;
+    font-weight: 700;
+    font-size: 2.0rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(75, 60, 167, 0.4);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-align: center;
+    color: black;
+    padding-top: 10px;
+}
+.text-style {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    color:black;
+}
+.alerts-section{
+    background-color:black;
+}
+.alert {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.accordion-button {
+    font-family: 'Verdana', 'Geneva', sans-serif;
+    font-weight: 700;
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.accordion-body {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    color: black;
+}
+.clientesList {
+    background-color: indigo;
+}
+.h2ClientesTwo {
+    text-align: center;
+    font-family: 'Verdana', 'Geneva', sans-serif;
+    font-weight: 700;
+    font-size: 2.0rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(75, 60, 167, 0.4);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+.text-styleTwo {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+.section-new-client{
+    background-color:black;
+}
+.h2ClientesInsert {
+    text-align: center;
+    font-family: 'Verdana', 'Geneva', sans-serif;
+    font-weight: 700;
+    font-size: 2.0rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(75, 60, 167, 0.4);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+.text-styleInster {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+.clientesList{
+    margin:0;
+}
+.section-delete-client{
+    background-color:black;
+}

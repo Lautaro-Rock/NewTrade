@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\stylecss\\gestionproveedores.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\stylecss\\gestionproveedores.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\gestionclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gestionclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\panelctrlvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\panelctrlvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\gestionclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gestionclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\gestionproveedores.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gestionproveedores.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\stylecss\\clientesstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\stylecss\\clientesstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\negocio\\negocioproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\negocioproveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\lauty\\onedrive\\escritorio\\finalprograiii\\proyectofinalcomercio\\comercio\\gestionproveedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -22,24 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GestionProveedores.css",
-              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\GestionProveedores.css",
-              "RelativeDocumentMoniker": "Comercio\\StyleCss\\GestionProveedores.css",
-              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\GestionProveedores.css",
-              "RelativeToolTip": "Comercio\\StyleCss\\GestionProveedores.css",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAcwB0AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-15T20:38:02.102Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "GestionProveedores.aspx",
               "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx",
               "RelativeDocumentMoniker": "Comercio\\GestionProveedores.aspx",
@@ -47,20 +50,85 @@
               "RelativeToolTip": "Comercio\\GestionProveedores.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-15T20:37:32.42Z",
+              "WhenOpened": "2025-06-15T23:37:29.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NegocioProveedores.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\NegocioProveedores.cs",
+              "RelativeDocumentMoniker": "Negocio\\NegocioProveedores.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\NegocioProveedores.cs",
+              "RelativeToolTip": "Negocio\\NegocioProveedores.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T23:27:08.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GestionClientes.aspx",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx",
+              "RelativeDocumentMoniker": "Comercio\\GestionClientes.aspx",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx",
+              "RelativeToolTip": "Comercio\\GestionClientes.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-15T22:00:38.324Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PanelCtrlVendedor.aspx",
-              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\PanelCtrlVendedor.aspx",
-              "RelativeDocumentMoniker": "Comercio\\PanelCtrlVendedor.aspx",
-              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\PanelCtrlVendedor.aspx",
-              "RelativeToolTip": "Comercio\\PanelCtrlVendedor.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-15T20:35:30.91Z",
+              "Title": "UsuarioNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\UsuarioNegocio.cs",
+              "RelativeDocumentMoniker": "Negocio\\UsuarioNegocio.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Negocio\\UsuarioNegocio.cs",
+              "RelativeToolTip": "Negocio\\UsuarioNegocio.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAAHUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T21:57:31.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GestionClientes.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx.cs",
+              "RelativeDocumentMoniker": "Comercio\\GestionClientes.aspx.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx.cs",
+              "RelativeToolTip": "Comercio\\GestionClientes.aspx.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAEYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T21:54:02.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GestionProveedores.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx.cs",
+              "RelativeDocumentMoniker": "Comercio\\GestionProveedores.aspx.cs",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx.cs",
+              "RelativeToolTip": "Comercio\\GestionProveedores.aspx.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T23:37:31.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClientesStyle.css",
+              "DocumentMoniker": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\ClientesStyle.css",
+              "RelativeDocumentMoniker": "Comercio\\StyleCss\\ClientesStyle.css",
+              "ToolTip": "C:\\Users\\Lauty\\OneDrive\\Escritorio\\FinalPrograIII\\ProyectoFinalComercio\\Comercio\\StyleCss\\ClientesStyle.css",
+              "RelativeToolTip": "Comercio\\StyleCss\\ClientesStyle.css",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-15T21:05:14.057Z",
               "EditorCaption": ""
             }
           ]
