@@ -210,6 +210,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="StyleCss\ClientesStyle.css" />
     <Content Include="StyleCss\GestionProveedores.css" />
     <Content Include="StyleDefault.css" />
     <Content Include="StyleLogins.css" />

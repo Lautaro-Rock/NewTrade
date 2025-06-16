@@ -59,7 +59,6 @@
      <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-
                 <div class="mb-3">
                     <asp:Label ID="Label1" runat="server" Text="Razón Social" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextRazonSocial" runat="server" CssClass="form-control"></asp:TextBox>
