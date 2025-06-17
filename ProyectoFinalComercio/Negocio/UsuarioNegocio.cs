@@ -20,16 +20,16 @@ namespace Negocio
             {
                 data.SetearConsulta("SELECT Id, Nombre, Apellido, DNI, Email, Password, Rol FROM Usuario WHERE Rol='Cliente';");
                 data.EjecutarLectura();
-                while (data.conexionDataReader.Read())
+                while (data.Lector.Read())
                 {
                     Usuario user = new Usuario
                     {
-                        Nombre = (string)data.conexionDataReader["Nombre"],
-                        Apellido = (string)data.conexionDataReader["Apellido"],
-                        Dni = int.Parse(data.conexionDataReader["Dni"].ToString()),
-                        Email = (string)data.conexionDataReader["Email"],
-                        Password = (string)data.conexionDataReader["Password"],
-                        Rol = (string)data.conexionDataReader["Rol"],
+                        Nombre = (string)data.Lector["Nombre"],
+                        Apellido = (string)data.Lector["Apellido"],
+                        Dni = int.Parse(data.Lector["Dni"].ToString()),
+                        Email = (string)data.Lector["Email"],
+                        Password = (string)data.Lector["Password"],
+                        Rol = (string)data.Lector["Rol"],
                     };
                     lista.Add(user);
                 }
