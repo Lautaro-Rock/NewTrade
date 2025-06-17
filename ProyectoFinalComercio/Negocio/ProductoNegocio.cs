@@ -60,8 +60,17 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("INSERT INTO Producto (Nombre, IdMarca, Precio, Stock, StockMinimo, IdTipoProducto) " +
-                    "VALUES('" + nuevo.Nombre + "', " + nuevo.Marca.Id + ", " + nuevo.Precio.ToString(CultureInfo.InvariantCulture) + ", " + nuevo.Stock + ", " + nuevo.StockMin + ", " + nuevo.TipoProducto + ");"); 
+
+                data.SetearConsulta("INSERT INTO Producto (Nombre, IdMarca, Precio, Stock, StockMinimo, IdTipoProducto, UrlImgProducto, Activo) " +
+                    "VALUES (@Nombre, @IdMarca, @Precio, @Stock, @StockMinimo, @IdTipoProducto, @UrlImgProducto, @Activo);");
+                data.SetearParametro("@Nombre", nuevo.Nombre);
+                data.SetearParametro("@IdMarca", nuevo.Marca.Id);
+                data.SetearParametro("@Precio", nuevo.Precio.ToString(CultureInfo.InvariantCulture));
+                data.SetearParametro("@Stock", nuevo.Stock);
+                data.SetearParametro("@StockMinimo", nuevo.StockMin);
+                data.SetearParametro("@IdTipoProducto", nuevo.TipoProducto.Id);
+                data.SetearParametro("@UrlImgProducto", nuevo.UrlImgProducto ?? (object)DBNull.Value);
+                data.SetearParametro("@Activo", nuevo.Activo);
                 data.EjecutarAccion();
             }
             catch (Exception ex)

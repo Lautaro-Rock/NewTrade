@@ -98,6 +98,39 @@ namespace Comercio
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
+        protected void btnGuardarProducto_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio data = new ProductoNegocio();
+            Producto producto = new Producto();
 
+            producto.Nombre = txtNombreProd.Text.Trim();
+            producto.Marca = new Marca { Id = int.Parse(ddlMarcas.SelectedValue) };
+            producto.TipoProducto = new TipoProducto { Id = int.Parse(ddlTipoDeProducto.SelectedValue) };
+            producto.Precio = decimal.Parse(txtPrecio.Text.Trim());
+            producto.Stock = int.Parse(txtStock.Text.Trim());
+            producto.StockMin = int.Parse(txtStockMin.Text.Trim());
+            producto.UrlImgProducto = txtUrlImagen.Text.Trim();
+            producto.Activo = true;
+
+            try
+            {
+
+                data.AgregarProductos(producto);
+
+                // Limpiamos los campos del form :)
+                txtNombreProd.Text = "";
+                ddlMarcas.SelectedIndex = 0;
+                ddlTipoDeProducto.SelectedIndex = 0;
+                txtPrecio.Text = "";
+                txtStock.Text = "";
+                txtStockMin.Text = "";
+                txtUrlImagen.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
+            }
+        }
     }
 }

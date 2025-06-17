@@ -65,17 +65,17 @@
             </div>
 
             <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="TextBox4" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
-                <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
+                <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
+                <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
             </div>
 
             <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="TextBox2" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
+                <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
             </div>
 
             <div class="d-grid mt-4">
-                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" />
+                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" />
             </div>
         </div>
     </div>
