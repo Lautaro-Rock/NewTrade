@@ -159,6 +159,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
+        /// Control btnGuardarProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarProducto;
+
+        /// <summary>
         /// Control PanelListarProd.
         /// </summary>
         /// <remarks>
@@ -213,13 +222,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtNombreMarca;
 
         /// <summary>
-        /// Control Button4.
+        /// Control btnGuardarMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button btnGuardarMarca;
 
         /// <summary>
         /// Control lnkVolver.
