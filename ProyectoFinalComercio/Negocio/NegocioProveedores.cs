@@ -17,16 +17,16 @@ namespace Negocio
             {
                 data.SetearConsulta("SELECT Id, RazonSocial, Cuit, Email, Telefono, Direccion FROM Proveedor Where Activo = 1;");
                 data.EjecutarLectura();
-                while (data.conexionDataReader.Read())
+                while (data.Lector.Read())
                 {
                     Proveedor nuevo = new Proveedor
                     {
-                        Id = (int)data.conexionDataReader["Id"],
-                        RazonSocial = (string)data.conexionDataReader["RazonSocial"],
-                        Cuit = (string)data.conexionDataReader["Cuit"],
-                        Email = (string)data.conexionDataReader["Email"],
-                        Telefono = (string)data.conexionDataReader["Telefono"],
-                        Direccion = (string)data.conexionDataReader["Direccion"]
+                        Id = (int)data.Lector["Id"],
+                        RazonSocial = (string)data.Lector["RazonSocial"],
+                        Cuit = (string)data.Lector["Cuit"],
+                        Email = (string)data.Lector["Email"],
+                        Telefono = (string)data.Lector["Telefono"],
+                        Direccion = (string)data.Lector["Direccion"]
                     };
                     lista.Add(nuevo);
                 }

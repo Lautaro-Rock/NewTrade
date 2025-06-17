@@ -1,0 +1,132 @@
+﻿html, body, form {
+    height: 100%;
+}
+
+body {
+    background-color: #2b013a;
+    margin: 0;
+    color: white;
+    overflow-x: hidden;
+}
+
+#toggleSidebar {
+    position: fixed;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    z-index: 1060;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+    #toggleSidebar.move-right {
+        left: 265px;
+    }
+
+#sidebar {
+    background-color: #2b013a;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    padding: 2rem 1rem;
+    transition: left 0.3s ease;
+    z-index: 1050;
+}
+
+    #sidebar.show {
+        left: 0;
+    }
+
+.sidebar-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+
+.sidebar-link {
+    font-size: 22px;
+    color: white;
+    display: block;
+    margin: 1rem 0;
+    text-decoration: none;
+}
+
+    .sidebar-link:hover {
+        text-decoration: none;
+    }
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1040;
+    display: none;
+}
+
+    .blur-overlay.active {
+        display: block;
+    }
+
+.hover-effect:hover {
+    background-color: rgba(255, 132, 17, 0.849);
+    cursor: pointer;
+}
+
+.card {
+    background-color: #fff;
+    border: 1.5px solid rgba(255, 174, 0, 0.979);
+    border-radius: 1rem;
+    box-shadow: none;
+    transition: box-shadow 0.2s ease;
+    padding: 1rem;
+}
+
+    .card:hover {
+        box-shadow: rgba(255, 174, 0, 0.979);
+    }
+
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+
+.btn-outline-warning {
+    border: 1.5px solid #ffa600;
+    color: #ffa600;
+    background-color: transparent;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    margin-top: 0.3rem;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #ffa600;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(255, 166, 0, 0.4);
+    }
+
+.panel-marca {
+    background-color: #52076d;
+    color: white;
+}

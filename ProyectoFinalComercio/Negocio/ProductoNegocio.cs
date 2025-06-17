@@ -22,20 +22,20 @@ namespace Negocio
                     "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;" +
                     "WHERE P.Activo = 1;");
                 data.EjecutarLectura();
-                while (data.conexionDataReader.Read())
+                while (data.Lector.Read())
                 {
                     Producto nuevo = new Producto();
 
-                    nuevo.Id = (int)data.conexionDataReader["Id"];
-                    nuevo.Nombre = (string)data.conexionDataReader["Nombre"];
+                    nuevo.Id = (int)data.Lector["Id"];
+                    nuevo.Nombre = (string)data.Lector["Nombre"];
                     nuevo.Marca = new Marca();
-                    nuevo.Marca.Nombre = (string)data.conexionDataReader["Marca"];
-                    nuevo.Precio = data.ConexionDataReader["Precio"] != DBNull.Value ? Convert.ToDecimal(data.ConexionDataReader["Precio"]) : 0m;
-                    nuevo.Stock = (int)data.conexionDataReader["Stock"];
-                    nuevo.StockMin = (int)data.conexionDataReader["StockMinimo"];
-                    nuevo.UrlImgProducto = (string)data.conexionDataReader["UrlImgProducto"];
+                    nuevo.Marca.Nombre = (string)data.Lector["Marca"];
+                    nuevo.Precio = data.Lector["Precio"] != DBNull.Value ? Convert.ToDecimal(data.Lector["Precio"]) : 0m;
+                    nuevo.Stock = (int)data.Lector["Stock"];
+                    nuevo.StockMin = (int)data.Lector["StockMinimo"];
+                    nuevo.UrlImgProducto = (string)data.Lector["UrlImgProducto"];
                     nuevo.TipoProducto = new TipoProducto();
-                    nuevo.TipoProducto.Nombre = (string)data.conexionDataReader["Categoria"];
+                    nuevo.TipoProducto.Nombre = (string)data.Lector["Categoria"];
 
                     lista.Add(nuevo);
                 }
