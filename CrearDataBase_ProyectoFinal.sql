@@ -121,3 +121,15 @@ CREATE TABLE DetalleVenta (
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id)
 );
 
+USE ComercioDB;
+GO
+
+SELECT * FROM Producto;
+
+SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria 
+FROM Producto P
+INNER JOIN Marca M ON M.Id = P.IdMarca
+INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto
+WHERE P.Activo = 1
+
+UPDATE Producto SET Activo = 1 WHERE Id = 12;
