@@ -9,31 +9,34 @@ namespace Negocio
 {
     public class AccesoDatos
     {
-        public SqlConnection conexion;
-        public SqlCommand conexionCommand;
-        public SqlDataReader conexionDataReader;
-        public SqlDataReader ConexionDataReader
+        private SqlConnection conexion;
+        private SqlCommand comando;
+        private SqlDataReader lector;
+        public SqlDataReader Lector
         {
-            get { return conexionDataReader; }
+            get { return lector; }
         }
 
         public AccesoDatos()
         {
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ComercioDB; integrated security=true;");
-            conexionCommand = new SqlCommand();
+            comando = new SqlCommand();
         }
+
         public void SetearConsulta(string consulta)
         {
-            conexionCommand.CommandType = System.Data.CommandType.Text;
-            conexionCommand.CommandText = consulta;
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = consulta;
+            comando.Parameters.Clear();
         }
+
         public void EjecutarLectura()
         {
-            conexionCommand.Connection = conexion;
+            comando.Connection = conexion;
             try
             {
                 conexion.Open();
-                conexionDataReader = conexionCommand.ExecuteReader();
+                lector = comando.ExecuteReader();
 
             }
             catch (Exception ex)
@@ -45,15 +48,16 @@ namespace Negocio
 
         public void SetearParametro(string nombre, object valor)
         {
-            conexionCommand.Parameters.AddWithValue(nombre, valor);
+            comando.Parameters.AddWithValue(nombre, valor);
         }
+
         public void EjecutarAccion()
         {
-            conexionCommand.Connection = conexion;
+            comando.Connection = conexion;
             try
             {
                 conexion.Open();
-                conexionCommand.ExecuteNonQuery();
+                comando.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -64,11 +68,9 @@ namespace Negocio
 
         public void CerrarConexion()
         {
-            if (conexionDataReader != null)
-            {
-                conexionDataReader.Close();
-            }
-            conexion.Close();
+            if (lector != null)
+                lector.Close();
+                conexion.Close();
         }
     }
 }

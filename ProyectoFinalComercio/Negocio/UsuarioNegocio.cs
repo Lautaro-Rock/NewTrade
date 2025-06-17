@@ -45,9 +45,9 @@ namespace Negocio
 
                 datos.EjecutarLectura();
 
-                if (datos.ConexionDataReader.Read())
+                if (datos.Lector.Read())
                 {
-                    int count = (int)datos.ConexionDataReader[0];
+                    int count = (int)datos.Lector[0];
                     if (count > 0)
                     {
                         return true;

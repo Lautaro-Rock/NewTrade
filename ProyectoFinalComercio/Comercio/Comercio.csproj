@@ -124,7 +124,6 @@
     <Content Include="GestionCompras.aspx" />
     <Content Include="GestionProveedores.aspx" />
     <Content Include="GestionVentas.aspx" />
-    <Content Include="GestiónDeProductos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\acquisition.png" />
     <Content Include="images\analysis.png" />
@@ -152,6 +151,7 @@
     <Content Include="PanelCtrlAdmin.aspx" />
     <Content Include="LoginVendedor.aspx" />
     <Content Include="LoginAdmin.aspx" />
+    <Content Include="GestiónDeProductos.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -213,7 +213,7 @@
     <Content Include="StyleCss\GestionProveedores.css" />
     <Content Include="StyleDefault.css" />
     <Content Include="StyleLogins.css" />
-    <Content Include="StylePaginasDeGestiones.css" />
+    <Content Include="StyleGestionProductos.css" />
     <Content Include="StylesGeneralesPanelDeControles.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -257,13 +257,6 @@
     </Compile>
     <Compile Include="GestionVentas.aspx.designer.cs">
       <DependentUpon>GestionVentas.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestiónDeProductos.aspx.cs">
-      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestiónDeProductos.aspx.designer.cs">
-      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -317,6 +310,13 @@
     </Compile>
     <Compile Include="LoginAdmin.aspx.designer.cs">
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiónDeProductos.aspx.cs">
+      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestiónDeProductos.aspx.designer.cs">
+      <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>

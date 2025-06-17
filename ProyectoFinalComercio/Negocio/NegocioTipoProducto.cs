@@ -9,6 +9,36 @@ namespace Negocio
 {
     public class NegocioTipoProducto
     {
+
+        public List<TipoProducto> ListarTiposDeProductos()
+        {
+            AccesoDatos data = new AccesoDatos();
+            List<TipoProducto> list_tipos_de_productos = new List<TipoProducto>();
+            try
+            {
+                data.SetearConsulta("SELECT Id, Nombre FROM TipoProducto;");
+                data.EjecutarLectura();
+                while (data.Lector.Read())
+                {
+                    TipoProducto aux = new TipoProducto();
+                    aux.Id = (int)data.Lector["Id"];
+                    aux.Nombre = (string)data.Lector["Nombre"];
+                    list_tipos_de_productos.Add(aux);
+                }
+                return list_tipos_de_productos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+
+
         public void AgregarTipoProducto(TipoProducto nuevo)
         {
             AccesoDatos data = new AccesoDatos();
