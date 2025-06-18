@@ -17,53 +17,13 @@ namespace Comercio
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio productoNegocio = new ProductoNegocio();
-            Productos = productoNegocio.ListarProductos();
-
             if (!IsPostBack)
-            {
-                
-                MarcaNegocio marcas = new MarcaNegocio();
-                NegocioTipoProducto tipos = new NegocioTipoProducto();
-                
-                lista_marcas = marcas.ListarMarcas();
-                lista_tipos = tipos.ListarTiposDeProductos();
-                
-                ddlMarcas.DataSource = lista_marcas;
-                ddlMarcas.DataValueField = "Id";
-                ddlMarcas.DataTextField= "Nombre";
-                ddlMarcas.DataBind();
-
-                ddlFiltroMarca.DataSource = lista_marcas;
-                ddlFiltroMarca.DataValueField = "Id";
-                ddlFiltroMarca.DataTextField = "Nombre";
-                ddlFiltroMarca.DataBind();
-                ddlFiltroMarca.Items.Insert(0, new ListItem("Todas las marcas", "0"));
-
-
-                ddlTipoDeProducto.DataSource = lista_tipos;
-                ddlTipoDeProducto.DataValueField = "Id";
-                ddlTipoDeProducto.DataTextField = "Nombre";
-                ddlTipoDeProducto.DataBind();
-
-                ddlFiltroTipo.DataSource = lista_tipos;
-                ddlFiltroTipo.DataValueField = "Id";
-                ddlFiltroTipo.DataTextField = "Nombre";
-                ddlFiltroTipo.DataBind();
-                ddlFiltroTipo.Items.Insert(0, new ListItem("Todos los tipos", "0"));
-                
+            {         
                 PanelFormAltaProd.Visible = false;
                 PanelListarProd.Visible = false;
                 PanelAgregarMarca.Visible= false;
                 PanelEliminarProducto.Visible = false;
                 PanelEliminarMarca.Visible = false;
-
-                ddlProductos.DataSource = Productos;
-                ddlProductos.DataValueField = "Id";
-                ddlProductos.DataTextField = "Nombre";
-                ddlProductos.DataBind();
-                ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
-
             }
 
         }
@@ -84,15 +44,7 @@ namespace Comercio
             btnGuardarProducto.Visible = true;
             btnModificarProducto.Visible = false;
             divProductoModificar.Visible = false;
-
-            // Limpiar campos
-            //txtNombreProd.Text = "";
-            //ddlMarcas.SelectedIndex = 0;
-            //ddlTipoDeProducto.SelectedIndex = 0;
-            //txtPrecio.Text = "";
-            //txtStock.Text = "";
-            //txtStockMin.Text = "";
-            //txtUrlImagen.Text = "";
+            ActualizarListas();
         }
 
         //Modificar producto
@@ -109,22 +61,7 @@ namespace Comercio
             btnGuardarProducto.Visible = false;
             btnModificarProducto.Visible = true;
             divProductoModificar.Visible = true;
-
-            // Cargar productos en el dropdown
-            ddlProductoModificar.DataSource = Productos;
-            ddlProductoModificar.DataValueField = "Id";
-            ddlProductoModificar.DataTextField = "Nombre";
-            ddlProductoModificar.DataBind();
-            ddlProductoModificar.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
-
-            // Limpiar campos
-            //txtNombreProd.Text = "";
-            //ddlMarcas.SelectedIndex = 0;
-            //ddlTipoDeProducto.SelectedIndex = 0;
-            //txtPrecio.Text = "";
-            //txtStock.Text = "";
-            //txtStockMin.Text = "";
-            //txtUrlImagen.Text = "";
+            ActualizarListas();
         }
 
         //Eliminar producto
@@ -135,6 +72,7 @@ namespace Comercio
             PanelAgregarMarca.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelEliminarProducto.Visible = true;
+            ActualizarListas();
         }
 
         //Listar productos
@@ -145,7 +83,7 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelListarProd.Visible = true;
-
+            ActualizarListas();
         }
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -166,6 +104,7 @@ namespace Comercio
             {
 
                 data.AgregarProductos(producto);
+                ActualizarListas();
 
                 // Limpiamos los campos del form :)
                 txtNombreProd.Text = "";
@@ -198,15 +137,7 @@ namespace Comercio
             try
             {
                 negocio.EliminarProductoLogico(producto);
-
-                Productos = negocio.ListarProductos();
-                ddlProductos.DataSource = Productos;
-                ddlProductos.DataValueField = "Id";
-                ddlProductos.DataTextField = "Nombre";
-                ddlProductos.DataBind();
-                ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
-
-                // [JLS] Mejorar: Se deberían actualizar los productos disponibles para eliminar en el dropdown
+                ActualizarListas();
             }
             catch (Exception ex)
             {
@@ -291,6 +222,7 @@ namespace Comercio
             {
 
                 data.ModificarProducto(producto);
+                ActualizarListas();
 
                 // Limpiamos los campos del form :)
                 txtNombreProd.Text = "";
@@ -312,7 +244,7 @@ namespace Comercio
 
         //Eventos relacionados a la seccion marcas
         //
-        //Agregar marca
+        //Agregar marca START
         protected void btnPanelAgregarMarcaClick(object sender, EventArgs e)
         {
             PanelListarProd.Visible = false;
@@ -320,6 +252,13 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelAgregarMarca.Visible = true;
+
+            lblTituloAgregarMarca.Visible = true;
+            lblTituloModificarMarca.Visible = false;
+            divMarcaModificar.Visible = false;
+            btnAgregarMarca.Visible = true;
+            btnModificarMarca.Visible = false;
+            txtNombreMarca.Text = "";
         }
         protected void btnAgregarMarcaClick(object sender, EventArgs e)
         {
@@ -366,7 +305,11 @@ namespace Comercio
 
             }
         }
-        //Eliminar marca
+
+        // Agregar marca END
+
+        //Eliminar marca START
+
         protected void btnPanelEliminarMarcaClick(object sender, EventArgs e)
         {
             PanelFormAltaProd.Visible = false;
@@ -374,8 +317,159 @@ namespace Comercio
             PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = true;
-
+            ActualizarListas();
         }
+
+        protected void btnEliminarMarca2_Click(object sender, EventArgs e)
+        {
+            int idMarca = int.Parse(ddlMarcasEliminar.SelectedValue);
+            MarcaNegocio negocio = new MarcaNegocio();
+            Marca marca = new Marca { Id = idMarca };
+            try
+            {
+                negocio.EliminarMarcaLogico(marca);
+                ActualizarListas();
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar la marca: {ex.Message}');", true);
+            }
+        }
+
+        protected void ddlMarcasEliminar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlMarcasEliminar.SelectedIndex > 0)
+                PanelConfirmarEliminarMarca.Visible = true;
+            else
+                PanelConfirmarEliminarMarca.Visible = false;
+        }
+
+        // Eliminar marca END
+
+        // Modificar marca START
+        protected void btnPanelModificarMarca_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelFormAltaProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelEliminarMarca.Visible = false;
+            PanelAgregarMarca.Visible = true;
+
+            lblTituloAgregarMarca.Visible = false;
+            lblTituloModificarMarca.Visible = true;
+            divMarcaModificar.Visible = true;
+            btnAgregarMarca.Visible = false;
+            btnModificarMarca.Visible = true;
+            ActualizarListas();
+        }
+
+        protected void ddlMarcaModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idMarca;
+            if (int.TryParse(ddlMarcaModificar.SelectedValue, out idMarca) && idMarca > 0)
+            {
+                Marca marca = lista_marcas.FirstOrDefault(m => m.Id == idMarca);
+                if (marca != null)
+                    txtNombreMarca.Text = marca.Nombre;
+            }
+            else
+            {
+                txtNombreMarca.Text = "";
+            }
+        }
+
+        protected void btnModificarMarca_Click(object sender, EventArgs e)
+        {
+            int idMarca;
+            if (!int.TryParse(ddlMarcaModificar.SelectedValue, out idMarca) || idMarca == 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione una marca válida.');", true);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
+                return;
+            }
+
+            MarcaNegocio negocio = new MarcaNegocio();
+            Marca marca = new Marca { Id = idMarca, Nombre = txtNombreMarca.Text.Trim(), Activo = true };
+
+            try
+            {
+                negocio.ModificarMarca(marca);
+                ActualizarListas();
+                txtNombreMarca.Text = ""; 
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar la marca: {ex.Message}');", true);
+            }
+        }
+
+        // Modificar marca END
+
+        private void ActualizarListas()
+        {
+            // Actualizar productos
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            Productos = productoNegocio.ListarProductos();
+            ddlProductos.DataSource = Productos;
+            ddlProductos.DataValueField = "Id";
+            ddlProductos.DataTextField = "Nombre";
+            ddlProductos.DataBind();
+            ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+
+            ddlProductoModificar.DataSource = Productos;
+            ddlProductoModificar.DataValueField = "Id";
+            ddlProductoModificar.DataTextField = "Nombre";
+            ddlProductoModificar.DataBind();
+            ddlProductoModificar.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+
+            // Actualizar marcas
+            MarcaNegocio marcas = new MarcaNegocio();
+            lista_marcas = marcas.ListarMarcas();
+
+            ddlMarcas.DataSource = lista_marcas;
+            ddlMarcas.DataValueField = "Id";
+            ddlMarcas.DataTextField = "Nombre";
+            ddlMarcas.DataBind();
+
+            ddlFiltroMarca.DataSource = lista_marcas;
+            ddlFiltroMarca.DataValueField = "Id";
+            ddlFiltroMarca.DataTextField = "Nombre";
+            ddlFiltroMarca.DataBind();
+            ddlFiltroMarca.Items.Insert(0, new ListItem("Todas las marcas", "0"));
+
+            ddlMarcasEliminar.DataSource = lista_marcas;
+            ddlMarcasEliminar.DataValueField = "Id";
+            ddlMarcasEliminar.DataTextField = "Nombre";
+            ddlMarcasEliminar.DataBind();
+            ddlMarcasEliminar.Items.Insert(0, new ListItem("Selecciona una marca", "0"));
+
+            ddlMarcaModificar.DataSource = lista_marcas;
+            ddlMarcaModificar.DataValueField = "Id";
+            ddlMarcaModificar.DataTextField = "Nombre";
+            ddlMarcaModificar.DataBind();
+            ddlMarcaModificar.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
+
+            // Actualizar tipos de producto
+            NegocioTipoProducto tipos = new NegocioTipoProducto();
+            lista_tipos = tipos.ListarTiposDeProductos();
+
+            ddlTipoDeProducto.DataSource = lista_tipos;
+            ddlTipoDeProducto.DataValueField = "Id";
+            ddlTipoDeProducto.DataTextField = "Nombre";
+            ddlTipoDeProducto.DataBind();
+
+            ddlFiltroTipo.DataSource = lista_tipos;
+            ddlFiltroTipo.DataValueField = "Id";
+            ddlFiltroTipo.DataTextField = "Nombre";
+            ddlFiltroTipo.DataBind();
+            ddlFiltroTipo.Items.Insert(0, new ListItem("Todos los tipos", "0"));
+        }
+
         //Eventos relacionados a la seccion General
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
