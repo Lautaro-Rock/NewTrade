@@ -53,7 +53,7 @@ CREATE TABLE Producto (
     Stock INT NOT NULL,
     StockMinimo INT NOT NULL,
     UrlImgProducto NVARCHAR(1000) NOT NULL,
-	PorcentajeGanancia DECIMAL(5,2) NOT NULL,
+	PorcentajeGanancia DECIMAL(5,2) NULL,
     IdMarca INT NOT NULL,
     IdTipoProducto INT NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
@@ -120,16 +120,3 @@ CREATE TABLE DetalleVenta (
     FOREIGN KEY (IdVenta) REFERENCES Venta(Id),
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id)
 );
-
-USE ComercioDB;
-GO
-
-SELECT * FROM Producto;
-
-SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria 
-FROM Producto P
-INNER JOIN Marca M ON M.Id = P.IdMarca
-INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto
-WHERE P.Activo = 1
-
-UPDATE Producto SET Activo = 1 WHERE Id = 12;

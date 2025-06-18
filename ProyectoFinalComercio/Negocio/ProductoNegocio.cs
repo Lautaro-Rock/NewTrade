@@ -83,7 +83,7 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
-        public void ModificarProveedores(Producto nuevo)
+        public void ModificarProducto(Producto nuevo)
         {
             AccesoDatos data = new AccesoDatos();
             try
