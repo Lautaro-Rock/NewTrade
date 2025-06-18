@@ -14,77 +14,136 @@
         <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
         <div id="sidebar" class="sidebar">
             <h1 class="sidebar-title">Comsys</h1>
-            <asp:LinkButton ID="btnListarProd" runat="server" OnClick="btnListarProdClick" CssClass="sidebar-link hover-effect">Listar productos</asp:LinkButton>
-            <asp:LinkButton ID="btnAgregarProd" runat="server" OnClick="btnAgregarProdClick" CssClass="sidebar-link hover-effect">Agregar producto</asp:LinkButton>
-            <asp:LinkButton ID="btnModificarProd" runat="server" OnClick="btnModificarProd_Click" CssClass="sidebar-link hover-effect">Modificar producto</asp:LinkButton>
-            <asp:LinkButton ID="btnEliminarProd" runat="server" OnClick="btnEliminarProdClick" CssClass="sidebar-link hover-effect">Eliminar producto</asp:LinkButton>
-            <asp:LinkButton ID="btnAgregarMarca" runat="server" OnClick="btnAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
-            <asp:LinkButton ID="btnVolverPanel" runat="server" OnClick="btnVolverPanelClick" CssClass="sidebar-link hover-effect">Volver al panel</asp:LinkButton>
+
+
+            <div class="accordion accordion-flush" id="accordionSidebar">
+
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductos">
+                            Sección Productos
+                        </button>
+                    </h2>
+                    <div id="collapseProductos" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnAgregarProd" runat="server" OnClick="btnAgregarProdClick" CssClass="sidebar-link hover-effect">Agregar producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarProd" runat="server" OnClick="btnModificarProd_Click" CssClass="sidebar-link hover-effect">Modificar producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminarProd" runat="server" OnClick="btnEliminarProdClick" CssClass="sidebar-link hover-effect">Eliminar producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarProd" runat="server" OnClick="btnListarProdClick" CssClass="sidebar-link hover-effect">Listar productos</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarcas">
+                            Sección Marcas
+                        </button>
+                    </h2>
+                    <div id="collapseMarcas" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnPanelAgregarMarca" runat="server" OnClick="btnPanelAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="sidebar-link hover-effect">Modificar marca</asp:LinkButton>
+                            <asp:LinkButton ID="btnPanelEliminarMarca" runat="server" OnClick="btnPanelEliminarMarcaClick" CssClass="sidebar-link hover-effect">Eliminar marca</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect">Listar marcas</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTipos">
+                            Sección Tipos
+                        </button>
+                    </h2>
+                    <div id="collapseTipos" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnAgregarTipo" runat="server" CssClass="sidebar-link hover-effect">Agregar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="sidebar-link hover-effect">Modificar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton5" runat="server" CssClass="sidebar-link hover-effect">Eliminar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton6" runat="server" CssClass="sidebar-link hover-effect">Listar todos los tipos de productos</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral">
+                            Sección General
+                        </button>
+                    </h2>
+                    <div id="collapseGeneral" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnVolverPanel" runat="server" OnClick="btnVolverPanelClick" CssClass="sidebar-link hover-effect">Volver al panel</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
         <div id="blurOverlay" class="blur-overlay"></div>
 
         <%-- Panel del formulario de alta producto --%>
         <div class="container p-5">
             <asp:Panel ID="PanelFormAltaProd" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
-    <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar producto"></asp:Label>
-    <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar producto" Visible="false"></asp:Label>
+                <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar producto"></asp:Label>
+                <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar producto" Visible="false"></asp:Label>
 
-    <div class="mb-3" runat="server" id="divProductoModificar" visible="false">
-        <asp:Label AssociatedControlID="ddlProductoModificar" runat="server" CssClass="form-label fw-semibold text-dark">Producto</asp:Label>
-        <asp:DropDownList ID="ddlProductoModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProductoModificar_SelectedIndexChanged" />
-    </div>
-
-    <div class="row g-4">
-        <!-- Columna izquierda -->
-        <div class="col-12 col-md-6">
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="txtNombreProd" runat="server" CssClass="form-label fw-semibold text-dark">Nombre del producto</asp:Label>
-                <asp:TextBox ID="txtNombreProd" runat="server" CssClass="form-control" placeholder="Ej: Taladro Black+Decker" />
-            </div>
-
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="ddlMarcas" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
-                <asp:DropDownList ID="ddlMarcas" runat="server" CssClass="form-select" />
-            </div>
-
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="ddlTipoDeProducto" runat="server" CssClass="form-label fw-semibold text-dark">Tipo de producto</asp:Label>
-                <asp:DropDownList ID="ddlTipoDeProducto" runat="server" CssClass="form-select" />
-            </div>
-
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="txtPrecio" runat="server" CssClass="form-label fw-semibold text-dark">Precio</asp:Label>
-                <div class="input-group">
-                    <span class="input-group-text bg-secondary text-white">$</span>
-                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
+                <div class="mb-3" runat="server" id="divProductoModificar" visible="false">
+                    <asp:Label AssociatedControlID="ddlProductoModificar" runat="server" CssClass="form-label fw-semibold text-dark">Producto</asp:Label>
+                    <asp:DropDownList ID="ddlProductoModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProductoModificar_SelectedIndexChanged" />
                 </div>
-            </div>
-        </div>
 
-        <!-- Columna derecha -->
-        <div class="col-12 col-md-6">
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="txtStock" runat="server" CssClass="form-label fw-semibold text-dark">Stock</asp:Label>
-                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="Ej: 100 unidades" TextMode="Number" />
-            </div>
+                <div class="row g-4">
+                    <!-- Columna izquierda -->
+                    <div class="col-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtNombreProd" runat="server" CssClass="form-label fw-semibold text-dark">Nombre del producto</asp:Label>
+                            <asp:TextBox ID="txtNombreProd" runat="server" CssClass="form-control" placeholder="Ej: Taladro Black+Decker" />
+                        </div>
 
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
-                <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
-            </div>
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="ddlMarcas" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
+                            <asp:DropDownList ID="ddlMarcas" runat="server" CssClass="form-select" />
+                        </div>
 
-            <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
-                <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
-            </div>
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="ddlTipoDeProducto" runat="server" CssClass="form-label fw-semibold text-dark">Tipo de producto</asp:Label>
+                            <asp:DropDownList ID="ddlTipoDeProducto" runat="server" CssClass="form-select" />
+                        </div>
 
-            <div class="d-grid mt-4">
-                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" />
-                <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" />
-            </div>
-        </div>
-    </div>
-</asp:Panel>
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtPrecio" runat="server" CssClass="form-label fw-semibold text-dark">Precio</asp:Label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-secondary text-white">$</span>
+                                <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="col-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtStock" runat="server" CssClass="form-label fw-semibold text-dark">Stock</asp:Label>
+                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="Ej: 100 unidades" TextMode="Number" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
+                            <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
+                            <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" />
+                            <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" />
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
 
         </div>
 
@@ -119,54 +178,72 @@
             </asp:Panel>
         </div>
 
+        <%-- Panel del eliminar producto --%>
+        <asp:Panel ID="PanelEliminarProducto" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
+            <h3 class="text-center fw-bold mb-4">Eliminar producto</h3>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                    <label for="ddlFiltroMarca" class="form-label fw-semibold">Filtrar por marca</label>
+                    <asp:DropDownList ID="ddlFiltroMarca" runat="server" CssClass="form-select" AutoPostBack="true" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="ddlFiltroTipo" class="form-label fw-semibold">Filtrar por tipo</label>
+                    <asp:DropDownList ID="ddlFiltroTipo" runat="server" CssClass="form-select" AutoPostBack="true" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="ddlProductos" class="form-label fw-semibold">Seleccione el producto</label>
+                <asp:DropDownList ID="ddlProductos" runat="server" CssClass="form-select" AutoPostBack="true" />
+            </div>
+
+            <asp:Panel ID="PanelConfirmacion" runat="server" Visible="true" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
+                <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este producto?</p>
+                <div class="d-flex justify-content-end gap-3">
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminar_Click" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
+                </div>
+            </asp:Panel>
+        </asp:Panel>
+
         <%-- Panel del agregar marca--%>
         <div class="container d-flex justify-content-center align-items-center">
-           <asp:Panel ID="PanelAgregarMarca" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-3" Style="max-width: 700px;">
-    <h2 class="text-center fw-bold mb-4">Registrar nueva marca</h2>
-
-    <div class="mb-3">
-        <label for="txtNombreMarca" class="form-label fw-semibold">Nombre de la marca</label>
-        <asp:TextBox ID="txtNombreMarca" runat="server" CssClass="form-control" />
-    </div>
-
-    <div class="d-grid gap-2">
-        <asp:Button ID="btnNuevaMarca" onclick="btnNuevaMarca_Click" runat="server" Text="Guardar marca" CssClass="btn btn-success" />
-        <asp:HyperLink ID="lnkVolver" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">
-            Volver
-        </asp:HyperLink>
-    </div>
-</asp:Panel>
-
+            <asp:Panel ID="PanelAgregarMarca" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-3" Style="max-width: 700px;">
+                <h2 class="text-center fw-bold mb-4">Registrar nueva marca</h2>
+                <div class="mb-3">
+                    <label for="txtNombreMarca" class="form-label fw-semibold">Nombre de la marca</label>
+                    <asp:TextBox ID="txtNombreMarca" runat="server" CssClass="form-control" />
+                </div>
+                <div class="d-grid gap-2">
+                    <asp:Button ID="btnAgregarMarca" OnClick="btnAgregarMarcaClick" runat="server" Text="Guardar marca" CssClass="btn btn-success" />
+                    <asp:HyperLink ID="lnkVolver" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">Volver
+                    </asp:HyperLink>
+                </div>
+            </asp:Panel>
         </div>
 
-        <%-- Panel del eliminar producto --%>
-       <asp:Panel ID="PanelEliminarProducto" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
-    <h3 class="text-center fw-bold mb-4">Eliminar producto</h3>
-
-    <div class="row g-3 mb-3">
-        <div class="col-12 col-md-6">
-            <label for="ddlFiltroMarca" class="form-label fw-semibold">Filtrar por marca</label>
-            <asp:DropDownList ID="ddlFiltroMarca" runat="server" CssClass="form-select" AutoPostBack="true" />
+        <%-- Panel del eliminar marca--%>
+        <div class="container d-flex justify-content-center align-items-center">
+            <asp:Panel ID="PanelEliminarMarca" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 700px;">
+                <h2 class="text-center fw-bold mb-4">Eliminar marca</h2>
+                <div class="mb-3">
+                    <label for="ddlMarcasEliminar" class="form-label fw-semibold">Seleccione una marca</label>
+                    <asp:DropDownList ID="ddlMarcasEliminar" runat="server" CssClass="form-select" AutoPostBack="true" />
+                </div>
+                <asp:Panel ID="PanelConfirmarEliminarMarca" runat="server" Visible="false" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
+                    <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar esta marca?</p>
+                    <div class="d-flex justify-content-end gap-3">
+                        <asp:Button ID="btnEliminarMarca2" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" />
+                        <asp:Button ID="btnCancelarEliminarMarca" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4"/>
+                    </div>
+                </asp:Panel>
+            </asp:Panel>
         </div>
-        <div class="col-12 col-md-6">
-            <label for="ddlFiltroTipo" class="form-label fw-semibold">Filtrar por tipo</label>
-            <asp:DropDownList ID="ddlFiltroTipo" runat="server" CssClass="form-select" AutoPostBack="true" />
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <label for="ddlProductos" class="form-label fw-semibold">Seleccione el producto</label>
-        <asp:DropDownList ID="ddlProductos" runat="server" CssClass="form-select" AutoPostBack="true" />
-    </div>
 
-    <asp:Panel ID="PanelConfirmacion" runat="server" Visible="true" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
-        <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este producto?</p>
-        <div class="d-flex justify-content-end gap-3">
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminar_Click" />
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
-        </div>
-    </asp:Panel>
-</asp:Panel>
+
+
 
     </form>
 
