@@ -267,13 +267,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtNombreMarca;
 
         /// <summary>
-        /// Control btnGuardarMarca.
+        /// Control btnNuevaMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarMarca;
+        protected global::System.Web.UI.WebControls.Button btnNuevaMarca;
 
         /// <summary>
         /// Control lnkVolver.

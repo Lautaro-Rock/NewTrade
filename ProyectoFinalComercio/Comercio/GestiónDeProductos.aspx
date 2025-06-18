@@ -23,8 +23,6 @@
         </div>
         <div id="blurOverlay" class="blur-overlay"></div>
 
-        <%-- Lo tengo que separar porque me re pierdo --%>
-
         <%-- Panel del formulario de alta producto --%>
         <div class="container p-5">
             <asp:Panel ID="PanelFormAltaProd" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
@@ -132,7 +130,7 @@
     </div>
 
     <div class="d-grid gap-2">
-        <asp:Button ID="btnGuardarMarca" runat="server" Text="Guardar marca" CssClass="btn btn-success" />
+        <asp:Button ID="btnNuevaMarca" onclick="btnNuevaMarca_Click" runat="server" Text="Guardar marca" CssClass="btn btn-success" />
         <asp:HyperLink ID="lnkVolver" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">
             Volver
         </asp:HyperLink>

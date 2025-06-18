@@ -36,14 +36,6 @@ namespace Negocio
             }
         }
 
-
-
-
-
-
-
-
-
         public void AgregarMarca(Marca nuevo)
         {
             AccesoDatos data = new AccesoDatos();

@@ -88,13 +88,13 @@ namespace Comercio
             divProductoModificar.Visible = false;
 
             // Limpiar campos
-            txtNombreProd.Text = "";
-            ddlMarcas.SelectedIndex = 0;
-            ddlTipoDeProducto.SelectedIndex = 0;
-            txtPrecio.Text = "";
-            txtStock.Text = "";
-            txtStockMin.Text = "";
-            txtUrlImagen.Text = "";
+            //txtNombreProd.Text = "";
+            //ddlMarcas.SelectedIndex = 0;
+            //ddlTipoDeProducto.SelectedIndex = 0;
+            //txtPrecio.Text = "";
+            //txtStock.Text = "";
+            //txtStockMin.Text = "";
+            //txtUrlImagen.Text = "";
         }
 
         protected void btnAgregarMarcaClick(object sender, EventArgs e)
@@ -111,6 +111,8 @@ namespace Comercio
             PanelFormAltaProd.Visible = false;
             PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = true;
+ 
+ 
         }
 
         protected void btnVolverPanelClick(object sender, EventArgs e)
@@ -205,13 +207,13 @@ namespace Comercio
             ddlProductoModificar.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
 
             // Limpiar campos
-            txtNombreProd.Text = "";
-            ddlMarcas.SelectedIndex = 0;
-            ddlTipoDeProducto.SelectedIndex = 0;
-            txtPrecio.Text = "";
-            txtStock.Text = "";
-            txtStockMin.Text = "";
-            txtUrlImagen.Text = "";
+            //txtNombreProd.Text = "";
+            //ddlMarcas.SelectedIndex = 0;
+            //ddlTipoDeProducto.SelectedIndex = 0;
+            //txtPrecio.Text = "";
+            //txtStock.Text = "";
+            //txtStockMin.Text = "";
+            //txtUrlImagen.Text = "";
         }
 
         protected void ddlProductoModificar_SelectedIndexChanged(object sender, EventArgs e)
@@ -304,6 +306,25 @@ namespace Comercio
             catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
+            }
+        }
+
+        protected void btnNuevaMarca_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Marca newMarca = new Marca();
+                newMarca.Nombre = txtNombreMarca.Text;
+                newMarca.Activo = true;
+
+                MarcaNegocio ngr = new MarcaNegocio();
+                ngr.AgregarMarca(newMarca);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Marca agregada exitosamente!');", true);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }
