@@ -96,6 +96,42 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Panel PanelFormAltaProd;
 
         /// <summary>
+        /// Control lblTituloAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTituloAgregar;
+
+        /// <summary>
+        /// Control lblTituloModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTituloModificar;
+
+        /// <summary>
+        /// Control divProductoModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProductoModificar;
+
+        /// <summary>
+        /// Control ddlProductoModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProductoModificar;
+
+        /// <summary>
         /// Control txtNombreProd.
         /// </summary>
         /// <remarks>
@@ -141,22 +177,22 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtStock;
 
         /// <summary>
-        /// Control TextBox4.
+        /// Control txtStockMin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtStockMin;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control txtUrlImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtUrlImagen;
 
         /// <summary>
         /// Control btnGuardarProducto.
@@ -166,6 +202,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarProducto;
+
+        /// <summary>
+        /// Control btnModificarProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarProducto;
 
         /// <summary>
         /// Control PanelListarProd.
@@ -186,13 +231,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control Button2.
+        /// Control btnEliminarProductoListado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnEliminarProductoListado;
 
         /// <summary>
         /// Control Button3.

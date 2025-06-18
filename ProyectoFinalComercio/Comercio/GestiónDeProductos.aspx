@@ -16,7 +16,7 @@
             <h1 class="sidebar-title">Comsys</h1>
             <asp:LinkButton ID="btnListarProd" runat="server" OnClick="btnListarProdClick" CssClass="sidebar-link hover-effect">Listar productos</asp:LinkButton>
             <asp:LinkButton ID="btnAgregarProd" runat="server" OnClick="btnAgregarProdClick" CssClass="sidebar-link hover-effect">Agregar producto</asp:LinkButton>
-            <asp:LinkButton ID="btnModificarProd" runat="server" CssClass="sidebar-link hover-effect">Modificar producto</asp:LinkButton>
+            <asp:LinkButton ID="btnModificarProd" runat="server" OnClick="btnModificarProd_Click" CssClass="sidebar-link hover-effect">Modificar producto</asp:LinkButton>
             <asp:LinkButton ID="btnEliminarProd" runat="server" OnClick="btnEliminarProdClick" CssClass="sidebar-link hover-effect">Eliminar producto</asp:LinkButton>
             <asp:LinkButton ID="btnAgregarMarca" runat="server" OnClick="btnAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
             <asp:LinkButton ID="btnVolverPanel" runat="server" OnClick="btnVolverPanelClick" CssClass="sidebar-link hover-effect">Volver al panel</asp:LinkButton>
@@ -28,7 +28,13 @@
         <%-- Panel del formulario de alta producto --%>
         <div class="container p-5">
             <asp:Panel ID="PanelFormAltaProd" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
-    <h2 class="text-center mb-4 text-dark fw-bold">Formulario para agregar producto</h2>
+    <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar producto"></asp:Label>
+    <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar producto" Visible="false"></asp:Label>
+
+    <div class="mb-3" runat="server" id="divProductoModificar" visible="false">
+        <asp:Label AssociatedControlID="ddlProductoModificar" runat="server" CssClass="form-label fw-semibold text-dark">Producto</asp:Label>
+        <asp:DropDownList ID="ddlProductoModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProductoModificar_SelectedIndexChanged" />
+    </div>
 
     <div class="row g-4">
         <!-- Columna izquierda -->
@@ -65,17 +71,18 @@
             </div>
 
             <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="TextBox4" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
-                <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
+                <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
+                <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
             </div>
 
             <div class="form-group mb-3">
-                <asp:Label AssociatedControlID="TextBox2" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
+                <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
             </div>
 
             <div class="d-grid mt-4">
-                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" />
+                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" />
+                <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" />
             </div>
         </div>
     </div>
@@ -101,7 +108,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><%: temporalpr.Nombre %></h5>
                                         <asp:Button ID="Button1" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" />
-                                        <asp:Button ID="Button2" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" />
+                                        <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" />
                                         <asp:Button ID="Button3" runat="server" Text="Ver mas.." CssClass="btn btn-outline-warning me-2" />
 
                                     </div>
@@ -157,7 +164,7 @@
     <asp:Panel ID="PanelConfirmacion" runat="server" Visible="true" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
         <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este producto?</p>
         <div class="d-flex justify-content-end gap-3">
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminar_Click" />
             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
         </div>
     </asp:Panel>
