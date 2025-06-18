@@ -101,7 +101,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><%: temporalpr.Nombre %></h5>
                                         <asp:Button ID="Button1" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" />
-                                        <asp:Button ID="Button2" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" />
+                                        <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" />
                                         <asp:Button ID="Button3" runat="server" Text="Ver mas.." CssClass="btn btn-outline-warning me-2" />
 
                                     </div>
@@ -157,7 +157,7 @@
     <asp:Panel ID="PanelConfirmacion" runat="server" Visible="true" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
         <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este producto?</p>
         <div class="d-flex justify-content-end gap-3">
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminar_Click" />
             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
         </div>
     </asp:Panel>

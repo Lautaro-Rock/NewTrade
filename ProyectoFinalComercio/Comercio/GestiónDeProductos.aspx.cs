@@ -16,6 +16,8 @@ namespace Comercio
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            Productos = productoNegocio.ListarProductos();
 
             if (!IsPostBack)
             {
@@ -53,12 +55,14 @@ namespace Comercio
                 PanelAgregarMarca.Visible= false;
                 PanelEliminarProducto.Visible = false;
 
-
+                ddlProductos.DataSource = Productos;
+                ddlProductos.DataValueField = "Id";
+                ddlProductos.DataTextField = "Nombre";
+                ddlProductos.DataBind();
+                ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
 
             }
 
-            ProductoNegocio productoNegocio = new ProductoNegocio();
-            Productos = productoNegocio.ListarProductos();
         }
         protected void btnListarProdClick(object sender, EventArgs e)
         {
@@ -132,5 +136,35 @@ namespace Comercio
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
             }
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int idProducto;
+            if (!int.TryParse(ddlProductos.SelectedValue, out idProducto) || idProducto == 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
+                return;
+            }
+
+            Producto producto = new Producto { Id = idProducto };
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            try
+            {
+                negocio.EliminarProductoLogico(producto);
+
+                Productos = negocio.ListarProductos();
+                ddlProductos.DataSource = Productos;
+                ddlProductos.DataValueField = "Id";
+                ddlProductos.DataTextField = "Nombre";
+                ddlProductos.DataBind();
+                ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el producto: {ex.Message}');", true);
+            }
+        }
+
     }
 }
