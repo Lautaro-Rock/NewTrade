@@ -15,7 +15,7 @@ namespace Negocio
             List<Marca> list_de_marcas = new List<Marca>();
             try
             {
-                data.SetearConsulta("SELECT Id, Nombre FROM Marca;");
+                data.SetearConsulta("SELECT Id, Nombre FROM Marca WHERE Activo = 1;");
                 data.EjecutarLectura();
                 while (data.Lector.Read())
                 {

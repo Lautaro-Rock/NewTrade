@@ -17,6 +17,13 @@ namespace Comercio
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            ProductoNegocio negocio = new ProductoNegocio();
+            Productos = negocio.ListarProductos();
+
+            
+            MarcaNegocio marcas = new MarcaNegocio();
+            lista_marcas = marcas.ListarMarcas();
+
             if (!IsPostBack)
             {         
                 PanelFormAltaProd.Visible = false;
@@ -30,6 +37,17 @@ namespace Comercio
 
         //Eventos relacionados a la seccion productos
         //
+        protected void limpiarCampos()
+        {
+            txtNombreProd.Text = "";
+            ddlMarcas.SelectedIndex = 0;
+            ddlTipoDeProducto.SelectedIndex = 0;
+            txtPrecio.Text = "";
+            txtStock.Text = "";
+            txtStockMin.Text = "";
+            txtUrlImagen.Text = "";
+        }
+
         //Agregar producto
         protected void btnAgregarProdClick(object sender, EventArgs e)
         {
@@ -44,6 +62,7 @@ namespace Comercio
             btnGuardarProducto.Visible = true;
             btnModificarProducto.Visible = false;
             divProductoModificar.Visible = false;
+            limpiarCampos();
             ActualizarListas();
         }
 
@@ -107,13 +126,7 @@ namespace Comercio
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
-                txtNombreProd.Text = "";
-                ddlMarcas.SelectedIndex = 0;
-                ddlTipoDeProducto.SelectedIndex = 0;
-                txtPrecio.Text = "";
-                txtStock.Text = "";
-                txtStockMin.Text = "";
-                txtUrlImagen.Text = "";
+                limpiarCampos();
 
             }
             catch (Exception ex)
@@ -170,6 +183,7 @@ namespace Comercio
                 ddlTipoDeProducto.DataBind();
             }
 
+
             int idProducto;
             if (int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) && idProducto > 0)
             {
@@ -188,13 +202,7 @@ namespace Comercio
             else
             {
                 // Limpiar campos si no hay producto seleccionado
-                txtNombreProd.Text = "";
-                ddlMarcas.SelectedIndex = 0;
-                ddlTipoDeProducto.SelectedIndex = 0;
-                txtPrecio.Text = "";
-                txtStock.Text = "";
-                txtStockMin.Text = "";
-                txtUrlImagen.Text = "";
+                limpiarCampos();
             }
         }
         protected void btnModificarProducto_Click(object sender, EventArgs e)
