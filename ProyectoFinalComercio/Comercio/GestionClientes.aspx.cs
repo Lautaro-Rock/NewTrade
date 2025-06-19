@@ -27,7 +27,6 @@ namespace Comercio
                 user.Apellido = TxtApellido.Text;
                 user.Dni = int.Parse(TxtD.Text);
                 user.Email = TxtEmail.Text;
-                user.Password = TxtPassword.Text;
                 user.Rol = "Cliente";
 
                 UsuarioNegocio userNegocio = new UsuarioNegocio();
@@ -49,7 +48,6 @@ namespace Comercio
                 usuario.Nombre = txtEditNombre.Text;
                 usuario.Apellido = txtEditApellido.Text;
                 usuario.Email = TxtEmail.Text;
-                usuario.Password = TxtPassword.Text;
                 usuario.Dni = int.Parse(txtEditDni.Text);
                 usuario.Rol = "Cliente";
 

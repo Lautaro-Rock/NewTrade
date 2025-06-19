@@ -118,11 +118,6 @@
                  <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control"></asp:TextBox>
              </div>
 
-             <div class="mb-3">
-                 <asp:Label ID="Label5" runat="server" Text="Ingrese su Contraseña" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="TxtPassword" runat="server" CssClass="form-control"></asp:TextBox>
-             </div>
-
              <div class="d-flex justify-content-center">
              <asp:Button ID="InsertClient" onclick="InsertClient_Click" runat="server"  Text="Registrar Cliente" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3"/>
              </div>
@@ -154,11 +149,6 @@
              <div class="mb-3">
                  <asp:Label ID="Label8" runat="server" Text="Ingrese su DNI" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="txtEditDni" runat="server" CssClass="form-control"></asp:TextBox>
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label10" runat="server" Text="Ingrese su Contraseña" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="txtEditP" runat="server" CssClass="form-control"></asp:TextBox>
              </div>
 
              <div class="d-flex justify-content-center">

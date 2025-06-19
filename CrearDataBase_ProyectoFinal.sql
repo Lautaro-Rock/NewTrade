@@ -12,7 +12,7 @@ CREATE TABLE Usuario (
     DNI NVARCHAR(20),
     Email NVARCHAR(150) NOT NULL UNIQUE,
     Password NVARCHAR(100) NOT NULL,
-    Rol NVARCHAR(50) NOT NULL, -- 'Cliente', 'Vendedor', 'Administrador'
+    Rol NVARCHAR(50) NOT NULL, --  'Vendedor', 'Administrador'
     Activo BIT NOT NULL DEFAULT 1
 );
 GO
@@ -120,3 +120,15 @@ CREATE TABLE DetalleVenta (
     FOREIGN KEY (IdVenta) REFERENCES Venta(Id),
     FOREIGN KEY (IdProducto) REFERENCES Producto(Id)
 );
+
+GO
+
+CREATE TABLE CLIENTE(
+IdCliente INT PRIMARY KEY IDENTITY(1,1),
+Nombre NVARCHAR(100) NOT NULL,
+Apellido NVARCHAR(100) NOT NULL,
+Dni NVARCHAR(15) NOT NULL,
+Email NVARCHAR(100) NOT NULL,
+Rol NVARCHAR(7) NOT NULL,
+Activo BIT NOT NULL DEFAULT 1
+)
