@@ -576,6 +576,52 @@ namespace Comercio
         }
         // Modificar tipo de producto END 
 
+        // Eliminar tipo de producto START
+
+        protected void btnPanelEliminarTipo_Click(object sender, EventArgs e)
+        {
+            PanelFormAltaProd.Visible = false;
+            PanelListarProd.Visible = false;
+            PanelAgregarMarca.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelEliminarMarca.Visible = false;
+            PanelEliminarCategoria.Visible = true;
+            PanelAgregarCategoria.Visible = false;
+            ActualizarListas();
+        }
+
+        protected void ddlCategoriasEliminar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCategoriasEliminar.SelectedIndex > 0)
+                PanelConfirmarEliminarCategoria.Visible = true;
+            else
+                PanelConfirmarEliminarCategoria.Visible = false;
+        }
+
+        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
+        {
+            int idCategoria;
+            if (!int.TryParse(ddlCategoriasEliminar.SelectedValue, out idCategoria) || idCategoria == 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
+                return;
+            }
+
+            NegocioTipoProducto negocio = new NegocioTipoProducto();
+            TipoProducto tipoProducto = new TipoProducto { Id = idCategoria };
+            try
+            {
+                negocio.EliminarTipoProductoLogico(tipoProducto);
+                ActualizarListas();
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el tipo de producto: {ex.Message}');", true);
+            }
+        }
+
+        // Eliminar tipo de producto END
+
         private void ActualizarListas()
         {
             // Actualizar productos
@@ -634,6 +680,11 @@ namespace Comercio
             ddlCategoriaModificar.DataTextField = "Nombre"; 
             ddlCategoriaModificar.DataBind();
 
+            ddlCategoriasEliminar.DataSource = lista_tipos;
+            ddlCategoriasEliminar.DataValueField = "Id";
+            ddlCategoriasEliminar.DataTextField = "Nombre";
+            ddlCategoriasEliminar.DataBind();
+
             ddlFiltroTipo.DataSource = lista_tipos;
             ddlFiltroTipo.DataValueField = "Id";
             ddlFiltroTipo.DataTextField = "Nombre";
@@ -645,25 +696,6 @@ namespace Comercio
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
             Response.Redirect("PanelCtrlAdmin.aspx");
-        }
-
-
-
-
-
-        protected void btnPanelEliminarTipo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCategoriasEliminar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

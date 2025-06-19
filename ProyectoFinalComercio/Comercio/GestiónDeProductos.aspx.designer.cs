@@ -600,13 +600,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.DropDownList ddlCategoriasEliminar;
 
         /// <summary>
-        /// Control Panel3.
+        /// Control PanelConfirmarEliminarCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
+        protected global::System.Web.UI.WebControls.Panel PanelConfirmarEliminarCategoria;
 
         /// <summary>
         /// Control btnEliminarCategoria.

@@ -259,7 +259,7 @@
                 <asp:Label ID="lblAgregarCategoria" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Registrar nuevo Tipo de Producto"></asp:Label>
                 <asp:Label ID="lblModificarCategoria" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Modificar Tipo de Producto" Visible="false"></asp:Label>
                 <div class="mb-3" id="divCategoriaModificar" runat="server" visible="false">
-                    <asp:Label AssociatedControlID="ddlCategoriaModificar" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
+                    <asp:Label AssociatedControlID="ddlCategoriaModificar" runat="server" CssClass="form-label fw-semibold text-dark">Tipo de Producto</asp:Label>
                     <asp:DropDownList ID="ddlCategoriaModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCategoriaModificar_SelectedIndexChanged" />
                 </div>
                 <div class="mb-3">
@@ -278,13 +278,13 @@
         <%-- Panel del eliminar Categoria--%>
         <div class="container d-flex justify-content-center align-items-center">
             <asp:Panel ID="PanelEliminarCategoria" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 700px;">
-                <h2 class="text-center fw-bold mb-4">Eliminar marca</h2>
+                <h2 class="text-center fw-bold mb-4">Eliminar Tipo de Producto</h2>
                 <div class="mb-3">
-                    <label for="ddlCategoriasEliminar" class="form-label fw-semibold">Seleccione una marca</label>
+                    <label for="ddlCategoriasEliminar" class="form-label fw-semibold">Seleccione un Tipo de Producto</label>
                     <asp:DropDownList ID="ddlCategoriasEliminar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCategoriasEliminar_SelectedIndexChanged" />
                 </div>
-                <asp:Panel ID="Panel3" runat="server" Visible="false" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
-                    <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar esta marca?</p>
+                <asp:Panel ID="PanelConfirmarEliminarCategoria" runat="server" Visible="false" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
+                    <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este Tipo de Producto?</p>
                     <div class="d-flex justify-content-end gap-3">
                         <asp:Button ID="btnEliminarCategoria" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminarCategoria_Click" />
                         <asp:Button ID="Button6" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
