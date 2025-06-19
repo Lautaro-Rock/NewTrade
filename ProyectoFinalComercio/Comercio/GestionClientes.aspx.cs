@@ -13,7 +13,7 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UsuarioNegocio userCliente = new UsuarioNegocio();
+            NegocioCliente userCliente = new NegocioCliente();
             Clientes.DataSource = userCliente.ListarClientes();
             Clientes.DataBind();
         }
@@ -22,14 +22,14 @@ namespace Comercio
         {
             try
             {
-                Usuario user = new Usuario();
+                Cliente user = new Cliente();
                 user.Nombre = TxtNombre.Text;
                 user.Apellido = TxtApellido.Text;
                 user.Dni = int.Parse(TxtD.Text);
                 user.Email = TxtEmail.Text;
                 user.Rol = "Cliente";
 
-                UsuarioNegocio userNegocio = new UsuarioNegocio();
+                NegocioCliente userNegocio = new NegocioCliente();
                 userNegocio.AgregarUsuarioCliente(user);
 
             }
@@ -44,15 +44,15 @@ namespace Comercio
         {
             try
             {
-                Usuario usuario = new Usuario();
-                usuario.Nombre = txtEditNombre.Text;
-                usuario.Apellido = txtEditApellido.Text;
-                usuario.Email = TxtEmail.Text;
-                usuario.Dni = int.Parse(txtEditDni.Text);
-                usuario.Rol = "Cliente";
+                Cliente cliente = new Cliente();
+                cliente.Nombre = txtEditNombre.Text;
+                cliente.Apellido = txtEditApellido.Text;
+                cliente.Email = TxtEmail.Text;
+                cliente.Dni = int.Parse(txtEditDni.Text);
+                cliente.Rol = "Cliente";
 
-                UsuarioNegocio nrg = new UsuarioNegocio();
-                nrg.EditarUsuarioCliente(usuario);
+                NegocioCliente nrg = new NegocioCliente();
+                nrg.EditarUsuarioCliente(cliente);
 
 
             }
@@ -67,12 +67,12 @@ namespace Comercio
         {
             try
             {
-                Usuario user = new Usuario();
-                user.Email = DeleteEmail.Text;
-                user.Rol = "Cliente";
+                Cliente cliente = new Cliente();
+                cliente.Email = DeleteEmail.Text;
+                cliente.Rol = "Cliente";
 
-                UsuarioNegocio nrg = new UsuarioNegocio();
-                nrg.DeleteCliente(user);
+                NegocioCliente nrg = new NegocioCliente();
+                nrg.DeleteCliente(cliente);
             }
             catch (Exception)
             {

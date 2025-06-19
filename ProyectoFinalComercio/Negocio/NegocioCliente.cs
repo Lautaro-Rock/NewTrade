@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class NegocioCliente
+    public class NegocioCliente
     {
         public List<Cliente> ListarClientes()
         {
@@ -15,7 +15,7 @@ namespace Negocio
             List<Cliente> lista = new List<Cliente>();
             try
             {
-                data.SetearConsulta("SELECT Id, Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente';");
+                data.SetearConsulta("SELECT  Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente';");
                 data.EjecutarLectura();
                 while (data.Lector.Read())
                 {
@@ -72,7 +72,7 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Email = @Email, Rol=@Rol WHERE Email = @Email; AND Rol=@Rol");
+                data.SetearConsulta("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Email = @Email, Rol=@Rol WHERE Email = @Email AND Rol=@Rol");
                 data.SetearParametro("@Nombre", edit.Nombre);
                 data.SetearParametro("@Apellido", edit.Apellido);
                 data.SetearParametro("@DNI", edit.Dni);
@@ -96,7 +96,7 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("DELETE FROM Usuario WHERE Email = @Email AND Rol=@Rol;");
+                data.SetearConsulta("DELETE FROM CLIENTE WHERE Email = @Email AND Rol=@Rol;");
                 data.SetearParametro("@Email", nuevo.Email);
                 data.SetearParametro("@Rol", nuevo.Rol);
                 data.EjecutarAccion();
