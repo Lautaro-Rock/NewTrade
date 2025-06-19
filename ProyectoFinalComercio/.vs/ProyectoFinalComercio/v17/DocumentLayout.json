@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{33F9C717-B2C0-499F-89F3-CD221FB6737C}|Negocio\\Negocio.csproj|solutionrelative:negocio\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\comercio\\gesti\u00F3ndeproductos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gesti\u00F3ndeproductos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\joasa\\onedrive\\desktop\\repo tpc\\newtrade\\proyectofinalcomercio\\comercio\\panelctrlvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\panelctrlvendedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\joasa\\onedrive\\desktop\\repo tpc\\newtrade\\proyectofinalcomercio\\comercio\\panelctrladmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\panelctrladmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\joasa\\onedrive\\desktop\\repo tpc\\newtrade\\proyectofinalcomercio\\comercio\\formularioaltavendedor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|c:\\users\\joasa\\onedrive\\desktop\\repo tpc\\newtrade\\proyectofinalcomercio\\comercio\\gestionproveedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gestionproveedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\comercio\\gesti\u00F3ndeproductos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|solutionrelative:comercio\\gesti\u00F3ndeproductos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCE788F1-BDA6-492C-9EA7-A61E27E9B0A0}|Comercio\\Comercio.csproj|C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\comercio\\gesti\u00F3ndeproductos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PanelCtrlVendedor.aspx",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelCtrlVendedor.aspx",
               "RelativeDocumentMoniker": "Comercio\\PanelCtrlVendedor.aspx",
@@ -87,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "FormularioAltaVendedor.aspx.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\FormularioAltaVendedor.aspx.cs",
               "RelativeDocumentMoniker": "Comercio\\FormularioAltaVendedor.aspx.cs",
@@ -100,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "GestionProveedores.aspx.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx.cs",
               "RelativeDocumentMoniker": "Comercio\\GestionProveedores.aspx.cs",
@@ -113,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "GestionProveedores.aspx",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionProveedores.aspx",
               "RelativeDocumentMoniker": "Comercio\\GestionProveedores.aspx",
@@ -126,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ProductoNegocio.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\ProductoNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\ProductoNegocio.cs",
@@ -139,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "StyleGestionProductos.css",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\StyleGestionProductos.css",
               "RelativeDocumentMoniker": "Comercio\\StyleGestionProductos.css",
@@ -151,7 +155,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
+              "Title": "Gesti\u00F3nDeProductos.aspx",
+              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx",
+              "RelativeDocumentMoniker": "Comercio\\Gesti\u00F3nDeProductos.aspx",
+              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx*",
+              "RelativeToolTip": "Comercio\\Gesti\u00F3nDeProductos.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-17T22:11:05.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccesoDatos.cs",
+              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\AccesoDatos.cs",
+              "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
+              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\AccesoDatos.cs",
+              "RelativeToolTip": "Negocio\\AccesoDatos.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAxwBUAAACNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T21:06:26.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PanelCtrlAdmin.aspx",
+              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelCtrlAdmin.aspx",
+              "RelativeDocumentMoniker": "Comercio\\PanelCtrlAdmin.aspx",
+              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\PanelCtrlAdmin.aspx",
+              "RelativeToolTip": "Comercio\\PanelCtrlAdmin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-19T01:56:36.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Gesti\u00F3nDeProductos.aspx.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx.cs",
               "RelativeDocumentMoniker": "Comercio\\Gesti\u00F3nDeProductos.aspx.cs",
@@ -164,33 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccesoDatos.cs",
-              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\AccesoDatos.cs",
-              "RelativeDocumentMoniker": "Negocio\\AccesoDatos.cs",
-              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\AccesoDatos.cs",
-              "RelativeToolTip": "Negocio\\AccesoDatos.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAxwBUAAABtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T21:06:26.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Gesti\u00F3nDeProductos.aspx",
-              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx",
-              "RelativeDocumentMoniker": "Comercio\\Gesti\u00F3nDeProductos.aspx",
-              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx",
-              "RelativeToolTip": "Comercio\\Gesti\u00F3nDeProductos.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-17T22:11:05.44Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "FormularioAltaVendedor.aspx",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\FormularioAltaVendedor.aspx",
               "RelativeDocumentMoniker": "Comercio\\FormularioAltaVendedor.aspx",
@@ -203,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "DetalleCompra.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Dominio\\DetalleCompra.cs",
               "RelativeDocumentMoniker": "Dominio\\DetalleCompra.cs",
@@ -215,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "NegocioTipoProducto.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\NegocioTipoProducto.cs",
               "RelativeDocumentMoniker": "Negocio\\NegocioTipoProducto.cs",
@@ -228,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MarcaNegocio.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Negocio\\MarcaNegocio.cs",
               "RelativeDocumentMoniker": "Negocio\\MarcaNegocio.cs",
@@ -240,12 +261,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Gesti\u00F3nDeProductos.aspx.designer.cs",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Gesti\u00F3nDeProductos.aspx.designer.cs",
               "RelativeDocumentMoniker": "Comercio\\Gesti\u00F3nDeProductos.aspx.designer.cs",

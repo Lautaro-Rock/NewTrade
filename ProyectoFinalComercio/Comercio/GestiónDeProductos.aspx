@@ -46,7 +46,7 @@
                             <asp:LinkButton ID="btnPanelAgregarMarca" runat="server" OnClick="btnPanelAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelModificarMarca" runat="server" OnClick="btnPanelModificarMarca_Click" CssClass="sidebar-link hover-effect">Modificar marca</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelEliminarMarca" runat="server" OnClick="btnPanelEliminarMarcaClick" CssClass="sidebar-link hover-effect">Eliminar marca</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect">Listar marcas</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect" Visible ="false">Listar marcas</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             <asp:LinkButton ID="btnPanelAgregarTipo" runat="server" OnClick="btnPanelAgregarTipo_Click" CssClass="sidebar-link hover-effect">Agregar tipo de producto</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelModificarTipo" runat="server" OnClick="btnPanelModificarTipo_Click" CssClass="sidebar-link hover-effect">Modificar tipo de producto</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelEliminarTipo" runat="server" OnClick="btnPanelEliminarTipo_Click" CssClass="sidebar-link hover-effect">Eliminar tipo de producto</asp:LinkButton>
-                            <asp:LinkButton ID="btnListarTipo" runat="server" CssClass="sidebar-link hover-effect">Listar todos los tipos de productos</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarTipo" runat="server" CssClass="sidebar-link hover-effect" Visible ="false">Listar todos los tipos de productos</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -166,9 +166,9 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title"><%: temporalpr.Nombre %></h5>
-                                        <asp:Button ID="Button1" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" />
-                                        <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" />
-                                        <asp:Button ID="Button3" runat="server" Text="Ver mas.." CssClass="btn btn-outline-warning me-2" />
+                                        <asp:Button ID="Button1" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" Visible ="false"/>
+                                        <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" Visible ="false" />
+                                        <asp:Button ID="Button3" runat="server" Text="Ver mas.." CssClass="btn btn-outline-warning me-2" Visible ="false"/>
 
                                     </div>
                                 </div>
