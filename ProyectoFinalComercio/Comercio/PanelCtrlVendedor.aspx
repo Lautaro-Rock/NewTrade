@@ -44,11 +44,8 @@
     </div>
 
     <div class="col-md-4">
-<<<<<<< HEAD
       <a href="GestionProveedores.aspx" style="text-decoration: none;">
-=======
       <a href=" GestionProveedores.aspx" style="text-decoration: none;">
->>>>>>> origin/marcos
         <div class="card card-custom">
           <img src="\images\loading.png" alt="Proveedor" class="card-img">
           <h5 class="card-title">Gestión de proveedores</h5>
