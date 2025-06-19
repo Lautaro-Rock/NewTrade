@@ -42,7 +42,7 @@
                     <div id="collapseMarcas" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
                         <div class="accordion-body ps-3">
                             <asp:LinkButton ID="btnPanelAgregarMarca" runat="server" OnClick="btnPanelAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="sidebar-link hover-effect">Modificar marca</asp:LinkButton>
+                            <asp:LinkButton ID="btnPanelModificarMarca" runat="server" OnClick="btnPanelModificarMarca_Click" CssClass="sidebar-link hover-effect">Modificar marca</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelEliminarMarca" runat="server" OnClick="btnPanelEliminarMarcaClick" CssClass="sidebar-link hover-effect">Eliminar marca</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect">Listar marcas</asp:LinkButton>
                         </div>
@@ -207,16 +207,22 @@
             </asp:Panel>
         </asp:Panel>
 
-        <%-- Panel del agregar marca--%>
+        <%-- Panel del agregar y modificar marca--%>
         <div class="container d-flex justify-content-center align-items-center">
             <asp:Panel ID="PanelAgregarMarca" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-3" Style="max-width: 700px;">
-                <h2 class="text-center fw-bold mb-4">Registrar nueva marca</h2>
+                <asp:Label ID="lblTituloAgregarMarca" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Registrar nueva marca"></asp:Label>
+                <asp:Label ID="lblTituloModificarMarca" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Modificar marca" Visible="false"></asp:Label>
+                <div class="mb-3" id="divMarcaModificar" runat="server" visible="false">
+                    <asp:Label AssociatedControlID="ddlMarcaModificar" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
+                    <asp:DropDownList ID="ddlMarcaModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMarcaModificar_SelectedIndexChanged" />
+                </div>
                 <div class="mb-3">
                     <label for="txtNombreMarca" class="form-label fw-semibold">Nombre de la marca</label>
                     <asp:TextBox ID="txtNombreMarca" runat="server" CssClass="form-control" />
                 </div>
                 <div class="d-grid gap-2">
                     <asp:Button ID="btnAgregarMarca" OnClick="btnAgregarMarcaClick" runat="server" Text="Guardar marca" CssClass="btn btn-success" />
+                    <asp:Button ID="btnModificarMarca" runat="server" Text="Guardar cambios" CssClass="btn btn-warning" Visible="false" OnClick="btnModificarMarca_Click" />
                     <asp:HyperLink ID="lnkVolver" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">Volver
                     </asp:HyperLink>
                 </div>
@@ -229,13 +235,13 @@
                 <h2 class="text-center fw-bold mb-4">Eliminar marca</h2>
                 <div class="mb-3">
                     <label for="ddlMarcasEliminar" class="form-label fw-semibold">Seleccione una marca</label>
-                    <asp:DropDownList ID="ddlMarcasEliminar" runat="server" CssClass="form-select" AutoPostBack="true" />
+                    <asp:DropDownList ID="ddlMarcasEliminar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMarcasEliminar_SelectedIndexChanged" />
                 </div>
                 <asp:Panel ID="PanelConfirmarEliminarMarca" runat="server" Visible="false" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
                     <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar esta marca?</p>
                     <div class="d-flex justify-content-end gap-3">
-                        <asp:Button ID="btnEliminarMarca2" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" />
-                        <asp:Button ID="btnCancelarEliminarMarca" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4"/>
+                        <asp:Button ID="btnEliminarMarca2" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminarMarca2_Click" />
+                        <asp:Button ID="btnCancelarEliminarMarca" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
                     </div>
                 </asp:Panel>
             </asp:Panel>

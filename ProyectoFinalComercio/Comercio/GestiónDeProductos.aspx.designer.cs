@@ -78,13 +78,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.LinkButton btnPanelAgregarMarca;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control btnPanelModificarMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnPanelModificarMarca;
 
         /// <summary>
         /// Control btnPanelEliminarMarca.
@@ -384,6 +384,42 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Panel PanelAgregarMarca;
 
         /// <summary>
+        /// Control lblTituloAgregarMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTituloAgregarMarca;
+
+        /// <summary>
+        /// Control lblTituloModificarMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTituloModificarMarca;
+
+        /// <summary>
+        /// Control divMarcaModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMarcaModificar;
+
+        /// <summary>
+        /// Control ddlMarcaModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarcaModificar;
+
+        /// <summary>
         /// Control txtNombreMarca.
         /// </summary>
         /// <remarks>
@@ -400,6 +436,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregarMarca;
+
+        /// <summary>
+        /// Control btnModificarMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarMarca;
 
         /// <summary>
         /// Control lnkVolver.
