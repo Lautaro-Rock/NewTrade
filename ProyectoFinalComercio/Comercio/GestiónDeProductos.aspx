@@ -268,7 +268,7 @@
                 </div>
                 <div class="d-grid gap-2">
                     <asp:Button ID="btnAgregarCategoria" OnClick="btnAgregarCategoria_Click" runat="server" Text="Guardar Tipo de Producto" CssClass="btn btn-success" />
-                    <asp:Button ID="btnModificarCategoria" runat="server" Text="Guardar cambios" CssClass="btn btn-warning" Visible="false" OnClick="btnModificarMarca_Click" />
+                    <asp:Button ID="btnModificarCategoria" runat="server" Text="Guardar cambios" CssClass="btn btn-warning" Visible="false" OnClick="btnModificarCategoria_Click" />
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">Volver
                     </asp:HyperLink>
                 </div>

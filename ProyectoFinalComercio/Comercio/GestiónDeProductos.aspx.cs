@@ -24,6 +24,9 @@ namespace Comercio
             MarcaNegocio marcas = new MarcaNegocio();
             lista_marcas = marcas.ListarMarcas();
 
+            NegocioTipoProducto tipos = new NegocioTipoProducto();
+            lista_tipos = tipos.ListarTiposDeProductos();
+
             if (!IsPostBack)
             {         
                 PanelFormAltaProd.Visible = false;
@@ -453,6 +456,8 @@ namespace Comercio
             lblAgregarCategoria.Visible = true;
             lblModificarCategoria.Visible = false;
             divCategoriaModificar.Visible = false;
+            btnAgregarCategoria.Visible = true;
+            btnModificarCategoria.Visible = false;
             txtNombreCategoria.Text = "";
         }
         protected void btnAgregarCategoria_Click(object sender, EventArgs e)
@@ -504,6 +509,72 @@ namespace Comercio
         }
 
         // Agregar tipo de producto END 
+
+        // Modificar tipo de producto START
+
+        protected void btnPanelModificarTipo_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelFormAltaProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelEliminarMarca.Visible = false;
+            PanelAgregarMarca.Visible = false;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = true;
+
+            lblModificarCategoria.Visible = true;
+            lblAgregarCategoria.Visible = false;
+            divCategoriaModificar.Visible = true;
+            btnAgregarCategoria.Visible = false;
+            btnModificarCategoria.Visible = true;
+            ActualizarListas();
+        }
+
+        protected void ddlCategoriaModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCategoria;
+            if (int.TryParse(ddlCategoriaModificar.SelectedValue, out idCategoria) && idCategoria > 0)
+            {
+                TipoProducto categoria = lista_tipos.FirstOrDefault(m => m.Id == idCategoria);
+                if (categoria != null)
+                    txtNombreCategoria.Text = categoria.Nombre;
+            }
+            else
+            {
+                txtNombreCategoria.Text = "";
+            }
+        }
+
+        protected void btnModificarCategoria_Click(object sender, EventArgs e)
+        {
+            int idCategoria;
+            if (!int.TryParse(ddlCategoriaModificar.SelectedValue, out idCategoria) || idCategoria == 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
+                return;
+            }
+
+            NegocioTipoProducto negocio = new NegocioTipoProducto();
+            TipoProducto tipoProducto = new TipoProducto { Id = idCategoria, Nombre = txtNombreCategoria.Text.Trim(), Activo = true };
+
+            try
+            {
+                negocio.ModificarTipoProducto(tipoProducto);
+                ActualizarListas();
+                txtNombreCategoria.Text = "";
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar el tipo de producto: {ex.Message}');", true);
+            }
+        }
+        // Modificar tipo de producto END 
 
         private void ActualizarListas()
         {
@@ -558,6 +629,11 @@ namespace Comercio
             ddlTipoDeProducto.DataTextField = "Nombre";
             ddlTipoDeProducto.DataBind();
 
+            ddlCategoriaModificar.DataSource = lista_tipos;
+            ddlCategoriaModificar.DataValueField = "Id";
+            ddlCategoriaModificar.DataTextField = "Nombre"; 
+            ddlCategoriaModificar.DataBind();
+
             ddlFiltroTipo.DataSource = lista_tipos;
             ddlFiltroTipo.DataValueField = "Id";
             ddlFiltroTipo.DataTextField = "Nombre";
@@ -571,17 +647,9 @@ namespace Comercio
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
-        protected void ddlCategoriaModificar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
 
 
-        protected void btnPanelModificarTipo_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnPanelEliminarTipo_Click(object sender, EventArgs e)
         {
@@ -597,5 +665,6 @@ namespace Comercio
         {
 
         }
+
     }
 }
