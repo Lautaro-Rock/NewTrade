@@ -16,7 +16,7 @@ namespace Negocio
             List<TipoProducto> list_tipos_de_productos = new List<TipoProducto>();
             try
             {
-                data.SetearConsulta("SELECT Id, Nombre FROM TipoProducto;");
+                data.SetearConsulta("SELECT Id, Nombre FROM TipoProducto WHERE Activo = 1;");
                 data.EjecutarLectura();
                 while (data.Lector.Read())
                 {

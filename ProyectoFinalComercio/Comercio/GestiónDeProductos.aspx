@@ -18,6 +18,8 @@
 
             <div class="accordion accordion-flush" id="accordionSidebar">
 
+                <%--COLUMNAS DE LA IZQUIERDA--%>
+
                 <div class="accordion-item bg-transparent border-0">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductos">
@@ -56,10 +58,10 @@
                     </h2>
                     <div id="collapseTipos" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
                         <div class="accordion-body ps-3">
-                            <asp:LinkButton ID="btnAgregarTipo" runat="server" CssClass="sidebar-link hover-effect">Agregar tipo de producto</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="sidebar-link hover-effect">Modificar tipo de producto</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton5" runat="server" CssClass="sidebar-link hover-effect">Eliminar tipo de producto</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton6" runat="server" CssClass="sidebar-link hover-effect">Listar todos los tipos de productos</asp:LinkButton>
+                            <asp:LinkButton ID="btnPanelAgregarTipo" runat="server" OnClick="btnPanelAgregarTipo_Click" CssClass="sidebar-link hover-effect">Agregar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnPanelModificarTipo" runat="server" OnClick="btnPanelModificarTipo_Click" CssClass="sidebar-link hover-effect">Modificar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnPanelEliminarTipo" runat="server" OnClick="btnPanelEliminarTipo_Click" CssClass="sidebar-link hover-effect">Eliminar tipo de producto</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarTipo" runat="server" CssClass="sidebar-link hover-effect">Listar todos los tipos de productos</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -207,6 +209,8 @@
             </asp:Panel>
         </asp:Panel>
 
+        <%-- MARCAS --%>
+
         <%-- Panel del agregar y modificar marca--%>
         <div class="container d-flex justify-content-center align-items-center">
             <asp:Panel ID="PanelAgregarMarca" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-3" Style="max-width: 700px;">
@@ -247,6 +251,47 @@
             </asp:Panel>
         </div>
 
+        <%-- CATEGORIA (Tipo de producto) --%>
+
+        <%-- Panel del agregar y modificar Categoria--%>
+        <div class="container d-flex justify-content-center align-items-center">
+            <asp:Panel ID="PanelAgregarCategoria" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-3" Style="max-width: 700px;">
+                <asp:Label ID="lblAgregarCategoria" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Registrar nuevo Tipo de Producto"></asp:Label>
+                <asp:Label ID="lblModificarCategoria" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Modificar Tipo de Producto" Visible="false"></asp:Label>
+                <div class="mb-3" id="divCategoriaModificar" runat="server" visible="false">
+                    <asp:Label AssociatedControlID="ddlCategoriaModificar" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
+                    <asp:DropDownList ID="ddlCategoriaModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCategoriaModificar_SelectedIndexChanged" />
+                </div>
+                <div class="mb-3">
+                    <label for="txtNombreCategoria" class="form-label fw-semibold">Nombre del Tipo de Producto</label>
+                    <asp:TextBox ID="txtNombreCategoria" runat="server" CssClass="form-control" />
+                </div>
+                <div class="d-grid gap-2">
+                    <asp:Button ID="btnAgregarCategoria" OnClick="btnAgregarCategoria_Click" runat="server" Text="Guardar Tipo de Producto" CssClass="btn btn-success" />
+                    <asp:Button ID="btnModificarCategoria" runat="server" Text="Guardar cambios" CssClass="btn btn-warning" Visible="false" OnClick="btnModificarMarca_Click" />
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AgregarProducto.aspx" CssClass="btn btn-outline-secondary">Volver
+                    </asp:HyperLink>
+                </div>
+            </asp:Panel>
+        </div>
+
+        <%-- Panel del eliminar Categoria--%>
+        <div class="container d-flex justify-content-center align-items-center">
+            <asp:Panel ID="PanelEliminarCategoria" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 700px;">
+                <h2 class="text-center fw-bold mb-4">Eliminar marca</h2>
+                <div class="mb-3">
+                    <label for="ddlCategoriasEliminar" class="form-label fw-semibold">Seleccione una marca</label>
+                    <asp:DropDownList ID="ddlCategoriasEliminar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCategoriasEliminar_SelectedIndexChanged" />
+                </div>
+                <asp:Panel ID="Panel3" runat="server" Visible="false" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
+                    <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar esta marca?</p>
+                    <div class="d-flex justify-content-end gap-3">
+                        <asp:Button ID="btnEliminarCategoria" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminarCategoria_Click" />
+                        <asp:Button ID="Button6" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
+                    </div>
+                </asp:Panel>
+            </asp:Panel>
+        </div>
 
 
 

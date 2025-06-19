@@ -31,6 +31,8 @@ namespace Comercio
                 PanelAgregarMarca.Visible= false;
                 PanelEliminarProducto.Visible = false;
                 PanelEliminarMarca.Visible = false;
+                PanelEliminarCategoria.Visible = false;
+                PanelAgregarCategoria.Visible = false;
             }
 
         }
@@ -40,8 +42,10 @@ namespace Comercio
         protected void limpiarCampos()
         {
             txtNombreProd.Text = "";
-            ddlMarcas.SelectedIndex = 0;
-            ddlTipoDeProducto.SelectedIndex = 0;
+            if (ddlMarcas.Items.Count > 0)
+                ddlMarcas.SelectedIndex = 0;
+            if (ddlTipoDeProducto.Items.Count > 0)
+                ddlTipoDeProducto.SelectedIndex = 0;
             txtPrecio.Text = "";
             txtStock.Text = "";
             txtStockMin.Text = "";
@@ -56,6 +60,8 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelFormAltaProd.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregar.Visible = true;
             lblTituloModificar.Visible = false;
@@ -74,6 +80,8 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelFormAltaProd.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregar.Visible = false;
             lblTituloModificar.Visible = true;
@@ -91,6 +99,8 @@ namespace Comercio
             PanelAgregarMarca.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelEliminarProducto.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
 
@@ -102,6 +112,8 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelListarProd.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
 
@@ -260,6 +272,8 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelAgregarMarca.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregarMarca.Visible = true;
             lblTituloModificarMarca.Visible = false;
@@ -325,6 +339,8 @@ namespace Comercio
             PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
 
@@ -362,6 +378,8 @@ namespace Comercio
             PanelEliminarProducto.Visible = false;
             PanelEliminarMarca.Visible = false;
             PanelAgregarMarca.Visible = true;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregarMarca.Visible = false;
             lblTituloModificarMarca.Visible = true;
@@ -417,6 +435,75 @@ namespace Comercio
         }
 
         // Modificar marca END
+
+        // Eventos relaciondos a Tipo de Producto
+        //
+        // Agregar tipo de producto START
+        protected void btnPanelAgregarTipo_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelFormAltaProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelEliminarMarca.Visible = false;
+            PanelAgregarMarca.Visible = false;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = true;
+
+
+            lblAgregarCategoria.Visible = true;
+            lblModificarCategoria.Visible = false;
+            divCategoriaModificar.Visible = false;
+            txtNombreCategoria.Text = "";
+        }
+        protected void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            NegocioTipoProducto categoria = new NegocioTipoProducto();
+            List<TipoProducto> listaTipoProducto = categoria.ListarTiposDeProductos();
+
+            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre del tipo de producto no puede estar vacío.');", true);
+                return;
+            }
+            bool existe = false;
+
+            foreach (TipoProducto recorrer in listaTipoProducto)
+            {
+                if (recorrer.Nombre.Equals(txtNombreCategoria.Text, StringComparison.OrdinalIgnoreCase))
+                {
+                    existe = true;
+                    break;
+                }
+            }
+            if (existe)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El Tipo de Producto ya existe.');", true);
+            }
+            else
+            {
+
+                try
+                {
+                    TipoProducto nuevo = new TipoProducto();
+                    nuevo.Nombre = txtNombreCategoria.Text;
+                    nuevo.Activo = true;
+                    NegocioTipoProducto agregar = new NegocioTipoProducto();
+                    agregar.AgregarTipoProducto(nuevo);
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Tipo de Producto agregado exitosamente!');", true);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+
+                }
+
+
+            }
+        }
+
+        // Agregar tipo de producto END 
 
         private void ActualizarListas()
         {
@@ -484,5 +571,31 @@ namespace Comercio
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
+        protected void ddlCategoriaModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        protected void btnPanelModificarTipo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPanelEliminarTipo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlCategoriasEliminar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
