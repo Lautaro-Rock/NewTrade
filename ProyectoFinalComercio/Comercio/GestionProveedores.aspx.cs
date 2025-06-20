@@ -13,13 +13,28 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           NegocioProveedores negocio = new NegocioProveedores();
+            if (!IsPostBack)
+            {
+                CargarProveedores();
+            }
+     
+        }
+
+        protected void CargarProveedores()
+        {
+            NegocioProveedores negocio = new NegocioProveedores();
             Proveedores.DataSource = negocio.ListarProveedores();
             Proveedores.DataBind();
         }
 
         protected void RegisterProv_Click(object sender, EventArgs e)
         {
+            Page.Validate("AltaProveedor");
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             try
             {
                 Proveedor proveedor = new Proveedor();
@@ -31,6 +46,7 @@ namespace Comercio
 
                 NegocioProveedores negocio = new NegocioProveedores();
                 negocio.AgregarProveedores(proveedor);
+                CargarProveedores();
 
             }
             catch (Exception ex)
@@ -42,25 +58,47 @@ namespace Comercio
 
         protected void EditProveedor_Click(object sender, EventArgs e)
         {
-            Proveedor editProveedor = new Proveedor();
-            editProveedor.Id = int.Parse(IdEdit.Text);
-            editProveedor.RazonSocial = TextEditRazon.Text;
-            editProveedor.Cuit = TextEditCuit.Text;
-            editProveedor.Email = TextEditEmail.Text;
-            editProveedor.Telefono = TextEditTel.Text;
-            editProveedor.Direccion = TextEditDire.Text;
+            Page.Validate("ModificarProveedor");
+            if (!Page.IsValid)
+            {
+                return;
+            }
 
-            NegocioProveedores negocio = new NegocioProveedores();
-            negocio.ModificarProveedores(editProveedor);
+            try
+            {
+                Proveedor editProveedor = new Proveedor();
+                editProveedor.Id = int.Parse(IdEdit.Text);
+                editProveedor.RazonSocial = TextEditRazon.Text;
+                editProveedor.Cuit = TextEditCuit.Text;
+                editProveedor.Email = TextEditEmail.Text;
+                editProveedor.Telefono = TextEditTel.Text;
+                editProveedor.Direccion = TextEditDire.Text;
+
+                NegocioProveedores negocio = new NegocioProveedores();
+                negocio.ModificarProveedores(editProveedor);
+                CargarProveedores();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void DeleteProv_Click(object sender, EventArgs e)
         {
-            Proveedor proveedor = new Proveedor();
-            proveedor.Id = int.Parse(IdDelete.Text);
+            try
+            {
+                Proveedor proveedor = new Proveedor();
+                proveedor.Id = int.Parse(IdDelete.Text);
 
-            NegocioProveedores negocio = new NegocioProveedores();
-            negocio.EliminarProveedores(proveedor);
+                NegocioProveedores negocio = new NegocioProveedores();
+                negocio.EliminarProveedoresLogico(proveedor);
+                CargarProveedores();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

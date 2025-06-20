@@ -15,7 +15,7 @@ namespace Negocio
             List<Cliente> lista = new List<Cliente>();
             try
             {
-                data.SetearConsulta("SELECT  Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente';");
+                data.SetearConsulta("SELECT  Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente' AND Activo=1;");
                 data.EjecutarLectura();
                 while (data.Lector.Read())
                 {
@@ -46,14 +46,15 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("INSERT INTO CLIENTE (Nombre, Apellido, DNI, Email,Rol) " +
-                 "VALUES (@Nombre, @Apellido, @DNI, @Email,@Rol);");
+                data.SetearConsulta("INSERT INTO CLIENTE (Nombre, Apellido, DNI, Email,Rol, Activo) " +
+                 "VALUES (@Nombre, @Apellido, @DNI, @Email,@Rol, @Activo);");
 
                 data.SetearParametro("@Nombre", nuevo.Nombre);
                 data.SetearParametro("@Apellido", nuevo.Apellido);
                 data.SetearParametro("@DNI", nuevo.Dni);
                 data.SetearParametro("@Email", nuevo.Email);
                 data.SetearParametro("@Rol", nuevo.Rol);
+                data.SetearParametro("@Activo", 1); 
                 data.EjecutarAccion();
             }
             catch (Exception ex)
@@ -97,6 +98,26 @@ namespace Negocio
             try
             {
                 data.SetearConsulta("DELETE FROM CLIENTE WHERE Email = @Email AND Rol=@Rol;");
+                data.SetearParametro("@Email", nuevo.Email);
+                data.SetearParametro("@Rol", nuevo.Rol);
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+        public void DeleteClienteLogico(Cliente nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE CLIENTE SET Activo=0 WHERE Email = @Email AND Rol=@Rol;");
                 data.SetearParametro("@Email", nuevo.Email);
                 data.SetearParametro("@Rol", nuevo.Rol);
                 data.EjecutarAccion();

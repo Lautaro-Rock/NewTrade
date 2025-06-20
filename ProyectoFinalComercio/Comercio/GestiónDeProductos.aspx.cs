@@ -122,6 +122,12 @@ namespace Comercio
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
         {
+            Page.Validate("AltaProducto");
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             ProductoNegocio data = new ProductoNegocio();
             Producto producto = new Producto();
 
@@ -133,6 +139,12 @@ namespace Comercio
             producto.StockMin = int.Parse(txtStockMin.Text.Trim());
             producto.UrlImgProducto = txtUrlImagen.Text.Trim();
             producto.Activo = true;
+
+            if (producto.Precio < 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Precio no valido.');", true);
+                return;
+            }
 
             try
             {
@@ -237,6 +249,12 @@ namespace Comercio
         }
         protected void btnModificarProducto_Click(object sender, EventArgs e)
         {
+            Page.Validate("AltaProducto");
+            if (!Page.IsValid)
+            {
+                return; 
+            }
+
             int idProducto;
             // Validamos que se haya seleccionado un producto
             if (!int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) || idProducto == 0)

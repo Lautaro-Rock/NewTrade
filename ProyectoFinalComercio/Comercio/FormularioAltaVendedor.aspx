@@ -15,6 +15,7 @@
                         <div class="col-12">
                             <label for="boxNombre" class="form-label text-center d-block">Ingrese su Nombre</label>
                             <asp:TextBox ID="boxNombre" runat="server" CssClass="form-control" />
+                            <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="boxNombre" runat="server" ForeColor="Red"  />
                         </div>
                     </div>
 
@@ -22,6 +23,7 @@
                         <div class="col-12">
                             <label for="boxApellido" class="form-label text-center d-block">Ingrese su Apellido</label>
                             <asp:TextBox ID="boxApellido" runat="server" CssClass="form-control" />
+                            <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="boxApellido" runat="server" ForeColor="Red" />
                         </div>
                     </div>
 
@@ -29,6 +31,7 @@
                         <div class="col-12">
                             <label for="boxDNI" class="form-label text-center d-block">Ingrese su DNI</label>
                             <asp:TextBox ID="boxDNI" runat="server" CssClass="form-control" />
+                            <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="boxDNI" runat="server" ForeColor="Red" />
                         </div>
                     </div>
 
@@ -36,6 +39,7 @@
                         <div class="col-12">
                             <label for="boxEmail" class="form-label text-center d-block">Ingrese su Email</label>
                             <asp:TextBox ID="boxEmail" runat="server" CssClass="form-control" />
+                            <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="boxEmail" runat="server" ForeColor="Red" />
                         </div>
                     </div>
 
@@ -43,6 +47,7 @@
                         <div class="col-12">
                             <label for="boxPassword" class="form-label text-center d-block">Ingrese su Contraseña</label>
                             <asp:TextBox ID="boxPassword" runat="server" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator ErrorMessage="La contraseña es obligatoria" ControlToValidate="boxPassword" runat="server" ForeColor="Red" />
                         </div>
                     </div>
 

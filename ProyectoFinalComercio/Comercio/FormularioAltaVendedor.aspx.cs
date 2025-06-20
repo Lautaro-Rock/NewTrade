@@ -18,6 +18,12 @@ namespace Comercio
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if(!Page.IsValid)
+            {
+                return; 
+            }
+
             UsuarioNegocio data = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 

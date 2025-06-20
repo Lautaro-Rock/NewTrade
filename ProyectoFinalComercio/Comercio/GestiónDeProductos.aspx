@@ -101,6 +101,7 @@
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtNombreProd" runat="server" CssClass="form-label fw-semibold text-dark">Nombre del producto</asp:Label>
                             <asp:TextBox ID="txtNombreProd" runat="server" CssClass="form-control" placeholder="Ej: Taladro Black+Decker" />
+                            <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtNombreProd" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                         </div>
 
                         <div class="form-group mb-3">
@@ -118,6 +119,7 @@
                             <div class="input-group">
                                 <span class="input-group-text bg-secondary text-white">$</span>
                                 <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
+                                <asp:RequiredFieldValidator ErrorMessage="El precio es obligatorio" ControlToValidate="txtPrecio" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                             </div>
                         </div>
                     </div>
@@ -127,21 +129,24 @@
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtStock" runat="server" CssClass="form-label fw-semibold text-dark">Stock</asp:Label>
                             <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="Ej: 100 unidades" TextMode="Number" />
+                            <asp:RequiredFieldValidator ErrorMessage="El stock es obligatorio" ControlToValidate="txtStock" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
                             <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
+                            <asp:RequiredFieldValidator ErrorMessage="El stock minimo es obligatorio" ControlToValidate="txtStockMin" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
                             <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                            <asp:RequiredFieldValidator ErrorMessage="Complete con cualquier URL" ControlToValidate="txtUrlImagen" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                         </div>
 
                         <div class="d-grid mt-4">
-                            <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" />
-                            <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" />
+                            <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" ValidationGroup="AltaProducto" />
                         </div>
                     </div>
                 </div>

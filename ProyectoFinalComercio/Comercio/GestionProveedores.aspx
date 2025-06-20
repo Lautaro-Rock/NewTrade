@@ -62,30 +62,35 @@
                 <div class="mb-3">
                     <asp:Label ID="Label1" runat="server" Text="Razón Social" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextRazonSocial" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="La razon social es obligatoria" ControlToValidate="TextRazonSocial" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                 </div>
 
                 <div class="mb-3">
                     <asp:Label ID="Label2" runat="server" Text="CUIT" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextCuit" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="El CUIT es obligatorio" ControlToValidate="TextCuit" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                 </div>
 
                 <div class="mb-3">
                     <asp:Label ID="Label3" runat="server" Text="Email" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="El email es obligatorio" ControlToValidate="TextEmail" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                 </div>
 
                 <div class="mb-3">
                     <asp:Label ID="Label4" runat="server" Text="Teléfono" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="El número de teléfono es obligatorio" ControlToValidate="TextTelefono" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                 </div>
 
                 <div class="mb-3">
                     <asp:Label ID="Label5" runat="server" Text="Dirección" CssClass="form-label text-white"></asp:Label>
                     <asp:TextBox ID="TextDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="La dirección es obligatoria" ControlToValidate="TextDireccion" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                 </div>
 
                 <div class="d-flex justify-content-center">
-                <asp:Button ID="RegisterProv" runat="server" OnClick="RegisterProv_Click" Text="Registrar proveedor" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3"/>
+                <asp:Button ID="RegisterProv" runat="server" OnClick="RegisterProv_Click" Text="Registrar proveedor" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3" ValidationGroup="AltaProveedor" />
                 </div>
             </div>
         </div>
@@ -100,33 +105,39 @@
                <div class="mb-3">
                   <asp:Label ID="Label11" runat="server" Text="ID del proveedor" CssClass="form-label text-white"></asp:Label>
                   <asp:TextBox ID="IdEdit" runat="server" CssClass="form-control"></asp:TextBox>
+                   <asp:RequiredFieldValidator ErrorMessage="El ID es obligatorio" ControlToValidate="IdEdit" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
               </div>
              <div class="mb-3">
                  <asp:Label ID="Label6" runat="server" Text="Razón Social" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TextEditRazon" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="La razón social es obligatoria" ControlToValidate="TextEditRazon" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
              </div> 
              <div class="mb-3">
                  <asp:Label ID="Label7" runat="server" Text="CUIT" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TextEditCuit" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El CUIT es obligatorio" ControlToValidate="TextEditCuit" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label8" runat="server" Text="Email" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TextEditEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="TextEditEmail" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label9" runat="server" Text="Teléfono" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TextEditTel" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El número de teléfono es obligatorio" ControlToValidate="TextEditTel" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label10" runat="server" Text="Dirección" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TextEditDire" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="La dirección es obligatoria" ControlToValidate="TextEditDire" runat="server" ForeColor="Red" ValidationGroup="ModificarProveedor" />
              </div>
 
              <div class="d-flex justify-content-center">
-             <asp:Button ID="EditProveedor" runat="server" OnClick="EditProveedor_Click"  Text="Editar proveedor" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3"/>
+             <asp:Button ID="EditProveedor" runat="server" OnClick="EditProveedor_Click"  Text="Editar proveedor" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3" ValidationGroup="ModificarProveedor"/>
              </div>
          </div>
      </div>

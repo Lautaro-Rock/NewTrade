@@ -101,25 +101,29 @@
              <div class="mb-3">
                  <asp:Label ID="Label1" runat="server" Text="Ingrese su Nombre" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="TxtNombre" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label2" runat="server" Text="Ingrese su Apellido" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TxtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="TxtApellido" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label3" runat="server" Text="Ingrese su DNI" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TxtD" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="TxtD" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label4" runat="server" Text=" Ingrese su Email" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="TxtEmail" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
              </div>
 
              <div class="d-flex justify-content-center">
-             <asp:Button ID="InsertClient" onclick="InsertClient_Click" runat="server"  Text="Registrar Cliente" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3"/>
+             <asp:Button ID="InsertClient" onclick="InsertClient_Click" runat="server"  Text="Registrar Cliente" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3" ValidationGroup="AltaCliente"/>
              </div>
          </div>
      </div>
@@ -134,25 +138,29 @@
                 <div class="mb-3">
                  <asp:Label ID="Label9" runat="server" Text=" Ingrese el email del usuario " CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="txtEditEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="txtEditEmail" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label6" runat="server" Text="Ingrese su Nombre" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="txtEditNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtEditNombre" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label7" runat="server" Text="Ingrese su Apellido" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="txtEditApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="txtEditApellido" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
              </div>
 
              <div class="mb-3">
                  <asp:Label ID="Label8" runat="server" Text="Ingrese su DNI" CssClass="form-label text-white"></asp:Label>
                  <asp:TextBox ID="txtEditDni" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="txtEditDni" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
              </div>
 
              <div class="d-flex justify-content-center">
-             <asp:Button ID="EditClient" OnClick="EditClient_Click"  runat="server"  Text="Editar Cliente" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3"/>
+             <asp:Button ID="EditClient" OnClick="EditClient_Click"  runat="server"  Text="Editar Cliente" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3" ValidationGroup="ModificarCliente" />
              </div>
          </div>
      </div>

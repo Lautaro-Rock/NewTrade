@@ -13,6 +13,14 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CargarClientes();
+            }
+        }
+
+        private void CargarClientes()
+        {
             NegocioCliente userCliente = new NegocioCliente();
             Clientes.DataSource = userCliente.ListarClientes();
             Clientes.DataBind();
@@ -20,8 +28,15 @@ namespace Comercio
 
         protected void InsertClient_Click(object sender, EventArgs e)
         {
+            Page.Validate("AltaCliente");
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             try
             {
+
                 Cliente user = new Cliente();
                 user.Nombre = TxtNombre.Text;
                 user.Apellido = TxtApellido.Text;
@@ -31,6 +46,7 @@ namespace Comercio
 
                 NegocioCliente userNegocio = new NegocioCliente();
                 userNegocio.AgregarCliente(user);
+                CargarClientes();
 
             }
             catch (Exception ex)
@@ -42,18 +58,24 @@ namespace Comercio
 
         protected void EditClient_Click(object sender, EventArgs e)
         {
+            Page.Validate("ModificarCliente");
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             try
             {
                 Cliente cliente = new Cliente();
                 cliente.Nombre = txtEditNombre.Text;
                 cliente.Apellido = txtEditApellido.Text;
-                cliente.Email = TxtEmail.Text;
+                cliente.Email = txtEditEmail.Text;
                 cliente.Dni = int.Parse(txtEditDni.Text);
                 cliente.Rol = "Cliente";
 
                 NegocioCliente nrg = new NegocioCliente();
                 nrg.EditarCliente(cliente);
-
+                CargarClientes();
 
             }
             catch (Exception ex)
@@ -65,6 +87,7 @@ namespace Comercio
 
         protected void DeleteClient_Click(object sender, EventArgs e)
         {
+
             try
             {
                 Cliente cliente = new Cliente();
@@ -72,7 +95,8 @@ namespace Comercio
                 cliente.Rol = "Cliente";
 
                 NegocioCliente nrg = new NegocioCliente();
-                nrg.DeleteCliente(cliente);
+                nrg.DeleteClienteLogico(cliente);
+                CargarClientes();
             }
             catch (Exception)
             {
