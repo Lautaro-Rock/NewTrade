@@ -205,6 +205,21 @@ namespace Comercio
                 Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
                 if (producto != null)
                 {
+                    // Aca se valida si el producto tiene una marca o tipo de producto que fue eliminado 
+                    if (!lista_tipos.Any(t => t.Id == producto.TipoProducto.Id))
+                    {
+                        ddlTipoDeProducto.Items.Insert(0, new ListItem("Tipo de producto eliminado", producto.TipoProducto.Id.ToString()));
+                    }
+                    ddlTipoDeProducto.SelectedValue = producto.TipoProducto.Id.ToString();
+
+
+                    if (!lista_marcas.Any(m => m.Id == producto.Marca.Id))
+                    {
+                        ddlMarcas.Items.Insert(0, new ListItem("Marca eliminada", producto.Marca.Id.ToString()));
+                    }
+                    ddlMarcas.SelectedValue = producto.Marca.Id.ToString();
+                    //
+
                     txtNombreProd.Text = producto.Nombre;
                     ddlMarcas.SelectedValue = lista_marcas.FirstOrDefault(m => m.Nombre == producto.Marca.Nombre)?.Id.ToString() ?? "0";
                     ddlTipoDeProducto.SelectedValue = lista_tipos.FirstOrDefault(t => t.Nombre == producto.TipoProducto.Nombre)?.Id.ToString() ?? "0";
@@ -223,9 +238,18 @@ namespace Comercio
         protected void btnModificarProducto_Click(object sender, EventArgs e)
         {
             int idProducto;
+            // Validamos que se haya seleccionado un producto
             if (!int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) || idProducto == 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
+                return;
+            }
+
+            // Validamos que no se esten seleccionando marcas o tipos de producto eliminados
+            if (ddlTipoDeProducto.SelectedItem.Text == "Tipo de producto eliminado" ||
+                ddlMarcas.SelectedItem.Text == "Marca eliminada")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Debe seleccionar una marca y tipo de producto válidos.');", true);
                 return;
             }
 
@@ -248,13 +272,7 @@ namespace Comercio
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
-                txtNombreProd.Text = "";
-                ddlMarcas.SelectedIndex = 0;
-                ddlTipoDeProducto.SelectedIndex = 0;
-                txtPrecio.Text = "";
-                txtStock.Text = "";
-                txtStockMin.Text = "";
-                txtUrlImagen.Text = "";
+                limpiarCampos();
 
 
             }
