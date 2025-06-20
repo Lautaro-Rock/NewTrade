@@ -41,7 +41,7 @@ namespace Negocio
             }
         }
 
-        public void AgregarUsuarioCliente(Cliente nuevo)
+        public void AgregarCliente(Cliente nuevo)
         {
             AccesoDatos data = new AccesoDatos();
             try
@@ -67,7 +67,7 @@ namespace Negocio
             }
         }
 
-        public void EditarUsuarioCliente(Cliente edit)
+        public void EditarCliente(Cliente edit)
         {
             AccesoDatos data = new AccesoDatos();
             try

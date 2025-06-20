@@ -30,7 +30,7 @@ namespace Comercio
                 user.Rol = "Cliente";
 
                 NegocioCliente userNegocio = new NegocioCliente();
-                userNegocio.AgregarUsuarioCliente(user);
+                userNegocio.AgregarCliente(user);
 
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace Comercio
                 cliente.Rol = "Cliente";
 
                 NegocioCliente nrg = new NegocioCliente();
-                nrg.EditarUsuarioCliente(cliente);
+                nrg.EditarCliente(cliente);
 
 
             }
