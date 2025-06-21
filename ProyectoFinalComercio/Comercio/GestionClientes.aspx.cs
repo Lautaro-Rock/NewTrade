@@ -31,11 +31,7 @@ namespace Comercio
             {
                 PanelFormAltaProd.Visible = false;
                 PanelListarProd.Visible = false;
-                PanelAgregarMarca.Visible = false;
                 PanelEliminarProducto.Visible = false;
-                PanelEliminarMarca.Visible = false;
-                PanelEliminarCategoria.Visible = false;
-                PanelAgregarCategoria.Visible = false;
             }
 
         }
@@ -59,12 +55,8 @@ namespace Comercio
         protected void btnAgregarProdClick(object sender, EventArgs e)
         {
             PanelListarProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
             PanelFormAltaProd.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregar.Visible = true;
             lblTituloModificar.Visible = false;
@@ -79,12 +71,8 @@ namespace Comercio
         protected void btnModificarProd_Click(object sender, EventArgs e)
         {
             PanelListarProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
             PanelFormAltaProd.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
 
             lblTituloAgregar.Visible = false;
             lblTituloModificar.Visible = true;
@@ -99,11 +87,7 @@ namespace Comercio
         {
             PanelListarProd.Visible = false;
             PanelFormAltaProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
-            PanelEliminarMarca.Visible = false;
             PanelEliminarProducto.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
 
@@ -111,12 +95,8 @@ namespace Comercio
         protected void btnListarProdClick(object sender, EventArgs e)
         {
             PanelFormAltaProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
             PanelListarProd.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
 
@@ -301,365 +281,6 @@ namespace Comercio
         }
 
 
-        //Eventos relacionados a la seccion marcas
-        //
-        //Agregar marca START
-        protected void btnPanelAgregarMarcaClick(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
-            PanelAgregarMarca.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
-
-            lblTituloAgregarMarca.Visible = true;
-            lblTituloModificarMarca.Visible = false;
-            divMarcaModificar.Visible = false;
-            btnAgregarMarca.Visible = true;
-            btnModificarMarca.Visible = false;
-            txtNombreMarca.Text = "";
-        }
-        protected void btnAgregarMarcaClick(object sender, EventArgs e)
-        {
-            MarcaNegocio marcas = new MarcaNegocio();
-            List<Marca> lista_marcas_act = marcas.ListarMarcas();
-
-            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre de la marca no puede estar vacío.');", true);
-                return;
-            }
-            bool existe = false;
-
-            foreach (Marca recorrer in lista_marcas_act)
-            {
-                if (recorrer.Nombre.Equals(txtNombreMarca.Text, StringComparison.OrdinalIgnoreCase))
-                {
-                    existe = true;
-                    break;
-                }
-            }
-            if (existe)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('La marca ya existe.');", true);
-            }
-            else
-            {
-
-                try
-                {
-                    Marca nueva_marca = new Marca();
-                    nueva_marca.Nombre = txtNombreMarca.Text;
-                    nueva_marca.Activo = true;
-                    MarcaNegocio para_agregar = new MarcaNegocio();
-                    para_agregar.AgregarMarca(nueva_marca);
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Marca agregada exitosamente!');", true);
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-
-                }
-
-
-            }
-        }
-
-        // Agregar marca END
-
-        //Eliminar marca START
-
-        protected void btnPanelEliminarMarcaClick(object sender, EventArgs e)
-        {
-            PanelFormAltaProd.Visible = false;
-            PanelListarProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
-            ActualizarListas();
-        }
-
-        protected void btnEliminarMarca2_Click(object sender, EventArgs e)
-        {
-            int idMarca = int.Parse(ddlMarcasEliminar.SelectedValue);
-            MarcaNegocio negocio = new MarcaNegocio();
-            Marca marca = new Marca { Id = idMarca };
-            try
-            {
-                negocio.EliminarMarcaLogico(marca);
-                ActualizarListas();
-            }
-            catch (Exception ex)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar la marca: {ex.Message}');", true);
-            }
-        }
-
-        protected void ddlMarcasEliminar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlMarcasEliminar.SelectedIndex > 0)
-                PanelConfirmarEliminarMarca.Visible = true;
-            else
-                PanelConfirmarEliminarMarca.Visible = false;
-        }
-
-        // Eliminar marca END
-
-        // Modificar marca START
-        protected void btnPanelModificarMarca_Click(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
-            PanelAgregarMarca.Visible = true;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = false;
-
-            lblTituloAgregarMarca.Visible = false;
-            lblTituloModificarMarca.Visible = true;
-            divMarcaModificar.Visible = true;
-            btnAgregarMarca.Visible = false;
-            btnModificarMarca.Visible = true;
-            ActualizarListas();
-        }
-
-        protected void ddlMarcaModificar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idMarca;
-            if (int.TryParse(ddlMarcaModificar.SelectedValue, out idMarca) && idMarca > 0)
-            {
-                Marca marca = lista_marcas.FirstOrDefault(m => m.Id == idMarca);
-                if (marca != null)
-                    txtNombreMarca.Text = marca.Nombre;
-            }
-            else
-            {
-                txtNombreMarca.Text = "";
-            }
-        }
-
-        protected void btnModificarMarca_Click(object sender, EventArgs e)
-        {
-            int idMarca;
-            if (!int.TryParse(ddlMarcaModificar.SelectedValue, out idMarca) || idMarca == 0)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione una marca válida.');", true);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
-                return;
-            }
-
-            MarcaNegocio negocio = new MarcaNegocio();
-            Marca marca = new Marca { Id = idMarca, Nombre = txtNombreMarca.Text.Trim(), Activo = true };
-
-            try
-            {
-                negocio.ModificarMarca(marca);
-                ActualizarListas();
-                txtNombreMarca.Text = "";
-            }
-            catch (Exception ex)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar la marca: {ex.Message}');", true);
-            }
-        }
-
-        // Modificar marca END
-
-        // Eventos relaciondos a Tipo de Producto
-        //
-        // Agregar tipo de producto START
-        protected void btnPanelAgregarTipo_Click(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
-            PanelAgregarMarca.Visible = false;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = true;
-
-
-            lblAgregarCategoria.Visible = true;
-            lblModificarCategoria.Visible = false;
-            divCategoriaModificar.Visible = false;
-            btnAgregarCategoria.Visible = true;
-            btnModificarCategoria.Visible = false;
-            txtNombreCategoria.Text = "";
-        }
-        protected void btnAgregarCategoria_Click(object sender, EventArgs e)
-        {
-            NegocioTipoProducto categoria = new NegocioTipoProducto();
-            List<TipoProducto> listaTipoProducto = categoria.ListarTiposDeProductos();
-
-            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre del tipo de producto no puede estar vacío.');", true);
-                return;
-            }
-            bool existe = false;
-
-            foreach (TipoProducto recorrer in listaTipoProducto)
-            {
-                if (recorrer.Nombre.Equals(txtNombreCategoria.Text, StringComparison.OrdinalIgnoreCase))
-                {
-                    existe = true;
-                    break;
-                }
-            }
-            if (existe)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El Tipo de Producto ya existe.');", true);
-            }
-            else
-            {
-
-                try
-                {
-                    TipoProducto nuevo = new TipoProducto();
-                    nuevo.Nombre = txtNombreCategoria.Text;
-                    nuevo.Activo = true;
-                    NegocioTipoProducto agregar = new NegocioTipoProducto();
-                    agregar.AgregarTipoProducto(nuevo);
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Tipo de Producto agregado exitosamente!');", true);
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-
-                }
-
-
-            }
-        }
-
-        // Agregar tipo de producto END 
-
-        // Modificar tipo de producto START
-
-        protected void btnPanelModificarTipo_Click(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
-            PanelAgregarMarca.Visible = false;
-            PanelEliminarCategoria.Visible = false;
-            PanelAgregarCategoria.Visible = true;
-
-            lblModificarCategoria.Visible = true;
-            lblAgregarCategoria.Visible = false;
-            divCategoriaModificar.Visible = true;
-            btnAgregarCategoria.Visible = false;
-            btnModificarCategoria.Visible = true;
-            ActualizarListas();
-        }
-
-        protected void ddlCategoriaModificar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idCategoria;
-            if (int.TryParse(ddlCategoriaModificar.SelectedValue, out idCategoria) && idCategoria > 0)
-            {
-                TipoProducto categoria = lista_tipos.FirstOrDefault(m => m.Id == idCategoria);
-                if (categoria != null)
-                    txtNombreCategoria.Text = categoria.Nombre;
-            }
-            else
-            {
-                txtNombreCategoria.Text = "";
-            }
-        }
-
-        protected void btnModificarCategoria_Click(object sender, EventArgs e)
-        {
-            int idCategoria;
-            if (!int.TryParse(ddlCategoriaModificar.SelectedValue, out idCategoria) || idCategoria == 0)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
-                return;
-            }
-
-            NegocioTipoProducto negocio = new NegocioTipoProducto();
-            TipoProducto tipoProducto = new TipoProducto { Id = idCategoria, Nombre = txtNombreCategoria.Text.Trim(), Activo = true };
-
-            try
-            {
-                negocio.ModificarTipoProducto(tipoProducto);
-                ActualizarListas();
-                txtNombreCategoria.Text = "";
-            }
-            catch (Exception ex)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar el tipo de producto: {ex.Message}');", true);
-            }
-        }
-        // Modificar tipo de producto END 
-
-        // Eliminar tipo de producto START
-
-        protected void btnPanelEliminarTipo_Click(object sender, EventArgs e)
-        {
-            PanelFormAltaProd.Visible = false;
-            PanelListarProd.Visible = false;
-            PanelAgregarMarca.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelEliminarMarca.Visible = false;
-            PanelEliminarCategoria.Visible = true;
-            PanelAgregarCategoria.Visible = false;
-            ActualizarListas();
-        }
-
-        protected void ddlCategoriasEliminar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlCategoriasEliminar.SelectedIndex > 0)
-                PanelConfirmarEliminarCategoria.Visible = true;
-            else
-                PanelConfirmarEliminarCategoria.Visible = false;
-        }
-
-        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
-        {
-            int idCategoria;
-            if (!int.TryParse(ddlCategoriasEliminar.SelectedValue, out idCategoria) || idCategoria == 0)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
-                return;
-            }
-
-            NegocioTipoProducto negocio = new NegocioTipoProducto();
-            TipoProducto tipoProducto = new TipoProducto { Id = idCategoria };
-            try
-            {
-                negocio.EliminarTipoProductoLogico(tipoProducto);
-                ActualizarListas();
-            }
-            catch (Exception ex)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el tipo de producto: {ex.Message}');", true);
-            }
-        }
-
-        // Eliminar tipo de producto END
-
         private void ActualizarListas()
         {
             // Actualizar productos
@@ -692,18 +313,6 @@ namespace Comercio
             ddlFiltroMarca.DataBind();
             ddlFiltroMarca.Items.Insert(0, new ListItem("Todas las marcas", "0"));
 
-            ddlMarcasEliminar.DataSource = lista_marcas;
-            ddlMarcasEliminar.DataValueField = "Id";
-            ddlMarcasEliminar.DataTextField = "Nombre";
-            ddlMarcasEliminar.DataBind();
-            ddlMarcasEliminar.Items.Insert(0, new ListItem("Selecciona una marca", "0"));
-
-            ddlMarcaModificar.DataSource = lista_marcas;
-            ddlMarcaModificar.DataValueField = "Id";
-            ddlMarcaModificar.DataTextField = "Nombre";
-            ddlMarcaModificar.DataBind();
-            ddlMarcaModificar.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
-
             // Actualizar tipos de producto
             NegocioTipoProducto tipos = new NegocioTipoProducto();
             lista_tipos = tipos.ListarTiposDeProductos();
@@ -712,16 +321,6 @@ namespace Comercio
             ddlTipoDeProducto.DataValueField = "Id";
             ddlTipoDeProducto.DataTextField = "Nombre";
             ddlTipoDeProducto.DataBind();
-
-            ddlCategoriaModificar.DataSource = lista_tipos;
-            ddlCategoriaModificar.DataValueField = "Id";
-            ddlCategoriaModificar.DataTextField = "Nombre";
-            ddlCategoriaModificar.DataBind();
-
-            ddlCategoriasEliminar.DataSource = lista_tipos;
-            ddlCategoriasEliminar.DataValueField = "Id";
-            ddlCategoriasEliminar.DataTextField = "Nombre";
-            ddlCategoriasEliminar.DataBind();
 
             ddlFiltroTipo.DataSource = lista_tipos;
             ddlFiltroTipo.DataValueField = "Id";
