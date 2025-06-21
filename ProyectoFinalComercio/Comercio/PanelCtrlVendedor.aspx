@@ -37,7 +37,7 @@
     <div class="col-md-4">
       <a href="GestionClientes.aspx" style="text-decoration: none;">
         <div class="card card-custom">
-          <img src="\images\target.png" alt="Cliente" class="card-img">
+          <img src="\images\client-white.png" alt="Cliente" class="card-img">
           <h5 class="card-title">Gestión de clientes</h5>
         </div>
       </a>

@@ -14,6 +14,3 @@
     <asp:Button ID="btnIngresarVnd" runat="server" Text="Ingresar" CssClass="btnVndSty" OnClick="btnIngresarVnd_Click" />
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="phLinkExtra" runat="server">
-    <a href="FormularioAltaVendedor.aspx" class="lbVndSty lbPreguntaSty">¿No tenés cuenta? Crea una cuenta</a>
-</asp:Content>
