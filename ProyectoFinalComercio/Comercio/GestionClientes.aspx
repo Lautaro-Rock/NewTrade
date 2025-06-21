@@ -96,8 +96,8 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" ValidationGroup="AltaProducto" />
-                            <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnGuardarCliente" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarCliente_Click" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificar_Click" Visible="false" ValidationGroup="AltaProducto" />
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,31 @@
         <%-- Panel del listado de productos --%>
         <div class="container">
             <asp:Panel ID="PanelListarCliente" runat="server">
-               
+               <h1>Lista de Clientes...</h1>
+                <div class="row g-4">
+                   <asp:Repeater ID="rptClientes" runat="server">
+                        <ItemTemplate>
+                            <div class="col-12 col-md-6">
+                                <div class="card mb-3" style="max-width: 100%;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4 fondo-imagen">
+                                            <img src="\images\client.png" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><%# Eval("Nombre") %> <%# Eval("Apellido") %></h5>
+                                                <p class="card-text mb-1"><strong>DNI:</strong> <%# Eval("Dni") %></p>
+                                                <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
+                                                <asp:Button ID="btnModificarClienteListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarClienteListado_Click" />
+                                                <asp:Button ID="btnEliminarClienteListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarClienteListado_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
             </asp:Panel>
         </div>
 

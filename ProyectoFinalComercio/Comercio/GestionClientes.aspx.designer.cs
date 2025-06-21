@@ -159,22 +159,22 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// Control btnGuardarProducto.
+        /// Control btnGuardarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarProducto;
+        protected global::System.Web.UI.WebControls.Button btnGuardarCliente;
 
         /// <summary>
-        /// Control btnModificarProducto.
+        /// Control btnModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarProducto;
+        protected global::System.Web.UI.WebControls.Button btnModificar;
 
         /// <summary>
         /// Control PanelListarCliente.
@@ -184,6 +184,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PanelListarCliente;
+
+        /// <summary>
+        /// Control rptClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptClientes;
 
         /// <summary>
         /// Control PanelEliminarCliente.

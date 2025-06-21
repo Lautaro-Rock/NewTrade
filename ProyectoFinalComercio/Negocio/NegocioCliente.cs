@@ -15,12 +15,13 @@ namespace Negocio
             List<Cliente> lista = new List<Cliente>();
             try
             {
-                data.SetearConsulta("SELECT  Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente' AND Activo=1;");
+                data.SetearConsulta("SELECT  IdCliente, Nombre, Apellido, DNI, Email, Rol FROM CLIENTE WHERE Rol='Cliente' AND Activo=1;");
                 data.EjecutarLectura();
                 while (data.Lector.Read())
                 {
                     Cliente user = new Cliente
                     {
+                        Id = (int)data.Lector["IdCliente"],
                         Nombre = (string)data.Lector["Nombre"],
                         Apellido = (string)data.Lector["Apellido"],
                         Dni = int.Parse(data.Lector["Dni"].ToString()),
@@ -73,12 +74,12 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Email = @Email, Rol=@Rol WHERE Email = @Email AND Rol=@Rol");
+                data.SetearConsulta("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Email = @Email WHERE IdCliente = @IdCliente");
+                data.SetearParametro("@IdCliente", edit.Id);
                 data.SetearParametro("@Nombre", edit.Nombre);
                 data.SetearParametro("@Apellido", edit.Apellido);
                 data.SetearParametro("@DNI", edit.Dni);
                 data.SetearParametro("@Email", edit.Email);
-                data.SetearParametro("@Rol", edit.Rol);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
@@ -117,9 +118,8 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("UPDATE CLIENTE SET Activo=0 WHERE Email = @Email AND Rol=@Rol;");
-                data.SetearParametro("@Email", nuevo.Email);
-                data.SetearParametro("@Rol", nuevo.Rol);
+                data.SetearConsulta("UPDATE CLIENTE SET Activo=0 WHERE IdCliente = @IdCliente;");
+                data.SetearParametro("@IdCliente", nuevo.Id);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
