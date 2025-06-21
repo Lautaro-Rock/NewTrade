@@ -4,12 +4,6 @@ C:\Users\Marcos\Desktop\ProyectoFinal\NewTrade\ProyectoFinalComercio\Dominio\bin
 C:\Users\Marcos\Desktop\ProyectoFinal\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.pdb
 C:\Users\Marcos\Desktop\ProyectoFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
 C:\Users\Marcos\Desktop\ProyectoFinal\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.dll
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.pdb
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.dll
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.pdb
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
@@ -28,3 +22,9 @@ C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Dominio\obj\De
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\bin\Debug\Dominio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Dominio\obj\Debug\Dominio.pdb

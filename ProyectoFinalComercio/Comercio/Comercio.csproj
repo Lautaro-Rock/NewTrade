@@ -120,7 +120,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="FormularioAltaVendedor.aspx" />
-    <Content Include="GestionClientes.aspx" />
     <Content Include="GestionCompras.aspx" />
     <Content Include="GestionProveedores.aspx" />
     <Content Include="GestionVentas.aspx" />
@@ -152,6 +151,7 @@
     <Content Include="LoginVendedor.aspx" />
     <Content Include="LoginAdmin.aspx" />
     <Content Include="GestiónDeProductos.aspx" />
+    <Content Include="GestionClientes.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -230,13 +230,6 @@
     </Compile>
     <Compile Include="FormularioAltaVendedor.aspx.designer.cs">
       <DependentUpon>FormularioAltaVendedor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionClientes.aspx.cs">
-      <DependentUpon>GestionClientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionClientes.aspx.designer.cs">
-      <DependentUpon>GestionClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionCompras.aspx.cs">
       <DependentUpon>GestionCompras.aspx</DependentUpon>
@@ -318,6 +311,13 @@
     </Compile>
     <Compile Include="GestiónDeProductos.aspx.designer.cs">
       <DependentUpon>GestiónDeProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionClientes.aspx.cs">
+      <DependentUpon>GestionClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionClientes.aspx.designer.cs">
+      <DependentUpon>GestionClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>

@@ -1,187 +1,179 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="GestionClientes.aspx.cs" Inherits="Comercio.GestionClientes" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link rel="stylesheet" href="StyleCss/ClientesStyle.Css" />
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div>
-    <section class="section-clientes-one">
-        <h2 class="h2Clientes">Seccion Clientes</h2>
-        <p class="text-style">
-            En esta sección, el vendedor podrá utilizar todas las funcionalidades CRUD (Crear, Leer, Actualizar y Eliminar) para administrar de forma eficiente los datos de los clientes. Esto incluye la posibilidad de registrar nuevos clientes, consultar sus datos, modificar la información existente y eliminar registros si fuera necesario. Una herramienta esencial para mantener una base de datos precisa, ordenada y al servicio de una atención al cliente de calidad.
-        </p>
-    </section>
-    <section class="alerts-section">
-  <div class="py-5 d-flex justify-content-center">
-    <div class="w-75">
-        <div class="alert alert-success text-center" role="alert">
-            Los vendedores solo podrán administrar clientes
-        </div>
-        <div class="alert alert-danger text-center" role="alert">
-            Para administrar vendedores debes loguearte como administrador
-        </div>
-    </div>
-</div>
-    </section>
-   <section class="sectionAcordion">
-    <div>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        La importancia de nuestros clientes
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>Los clientes son el motor de nuestro crecimiento.</strong> Establecer relaciones duraderas,
-                        confiables y humanas con cada uno de ellos es esencial para garantizar la sostenibilidad de nuestro negocio.
-                        Su satisfacción y fidelidad reflejan el compromiso de la empresa con la calidad, la atención personalizada
-                        y la mejora continua de nuestros servicios.
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GestionClientes.aspx.cs" Inherits="Comercio.Prototipo2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="StyleGestionProductos.css" rel="stylesheet" />
+    <title>Gestión de Clientes</title>
+</head>
+<body runat="server" id="bodyTag">
+    <form id="form1" runat="server">
+        <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
+        <div id="sidebar" class="sidebar">
+            <h1 class="sidebar-title">Comsys</h1>
+
+
+            <div class="accordion accordion-flush" id="accordionSidebar">
+
+                <%--COLUMNAS DE LA IZQUIERDA--%>
+
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClientes">
+                            Sección Clientes
+                        </button>
+                    </h2>
+                    <div id="collapseClientes" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnAgregarCliente" runat="server" OnClick="btnAgregarCliente_Click" CssClass="sidebar-link hover-effect">Agregar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarCliente" runat="server" OnClick="btnModificarCliente_Click" CssClass="sidebar-link hover-effect">Modificar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminarCliente" runat="server" OnClick="btnEliminarCliente_Click" CssClass="sidebar-link hover-effect">Eliminar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarCliente" runat="server" OnClick="btnListarCliente_Click" CssClass="sidebar-link hover-effect">Listar cliente</asp:LinkButton>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Nuestro negocio multipropósito
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>Nuestra empresa ofrece soluciones integrales a diversos sectores.</strong> Gracias a una estructura
-                        flexible y un enfoque dinámico, nos adaptamos a las distintas necesidades del mercado, ofreciendo productos
-                        y servicios personalizados. Esta versatilidad nos permite crecer en múltiples áreas sin perder el foco en la
-                        excelencia y en la atención al cliente.
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral">
+                            Sección General
+                        </button>
+                    </h2>
+                    <div id="collapseGeneral" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnVolverPanel" runat="server" OnClick="btnVolverPanelClick" CssClass="sidebar-link hover-effect">Volver al panel</asp:LinkButton>
+                        </div>
                     </div>
                 </div>
+
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        La responsabilidad de nuestros vendedores
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>Los vendedores son embajadores de la empresa.</strong> Su labor va mucho más allá de una transacción:
-                        deben brindar una atención cercana, registrar información precisa, acompañar al cliente durante el proceso de compra
-                        y mantener una comunicación clara y profesional. Su compromiso con la transparencia, el respeto y la eficiencia
-                        es clave para construir relaciones de confianza.
+
+        </div>
+
+        <div id="blurOverlay" class="blur-overlay"></div>
+
+        <%-- Panel del formulario de alta producto --%>
+        <div class="container p-5">
+            <asp:Panel ID="PanelFormAltaCliente" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
+                <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar cliente"></asp:Label>
+                <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar cliente" Visible="false"></asp:Label>
+
+                <div class="mb-3" runat="server" id="divClienteModificar" visible="false">
+                    <asp:Label AssociatedControlID="ddlClienteModificar" runat="server" CssClass="form-label fw-semibold text-dark">Cliente</asp:Label>
+                    <asp:DropDownList ID="ddlClienteModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlClienteModificar_SelectedIndexChanged" />
+                </div>
+
+                <div class="row g-4">
+                    <!-- Columna izquierda -->
+                    <div class="col-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtNombreCliente" runat="server" CssClass="form-label fw-semibold text-dark">Nombre</asp:Label>
+                            <asp:TextBox ID="txtNombreCliente" runat="server" CssClass="form-control" placeholder="Ej: Roberto" />
+                            <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtNombreCliente" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtApellido" runat="server" CssClass="form-label fw-semibold text-dark">Apellido</asp:Label>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ej: Sánchez" />
+                            <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="txtApellido" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="col-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtDNI" runat="server" CssClass="form-label fw-semibold text-dark">DNI</asp:Label>
+                            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ej: 47293241" />
+                            <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="txtDNI" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <asp:Label AssociatedControlID="txtEmail" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ej: roberto.sanchez@gmail.com" />
+                            <asp:RequiredFieldValidator ErrorMessage="El email es obligatorio" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <asp:Button ID="btnGuardarCliente" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarCliente_Click" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificar_Click" Visible="false" ValidationGroup="AltaProducto" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </asp:Panel>
+
         </div>
-    </div>
-</section>
- <section class="clientesList">
-         <h2 class="h2ClientesTwo">Nuestros clientes</h2>
-         <p class="text-styleTwo">
-                A continuación, se presenta el listado completo de todos los clientes actualmente registrados en nuestra base de datos. Esta información es fundamental para llevar un seguimiento detallado de nuestras relaciones comerciales, facilitando la gestión de ventas, el contacto directo con los clientes y la planificación de estrategias orientadas a la fidelización y mejora continua del servicio.
-         </p>
-         <div>
-          <asp:GridView ID="Clientes" runat="server" CssClass="table table-striped table-bordered table-hover tabla-proveedores" AutoGenerateColumns="False">
-          <Columns>
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-        <asp:BoundField DataField="Email" HeaderText="Correo" />
-        <asp:BoundField DataField="Rol" HeaderText="Rol" />
-       </Columns>
-        </asp:GridView>
-         </div>
- </section>
- <section class="section-new-client">  
-      <h2 class="h2ClientesInsert">Ingresar un nuevo Cliente</h2>
-      <p class="text-styleInster">¡Esta sección está diseñada para ingresar un nuevo cliente a nuestro sistema!</p>
-  <div class="container">
-     <div class="row justify-content-center">
-         <div class="col-md-6">
-             <div class="mb-3">
-                 <asp:Label ID="Label1" runat="server" Text="Ingrese su Nombre" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="TxtNombre" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
-             </div>
 
-             <div class="mb-3">
-                 <asp:Label ID="Label2" runat="server" Text="Ingrese su Apellido" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="TxtApellido" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="TxtApellido" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label3" runat="server" Text="Ingrese su DNI" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="TxtD" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="TxtD" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label4" runat="server" Text=" Ingrese su Email" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="TxtEmail" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
-             </div>
-
-             <div class="d-flex justify-content-center">
-             <asp:Button ID="InsertClient" onclick="InsertClient_Click" runat="server"  Text="Registrar Cliente" CssClass="btn btn-primary btn-md rounded-pill px-5 my-3" ValidationGroup="AltaCliente"/>
-             </div>
-         </div>
-     </div>
- </div>
- </section>
-     <section class="section-edit-client">  
-      <h2 class="h2ClientesInsert">Edita un Cliente</h2>
-      <p class="text-styleInster">¡Esta sección está diseñada para editar un cliente de nuestro sistema. Ingrese el email para editar el usuario!</p>
-  <div class="container">
-     <div class="row justify-content-center">
-         <div class="col-md-6">
-                <div class="mb-3">
-                 <asp:Label ID="Label9" runat="server" Text=" Ingrese el email del usuario " CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="txtEditEmail" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El Email es obligatorio" ControlToValidate="txtEditEmail" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label6" runat="server" Text="Ingrese su Nombre" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="txtEditNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtEditNombre" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label7" runat="server" Text="Ingrese su Apellido" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="txtEditApellido" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="txtEditApellido" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
-             </div>
-
-             <div class="mb-3">
-                 <asp:Label ID="Label8" runat="server" Text="Ingrese su DNI" CssClass="form-label text-white"></asp:Label>
-                 <asp:TextBox ID="txtEditDni" runat="server" CssClass="form-control"></asp:TextBox>
-                 <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="txtEditDni" runat="server" ForeColor="Red" ValidationGroup="ModificarCliente" />
-             </div>
-
-             <div class="d-flex justify-content-center">
-             <asp:Button ID="EditClient" OnClick="EditClient_Click"  runat="server"  Text="Editar Cliente" CssClass="btn btn-warning btn-md rounded-pill px-5 my-3" ValidationGroup="ModificarCliente" />
-             </div>
-         </div>
-     </div>
- </div>
- </section>
-        <section class="section-delete-client">  
-     <h2 class="h2ClientesInsert">Eliminar un Cliente</h2>
-     <p class="text-styleInster">¡Esta sección está diseñada para eliminar un cliente de nuestro sistema. Ingrese el email para eliminar el usuario!</p>
- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-               <div class="mb-3">
-                <asp:Label ID="Label11" runat="server" Text=" Ingrese el email del usuario " CssClass="form-label text-white"></asp:Label>
-                <asp:TextBox ID="DeleteEmail" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="d-flex justify-content-center">
-            <asp:Button ID="DeleteClient" OnClick="DeleteClient_Click" runat="server"  Text="Eliminar Cliente" CssClass="btn btn-danger btn-md rounded-pill px-5 my-3"/>
-            </div>
+        <%-- Panel del listado de productos --%>
+        <div class="container">
+            <asp:Panel ID="PanelListarCliente" runat="server">
+               <h1>Lista de Clientes...</h1>
+                <div class="row g-4">
+                   <asp:Repeater ID="rptClientes" runat="server">
+                        <ItemTemplate>
+                            <div class="col-12 col-md-6">
+                                <div class="card mb-3" style="max-width: 100%;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4 fondo-imagen">
+                                            <img src="\images\client.png" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><%# Eval("Nombre") %> <%# Eval("Apellido") %></h5>
+                                                <p class="card-text mb-1"><strong>DNI:</strong> <%# Eval("Dni") %></p>
+                                                <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
+                                                <asp:Button ID="btnModificarClienteListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarClienteListado_Click" />
+                                                <asp:Button ID="btnEliminarClienteListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarClienteListado_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </asp:Panel>
         </div>
-    </div>
-</div>
-</section>
-</div>
-</asp:Content>
+
+        <%-- Panel del eliminar producto --%>
+        <asp:Panel ID="PanelEliminarCliente" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
+            <h3 class="text-center fw-bold mb-4">Eliminar cliente</h3>
+
+            <div class="mb-3">
+                <label for="ddlClienteEliminar" class="form-label fw-semibold">Seleccione el cliente</label>
+                <asp:DropDownList ID="ddlClienteEliminar" runat="server" CssClass="form-select" AutoPostBack="true" />
+            </div>
+
+            <asp:Panel ID="PanelConfirmacion" runat="server" Visible="true" CssClass="bg-warning bg-opacity-10 border border-warning rounded-3 p-3 mt-3">
+                <p class="text-warning fw-semibold mb-3">¿Estás seguro que querés eliminar este cliente?</p>
+                <div class="d-flex justify-content-end gap-3">
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger px-4" OnClick="btnEliminar_Click" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-secondary px-4" />
+                </div>
+            </asp:Panel>
+        </asp:Panel>
+
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const blurOverlay = document.getElementById('blurOverlay');
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('show');
+            blurOverlay.classList.toggle('active');
+            toggleBtn.classList.toggle('move-right');
+        });
+
+        blurOverlay.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+            blurOverlay.classList.remove('active');
+            toggleBtn.classList.remove('move-right');
+        });
+    </script>
+</body>
+</html>
