@@ -1,12 +1,3 @@
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.dll
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.pdb
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Dominio.dll
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Dominio.pdb
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.Up2Date
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.dll
-C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.pdb
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.dll
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.pdb
 C:\Users\Lauty\OneDrive\Escritorio\FinalPrograIII\ProyectoFinalComercio\Negocio\bin\Debug\Dominio.dll
@@ -34,3 +25,12 @@ C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Negocio\obj\De
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.Up2Date
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.dll
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Negocio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Dominio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\bin\Debug\Dominio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Negocio\obj\Debug\Negocio.pdb
