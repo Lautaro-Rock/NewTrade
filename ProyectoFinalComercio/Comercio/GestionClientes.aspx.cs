@@ -29,7 +29,7 @@ namespace Comercio
 
             if (!IsPostBack)
             {
-                PanelFormAltaProd.Visible = false;
+                PanelFormAltaCliente.Visible = false;
                 PanelListarProd.Visible = false;
                 PanelEliminarProducto.Visible = false;
             }
@@ -115,69 +115,6 @@ namespace Comercio
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el producto: {ex.Message}');", true);
             }
         }
-
-
-
-        protected void ddlProductoModificar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            // Recargamos las listas de marcas y tipos de producto si es necesario
-            if (lista_marcas == null || lista_marcas.Count == 0)
-            {
-                MarcaNegocio marcas = new MarcaNegocio();
-                lista_marcas = marcas.ListarMarcas();
-                ddlMarcas.DataSource = lista_marcas;
-                ddlMarcas.DataValueField = "Id";
-                ddlMarcas.DataTextField = "Nombre";
-                ddlMarcas.DataBind();
-            }
-            if (lista_tipos == null || lista_tipos.Count == 0)
-            {
-                NegocioTipoProducto tipos = new NegocioTipoProducto();
-                lista_tipos = tipos.ListarTiposDeProductos();
-                ddlTipoDeProducto.DataSource = lista_tipos;
-                ddlTipoDeProducto.DataValueField = "Id";
-                ddlTipoDeProducto.DataTextField = "Nombre";
-                ddlTipoDeProducto.DataBind();
-            }
-
-
-            int idProducto;
-            if (int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) && idProducto > 0)
-            {
-                Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
-                if (producto != null)
-                {
-                    // Aca se valida si el producto tiene una marca o tipo de producto que fue eliminado 
-                    if (!lista_tipos.Any(t => t.Id == producto.TipoProducto.Id))
-                    {
-                        ddlTipoDeProducto.Items.Insert(0, new ListItem("Tipo de producto eliminado", producto.TipoProducto.Id.ToString()));
-                    }
-                    ddlTipoDeProducto.SelectedValue = producto.TipoProducto.Id.ToString();
-
-
-                    if (!lista_marcas.Any(m => m.Id == producto.Marca.Id))
-                    {
-                        ddlMarcas.Items.Insert(0, new ListItem("Marca eliminada", producto.Marca.Id.ToString()));
-                    }
-                    ddlMarcas.SelectedValue = producto.Marca.Id.ToString();
-                    //
-
-                    txtNombreProd.Text = producto.Nombre;
-                    ddlMarcas.SelectedValue = lista_marcas.FirstOrDefault(m => m.Nombre == producto.Marca.Nombre)?.Id.ToString() ?? "0";
-                    ddlTipoDeProducto.SelectedValue = lista_tipos.FirstOrDefault(t => t.Nombre == producto.TipoProducto.Nombre)?.Id.ToString() ?? "0";
-                    txtPrecio.Text = producto.Precio.ToString(CultureInfo.InvariantCulture);
-                    txtStock.Text = producto.Stock.ToString();
-                    txtStockMin.Text = producto.StockMin.ToString();
-                    txtUrlImagen.Text = producto.UrlImgProducto;
-                }
-            }
-            else
-            {
-                // Limpiar campos si no hay producto seleccionado
-                limpiarCampos();
-            }
-        }
         protected void btnModificarProducto_Click(object sender, EventArgs e)
         {
             Page.Validate("AltaProducto");
@@ -188,7 +125,7 @@ namespace Comercio
 
             int idProducto;
             // Validamos que se haya seleccionado un producto
-            if (!int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) || idProducto == 0)
+            if (!int.TryParse(ddlClienteModificar.SelectedValue, out idProducto) || idProducto == 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
                 return;
@@ -243,11 +180,11 @@ namespace Comercio
             ddlProductos.DataBind();
             ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
 
-            ddlProductoModificar.DataSource = Productos;
-            ddlProductoModificar.DataValueField = "Id";
-            ddlProductoModificar.DataTextField = "Nombre";
-            ddlProductoModificar.DataBind();
-            ddlProductoModificar.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+            ddlClienteModificar.DataSource = Productos;
+            ddlClienteModificar.DataValueField = "Id";
+            ddlClienteModificar.DataTextField = "Nombre";
+            ddlClienteModificar.DataBind();
+            ddlClienteModificar.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
 
             // Actualizar marcas
             MarcaNegocio marcas = new MarcaNegocio();
@@ -288,7 +225,7 @@ namespace Comercio
 
         protected void btnListarCliente_Click(object sender, EventArgs e)
         {
-            PanelFormAltaProd.Visible = false;
+            PanelFormAltaCliente.Visible = false;
             PanelEliminarProducto.Visible = false;
             PanelListarProd.Visible = true;
             ActualizarListas();
@@ -297,7 +234,7 @@ namespace Comercio
         protected void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
+            PanelFormAltaCliente.Visible = false;
             PanelEliminarProducto.Visible = true;
             ActualizarListas();
         }
@@ -306,13 +243,13 @@ namespace Comercio
         {
             PanelListarProd.Visible = false;
             PanelEliminarProducto.Visible = false;
-            PanelFormAltaProd.Visible = true;
+            PanelFormAltaCliente.Visible = true;
 
             lblTituloAgregar.Visible = false;
             lblTituloModificar.Visible = true;
             btnGuardarProducto.Visible = false;
             btnModificarProducto.Visible = true;
-            divProductoModificar.Visible = true;
+            divClienteModificar.Visible = true;
             ActualizarListas();
         }
 
@@ -320,15 +257,75 @@ namespace Comercio
         {
             PanelListarProd.Visible = false;
             PanelEliminarProducto.Visible = false;
-            PanelFormAltaProd.Visible = true;
+            PanelFormAltaCliente.Visible = true;
 
             lblTituloAgregar.Visible = true;
             lblTituloModificar.Visible = false;
             btnGuardarProducto.Visible = true;
             btnModificarProducto.Visible = false;
-            divProductoModificar.Visible = false;
+            divClienteModificar.Visible = false;
             limpiarCampos();
             ActualizarListas();
+        }
+
+        protected void ddlClienteModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Recargamos las listas de marcas y tipos de producto si es necesario
+            if (lista_marcas == null || lista_marcas.Count == 0)
+            {
+                MarcaNegocio marcas = new MarcaNegocio();
+                lista_marcas = marcas.ListarMarcas();
+                ddlMarcas.DataSource = lista_marcas;
+                ddlMarcas.DataValueField = "Id";
+                ddlMarcas.DataTextField = "Nombre";
+                ddlMarcas.DataBind();
+            }
+            if (lista_tipos == null || lista_tipos.Count == 0)
+            {
+                NegocioTipoProducto tipos = new NegocioTipoProducto();
+                lista_tipos = tipos.ListarTiposDeProductos();
+                ddlTipoDeProducto.DataSource = lista_tipos;
+                ddlTipoDeProducto.DataValueField = "Id";
+                ddlTipoDeProducto.DataTextField = "Nombre";
+                ddlTipoDeProducto.DataBind();
+            }
+
+
+            int idProducto;
+            if (int.TryParse(ddlClienteModificar.SelectedValue, out idProducto) && idProducto > 0)
+            {
+                Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
+                if (producto != null)
+                {
+                    // Aca se valida si el producto tiene una marca o tipo de producto que fue eliminado 
+                    if (!lista_tipos.Any(t => t.Id == producto.TipoProducto.Id))
+                    {
+                        ddlTipoDeProducto.Items.Insert(0, new ListItem("Tipo de producto eliminado", producto.TipoProducto.Id.ToString()));
+                    }
+                    ddlTipoDeProducto.SelectedValue = producto.TipoProducto.Id.ToString();
+
+
+                    if (!lista_marcas.Any(m => m.Id == producto.Marca.Id))
+                    {
+                        ddlMarcas.Items.Insert(0, new ListItem("Marca eliminada", producto.Marca.Id.ToString()));
+                    }
+                    ddlMarcas.SelectedValue = producto.Marca.Id.ToString();
+                    //
+
+                    txtNombreProd.Text = producto.Nombre;
+                    ddlMarcas.SelectedValue = lista_marcas.FirstOrDefault(m => m.Nombre == producto.Marca.Nombre)?.Id.ToString() ?? "0";
+                    ddlTipoDeProducto.SelectedValue = lista_tipos.FirstOrDefault(t => t.Nombre == producto.TipoProducto.Nombre)?.Id.ToString() ?? "0";
+                    txtPrecio.Text = producto.Precio.ToString(CultureInfo.InvariantCulture);
+                    txtStock.Text = producto.Stock.ToString();
+                    txtStockMin.Text = producto.StockMin.ToString();
+                    txtUrlImagen.Text = producto.UrlImgProducto;
+                }
+            }
+            else
+            {
+                // Limpiar campos si no hay producto seleccionado
+                limpiarCampos();
+            }
         }
     }
 }

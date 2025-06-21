@@ -78,13 +78,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.LinkButton btnVolverPanel;
 
         /// <summary>
-        /// Control PanelFormAltaProd.
+        /// Control PanelFormAltaCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelFormAltaProd;
+        protected global::System.Web.UI.WebControls.Panel PanelFormAltaCliente;
 
         /// <summary>
         /// Control lblTituloAgregar.
@@ -105,22 +105,22 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Label lblTituloModificar;
 
         /// <summary>
-        /// Control divProductoModificar.
+        /// Control divClienteModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProductoModificar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClienteModificar;
 
         /// <summary>
-        /// Control ddlProductoModificar.
+        /// Control ddlClienteModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProductoModificar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClienteModificar;
 
         /// <summary>
         /// Control txtNombreProd.

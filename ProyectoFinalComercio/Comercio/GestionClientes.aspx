@@ -56,13 +56,13 @@
 
         <%-- Panel del formulario de alta producto --%>
         <div class="container p-5">
-            <asp:Panel ID="PanelFormAltaProd" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
-                <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar producto"></asp:Label>
-                <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar producto" Visible="false"></asp:Label>
+            <asp:Panel ID="PanelFormAltaCliente" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
+                <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar cliente"></asp:Label>
+                <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar cliente" Visible="false"></asp:Label>
 
-                <div class="mb-3" runat="server" id="divProductoModificar" visible="false">
-                    <asp:Label AssociatedControlID="ddlProductoModificar" runat="server" CssClass="form-label fw-semibold text-dark">Producto</asp:Label>
-                    <asp:DropDownList ID="ddlProductoModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProductoModificar_SelectedIndexChanged" />
+                <div class="mb-3" runat="server" id="divClienteModificar" visible="false">
+                    <asp:Label AssociatedControlID="ddlClienteModificar" runat="server" CssClass="form-label fw-semibold text-dark">Cliente</asp:Label>
+                    <asp:DropDownList ID="ddlClienteModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlClienteModificar_SelectedIndexChanged" />
                 </div>
 
                 <div class="row g-4">
