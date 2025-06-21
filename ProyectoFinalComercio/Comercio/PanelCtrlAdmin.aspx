@@ -37,7 +37,7 @@
       <div class="col-md-4">
         <a href="GestionClientes.aspx" style="text-decoration: none;">
           <div class="card card-custom">
-            <img src="\images\target.png" alt="Cliente" class="card-img">
+            <img src="\images\client-white.png" alt="Cliente" class="card-img">
             <h5 class="card-title">Gestión de clientes</h5>
           </div>
         </a>
@@ -53,10 +53,10 @@
       </div>
 
       <div class="col-md-4">
-        <a href="Reportes.aspx" style="text-decoration: none;">
+        <a href="GestionarUsuarios.aspx" style="text-decoration: none;">
           <div class="card card-custom">
-            <img src="\images\paperwork.png" alt="Reportes" class="card-img">
-            <h5 class="card-title">Reportes</h5>
+            <img src="\images\target.png" alt="Usuarios" class="card-img">
+            <h5 class="card-title">Gestión de usuarios</h5>
           </div>
         </a>
       </div>

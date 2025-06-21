@@ -12,6 +12,40 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
+        public List<Usuario> ListarUsuarios()
+        {
+            AccesoDatos data = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+
+            try
+            {
+                data.SetearConsulta("SELECT Id, Nombre, Apellido, Email, DNI, Password, Rol FROM Usuario WHERE Activo = 1;");
+                data.EjecutarLectura();
+                while (data.Lector.Read())
+                {
+                    Usuario user = new Usuario
+                    {
+                        Id = (int)data.Lector["Id"],
+                        Nombre = (string)data.Lector["Nombre"],
+                        Apellido = (string)data.Lector["Apellido"],
+                        Email = (string)data.Lector["Email"],
+                        Dni = int.Parse(data.Lector["DNI"].ToString()),
+                        Password = (string)data.Lector["Password"],
+                        Rol = (string)data.Lector["Rol"]
+                    };
+                    lista.Add(user);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
         public void Agregar(Usuario nuevo)
         {
   
@@ -21,6 +55,30 @@ namespace Negocio
             {
                 data.SetearConsulta("INSERT Usuario (Nombre, Apellido, Email, DNI, Password, Rol) " +
                 "VALUES('" + nuevo.Nombre + "', '" + nuevo.Apellido + "', '" + nuevo.Email + "', " + nuevo.Dni + ", '" + nuevo.Password + "', '" + nuevo.Rol + "')");
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+        
+        public void EditarUsuario(Usuario nuevo)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+                data.SetearConsulta("UPDATE Usuario SET Nombre = @nombre, Apellido = @apellido, Email = @email, DNI = @dni, Password = @password WHERE Id = @id;");
+                data.SetearParametro("@id", nuevo.Id);
+                data.SetearParametro("@nombre", nuevo.Nombre);
+                data.SetearParametro("@apellido", nuevo.Apellido);
+                data.SetearParametro("@email", nuevo.Email);
+                data.SetearParametro("@dni", nuevo.Dni);
+                data.SetearParametro("@password", nuevo.Password);
                 data.EjecutarAccion();
             }
             catch (Exception ex)
