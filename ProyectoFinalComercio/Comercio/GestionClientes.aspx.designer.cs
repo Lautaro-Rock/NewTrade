@@ -33,40 +33,40 @@ namespace Comercio
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control btnAgregarProd.
+        /// Control btnAgregarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregarProd;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarCliente;
 
         /// <summary>
-        /// Control btnModificarProd.
+        /// Control btnModificarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnModificarProd;
+        protected global::System.Web.UI.WebControls.LinkButton btnModificarCliente;
 
         /// <summary>
-        /// Control btnEliminarProd.
+        /// Control btnEliminarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEliminarProd;
+        protected global::System.Web.UI.WebControls.LinkButton btnEliminarCliente;
 
         /// <summary>
-        /// Control btnListarProd.
+        /// Control btnListarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnListarProd;
+        protected global::System.Web.UI.WebControls.LinkButton btnListarCliente;
 
         /// <summary>
         /// Control btnVolverPanel.

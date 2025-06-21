@@ -51,55 +51,6 @@ namespace Comercio
             txtUrlImagen.Text = "";
         }
 
-        //Agregar producto
-        protected void btnAgregarProdClick(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelFormAltaProd.Visible = true;
-
-            lblTituloAgregar.Visible = true;
-            lblTituloModificar.Visible = false;
-            btnGuardarProducto.Visible = true;
-            btnModificarProducto.Visible = false;
-            divProductoModificar.Visible = false;
-            limpiarCampos();
-            ActualizarListas();
-        }
-
-        //Modificar producto
-        protected void btnModificarProd_Click(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelFormAltaProd.Visible = true;
-
-            lblTituloAgregar.Visible = false;
-            lblTituloModificar.Visible = true;
-            btnGuardarProducto.Visible = false;
-            btnModificarProducto.Visible = true;
-            divProductoModificar.Visible = true;
-            ActualizarListas();
-        }
-
-        //Eliminar producto
-        protected void btnEliminarProdClick(object sender, EventArgs e)
-        {
-            PanelListarProd.Visible = false;
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = true;
-            ActualizarListas();
-        }
-
-        //Listar productos
-        protected void btnListarProdClick(object sender, EventArgs e)
-        {
-            PanelFormAltaProd.Visible = false;
-            PanelEliminarProducto.Visible = false;
-            PanelListarProd.Visible = true;
-            ActualizarListas();
-        }
-
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
         {
             Page.Validate("AltaProducto");
@@ -333,6 +284,51 @@ namespace Comercio
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
             Response.Redirect("PanelCtrlAdmin.aspx");
+        }
+
+        protected void btnListarCliente_Click(object sender, EventArgs e)
+        {
+            PanelFormAltaProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelListarProd.Visible = true;
+            ActualizarListas();
+        }
+
+        protected void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelFormAltaProd.Visible = false;
+            PanelEliminarProducto.Visible = true;
+            ActualizarListas();
+        }
+
+        protected void btnModificarCliente_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelFormAltaProd.Visible = true;
+
+            lblTituloAgregar.Visible = false;
+            lblTituloModificar.Visible = true;
+            btnGuardarProducto.Visible = false;
+            btnModificarProducto.Visible = true;
+            divProductoModificar.Visible = true;
+            ActualizarListas();
+        }
+
+        protected void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            PanelListarProd.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelFormAltaProd.Visible = true;
+
+            lblTituloAgregar.Visible = true;
+            lblTituloModificar.Visible = false;
+            btnGuardarProducto.Visible = true;
+            btnModificarProducto.Visible = false;
+            divProductoModificar.Visible = false;
+            limpiarCampos();
+            ActualizarListas();
         }
     }
 }

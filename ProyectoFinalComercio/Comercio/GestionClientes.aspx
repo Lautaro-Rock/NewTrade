@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="StyleGestionProductos.css" rel="stylesheet" />
-    <title>Gestión de Productos</title>
+    <title>Gestión de Clientes</title>
 </head>
 <body runat="server" id="bodyTag">
     <form id="form1" runat="server">
@@ -22,16 +22,16 @@
 
                 <div class="accordion-item bg-transparent border-0">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductos">
-                            Sección Productos
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClientes">
+                            Sección Clientes
                         </button>
                     </h2>
-                    <div id="collapseProductos" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                    <div id="collapseClientes" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
                         <div class="accordion-body ps-3">
-                            <asp:LinkButton ID="btnAgregarProd" runat="server" OnClick="btnAgregarProdClick" CssClass="sidebar-link hover-effect">Agregar producto</asp:LinkButton>
-                            <asp:LinkButton ID="btnModificarProd" runat="server" OnClick="btnModificarProd_Click" CssClass="sidebar-link hover-effect">Modificar producto</asp:LinkButton>
-                            <asp:LinkButton ID="btnEliminarProd" runat="server" OnClick="btnEliminarProdClick" CssClass="sidebar-link hover-effect">Eliminar producto</asp:LinkButton>
-                            <asp:LinkButton ID="btnListarProd" runat="server" OnClick="btnListarProdClick" CssClass="sidebar-link hover-effect">Listar productos</asp:LinkButton>
+                            <asp:LinkButton ID="btnAgregarCliente" runat="server" OnClick="btnAgregarCliente_Click" CssClass="sidebar-link hover-effect">Agregar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarCliente" runat="server" OnClick="btnModificarCliente_Click" CssClass="sidebar-link hover-effect">Modificar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminarCliente" runat="server" OnClick="btnEliminarCliente_Click" CssClass="sidebar-link hover-effect">Eliminar cliente</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarCliente" runat="server" OnClick="btnListarCliente_Click" CssClass="sidebar-link hover-effect">Listar cliente</asp:LinkButton>
                         </div>
                     </div>
                 </div>
