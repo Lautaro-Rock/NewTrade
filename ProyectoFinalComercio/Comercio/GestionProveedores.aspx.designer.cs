@@ -15,255 +15,237 @@ namespace Comercio
     {
 
         /// <summary>
-        /// Control Proveedores.
+        /// Control bodyTag.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Proveedores;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bodyTag;
 
         /// <summary>
-        /// Control Label1.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control TextRazonSocial.
+        /// Control btnAgregarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextRazonSocial;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarProveedor;
 
         /// <summary>
-        /// Control Label2.
+        /// Control btnModificarProveedorPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.LinkButton btnModificarProveedorPanel;
 
         /// <summary>
-        /// Control TextCuit.
+        /// Control btnEliminarProveedorPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextCuit;
+        protected global::System.Web.UI.WebControls.LinkButton btnEliminarProveedorPanel;
 
         /// <summary>
-        /// Control Label3.
+        /// Control btnListarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.LinkButton btnListarProveedor;
 
         /// <summary>
-        /// Control TextEmail.
+        /// Control btnVolverPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEmail;
+        protected global::System.Web.UI.WebControls.LinkButton btnVolverPanel;
 
         /// <summary>
-        /// Control Label4.
+        /// Control PanelFormAltaProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Panel PanelFormAltaProveedor;
 
         /// <summary>
-        /// Control TextTelefono.
+        /// Control lblTituloAgregarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextTelefono;
+        protected global::System.Web.UI.WebControls.Label lblTituloAgregarProveedor;
 
         /// <summary>
-        /// Control Label5.
+        /// Control lblTituloModificarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lblTituloModificarProveedor;
 
         /// <summary>
-        /// Control TextDireccion.
+        /// Control divProveedorModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextDireccion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProveedorModificar;
 
         /// <summary>
-        /// Control RegisterProv.
+        /// Control ddlProveedorModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegisterProv;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProveedorModificar;
 
         /// <summary>
-        /// Control Label11.
+        /// Control txtNombreProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreProveedor;
 
         /// <summary>
-        /// Control IdEdit.
+        /// Control txtDireccionProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IdEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionProveedor;
 
         /// <summary>
-        /// Control Label6.
+        /// Control txtTelefonoProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoProveedor;
 
         /// <summary>
-        /// Control TextEditRazon.
+        /// Control txtCUITProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEditRazon;
+        protected global::System.Web.UI.WebControls.TextBox txtCUITProveedor;
 
         /// <summary>
-        /// Control Label7.
+        /// Control txtEmailProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailProveedor;
 
         /// <summary>
-        /// Control TextEditCuit.
+        /// Control btnGuardarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEditCuit;
+        protected global::System.Web.UI.WebControls.Button btnGuardarProveedor;
 
         /// <summary>
-        /// Control Label8.
+        /// Control btnModificarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Button btnModificarProveedor;
 
         /// <summary>
-        /// Control TextEditEmail.
+        /// Control PanelListarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEditEmail;
+        protected global::System.Web.UI.WebControls.Panel PanelListarProveedor;
 
         /// <summary>
-        /// Control Label9.
+        /// Control rptProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Repeater rptProveedores;
 
         /// <summary>
-        /// Control TextEditTel.
+        /// Control PanelEliminarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEditTel;
+        protected global::System.Web.UI.WebControls.Panel PanelEliminarProveedor;
 
         /// <summary>
-        /// Control Label10.
+        /// Control ddlProveedorEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProveedorEliminar;
 
         /// <summary>
-        /// Control TextEditDire.
+        /// Control PanelConfirmacionProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextEditDire;
+        protected global::System.Web.UI.WebControls.Panel PanelConfirmacionProveedor;
 
         /// <summary>
-        /// Control EditProveedor.
+        /// Control btnEliminarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditProveedor;
+        protected global::System.Web.UI.WebControls.Button btnEliminarProveedor;
 
         /// <summary>
-        /// Control Label12.
+        /// Control btnCancelarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-
-        /// <summary>
-        /// Control IdDelete.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IdDelete;
-
-        /// <summary>
-        /// Control DeleteProv.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteProv;
+        protected global::System.Web.UI.WebControls.Button btnCancelarProveedor;
     }
 }
