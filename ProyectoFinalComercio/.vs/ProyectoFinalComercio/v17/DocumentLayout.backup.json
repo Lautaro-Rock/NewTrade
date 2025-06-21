@@ -113,7 +113,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -125,6 +125,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestionClientes.aspx",
+              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx",
+              "RelativeDocumentMoniker": "Comercio\\GestionClientes.aspx",
+              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx*",
+              "RelativeToolTip": "Comercio\\GestionClientes.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-21T17:54:55.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Reportes.aspx",
               "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\Reportes.aspx",
@@ -133,7 +146,8 @@
               "RelativeToolTip": "Comercio\\Reportes.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-21T16:07:27.572Z"
+              "WhenOpened": "2025-06-21T16:07:27.572Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -143,22 +157,9 @@
               "RelativeDocumentMoniker": "Comercio\\GestionClientes.aspx.cs",
               "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx.cs*",
               "RelativeToolTip": "Comercio\\GestionClientes.aspx.cs*",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAowB8AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAIwKwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-21T15:50:47.364Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GestionClientes.aspx",
-              "DocumentMoniker": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx",
-              "RelativeDocumentMoniker": "Comercio\\GestionClientes.aspx",
-              "ToolTip": "C:\\Users\\joasa\\OneDrive\\Desktop\\Repo TPC\\NewTrade\\ProyectoFinalComercio\\Comercio\\GestionClientes.aspx*",
-              "RelativeToolTip": "Comercio\\GestionClientes.aspx*",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-21T15:49:06.828Z",
               "EditorCaption": ""
             },
             {
@@ -171,7 +172,8 @@
               "RelativeToolTip": "Comercio\\Gesti\u00F3nDeProductos.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T15:30:43.153Z"
+              "WhenOpened": "2025-06-20T15:30:43.153Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -183,7 +185,8 @@
               "RelativeToolTip": "Comercio\\FormularioAltaVendedor.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T19:26:29.327Z"
+              "WhenOpened": "2025-06-20T19:26:29.327Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -220,7 +223,8 @@
               "RelativeToolTip": "Comercio\\GestionCompras.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T17:22:53.47Z"
+              "WhenOpened": "2025-06-20T17:22:53.47Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -232,7 +236,8 @@
               "RelativeToolTip": "Dominio\\Cliente.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T03:28:37.519Z"
+              "WhenOpened": "2025-06-19T03:28:37.519Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -244,7 +249,8 @@
               "RelativeToolTip": "Negocio\\NegocioCliente.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAIwHIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T03:32:29.928Z"
+              "WhenOpened": "2025-06-19T03:32:29.928Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -256,7 +262,8 @@
               "RelativeToolTip": "Comercio\\GestionProveedores.aspx.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAAAGMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T15:30:37.856Z"
+              "WhenOpened": "2025-06-20T15:30:37.856Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -268,7 +275,8 @@
               "RelativeToolTip": "Comercio\\StyleLogins.css",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-21T04:01:45.663Z"
+              "WhenOpened": "2025-06-21T04:01:45.663Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -280,7 +288,8 @@
               "RelativeToolTip": "Comercio\\GestionProveedores.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T15:30:35.196Z"
+              "WhenOpened": "2025-06-20T15:30:35.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -292,7 +301,8 @@
               "RelativeToolTip": "Comercio\\FormularioAltaVendedor.aspx.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAxwBsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T19:31:21.851Z"
+              "WhenOpened": "2025-06-20T19:31:21.851Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -304,7 +314,8 @@
               "RelativeToolTip": "Negocio\\NegocioProveedores.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAowG4AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T21:10:20.737Z"
+              "WhenOpened": "2025-06-20T21:10:20.737Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -327,7 +338,8 @@
               "RelativeToolTip": "Comercio\\GestionCompras.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T23:52:34.534Z"
+              "WhenOpened": "2025-06-20T23:52:34.534Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -339,7 +351,8 @@
               "RelativeToolTip": "Negocio\\AccesoDatos.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T00:49:52.526Z"
+              "WhenOpened": "2025-06-20T00:49:52.526Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -351,7 +364,8 @@
               "RelativeToolTip": "Negocio\\ProductoNegocio.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAgwBMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T00:44:57.732Z"
+              "WhenOpened": "2025-06-20T00:44:57.732Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -363,7 +377,8 @@
               "RelativeToolTip": "Comercio\\LoginVendedor.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T19:45:01.485Z"
+              "WhenOpened": "2025-06-20T19:45:01.485Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -375,7 +390,8 @@
               "RelativeToolTip": "Comercio\\LoginVendedor.aspx.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T19:45:13.175Z"
+              "WhenOpened": "2025-06-20T19:45:13.175Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -400,7 +416,8 @@
               "RelativeToolTip": "Comercio\\PanelCtrlAdmin.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T00:47:55.549Z"
+              "WhenOpened": "2025-06-20T00:47:55.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -412,7 +429,8 @@
               "RelativeToolTip": "Comercio\\PanelCtrlVendedor.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-20T00:47:54.73Z"
+              "WhenOpened": "2025-06-20T00:47:54.73Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -424,7 +442,8 @@
               "RelativeToolTip": "Negocio\\NegocioTipoProducto.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T00:44:54.894Z"
+              "WhenOpened": "2025-06-20T00:44:54.894Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -436,7 +455,8 @@
               "RelativeToolTip": "Negocio\\UsuarioNegocio.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T01:03:22.306Z"
+              "WhenOpened": "2025-06-20T01:03:22.306Z",
+              "EditorCaption": ""
             }
           ]
         }
