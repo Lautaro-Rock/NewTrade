@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Logins.Master" AutoEventWireup="true" CodeBehind="LoginVendedor.aspx.cs" Inherits="Comercio.Prueba" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Logins.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Comercio.Prueba" %>
 
 <asp:Content ContentPlaceHolderID="phSubtitulo" runat="server">
-    Vendedor
+    Usuario
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="phFormulario" runat="server">

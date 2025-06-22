@@ -15,6 +15,12 @@ namespace Comercio
         public List<Cliente> Cliente = new List<Cliente>();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             NegocioCliente negocio = new NegocioCliente();
             Cliente = negocio.ListarClientes();
 

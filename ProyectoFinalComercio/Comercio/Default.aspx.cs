@@ -16,12 +16,12 @@ namespace Comercio
 
         protected void btnIngresoVnd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LoginVendedor.aspx");
+            Response.Redirect("Login.aspx");
         }
 
         protected void btnIngresoAdm_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LoginAdmin.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }

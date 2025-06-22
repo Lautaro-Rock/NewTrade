@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +17,25 @@ namespace Comercio
         }
         protected void btnIngresarVnd_Click(object sender, EventArgs e)
         {
-            string nombre = txtEmailUsuarioVnd.Text.Trim();
-            string password = txtContraVnd.Text.Trim();
-
+            Usuario usuario = new Usuario(); 
+            usuario.Email = txtEmailUsuarioVnd.Text;
+            usuario.Password = txtContraVnd.Text;
             UsuarioNegocio negocio = new UsuarioNegocio();
 
             try
             {
 
-                bool esValido = negocio.ValidarCredenciales(nombre, password);
-
-                if (esValido)
+                if (negocio.Loguear(usuario))
                 {
-
-
-                    Response.Redirect("PanelCtrlVendedor.aspx");
+                    Session.Add("usuario", usuario);
+                    if (usuario.Rol == "Administrador")
+                    {
+                        Response.Redirect("PanelCtrlAdmin.aspx");
+                    }
+                    else if (usuario.Rol == "Vendedor")
+                    {
+                        Response.Redirect("PanelCtrlAdmin.aspx");
+                    }
                 }
                 else
                 {

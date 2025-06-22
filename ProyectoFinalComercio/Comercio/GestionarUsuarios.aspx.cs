@@ -14,6 +14,11 @@ namespace Comercio
         public List<Usuario> Usuario = new List<Usuario>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario = negocio.ListarUsuarios();
 
@@ -54,7 +59,7 @@ namespace Comercio
             usuario.Dni = int.Parse(txtDNIUsuario.Text.Trim());
             usuario.Email = txtEmailUsuario.Text.Trim();
             usuario.Password = txtContraUsuario.Text.Trim(); 
-            usuario.Rol = "Usuario";
+            usuario.Rol = "Vendedor";
 
             try
             {

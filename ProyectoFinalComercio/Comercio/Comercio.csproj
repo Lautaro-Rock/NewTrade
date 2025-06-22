@@ -148,8 +148,7 @@
     <Content Include="Default.aspx" />
     <Content Include="PanelCtrlVendedor.aspx" />
     <Content Include="PanelCtrlAdmin.aspx" />
-    <Content Include="LoginVendedor.aspx" />
-    <Content Include="LoginAdmin.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="GestiónDeProductos.aspx" />
     <Content Include="GestionClientes.aspx" />
     <Content Include="Reportes.aspx" />
@@ -291,19 +290,12 @@
       <DependentUpon>PanelCtrlAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LoginVendedor.aspx.cs">
-      <DependentUpon>LoginVendedor.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LoginVendedor.aspx.designer.cs">
-      <DependentUpon>LoginVendedor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LoginAdmin.aspx.cs">
-      <DependentUpon>LoginAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginAdmin.aspx.designer.cs">
-      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestiónDeProductos.aspx.cs">
       <DependentUpon>GestiónDeProductos.aspx</DependentUpon>

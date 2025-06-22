@@ -91,28 +91,32 @@ namespace Negocio
             }
         }
 
-        public bool ValidarCredenciales(string email, string password)
+        public bool Loguear(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("SELECT COUNT(*) FROM Usuario WHERE Email = @email AND Password = @password");
-                datos.SetearParametro("@email", email);
-                datos.SetearParametro("@password", password);
+                datos.SetearConsulta("SELECT Id, Nombre, Apellido, DNI, Email, Password, Rol FROM Usuario WHERE Email = @email AND Password = @password AND Activo=1;");
+                datos.SetearParametro("@email", user.Email);
+                datos.SetearParametro("@password", user.Password);
 
                 datos.EjecutarLectura();
 
-                if (datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
-                    int count = (int)datos.Lector[0];
-                    if (count > 0)
-                    {
-                        return true;
-                    }
+                    user.Id = (int)datos.Lector["Id"];
+                    user.Nombre = (string)datos.Lector["Nombre"];
+                    user.Apellido = (string)datos.Lector["Apellido"];
+                    user.Email = (string)datos.Lector["Email"];
+                    user.Dni = int.Parse(datos.Lector["DNI"].ToString());
+                    user.Password = (string)datos.Lector["Password"];
+                    user.Rol = (string)datos.Lector["Rol"];
+                    
+                    return true; 
                 }
 
-                return false;
+                return false; 
             }
             catch (Exception ex)
             {
