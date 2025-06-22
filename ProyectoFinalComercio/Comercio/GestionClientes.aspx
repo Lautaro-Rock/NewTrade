@@ -88,12 +88,16 @@
                             <asp:Label AssociatedControlID="txtDNI" runat="server" CssClass="form-label fw-semibold text-dark">DNI</asp:Label>
                             <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ej: 47293241" />
                             <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="txtDNI" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                            <asp:RegularExpressionValidator  ID="revDniFormato"   runat="server" ControlToValidate="txtDNI"  ValidationExpression="^\d{7,8}$"  ErrorMessage="El DNI debe tener 7 u 8 dígitos numéricos"  ForeColor="Red"  ValidationGroup="AltaCliente" />
+
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtEmail" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ej: roberto.sanchez@gmail.com" />
                             <asp:RequiredFieldValidator ErrorMessage="El email es obligatorio" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ValidationGroup="AltaCliente" />
+                            <asp:RegularExpressionValidator  ID="revEmailFormato" runat="server"  ControlToValidate="txtEmail"  ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" ErrorMessage="El email no tiene un formato válido" ForeColor="Red" ValidationGroup="AltaCliente" />
+
                         </div>
 
                         <div class="d-grid mt-4">
