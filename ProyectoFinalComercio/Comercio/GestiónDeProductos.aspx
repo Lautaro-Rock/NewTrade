@@ -121,6 +121,7 @@
                                 <span class="input-group-text bg-secondary text-white">$</span>
                                 <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
                                 <asp:RequiredFieldValidator ErrorMessage="El precio es obligatorio" ControlToValidate="txtPrecio" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
+                                <asp:CompareValidator  ID="cvPrecioMayorCero"    runat="server"  ControlToValidate="txtPrecio"  Operator="GreaterThan" ValueToCompare="0"  Type="Double" ErrorMessage="El precio debe ser mayor a cero" ForeColor="Red" ValidationGroup="AltaProducto" />
                             </div>
                         </div>
                     </div>

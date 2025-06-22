@@ -132,6 +132,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtNombreUsuario;
 
         /// <summary>
+        /// Control revNombreUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNombreUsuario;
+
+        /// <summary>
         /// Control txtApellidoUsuario.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtApellidoUsuario;
+
+        /// <summary>
+        /// Control revApellidoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revApellidoUsuario;
 
         /// <summary>
         /// Control txtDNIUsuario.
@@ -150,6 +168,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtDNIUsuario;
 
         /// <summary>
+        /// Control revDNIUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDNIUsuario;
+
+        /// <summary>
         /// Control txtEmailUsuario.
         /// </summary>
         /// <remarks>
@@ -159,6 +186,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtEmailUsuario;
 
         /// <summary>
+        /// Control revEmailUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailUsuario;
+
+        /// <summary>
         /// Control txtContraUsuario.
         /// </summary>
         /// <remarks>
@@ -166,6 +202,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtContraUsuario;
+
+        /// <summary>
+        /// Control revContraUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContraUsuario;
 
         /// <summary>
         /// Control btnGuardarUsuario.

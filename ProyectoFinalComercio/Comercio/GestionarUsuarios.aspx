@@ -68,18 +68,23 @@
                             <asp:Label AssociatedControlID="txtNombreUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Nombre</asp:Label>
                             <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control" placeholder="Ej: Juan" />
                             <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtNombreUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
+                            <asp:RegularExpressionValidator  ID="revNombreUsuario"   runat="server"  ControlToValidate="txtNombreUsuario"  ValidationExpression="^.{2,50}$" ErrorMessage="El nombre debe tener entre 2 y 50 caracteres"  ForeColor="Red" ValidationGroup="AltaUsuario" />
+
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtApellidoUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Apellido</asp:Label>
                             <asp:TextBox ID="txtApellidoUsuario" runat="server" CssClass="form-control" placeholder="Ej: Pérez" />
                             <asp:RequiredFieldValidator ErrorMessage="El apellido es obligatorio" ControlToValidate="txtApellidoUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
+                            <asp:RegularExpressionValidator  ID="revApellidoUsuario" runat="server" ControlToValidate="txtApellidoUsuario"  ValidationExpression="^.{2,50}$" ErrorMessage="El apellido debe tener entre 2 y 50 caracteres" ForeColor="Red" ValidationGroup="AltaUsuario" />
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtDNIUsuario" runat="server" CssClass="form-label fw-semibold text-dark">DNI</asp:Label>
                             <asp:TextBox ID="txtDNIUsuario" runat="server" CssClass="form-control" placeholder="Ej: 47293241" />
                             <asp:RequiredFieldValidator ErrorMessage="El DNI es obligatorio" ControlToValidate="txtDNIUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
+                            <asp:RegularExpressionValidator  ID="revDNIUsuario"  runat="server" ControlToValidate="txtDNIUsuario"  ValidationExpression="^\d{7,8}$" ErrorMessage="El DNI debe tener 7 u 8 dígitos numéricos"  ForeColor="Red" ValidationGroup="AltaUsuario" />
+
                         </div>
 
                     </div>
@@ -91,12 +96,17 @@
                             <asp:Label AssociatedControlID="txtEmailUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
                             <asp:TextBox ID="txtEmailUsuario" runat="server" CssClass="form-control" placeholder="Ej: juan.perez@email.com" />
                             <asp:RequiredFieldValidator ErrorMessage="El email es obligatorio" ControlToValidate="txtEmailUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
+                          <asp:RegularExpressionValidator  ID="revEmailUsuario"  runat="server" ControlToValidate="txtEmailUsuario"  ValidationExpression="^[\w\.-]+@[\w\.-]+\.\w{2,4}$"  ErrorMessage="El email no tiene un formato válido"   ForeColor="Red"  ValidationGroup="AltaUsuario" />
+
+
                         </div>
 
                         <div class="form-group mb-3">
                             <asp:Label AssociatedControlID="txtContraUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Contraseña</asp:Label>
                             <asp:TextBox ID="txtContraUsuario" runat="server" CssClass="form-control" placeholder="Ej: Contraseñasegura993!" />
                             <asp:RequiredFieldValidator ErrorMessage="La contraseña es obligatoria" ControlToValidate="txtContraUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
+                            <asp:RegularExpressionValidator ID="revContraUsuario"  runat="server"  ControlToValidate="txtContraUsuario"  ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"  ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número"  ForeColor="Red"  ValidationGroup="AltaUsuario" />
+
                         </div>
 
                         <div class="d-grid mt-4">

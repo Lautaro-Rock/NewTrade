@@ -622,13 +622,15 @@ namespace Comercio
             int idCategoria;
             if (!int.TryParse(ddlCategoriaModificar.SelectedValue, out idCategoria) || idCategoria == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Seleccione un tipo de producto valido!', 'error');", true);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'El nombre no puede estar vacio!', 'error');", true);
                 return;
             }
 
@@ -638,12 +640,14 @@ namespace Comercio
             try
             {
                 negocio.ModificarTipoProducto(tipoProducto);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Tipo de producto modificado correctamente!', '', 'success');", true);
                 ActualizarListas();
                 txtNombreCategoria.Text = "";
             }
             catch (Exception ex)
             {
-                C string mensaje = ex.Message.Replace("'", "\\'");
+                 string mensaje = ex.Message.Replace("'", "\\'");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                 $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
@@ -677,7 +681,8 @@ namespace Comercio
             int idCategoria;
             if (!int.TryParse(ddlCategoriasEliminar.SelectedValue, out idCategoria) || idCategoria == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un tipo de producto válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione un tipo de producto valido!', 'error');", true);
                 return;
             }
 
@@ -686,6 +691,8 @@ namespace Comercio
             try
             {
                 negocio.EliminarTipoProductoLogico(tipoProducto);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Tipo producto eliminado correctamente!', '', 'success');", true);
                 ActualizarListas();
             }
             catch (Exception ex)
