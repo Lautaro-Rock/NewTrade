@@ -150,6 +150,8 @@ namespace Comercio
             {
 
                 data.AgregarProductos(producto);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Producto agregado!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -158,7 +160,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -167,7 +171,9 @@ namespace Comercio
             int idProducto;
             if (!int.TryParse(ddlProductos.SelectedValue, out idProducto) || idProducto == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                 "Swal.fire('Ocurrió un error', 'Seleccione un producto valido', 'error');", true);
+
                 return;
             }
 
@@ -177,11 +183,16 @@ namespace Comercio
             try
             {
                 negocio.EliminarProductoLogico(producto);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Producto dado de baja!', '', 'success');", true);
                 ActualizarListas();
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+
             }
         }
 
@@ -259,7 +270,8 @@ namespace Comercio
             // Validamos que se haya seleccionado un producto
             if (!int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) || idProducto == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Seleccione un producto valido', 'error');", true);
                 return;
             }
 
@@ -267,7 +279,8 @@ namespace Comercio
             if (ddlTipoDeProducto.SelectedItem.Text == "Tipo de producto eliminado" ||
                 ddlMarcas.SelectedItem.Text == "Marca eliminada")
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Debe seleccionar una marca y tipo de producto válidos.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione una marca y tipo de producto valido', 'error');", true);
                 return;
             }
 
@@ -287,6 +300,8 @@ namespace Comercio
             {
 
                 data.ModificarProducto(producto);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Producto modificado!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -296,7 +311,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -328,7 +345,8 @@ namespace Comercio
 
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre de la marca no puede estar vacío.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Debe agregarle un nombre a la marca', 'error');", true);
                 return;
             }
             bool existe = false;
@@ -343,7 +361,8 @@ namespace Comercio
             }
             if (existe)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('La marca ya existe.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+              "Swal.fire('Ocurrió un error', 'La marca ya existe!', 'error');", true);
             }
             else
             {
@@ -355,11 +374,14 @@ namespace Comercio
                     nueva_marca.Activo = true;
                     MarcaNegocio para_agregar = new MarcaNegocio();
                     para_agregar.AgregarMarca(nueva_marca);
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Marca agregada exitosamente!');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                     "Swal.fire('¡Marca agregada!', '', 'success');", true);
 
                 } catch (Exception ex) {
 
-                    throw ex;
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
 
                 }
 
@@ -391,6 +413,8 @@ namespace Comercio
             try
             {
                 negocio.EliminarMarcaLogico(marca);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Marca eliminada!', '', 'success');", true);
                 ActualizarListas();
             }
             catch (Exception ex)
@@ -448,13 +472,15 @@ namespace Comercio
             int idMarca;
             if (!int.TryParse(ddlMarcaModificar.SelectedValue, out idMarca) || idMarca == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione una marca válida.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione una marca valida!', 'error');", true);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre no puede estar vacío.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Ingrese el nombre de la marca!', 'error');", true);
                 return;
             }
 
@@ -464,12 +490,17 @@ namespace Comercio
             try
             {
                 negocio.ModificarMarca(marca);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Marca agregada!', 'Marca modificada', 'success');", true);
+
                 ActualizarListas();
                 txtNombreMarca.Text = ""; 
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar la marca: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -503,7 +534,8 @@ namespace Comercio
 
             if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El nombre del tipo de producto no puede estar vacío.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Ingrese el nombre del tipo de marca!', 'error');", true);
                 return;
             }
             bool existe = false;
@@ -518,7 +550,8 @@ namespace Comercio
             }
             if (existe)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('El Tipo de Producto ya existe.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', El tipo de marca ya existe!', 'error');", true);
             }
             else
             {
@@ -530,13 +563,16 @@ namespace Comercio
                     nuevo.Activo = true;
                     NegocioTipoProducto agregar = new NegocioTipoProducto();
                     agregar.AgregarTipoProducto(nuevo);
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('¡Tipo de Producto agregado exitosamente!');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "Swal.fire('¡Tipo de producto agregado correctamente!', '', 'success');", true);
 
                 }
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
 
                 }
 
@@ -607,7 +643,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al modificar el tipo de producto: {ex.Message}');", true);
+                C string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
         // Modificar tipo de producto END 
@@ -652,7 +690,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el tipo de producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 

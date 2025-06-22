@@ -30,21 +30,28 @@ namespace Comercio
                     Session.Add("usuario", usuario);
                     if (usuario.Rol == "Administrador")
                     {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                       "Swal.fire('¡Iniciando sesion correctamente...!', '', 'success');", true);
                         Response.Redirect("PanelCtrlAdmin.aspx");
                     }
                     else if (usuario.Rol == "Vendedor")
                     {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                       "Swal.fire('¡Iniciando sesion correctamente...!', '', 'success');", true);
                         Response.Redirect("PanelCtrlAdmin.aspx");
                     }
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Email o contraseña incorrectos');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                   "Swal.fire('Ocurrió un error', 'Email y/o contraseña incorrecta!', 'error');", true);
                 }
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
     }

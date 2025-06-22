@@ -66,6 +66,8 @@ namespace Comercio
             {
 
                 data.AgregarCliente(cliente);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Cliente registrado correctamente !', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -74,7 +76,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -83,7 +87,8 @@ namespace Comercio
             int idCliente;
             if (!int.TryParse(ddlClienteEliminar.SelectedValue, out idCliente) || idCliente == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un producto válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione un cliente valido!', 'error');", true);
                 return;
             }
 
@@ -97,7 +102,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el producto: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -112,7 +119,8 @@ namespace Comercio
             // Validamos que se haya seleccionado un producto
             if (!int.TryParse(ddlClienteModificar.SelectedValue, out idCliente) || idCliente == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un cliente válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione un cliente valido!', 'error');", true);
                 return;
             }
 
@@ -128,6 +136,8 @@ namespace Comercio
             {
 
                 data.EditarCliente(cliente);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Cliente editado correctamente!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -137,8 +147,11 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el cliente: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'"); 
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
+
         }
 
 
@@ -252,7 +265,9 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el cliente: {ex.Message}');", true);
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
                 }
             }
         }

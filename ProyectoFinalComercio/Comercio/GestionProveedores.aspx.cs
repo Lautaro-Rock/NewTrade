@@ -65,6 +65,8 @@ namespace Comercio
             {
 
                 data.AgregarProveedores(proveedor);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Proveedor agregado!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -73,7 +75,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el proveedor: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -82,7 +86,8 @@ namespace Comercio
             int idProveedor;
             if (!int.TryParse(ddlProveedorEliminar.SelectedValue, out idProveedor) || idProveedor == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un proveedor válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Seleccione un proveedor valido!', 'error');", true);
                 return;
             }
 
@@ -92,11 +97,15 @@ namespace Comercio
             try
             {
                 negocio.EliminarProveedoresLogico(proveedor);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('¡Proveedor eliminado correctamente!', '', 'success');", true);
                 ActualizarListas();
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el proveedor: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
         protected void btnModificarProveedor_Click(object sender, EventArgs e)
@@ -111,7 +120,8 @@ namespace Comercio
             // Validamos que se haya seleccionado un proveedor
             if (!int.TryParse(ddlProveedorModificar.SelectedValue, out idProveedor) || idProveedor == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un proveedor válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Seleccione un proveedor valido!', 'error');", true);
                 return;
             }
 
@@ -128,16 +138,21 @@ namespace Comercio
             {
 
                 data.ModificarProveedores(proveedor);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Proveedor modificado correctamente!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
+
                 limpiarCampos();
 
 
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el proveedor: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -253,7 +268,9 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el proveedor: {ex.Message}');", true);
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
                 }
             }
         }

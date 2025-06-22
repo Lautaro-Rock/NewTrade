@@ -4,7 +4,8 @@
     <div class="row justify-content-center g-5 mb-5 row-height">
 
     <%if (Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
-        {     %>
+        {
+     %>
 
       <div class="col-md-4">
         <a href="GestiónDeProductos.aspx" style="text-decoration: none;">

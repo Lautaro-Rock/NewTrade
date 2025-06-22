@@ -64,6 +64,8 @@ namespace Comercio
             try
             {
                 data.Agregar(usuario);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Nuevo usuario agregado!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -72,7 +74,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el usuario: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -81,7 +85,8 @@ namespace Comercio
             int idUsuario;
             if (!int.TryParse(ddlUsuarioEliminar.SelectedValue, out idUsuario) || idUsuario == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un usuario válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Ocurrió un error', 'Seleccione un usuario valido!', 'error');", true);
                 return;
             }
 
@@ -91,11 +96,15 @@ namespace Comercio
             try
             {
                 negocio.EliminarUsuarioLogico(usuario);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Usuario dado de baja correctamente!', '', 'success');", true);
                 ActualizarListas();
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el usuario: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
         protected void btnModificarUsuario_Click(object sender, EventArgs e)
@@ -110,7 +119,8 @@ namespace Comercio
             // Validamos que se haya seleccionado un usuario
             if (!int.TryParse(ddlUsuarioModificar.SelectedValue, out idUsuario) || idUsuario == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Seleccione un usuario válido.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+               "Swal.fire('Ocurrió un error', 'Seleccione un usuario valido!', 'error');", true);
                 return;
             }
 
@@ -126,6 +136,8 @@ namespace Comercio
             try
             {
                 data.EditarUsuario(usuario);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('¡Usuario editado correctamente!', '', 'success');", true);
                 ActualizarListas();
 
                 // Limpiamos los campos del form :)
@@ -134,7 +146,9 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al guardar el usuario: {ex.Message}');", true);
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
         }
 
@@ -250,7 +264,9 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar el usuario: {ex.Message}');", true);
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
                 }
             }
         }
