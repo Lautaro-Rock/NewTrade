@@ -14,6 +14,11 @@ namespace Comercio
         public List<Proveedor> Proveedor = new List<Proveedor>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             NegocioProveedores negocio = new NegocioProveedores();
             Proveedor = negocio.ListarProveedores();
 

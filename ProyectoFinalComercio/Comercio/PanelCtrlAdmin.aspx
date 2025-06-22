@@ -3,6 +3,9 @@
         <div class="container-fluid">
     <div class="row justify-content-center g-5 mb-5 row-height">
 
+    <%if (Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
+        {     %>
+
       <div class="col-md-4">
         <a href="GestiónDeProductos.aspx" style="text-decoration: none;">
           <div class="card card-custom">
@@ -11,6 +14,8 @@
           </div>
         </a>
       </div>
+
+    <% } %>
 
       <div class="col-md-4">
         <a href="GestiónCompras.aspx" style="text-decoration: none;">
@@ -32,6 +37,8 @@
 
     </div>
 
+        <%if (Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
+            { %>
     <div class="row justify-content-center g-5 row-height">
 
       <div class="col-md-4">
@@ -52,15 +59,15 @@
         </a>
       </div>
 
-      <div class="col-md-4">
-        <a href="GestionarUsuarios.aspx" style="text-decoration: none;">
-          <div class="card card-custom">
-            <img src="\images\target.png" alt="Usuarios" class="card-img">
-            <h5 class="card-title">Gestión de usuarios</h5>
+          <div class="col-md-4">
+            <a href="GestionarUsuarios.aspx" style="text-decoration: none;">
+              <div class="card card-custom">
+                <img src="\images\target.png" alt="Usuarios" class="card-img">
+                <h5 class="card-title">Gestión de usuarios</h5>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-
+        <% } %>
     </div>
   </div>
 </asp:Content>
