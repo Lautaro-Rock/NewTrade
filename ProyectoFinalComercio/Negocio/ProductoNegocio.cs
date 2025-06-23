@@ -52,7 +52,118 @@ namespace Negocio
             }
         }
 
-       
+        public List<Producto> Fitrar(string campo, string criterio, string filtro, string estado)
+        {
+
+            List<Producto> list_filtrada = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
+                    "FROM Producto P " +
+                    "INNER JOIN Marca M ON M.Id = P.IdMarca " +
+                    "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto " +
+                    "WHERE ";
+
+                if (campo == "Por nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "P.Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "P.Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "P.Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Por marca")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "M.Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "M.Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "M.Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Por tipo")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "T.Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "T.Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "T.Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Por precio")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += "P.Precio = " + filtro;
+                            break;
+                        case "Mayor a":
+                            consulta += "P.Precio > " + filtro;
+                            break;
+                        default:
+                            consulta += "P.Precio < " + filtro;
+                            break;
+                    }
+                }
+
+                if (estado == "Solo los activos")
+                {
+                    consulta += " AND P.Activo = 1";
+                }
+                else if (estado == "Solo los inactivos")
+                {
+                    consulta += " AND P.Activo = 0";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Nombre = (string)datos.Lector["Marca"];
+                    aux.Precio = datos.Lector["Precio"] != DBNull.Value ? Convert.ToDecimal(datos.Lector["Precio"]) : 0m;
+                    aux.Stock = (int)datos.Lector["Stock"];
+                    aux.StockMin = (int)datos.Lector["StockMinimo"];
+                    aux.UrlImgProducto = (string)datos.Lector["UrlImgProducto"];
+                    aux.TipoProducto = new TipoProducto();
+                    aux.TipoProducto.Nombre = (string)datos.Lector["Categoria"];
+                    list_filtrada.Add(aux);
+                }
+                return list_filtrada;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
 
         public void AgregarProductos(Producto nuevo)
