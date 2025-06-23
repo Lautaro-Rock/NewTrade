@@ -12,15 +12,15 @@ namespace Comercio
 {
     public partial class Prototipo : System.Web.UI.Page
     {
-        public List<Producto> Productos = new List<Producto>();
+        public List<Producto> Productos
+        {
+            get { return Session["Productos"] as List<Producto>; }
+            set { Session["Productos"] = value; }
+        }
         public List<Marca> lista_marcas = new List<Marca>();
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio negocio = new ProductoNegocio();
-            Productos = negocio.ListarProductos();
-
-            
             MarcaNegocio marcas = new MarcaNegocio();
             lista_marcas = marcas.ListarMarcas();
 
@@ -28,14 +28,19 @@ namespace Comercio
             lista_tipos = tipos.ListarTiposDeProductos();
 
             if (!IsPostBack)
-            {         
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                Productos = negocio.ListarProductos();
+
                 PanelFormAltaProd.Visible = false;
-                PanelListarProd.Visible = false;
+                PanelListarProd.Visible = true;
                 PanelAgregarMarca.Visible= false;
                 PanelEliminarProducto.Visible = false;
                 PanelEliminarMarca.Visible = false;
                 PanelEliminarCategoria.Visible = false;
                 PanelAgregarCategoria.Visible = false;
+                repProductos.DataSource = Productos;
+                repProductos.DataBind();
             }
 
         }
@@ -119,6 +124,61 @@ namespace Comercio
             PanelAgregarCategoria.Visible = false;
             ActualizarListas();
         }
+
+
+        protected void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtFiltroRapido.Text.ToUpper();
+            List<Producto> filtrado = Productos.FindAll(p => p.Nombre.ToUpper().Contains(filtro));
+            repProductos.DataSource = filtrado;
+            repProductos.DataBind();
+
+        }
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampo.SelectedItem.Text == "Por precio")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Mayor a");
+                ddlCriterio.Items.Add("Menor a");
+            }
+            else
+            {
+                ddlCriterio.Items.Add("Contiene");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+        }
+
+        protected void chkFiltroActivo_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFiltroRapido.Enabled = !chkFiltroActivo.Checked;
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                repProductos.DataSource = negocio.Fitrar(ddlCampo.SelectedItem.ToString(),
+                    ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text,
+                    ddlActivo.SelectedItem.ToString());
+                repProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+        }
+
+        protected void btnLimpiarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         protected void btnGuardarProducto_Click(object sender, EventArgs e)
         {
