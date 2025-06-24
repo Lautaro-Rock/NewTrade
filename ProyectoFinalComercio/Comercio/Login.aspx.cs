@@ -30,15 +30,33 @@ namespace Comercio
                     Session.Add("usuario", usuario);
                     if (usuario.Rol == "Administrador")
                     {
+                        string nombreLogueado = usuario.Nombre;
+
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                       "Swal.fire('¡Iniciando sesion correctamente...!', '', 'success');", true);
-                        Response.Redirect("PanelCtrlAdmin.aspx");
+                         $@"Swal.fire({{
+                          title: 'Bienvenido {nombreLogueado}!',
+                          text: 'Iniciando sesión correctamente...',
+                          icon: 'success',
+                          showConfirmButton: false,
+                          timer: 2000
+                          }}).then(() => {{
+                           window.location.href = 'PanelCtrlAdmin.aspx';
+                          }});", true);
                     }
                     else if (usuario.Rol == "Vendedor")
                     {
+                         string nombreLogueado = usuario.Nombre;
+
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                       "Swal.fire('¡Iniciando sesion correctamente...!', '', 'success');", true);
-                        Response.Redirect("PanelCtrlAdmin.aspx");
+                          $@"Swal.fire({{
+                          title: 'Bienvenido {nombreLogueado}!',
+                          text: 'Iniciando sesión correctamente...',
+                          icon: 'success',
+                          showConfirmButton: false,
+                          timer: 2000
+                          }}).then(() => {{
+                           window.location.href = 'PanelCtrlVendedor.aspx';
+                          }});", true);
                     }
                 }
                 else
