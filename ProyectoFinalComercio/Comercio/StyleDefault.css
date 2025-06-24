@@ -92,3 +92,7 @@ h2.styleRegister {
     background-color: yellow;
     border: 2px solid red;
 }
+
+.style-button{
+    margin-left:-20px;
+}

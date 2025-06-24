@@ -17,8 +17,7 @@
             <h1>Comsys</h1>
             <p>Accede a tu cuenta</p>
             <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-            <asp:Button ID="btnIngresoVnd" runat="server" Text="Soy vendedor" CssClass="btn_vendedor" OnClick="btnIngresoVnd_Click"/>
-            <asp:Button ID="btnIngresoAdm" runat="server" Text="Soy administrador" CssClass="btn_administrador" OnClick="btnIngresoAdm_Click" />
+            <asp:Button ID="btnIngresoAdm" runat="server" Text="Ingrese a su cuenta" CssClass="btn_administrador w-100 text-bg-warning py-2 mt-1" OnClick="btnIngresoAdm_Click"  />
         </div>
         </div>
     </form>

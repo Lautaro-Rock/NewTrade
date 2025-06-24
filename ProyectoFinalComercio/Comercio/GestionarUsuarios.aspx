@@ -144,35 +144,42 @@
         </div>
 
         <%-- Panel del listado de usuarios --%>
-        <div class="container">
-            <asp:Panel ID="PanelListarUsuario" runat="server">
-               <h1>Lista de Usuarios...</h1>
-                <div class="row g-4">
-                   <asp:Repeater ID="rptUsuarios" runat="server">
-                        <ItemTemplate>
-                            <div class="col-12 col-md-6">
-                                <div class="card mb-3" style="max-width: 100%;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4 fondo-imagen">
-                                            <img src="\images\user.png" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><%# Eval("Nombre") %> <%# Eval("Apellido") %></h5>
-                                                <p class="card-text mb-1"><strong>DNI:</strong> <%# Eval("Dni") %></p>
-                                                <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
-                                                <asp:Button ID="btnModificarUsuarioListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarUsuarioListado_Click" />
-                                                <asp:Button ID="btnEliminarUsuarioListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-warning me-2" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarUsuarioListado_Click" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+       <div class="container" style="max-width: 1100px;">
+  <asp:Panel ID="PanelListarUsuario" runat="server">
+    <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
+      Lista de Usuarios de nuestra app!
+    </h1>
+    <div class="row g-4 justify-content-center">
+      <asp:Repeater ID="rptUsuarios" runat="server">
+        <ItemTemplate>
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card card-uniforme mb-3 w-100">
+              <div class="row g-0 h-100">
+                <div class="col-md-4 fondo-imagen">
+                  <img src="/images/user.png" class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
                 </div>
-            </asp:Panel>
-        </div>
+                <div class="col-md-8">
+                  <div class="card-body card-body-uniforme">
+                    <div class="contenido-texto">
+                      <h5 class="card-title"><%# Eval("Nombre") %> <%# Eval("Apellido") %></h5>
+                      <p class="card-text mb-1"><strong>DNI:</strong> <%# Eval("Dni") %></p>
+                      <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
+                    </div>
+                    <div>
+                      <asp:Button ID="btnModificarUsuarioListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarUsuarioListado_Click" />
+                      <asp:Button ID="btnEliminarUsuarioListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarUsuarioListado_Click" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ItemTemplate>
+      </asp:Repeater>
+    </div>
+  </asp:Panel>
+</div>
+
 
         <%-- Panel del eliminar usuario --%>
         <asp:Panel ID="PanelEliminarUsuario" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
