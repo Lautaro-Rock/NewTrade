@@ -101,15 +101,40 @@
 
                         </div>
 
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtContraUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Contraseña</asp:Label>
-                            <asp:TextBox ID="txtContraUsuario" runat="server" CssClass="form-control" placeholder="Ej: Contraseñasegura993!" />
-                            <asp:RequiredFieldValidator ErrorMessage="La contraseña es obligatoria" ControlToValidate="txtContraUsuario" runat="server" ForeColor="Red" ValidationGroup="AltaUsuario" />
-                            <asp:RegularExpressionValidator ID="revContraUsuario"  runat="server"  ControlToValidate="txtContraUsuario"  ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"  ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número"  ForeColor="Red"  ValidationGroup="AltaUsuario" />
+                      <div class="form-group mb-3">
+    <asp:Label AssociatedControlID="txtContraUsuario" runat="server" CssClass="form-label fw-semibold text-dark">Contraseña</asp:Label>
+    <div class="d-flex align-items-start">
+        <!-- Campo de contraseña -->
+        <asp:TextBox 
+            ID="txtContraUsuario" 
+            runat="server" 
+            CssClass="form-control me-2" 
+            placeholder="Ej: Contraseñasegura993!" 
+            TextMode="Password" />
 
-                        </div>
-
-                        <div class="d-grid mt-4">
+        <!-- Contenedor para validadores -->
+        <span style="display: inline-flex; flex-direction: column;">
+            <asp:RequiredFieldValidator 
+                ErrorMessage="La contraseña es obligatoria" 
+                ControlToValidate="txtContraUsuario" 
+                runat="server" 
+                ForeColor="Red" 
+                ValidationGroup="AltaUsuario" 
+                Display="Dynamic" />
+            
+            <asp:RegularExpressionValidator 
+                ID="revContraUsuario"  
+                runat="server"  
+                ControlToValidate="txtContraUsuario"  
+                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"  
+                ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número"  
+                ForeColor="Red"  
+                ValidationGroup="AltaUsuario" 
+                Display="Dynamic" />
+        </span>
+    </div>
+</div>
+     <div class="d-grid mt-4">
                             <asp:Button ID="btnGuardarUsuario" runat="server" Text="Agregar usuario" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarUsuario_Click" ValidationGroup="AltaUsuario" />
                             <asp:Button ID="btnModificarUsuario" runat="server" Text="Modificar usuario" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarUsuario_Click" Visible="false" ValidationGroup="AltaUsuario" />
                         </div>
