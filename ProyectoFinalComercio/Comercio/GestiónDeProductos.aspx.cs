@@ -42,6 +42,7 @@ namespace Comercio
                 repProductos.DataSource = Productos;
                 repProductos.DataBind();
             }
+            this.PreRender += Page_PreRender;
 
         }
 
@@ -256,7 +257,31 @@ namespace Comercio
             }
         }
 
-        
+        protected void setearCamposProductoSeleccionado(Producto producto)
+        {
+            // Aca se valida si el producto tiene una marca o tipo de producto que fue eliminado 
+            if (!lista_tipos.Any(t => t.Id == producto.TipoProducto.Id))
+            {
+                ddlTipoDeProducto.Items.Insert(0, new ListItem("Tipo de producto eliminado", producto.TipoProducto.Id.ToString()));
+            }
+            ddlTipoDeProducto.SelectedValue = producto.TipoProducto.Id.ToString();
+
+
+            if (!lista_marcas.Any(m => m.Id == producto.Marca.Id))
+            {
+                ddlMarcas.Items.Insert(0, new ListItem("Marca eliminada", producto.Marca.Id.ToString()));
+            }
+            ddlMarcas.SelectedValue = producto.Marca.Id.ToString();
+            //
+
+            txtNombreProd.Text = producto.Nombre;
+            ddlMarcas.SelectedValue = lista_marcas.FirstOrDefault(m => m.Nombre == producto.Marca.Nombre)?.Id.ToString() ?? "0";
+            ddlTipoDeProducto.SelectedValue = lista_tipos.FirstOrDefault(t => t.Nombre == producto.TipoProducto.Nombre)?.Id.ToString() ?? "0";
+            txtPrecio.Text = producto.Precio.ToString(CultureInfo.InvariantCulture);
+            txtStock.Text = producto.Stock.ToString();
+            txtStockMin.Text = producto.StockMin.ToString();
+            txtUrlImagen.Text = producto.UrlImgProducto;
+        }
 
         protected void ddlProductoModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -288,28 +313,7 @@ namespace Comercio
                 Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
                 if (producto != null)
                 {
-                    // Aca se valida si el producto tiene una marca o tipo de producto que fue eliminado 
-                    if (!lista_tipos.Any(t => t.Id == producto.TipoProducto.Id))
-                    {
-                        ddlTipoDeProducto.Items.Insert(0, new ListItem("Tipo de producto eliminado", producto.TipoProducto.Id.ToString()));
-                    }
-                    ddlTipoDeProducto.SelectedValue = producto.TipoProducto.Id.ToString();
-
-
-                    if (!lista_marcas.Any(m => m.Id == producto.Marca.Id))
-                    {
-                        ddlMarcas.Items.Insert(0, new ListItem("Marca eliminada", producto.Marca.Id.ToString()));
-                    }
-                    ddlMarcas.SelectedValue = producto.Marca.Id.ToString();
-                    //
-
-                    txtNombreProd.Text = producto.Nombre;
-                    ddlMarcas.SelectedValue = lista_marcas.FirstOrDefault(m => m.Nombre == producto.Marca.Nombre)?.Id.ToString() ?? "0";
-                    ddlTipoDeProducto.SelectedValue = lista_tipos.FirstOrDefault(t => t.Nombre == producto.TipoProducto.Nombre)?.Id.ToString() ?? "0";
-                    txtPrecio.Text = producto.Precio.ToString(CultureInfo.InvariantCulture);
-                    txtStock.Text = producto.Stock.ToString();
-                    txtStockMin.Text = producto.StockMin.ToString();
-                    txtUrlImagen.Text = producto.UrlImgProducto;
+                    setearCamposProductoSeleccionado(producto);
                 }
             }
             else
@@ -822,11 +826,13 @@ namespace Comercio
             ddlCategoriaModificar.DataValueField = "Id";
             ddlCategoriaModificar.DataTextField = "Nombre"; 
             ddlCategoriaModificar.DataBind();
+            ddlCategoriaModificar.Items.Insert(0, new ListItem("Seleccione un Tipo de Producto", "0"));
 
             ddlCategoriasEliminar.DataSource = lista_tipos;
             ddlCategoriasEliminar.DataValueField = "Id";
             ddlCategoriasEliminar.DataTextField = "Nombre";
             ddlCategoriasEliminar.DataBind();
+            ddlCategoriasEliminar.Items.Insert(0, new ListItem("Seleccione un Tipo de Producto", "0"));
 
             ddlFiltroTipo.DataSource = lista_tipos;
             ddlFiltroTipo.DataValueField = "Id";
@@ -839,6 +845,80 @@ namespace Comercio
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
             Response.Redirect("PanelCtrlAdmin.aspx");
+        }
+
+        protected void btnModificarPListado_Click(object sender, EventArgs e)
+        {
+            
+            PanelListarProd.Visible = false;
+            PanelAgregarMarca.Visible = false;
+            PanelEliminarProducto.Visible = false;
+            PanelEliminarMarca.Visible = false;
+            PanelEliminarCategoria.Visible = false;
+            PanelAgregarCategoria.Visible = false;
+            PanelFormAltaProd.Visible = true;
+
+            lblTituloAgregar.Visible = false;
+            lblTituloModificar.Visible = true;
+            btnGuardarProducto.Visible = false;
+            btnModificarProducto.Visible = true;
+            divProductoModificar.Visible = true;
+            ActualizarListas();
+
+            var btn = (Button)sender;
+            int idProducto;
+
+            if (int.TryParse(btn.CommandArgument, out idProducto) && idProducto > 0)
+            {
+                Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
+                 if (producto != null)
+                 {
+                     setearCamposProductoSeleccionado(producto);
+                    ddlProductoModificar.SelectedValue = producto.Id.ToString();
+                }
+            }
+            else
+            {
+                // Limpiar campos si no hay producto seleccionado
+                limpiarCampos();
+            }
+        }
+
+        protected void btnEliminarProductoListado_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            int idProducto;
+            if (int.TryParse(btn.CommandArgument, out idProducto))
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                Producto producto = new Producto { Id = idProducto };
+                try
+                {
+                    negocio.EliminarProductoLogico(producto);
+                    ActualizarListas();
+                }
+                catch (Exception ex)
+                {
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+                }
+            }
+        }
+
+        // [JLS] Este evento es para que los botones de modificar y eliminar en el listado puedan hacer un postback y asi funcionar correctamente :)
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem item in repProductos.Items)
+            {
+                Button btnModificar = (Button)item.FindControl("btnModificarPListado");
+                if (btnModificar != null)
+                    ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(btnModificar);
+
+                Button btnEliminar = (Button)item.FindControl("btnEliminarProductoListado");
+                if (btnEliminar != null)
+                    ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(btnEliminar);
+            }
         }
 
     }

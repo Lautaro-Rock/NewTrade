@@ -101,8 +101,8 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <asp:Button ID="btnGuardarCliente" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarCliente_Click" ValidationGroup="AltaProducto" />
-                            <asp:Button ID="btnModificar" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificar_Click" Visible="false" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnGuardarCliente" runat="server" Text="Agregar cliente" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarCliente_Click" ValidationGroup="AltaProducto" />
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar cliente" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificar_Click" Visible="false" ValidationGroup="AltaProducto" />
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
 
         </div>
 
-        <%-- Panel del listado de productos --%>
+        <%-- Panel del listado de clientes --%>
    <div class="container" style="max-width: 1100px;">
   <asp:Panel ID="PanelListarCliente" runat="server">
 <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;"> Lista de Clientes de nuestra app!</h1>

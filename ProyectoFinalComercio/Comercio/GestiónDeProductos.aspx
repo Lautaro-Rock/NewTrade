@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GestiónDeProductos.aspx.cs" Inherits="Comercio.Prototipo" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -266,10 +267,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 d-flex flex-column align-items-end justify-content-center pe-3">
-                                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-warning btn-sm mb-2 w-100" Visible="true" />
-                                            <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger btn-sm mb-2 w-100" Visible="true"
+                                            <asp:Button ID="btnModificarPListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning btn-sm mb-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarPListado_Click" Visible="true" UseSubmitBehavior="true" CausesValidation="false" />
+                                            <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger btn-sm mb-2 w-100" CommandArgument='<%# Eval("Id") %>' Visible="true" OnClick="btnEliminarProductoListado_Click"
                                                 OnClientClick="return confirm('¿Estás seguro que deseas eliminar este producto?');" />
-                                            <asp:Button ID="btnVerMas" runat="server" Text="Ver más.." CssClass="btn btn-outline-secondary btn-sm w-100" Visible="true" />
                                         </div>
                                     </div>
                                 </div>

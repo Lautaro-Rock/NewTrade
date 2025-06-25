@@ -28,36 +28,17 @@ namespace Comercio
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    if (usuario.Rol == "Administrador")
-                    {
-                        string nombreLogueado = usuario.Nombre;
-
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                         $@"Swal.fire({{
-                          title: 'Bienvenido {nombreLogueado}!',
-                          text: 'Iniciando sesión correctamente...',
-                          icon: 'success',
-                          showConfirmButton: false,
-                          timer: 2000
-                          }}).then(() => {{
-                           window.location.href = 'PanelCtrlAdmin.aspx';
-                          }});", true);
-                    }
-                    else if (usuario.Rol == "Vendedor")
-                    {
-                         string nombreLogueado = usuario.Nombre;
-
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                          $@"Swal.fire({{
-                          title: 'Bienvenido {nombreLogueado}!',
-                          text: 'Iniciando sesión correctamente...',
-                          icon: 'success',
-                          showConfirmButton: false,
-                          timer: 2000
-                          }}).then(() => {{
-                           window.location.href = 'PanelCtrlVendedor.aspx';
-                          }});", true);
-                    }
+                    string nombreLogueado = usuario.Nombre;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                      $@"Swal.fire({{
+                      title: 'Bienvenido {nombreLogueado}!',
+                      text: 'Iniciando sesión correctamente...',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 2000
+                      }}).then(() => {{
+                      window.location.href = 'PanelCtrlAdmin.aspx';
+                      }});", true);
                 }
                 else
                 {
