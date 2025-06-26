@@ -122,7 +122,6 @@
     <Content Include="GestionarUsuarios.aspx" />
     <Content Include="GestionCompras.aspx" />
     <Content Include="GestionProveedores.aspx" />
-    <Content Include="GestionVentas.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\acquisition.png" />
     <Content Include="images\analysis.png" />
@@ -146,6 +145,7 @@
     <Content Include="images\target-violeta.png" />
     <Content Include="images\target.png" />
     <Content Include="Default.aspx" />
+    <Content Include="NuevaVenta.aspx" />
     <Content Include="PanelCtrlAdmin.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="GestiónDeProductos.aspx" />
@@ -214,6 +214,7 @@
     <Content Include="StyleLogins.css" />
     <Content Include="StyleGestionProductos.css" />
     <Content Include="StylesGeneralesPanelDeControles.css" />
+    <Content Include="Esperanza.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -243,13 +244,6 @@
     <Compile Include="GestionProveedores.aspx.designer.cs">
       <DependentUpon>GestionProveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GestionVentas.aspx.cs">
-      <DependentUpon>GestionVentas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionVentas.aspx.designer.cs">
-      <DependentUpon>GestionVentas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +267,13 @@
     </Compile>
     <Compile Include="MasterPanelDeControles.Master.designer.cs">
       <DependentUpon>MasterPanelDeControles.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.designer.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelCtrlAdmin.aspx.cs">
       <DependentUpon>PanelCtrlAdmin.aspx</DependentUpon>

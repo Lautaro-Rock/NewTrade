@@ -1,0 +1,100 @@
+﻿﻿body {
+    background-color: #1a093a;
+    color: #fff;
+}
+
+.txt-cliente-seleccionado-color {
+    background-color: #2a1f44;
+    color: black;
+    border: 1px solid #3c2a5d;
+}
+
+    .txt-cliente-seleccionado-color::placeholder {
+        color: black;
+    }
+
+
+
+
+
+.txt-color-personalizado {
+    background-color: #2a1f44;
+    color: white;
+    border: 1px solid #3c2a5d;
+}
+
+.card, .accordion-item {
+    background-color: #1a093a;
+    color: #ffffff;
+    border: 1px solid #3c2a5d;
+}
+
+.accordion-button {
+    background-color: #2a1f44;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+    .accordion-button:not(.collapsed) {
+        background-color: #3a2a6a;
+        color: #fff;
+        box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+.accordion-body {
+    background-color: #24154d;
+    color: white;
+}
+
+.table {
+    background-color: #2a1f44;
+    color: #ffffff;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border-color: #3c2a5d;
+}
+
+.bg-dark-subtle {
+    background-color: #2e2253 !important;
+    color: #fff !important;
+}
+
+.btn-primary {
+    background-color: #f97316;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #ff7f1f;
+    }
+
+.btn-outline-primary {
+    border-color: #f97316;
+    color: #f97316;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #f97316;
+        color: #fff;
+    }
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+
+.btn-warning {
+    background-color: #f59e0b;
+    border: none;
+}
+
+.form-label {
+    color: #d1c8ff;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #c1b0e2;
+}
