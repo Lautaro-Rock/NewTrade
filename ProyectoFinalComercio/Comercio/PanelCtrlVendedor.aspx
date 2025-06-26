@@ -25,7 +25,7 @@
       <a href="GestiónVentas.aspx" style="text-decoration: none;">
         <div class="card card-custom">
           <img src="\images\acquisition.png" alt="Venta" class="card-img">
-          <h5 class="card-title">Gestión de ventas</h5>
+          <h5 class="card-title">Nueva venta</h5>
         </div>
       </a>
     </div>
