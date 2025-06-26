@@ -39,6 +39,7 @@ namespace Comercio
                 PanelEliminarMarca.Visible = false;
                 PanelEliminarCategoria.Visible = false;
                 PanelAgregarCategoria.Visible = false;
+                ddlCampo.Items.Insert(0, new ListItem("Seleccione un campo", "0"));
                 repProductos.DataSource = Productos;
                 repProductos.DataBind();
             }
@@ -124,6 +125,8 @@ namespace Comercio
             PanelEliminarCategoria.Visible = false;
             PanelAgregarCategoria.Visible = false;
             ActualizarListas();
+            repProductos.DataSource = Productos;
+            repProductos.DataBind();
         }
 
 
@@ -157,10 +160,41 @@ namespace Comercio
             txtFiltroRapido.Enabled = !chkFiltroActivo.Checked;
         }
 
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
+                // Validar que se haya seleccionado un campo y criterio válidos
+                if (ddlCampo.SelectedValue == "0" || ddlCriterio.SelectedItem == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "Swal.fire('Filtro incompleto', 'Seleccioná un campo y un criterio antes de buscar.', 'warning');", true);
+                    return;
+                }
+
+
+                // Validar que el valor ingresado sea numérico si se filtra por precio
+                if (ddlCampo.SelectedValue == "Precio")
+                {
+                    // Validar que se haya ingresado un filtro
+                    if (string.IsNullOrWhiteSpace(txtFiltroAvanzado.Text))
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                            "Swal.fire('Filtro vacío', 'Ingresá un valor para poder filtrar por precio.', 'warning');", true);
+                        return;
+                    }
+
+                    decimal valor;
+                    if (!decimal.TryParse(txtFiltroAvanzado.Text, out valor))
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                            "Swal.fire('Dato inválido', 'El valor del precio debe ser un número.', 'warning');", true);
+                        return;
+                    }
+                }
+
+
                 ProductoNegocio negocio = new ProductoNegocio();
                 repProductos.DataSource = negocio.Fitrar(ddlCampo.SelectedItem.ToString(),
                     ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text,
@@ -896,6 +930,8 @@ namespace Comercio
                 {
                     negocio.EliminarProductoLogico(producto);
                     ActualizarListas();
+                    txtFiltroRapido_TextChanged(txtFiltroRapido, EventArgs.Empty);
+
                 }
                 catch (Exception ex)
                 {
@@ -921,5 +957,20 @@ namespace Comercio
             }
         }
 
+        protected void btnLimpiarFiltroAvanzado_Click1(object sender, EventArgs e)
+        {
+            // Limpiar campos de filtro rápido y avanzado
+            txtFiltroRapido.Text = string.Empty;
+            txtFiltroAvanzado.Text = string.Empty;
+            ddlCampo.SelectedIndex = 0;
+            ddlCriterio.Items.Clear(); 
+            ddlActivo.SelectedIndex = 0;
+
+            // Recargar todos los productos
+            ProductoNegocio negocio = new ProductoNegocio();
+            Productos = negocio.ListarProductos();
+            repProductos.DataSource = Productos;
+            repProductos.DataBind();
+        }
     }
 }

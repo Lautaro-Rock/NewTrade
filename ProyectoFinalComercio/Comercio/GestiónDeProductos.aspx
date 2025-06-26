@@ -239,14 +239,14 @@
                 <div class="row pb-3">
                     <div class="col-12 d-flex flex-wrap gap-3">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-light" OnClick="btnBuscar_Click" />
-                        <asp:Button ID="btnLimpiarFiltroAvanzado" runat="server" Text="Limpiar" CssClass="btn btn-outline-warning" />
+                        <asp:Button ID="btnLimpiarFiltroAvanzado" runat="server" Text="Limpiar" CssClass="btn btn-outline-warning" OnClick="btnLimpiarFiltroAvanzado_Click1" />
                     </div>
                 </div>
 
                 <% } %>
                 <div class="row mb-4">
                     <div class="col-12 text-end">
-                        <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success"/>
+                        <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success" Visible="false" />
                     </div>
                 </div>
                 <div class="row g-4">
