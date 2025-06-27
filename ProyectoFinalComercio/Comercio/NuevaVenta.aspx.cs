@@ -47,7 +47,7 @@ namespace Comercio
 
             // Reabrir el panel de búsqueda si se cerró por el postback
             ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirBuscarCliente", @"
-                setTimeout(function() {
+                    setTimeout(function() {
                     var myCollapse = document.getElementById('collapseBuscarCliente');
                     if (myCollapse) {
                         var bsCollapse = new bootstrap.Collapse(myCollapse, { toggle: false });
@@ -63,7 +63,7 @@ namespace Comercio
             string nombre_cliente = gvClientes.SelectedRow.Cells[0].Text;
             txtClienteSeleccionado.Text = apellido_cliente + ", " + nombre_cliente;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "cerrarPanel", @"
-        setTimeout(function() {
+            setTimeout(function() {
             var myCollapse = document.getElementById('collapseBuscarCliente');
             if (myCollapse) {
                 var bsCollapse = bootstrap.Collapse.getOrCreateInstance(myCollapse);

@@ -103,6 +103,7 @@ CREATE TABLE Venta (
     IdVendedor INT NOT NULL,
     Fecha DATETIME NOT NULL,
     NumeroFactura NVARCHAR(50) NOT NULL UNIQUE,
+    Total DECIMAL(18,2) NOT NULL DEFAULT 0,
     Activo BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (IdCliente) REFERENCES Usuario(Id),
     FOREIGN KEY (IdVendedor) REFERENCES Usuario(Id)

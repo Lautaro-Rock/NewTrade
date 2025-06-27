@@ -7,14 +7,15 @@ namespace Dominio
 {
     public class Venta
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         
-        Cliente Cliente { get; set; }
-        DateTime Fecha { get; set; }
-        Usuario Usuario { get; set; }
-
+        public Cliente Cliente { get; set; }
+        public DateTime Fecha { get; set; }
+        public Usuario Usuario { get; set; }
         List<DetalleVenta> DetalleList { get; set; }
-        string numeroFactura { get; set; }
+        public string NumeroFactura { get; set; }
+
+        public decimal Total { get; set; }
 
         public bool Activo { get; set; }
 
