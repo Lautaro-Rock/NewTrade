@@ -12,6 +12,8 @@ namespace Negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+        private SqlTransaction transaccion;
+
         public SqlDataReader Lector
         {
             get { return lector; }
@@ -19,7 +21,7 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ComercioDB; integrated security=true");
+            conexion = new SqlConnection("server=localhost; database=ComercioDB; Persist Security Info=True; User ID= sa; Password=Contra993!");
 
             comando = new SqlCommand();
         }
@@ -47,6 +49,58 @@ namespace Negocio
 
         }
 
+        public object EjecutarScalar()
+        {
+            comando.Connection = conexion;
+
+            if (transaccion != null)
+                comando.Transaction = transaccion;
+
+            bool abrirConexion = conexion.State != System.Data.ConnectionState.Open;
+
+            try
+            {
+                if (abrirConexion)
+                    conexion.Open();
+
+                return comando.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar scalar: " + ex.Message, ex);
+            }
+            finally
+            {
+                if (abrirConexion)
+                    conexion.Close();
+            }
+
+        }
+
+        public void AbrirConexion()
+        {
+            if (conexion.State != System.Data.ConnectionState.Open)
+                conexion.Open();
+        }
+
+        public void ComenzarTransaccion()
+        {
+            transaccion = conexion.BeginTransaction();
+        }
+
+        public void ConfirmarTransaccion()
+        {
+            if (transaccion != null)
+                transaccion.Commit();
+        }
+
+        public void RollbackTransaccion()
+        {
+            if (transaccion != null)
+                transaccion.Rollback();
+        }
+
+
         public void SetearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);
@@ -55,15 +109,29 @@ namespace Negocio
         public void EjecutarAccion()
         {
             comando.Connection = conexion;
+
+            if (transaccion != null)
+                comando.Transaction = transaccion;
+
+            bool abrirConexion = conexion.State != System.Data.ConnectionState.Open;
+
             try
             {
-                conexion.Open();
+                if (abrirConexion)
+                    conexion.Open();
+
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al ejecutar acción: " + ex.Message, ex);
             }
+            finally
+            {
+                if (abrirConexion)
+                    conexion.Close();
+            }
+
         }
 
 

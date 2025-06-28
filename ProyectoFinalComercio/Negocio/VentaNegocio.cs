@@ -8,6 +8,65 @@ namespace Negocio
 {
     public class VentaNegocio
     {
+
+        public void AgregarVentaCompleta(Venta venta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.AbrirConexion();
+                datos.ComenzarTransaccion();
+
+                // Insertar la venta principal
+                datos.SetearConsulta(@"
+                INSERT INTO VENTA (IdCliente, Fecha, IdVendedor, NumeroFactura, Total, Activo)
+                VALUES (@IdCliente, @Fecha, @IdUsuario, @NumeroFactura, @Total, 1);
+                SELECT SCOPE_IDENTITY();");
+
+                datos.SetearParametro("@IdCliente", venta.Cliente.Id);
+                datos.SetearParametro("@Fecha", venta.Fecha);
+                datos.SetearParametro("@IdUsuario", venta.Usuario.Id);
+                datos.SetearParametro("@NumeroFactura", venta.NumeroFactura);
+                datos.SetearParametro("@Total", venta.Total);
+
+                int idVenta = Convert.ToInt32(datos.EjecutarScalar());
+
+                // Insertar cada detalle
+                foreach (var d in venta.DetalleList)
+                {
+                    datos.SetearConsulta(@"
+                    INSERT INTO DETALLEVENTA (IdVenta, IdProducto, Cantidad, PrecioUnitario, Activo)
+                    VALUES (@IdVenta, @IdProducto, @Cantidad, @PrecioUnitario, 1)");
+
+                    datos.SetearParametro("@IdVenta", idVenta);
+                    datos.SetearParametro("@IdProducto", d.Producto.Id);
+                    datos.SetearParametro("@Cantidad", d.Cantidad);
+                    datos.SetearParametro("@PrecioUnitario", d.PrecioUnitario);
+
+                    datos.EjecutarAccion();
+
+                    // Actualizar stock en PRODUCTO
+                    datos.SetearConsulta("UPDATE PRODUCTO SET Stock = Stock - @Cantidad WHERE Id = @IdProducto");
+                    datos.SetearParametro("@Cantidad", d.Cantidad);
+                    datos.SetearParametro("@IdProducto", d.Producto.Id);
+
+                    datos.EjecutarAccion();
+                }
+
+                datos.ConfirmarTransaccion();
+            }
+            catch (Exception)
+            {
+                datos.RollbackTransaccion();
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void AgregarVenta(Venta venta)
         {
             AccesoDatos data = new AccesoDatos();
@@ -86,6 +145,26 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
+        public int ObtenerUltimoNumeroFactura()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT ISNULL(MAX(CAST(NumeroFactura AS INT)), 0) FROM VENTA");
+                datos.AbrirConexion();
+                return Convert.ToInt32(datos.EjecutarScalar());
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
     }
 }

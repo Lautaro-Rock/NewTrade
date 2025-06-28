@@ -1,0 +1,11 @@
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Helpers.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Helpers.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Dominio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Negocio.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Dominio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Negocio.pdb
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.AssemblyReference.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.CoreCompileInputs.cache
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.Up2Date
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.dll
+C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.pdb
