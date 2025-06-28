@@ -45,7 +45,7 @@ namespace Comercio
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Panel.aspx"); // o el nombre que tenga tu panel principal
+            Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
         protected void gvVentas_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)

@@ -21,6 +21,19 @@ namespace Comercio
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["id"] != null)
+                {
+                    int idVenta = int.Parse(Request.QueryString["id"]);
+                    CargarVentaParaModificar(idVenta);
+                    btnConfirmarVenta.Visible = false;
+                    btnModificarVenta.Visible = true;
+                }
+                else
+                {
+                    btnConfirmarVenta.Visible = true;
+                    btnModificarVenta.Visible = false;
+                }
+
                 try
                 {
                     Productos = new ProductoNegocio().ListarProductos();
@@ -34,7 +47,8 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorGuardando",
+                    $"Swal.fire('Error', 'Detalle: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
             }
         }
@@ -255,6 +269,80 @@ namespace Comercio
 
             }
 
+
+        }
+
+        private void CargarVentaParaModificar(int idVenta)
+        {
+            Venta venta = new VentaNegocio().ObtenerVentaPorId(idVenta);
+
+            // Setear cliente
+            txtClienteSeleccionado.Text = $"{venta.Cliente.Nombre}, {venta.Cliente.Apellido}";
+            hfIdClienteSeleccionado.Value = venta.Cliente.Id.ToString();
+
+            // Setear detalles de la venta
+            Session["VentaDetalle"] = venta.DetalleList;
+            gvDetalleVenta.DataSource = venta.DetalleList;
+            gvDetalleVenta.DataBind();
+
+            // Mostrar precio total
+            lbPrecio.Text = venta.Total.ToString("C2");
+
+            // Guardar ID de la venta en un hidden field
+            hfIdVenta.Value = venta.Id.ToString();
+        }
+
+        protected void btnModificarVenta_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(hfIdVenta.Value, out int idVenta))
+                return;
+
+            var detalle = Session["VentaDetalle"] as List<DetalleVenta>;
+
+            if (detalle == null || !detalle.Any())
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "sinProductos",
+                    "Swal.fire('Sin productos', 'Agregá al menos un producto antes de confirmar la venta.', 'error');", true);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(hfIdClienteSeleccionado.Value) || !int.TryParse(hfIdClienteSeleccionado.Value, out int idCliente))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "clienteNoSeleccionado",
+                    "Swal.fire('Cliente no seleccionado', 'Por favor, seleccioná un cliente válido.', 'error');", true);
+                return;
+            }
+
+
+            Usuario usuario = Session["Usuario"] as Usuario;
+            if (usuario == null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "usuarioNull",
+                    "Swal.fire('Error', 'No se encontró el usuario logueado.', 'error');", true);
+                return;
+            }
+
+            Venta venta = new Venta
+            {
+                Id = idVenta,
+                Cliente = new Cliente { Id = idCliente },
+                DetalleList = detalle,
+                Total = detalle.Sum(d => d.Subtotal),
+                Activo = true
+            };
+
+            try
+            {
+                new VentaNegocio().ModificarVentaCompleta(venta);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ventaModificada",
+                    "Swal.fire('¡Venta modificada!', 'Los cambios fueron guardados correctamente.', 'success');", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorModificar",
+                    $"Swal.fire('Error', 'No se pudo modificar: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+            }
 
         }
     }

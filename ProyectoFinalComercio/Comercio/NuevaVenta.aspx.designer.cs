@@ -60,6 +60,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.HiddenField hfIdClienteSeleccionado;
 
         /// <summary>
+        /// Control hfIdVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdVenta;
+
+        /// <summary>
         /// Control upBuscarCliente.
         /// </summary>
         /// <remarks>
@@ -211,5 +220,14 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmarVenta;
+
+        /// <summary>
+        /// Control btnModificarVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarVenta;
     }
 }

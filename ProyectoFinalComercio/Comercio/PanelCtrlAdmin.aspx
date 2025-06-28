@@ -28,7 +28,7 @@
       </div>
 
       <div class="col-md-4">
-        <a href="NuevaVenta.aspx" style="text-decoration: none;">
+        <a href="GestionarVentas.aspx" style="text-decoration: none;">
           <div class="card card-custom">
             <img src="\images\acquisition.png" alt="Venta" class="card-img">
             <h5 class="card-title">Gestión de ventas</h5>
