@@ -13,6 +13,9 @@ namespace Comercio
     public partial class Prototipo2 : System.Web.UI.Page
     {
         public List<Cliente> Cliente = new List<Cliente>();
+
+        public bool FiltroAvanzado { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +26,7 @@ namespace Comercio
 
             NegocioCliente negocio = new NegocioCliente();
             Cliente = negocio.ListarClientes();
-
+            FiltroAvanzado = checkAvanzado.Checked;
             if (!IsPostBack)
             {
                 ActualizarListas();
@@ -306,5 +309,52 @@ namespace Comercio
                 limpiarCampos();
             }
         }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void checkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = checkAvanzado.Checked;
+            txtFiltro.Enabled = !FiltroAvanzado;
+        }
+
+        protected void ddlCampoSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampoSelect.SelectedItem.ToString() == "DNI")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }else if(ddlCampoSelect.SelectedItem.ToString() == "Nombre")
+            {
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+        
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                NegocioCliente negocio = new NegocioCliente();
+
+                string campo = ddlCampoSelect.SelectedItem.Text; 
+                string criterio = ddlCriterio.SelectedItem.Text;
+                string filtro = ddlFiltroAvanzado.Text.Trim();   
+                string estado = ddlEstado.SelectedValue;
+
+                rptClientes.DataSource = negocio.FiltrarCliente(campo, criterio, filtro, estado);
+                rptClientes.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+        }
+
     }
 }
