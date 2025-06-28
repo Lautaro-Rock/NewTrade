@@ -12,6 +12,8 @@ namespace Comercio
     public partial class GestionarUsuarios : System.Web.UI.Page
     {
         public List<Usuario> Usuario = new List<Usuario>();
+
+       public bool FiltroAvanzado { get; set;}
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
@@ -21,7 +23,7 @@ namespace Comercio
 
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario = negocio.ListarUsuarios();
-
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
             {
                 ActualizarListas();
@@ -305,6 +307,61 @@ namespace Comercio
                 // Limpiar campos si no hay usuario seleccionado
                 limpiarCampos();
             }
+        }
+
+        protected void filtroUno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void checkFiltrarAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
+            filtroUno.Enabled = !FiltroAvanzado;
+        }
+
+        protected void ddlCampoSelectUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampoSelectUsuario.SelectedItem.ToString() == "DNI")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Nombre")
+            {
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Apellido")
+            {
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Email")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+        }
+
+        protected void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+            UsuarioNegocio user = new UsuarioNegocio();
+            try
+            {
+                string campo = ddlCampoSelectUsuario.Text;
+                string criterio = ddlCriterio.Text;
+                string filtro = ddlFiltroAvanzado.Text.Trim();
+                string estado = ddlEstado.SelectedValue;
+
+                rptUsuarios.DataSource = user.FiltrarUsuario(campo, criterio, filtro, estado);
+                rptUsuarios.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw ex;
+            }
+            
         }
     }
 }
