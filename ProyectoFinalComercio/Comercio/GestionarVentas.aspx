@@ -1,0 +1,95 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GestionarVentas.aspx.cs" Inherits="Comercio.GestionarVentas" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Gestión de Ventas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="StyleGestionProductos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body runat="server" id="bodyTag">
+    <form id="form1" runat="server">
+
+        <!-- Botón para desplegar la barra lateral -->
+        <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
+
+        <!-- Barra lateral -->
+        <div id="sidebar" class="sidebar">
+            <h1 class="sidebar-title">Comsys</h1>
+
+            <div class="accordion accordion-flush" id="accordionSidebar">
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVentas">
+                            Sección Ventas
+                        </button>
+                    </h2>
+                    <div id="collapseVentas" class="accordion-collapse collapse show" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnNuevaVenta" runat="server" OnClick="btnNuevaVenta_Click" CssClass="sidebar-link hover-effect">Nueva venta</asp:LinkButton>
+                            <asp:LinkButton ID="btnActualizarListado" runat="server" OnClick="btnActualizarListado_Click" CssClass="sidebar-link hover-effect">Actualizar listado</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-transparent border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral">
+                            Sección General
+                        </button>
+                    </h2>
+                    <div id="collapseGeneral" class="accordion-collapse collapse" data-bs-parent="#accordionSidebar">
+                        <div class="accordion-body ps-3">
+                            <asp:LinkButton ID="btnVolver" runat="server" OnClick="btnVolver_Click" CssClass="sidebar-link hover-effect">Volver al panel</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="blurOverlay" class="blur-overlay"></div>
+
+        <!-- Panel de ventas -->
+        <div class="container mt-5">
+            <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
+                Gestión de Ventas
+            </h1>
+
+            <asp:GridView ID="gvVentas" runat="server" DataKeyNames="Id" AutoGenerateColumns="False"
+                CssClass="table table-dark table-hover text-white mt-4" OnRowCommand="gvVentas_RowCommand">
+                <Columns>
+                    <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Registrado por:" />
+                    <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
+                    <asp:ButtonField ButtonType="Button" Text="Modificar" CommandName="Modificar" ControlStyle-CssClass="btn btn-warning btn-sm" />
+                </Columns>
+            </asp:GridView>
+        </div>
+    </form>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const blurOverlay = document.getElementById('blurOverlay');
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('show');
+            blurOverlay.classList.toggle('active');
+            toggleBtn.classList.toggle('move-right');
+        });
+
+        blurOverlay.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+            blurOverlay.classList.remove('active');
+            toggleBtn.classList.remove('move-right');
+        });
+    </script>
+</body>
+</html>
+

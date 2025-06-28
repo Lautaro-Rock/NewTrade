@@ -94,24 +94,45 @@ namespace Negocio
 
         public List<Venta> ListarVentas()
         {
-            AccesoDatos data = new AccesoDatos();
             List<Venta> lista = new List<Venta>();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                data.SetearConsulta("SELECT IdVenta, Fecha, NumeroFactura, Total FROM VENTA WHERE Activo = 1");
-                data.EjecutarLectura();
+                datos.SetearConsulta(@"
+                SELECT V.Id, V.NumeroFactura, V.Fecha, V.Total,
+                       C.IdCliente AS IdCliente, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente,
+                       U.Id AS IdUsuario, U.Nombre AS NombreUsuario, U.Apellido AS ApellidoUsuario
+                FROM Venta V
+                INNER JOIN Cliente C ON V.IdCliente = C.IdCliente
+                INNER JOIN Usuario U ON V.IdVendedor = U.Id
+                WHERE V.Activo = 1
+                ORDER BY V.Fecha DESC");
 
-                while (data.Lector.Read())
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
                 {
-                    Venta venta = new Venta
+                    Venta venta = new Venta();
+                    venta.Id = (int)datos.Lector["Id"];
+                    venta.NumeroFactura = datos.Lector["NumeroFactura"].ToString();
+                    venta.Fecha = (DateTime)datos.Lector["Fecha"];
+                    venta.Total = (decimal)datos.Lector["Total"];
+
+                    venta.Cliente = new Cliente()
                     {
-                        Id = (int)data.Lector["IdVenta"],
-                        Fecha = (DateTime)data.Lector["Fecha"],
-                        NumeroFactura = (string)data.Lector["NumeroFactura"],
-                        Total = (decimal)data.Lector["Total"],
-                        Activo = true
+                        Id = (int)datos.Lector["IdCliente"],
+                        Nombre = datos.Lector["NombreCliente"].ToString(),
+                        Apellido = datos.Lector["ApellidoCliente"].ToString()
                     };
+
+                    venta.Usuario = new Usuario()
+                    {
+                        Id = (int)datos.Lector["IdUsuario"],
+                        Nombre = datos.Lector["NombreUsuario"].ToString(),
+                        Apellido = datos.Lector["ApellidoUsuario"].ToString()
+                    };
+
                     lista.Add(venta);
                 }
 
@@ -119,13 +140,14 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar ventas: " + ex.Message, ex);
             }
             finally
             {
-                data.CerrarConexion();
+                datos.CerrarConexion();
             }
         }
+
 
         public void BajaLogicaVenta(Venta venta)
         {

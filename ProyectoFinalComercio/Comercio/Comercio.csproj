@@ -120,6 +120,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="GestionarUsuarios.aspx" />
+    <Content Include="GestionarVentas.aspx" />
     <Content Include="GestionCompras.aspx" />
     <Content Include="GestionProveedores.aspx" />
     <Content Include="Global.asax" />
@@ -229,6 +230,13 @@
     </Compile>
     <Compile Include="GestionarUsuarios.aspx.designer.cs">
       <DependentUpon>GestionarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarVentas.aspx.cs">
+      <DependentUpon>GestionarVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarVentas.aspx.designer.cs">
+      <DependentUpon>GestionarVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionCompras.aspx.cs">
       <DependentUpon>GestionCompras.aspx</DependentUpon>
