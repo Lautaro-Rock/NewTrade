@@ -12,6 +12,8 @@ namespace Comercio
     public partial class GestionProveedores : System.Web.UI.Page
     {
         public List<Proveedor> Proveedor = new List<Proveedor>();
+
+        public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
@@ -21,7 +23,7 @@ namespace Comercio
 
             NegocioProveedores negocio = new NegocioProveedores();
             Proveedor = negocio.ListarProveedores();
-
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
             {
                 ActualizarListas();
@@ -308,6 +310,60 @@ namespace Comercio
             {
                 // Limpiar campos si no hay proveedor seleccionado
                 limpiarCampos();
+            }
+        }
+
+        protected void checkFiltrarAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
+            filtroUno.Enabled = !FiltroAvanzado;
+        }
+        protected void filtroUno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlCampoSelectUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Razon Social")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Cuit")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Email")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Direccion")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
+        }
+
+
+        protected void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+            {
+                NegocioProveedores prov = new NegocioProveedores();
+                try
+                {
+                    string campo = ddlCampoSelectUsuario.Text;
+                    string criterio = ddlCriterio.Text;
+                    string filtro = ddlFiltroAvanzado.Text.Trim();
+                    string estado = ddlEstado.SelectedValue;
+
+                    rptProveedores.DataSource = prov.FiltrarProveedores(campo, criterio, filtro, estado);
+                    rptProveedores.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw ex;
+                }
             }
         }
     }

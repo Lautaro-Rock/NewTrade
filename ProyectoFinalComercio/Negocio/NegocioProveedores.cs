@@ -126,5 +126,89 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+        public List<Proveedor> FiltrarProveedores(string campo, string criterio, string filtro, string estado)
+        {
+
+            List<Proveedor> list_filtrada = new List<Proveedor>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT Id, RazonSocial, Cuit, Email, Telefono, Direccion, Activo FROM Proveedor Where 1=1 ";
+
+                if (campo == "Razon Social")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND RazonSocial = '" + filtro + "'";
+                            break;
+                    }
+                }
+                else if (campo == "Cuit")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND Cuit = '" + filtro + "'";
+                            break;
+                    }
+                }
+                else if (campo == "Email")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND Email = '" + filtro + "'";
+                            break;
+                    }
+                }
+                else if (campo == "Direccion")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND Direccion = '" + filtro + "'";
+                            break;
+                    }
+                }
+
+
+                if (estado == "Activo")
+                {
+                    consulta += " AND Activo = 1";
+                }
+                else if (estado == "Inactivo")
+                {
+                    consulta += " AND Activo = 0";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Proveedor aux = new Proveedor();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.RazonSocial = (string)datos.Lector["RazonSocial"];
+                    aux.Cuit = (string)datos.Lector["Cuit"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+                    aux.Direccion = (string)datos.Lector["Direccion"];
+
+                    list_filtrada.Add(aux);
+
+                }
+                return list_filtrada;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

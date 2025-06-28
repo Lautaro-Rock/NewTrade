@@ -146,5 +146,106 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
+        public List<Usuario> FiltrarUsuario(string campo, string criterio, string filtro, string estado)
+        {
+
+            List<Usuario> list_filtrada = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT Id, Nombre, Apellido, DNI, Email, Rol, Activo, Password FROM Usuario WHERE 1=1 ";
+
+                if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " AND Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND Nombre like '%" + filtro + "'";
+                            break;
+                    }
+                }
+                 else if (campo == "Apellido")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " AND Apellido like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND Apellido like '%" + filtro + "'";
+                            break;
+                    }
+                }
+                else if (campo == "DNI")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND DNI = '" + filtro + "'";
+                            break;
+                    }
+                }
+                else if (campo == "Email")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND Email = '" + filtro + "'";
+                            break;
+                    }
+                }
+
+
+                if (estado == "Activo")
+                {
+                    consulta += " AND Activo = 1";
+                }
+                else if (estado == "Inactivo")
+                {
+                    consulta += " AND Activo = 0";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.Rol = (string)datos.Lector["Rol"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+                    aux.Password = (string)datos.Lector["Password"];
+                    string dniStr = datos.Lector["DNI"] != DBNull.Value ? datos.Lector["DNI"].ToString() : null;
+                    int dniInt = 0;
+                    if (!string.IsNullOrEmpty(dniStr) && int.TryParse(dniStr, out int parsedDni))
+                    {
+                        dniInt = parsedDni;
+                    }
+                    else
+                    {
+                        dniInt = 0;
+                    }
+                    aux.Dni = dniInt;
+                    list_filtrada.Add(aux);
+                }
+                return list_filtrada;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

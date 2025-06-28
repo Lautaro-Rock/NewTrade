@@ -109,7 +109,7 @@
             </asp:Panel>
         </div>
         
-<h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;"> 
+<h1 class="text-center text-white mb-4 mt-2" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;"> 
   Lista de Clientes de nuestra app!
 </h1>
 <div class="container mt-3 mb-4">
@@ -127,19 +127,19 @@
 
 
     <% if (FiltroAvanzado) { %>
-        <div class="row justify-content-center g-3 mt-3">
-            <div class="col-md-3">
+        <div class="row justify-content-center g-3 ">
+            <div class="col-md-2">
                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelect" />
                 <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelect" OnSelectedIndexChanged="ddlCampoSelect_SelectedIndexChanged">
                     <asp:ListItem Text="Nombre" />
                     <asp:ListItem Text="DNI" />
                 </asp:DropDownList>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <asp:Label Text="Criterio" runat="server" AssociatedControlID="ddlCriterio" />
                 <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-control" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <asp:Label Text="Filtro" runat="server" AssociatedControlID="ddlFiltroAvanzado" />
                 <asp:TextBox runat="server" ID="ddlFiltroAvanzado" CssClass="form-control" />
             </div>
@@ -154,12 +154,12 @@
         </div>
 <div class="row my-3">
     <div class="col text-center">
-        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-50" ID="btnBuscar" OnClick="btnBuscar_Click" />
+        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscar" OnClick="btnBuscar_Click" />
     </div>
 </div>
 
     <% } %>
-</div>
+
 
     
 
