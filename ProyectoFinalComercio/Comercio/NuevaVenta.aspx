@@ -31,7 +31,8 @@
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
                                     <div class="mb-3">
-                                        <asp:TextBox ID="txtClienteSeleccionado" runat="server" CssClass="form-control txt-cliente-seleccionado-color w-50" Placeholder="Haga clic en 'Buscar cliente' o 'Nuevo cliente'" Enabled="false" />
+                                        <asp:TextBox ID="txtClienteSeleccionado" runat="server" CssClass="form-control txt-cliente-seleccionado-color w-50" Placeholder="Haga clic en 'Buscar cliente'" Enabled="false" />
+                                        <asp:HiddenField ID="hfIdClienteSeleccionado" runat="server" />
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -47,7 +48,7 @@
                                                     <label class="form-label text-white">Buscar por nombre o DNI</label>
                                                     <asp:TextBox ID="txtBuscarCliente" runat="server" CssClass="form-control txt-color-personalizado" AutoPostBack="true" OnTextChanged="txtBuscarCliente_TextChanged" />
                                                 </div>
-                                                <asp:GridView ID="gvClientes" runat="server" OnSelectedIndexChanged="gvClientes_SelectedIndexChanged" AutoGenerateColumns="False" CssClass="table table-bordered table-hover">
+                                                <asp:GridView ID="gvClientes" runat="server" OnSelectedIndexChanged="gvClientes_SelectedIndexChanged" AutoGenerateColumns="False" DataKeyNames="Id" CssClass="table table-bordered table-hover">
                                                     <Columns>
                                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -112,12 +113,37 @@
                                                 <ItemTemplate>
                                                     <asp:Button ID="btnAgregarProd_a_venta" runat="server"
                                                         CommandName="Agregar"
-                                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                                        CommandArgument='<%# Eval("Id") %>'
                                                         CssClass="btn btn-outline-primary" Text="Agregar" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+
+                                    <%-- Carrito de compra --%>
+                                    <asp:Panel ID="PanelDetalleVenta" runat="server" CssClass="bg-light rounded shadow-sm p-4 mt-4 mb-3">
+                                    <h5 class="fw-bold text-dark mb-3">Detalle de productos seleccionados</h5>
+
+                                    <asp:GridView ID="gvDetalleVenta" runat="server"
+                                        AutoGenerateColumns="False"
+                                        CssClass="table table-striped table-bordered text-dark"
+                                        EmptyDataText="Todavía no se agregó ningún producto.">
+
+                                        <Columns>
+                                            <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
+                                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                                            <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
+                                            <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
+                                        </Columns>
+                                    </asp:GridView>
+
+                                    <div class="text-end mt-3">
+                                        <asp:Button ID="btnVaciarDetalleVenta" runat="server" Text="Vaciar lista"
+                                            CssClass="btn btn-outline-danger"
+                                            OnClick="btnVaciarDetalleVenta_Click" />
+                                    </div>
+                                </asp:Panel>
+
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -143,11 +169,20 @@
                     <label class="form-label">Observaciones</label>
                     <asp:TextBox ID="txtObservaciones" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control txt-color-personalizado" />
                 </div>
-                <asp:Button ID="btnConfirmarVenta" runat="server" Text="Confirmar venta" CssClass="btn btn-warning w-100 mt-2" />
+                <asp:UpdatePanel ID="upConfirmarVenta" runat="server">
+                <ContentTemplate>
+                    <asp:Button ID="btnConfirmarVenta" runat="server"
+                        Text="Confirmar venta"
+                        CssClass="btn btn-warning w-100 mt-2"
+                        OnClick="btnConfirmarVenta_Click" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
             </div>
         </div>
     </form>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

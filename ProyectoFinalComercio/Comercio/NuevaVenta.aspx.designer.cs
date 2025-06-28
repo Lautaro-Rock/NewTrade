@@ -51,6 +51,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtClienteSeleccionado;
 
         /// <summary>
+        /// Control hfIdClienteSeleccionado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdClienteSeleccionado;
+
+        /// <summary>
         /// Control upBuscarCliente.
         /// </summary>
         /// <remarks>
@@ -123,6 +132,33 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.GridView dgvProductos;
 
         /// <summary>
+        /// Control PanelDetalleVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelDetalleVenta;
+
+        /// <summary>
+        /// Control gvDetalleVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDetalleVenta;
+
+        /// <summary>
+        /// Control btnVaciarDetalleVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVaciarDetalleVenta;
+
+        /// <summary>
         /// Control lbTotal.
         /// </summary>
         /// <remarks>
@@ -157,6 +193,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+
+        /// <summary>
+        /// Control upConfirmarVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upConfirmarVenta;
 
         /// <summary>
         /// Control btnConfirmarVenta.
