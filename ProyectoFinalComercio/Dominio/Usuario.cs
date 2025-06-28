@@ -17,5 +17,10 @@ namespace Dominio
         public string Rol { get; set; } // Puede ser "Administrador" o "Vendedor"
 
         public bool Activo { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Apellido;
+        }
     }
 }   
