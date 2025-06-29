@@ -50,11 +50,28 @@ namespace Comercio
 
         protected void gvVentas_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int idVenta = Convert.ToInt32(gvVentas.DataKeys[index].Value);
+
             if (e.CommandName == "Modificar")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int idVenta = Convert.ToInt32(gvVentas.DataKeys[index].Value);
                 Response.Redirect("NuevaVenta.aspx?id=" + idVenta);
+            }
+
+            if (e.CommandName == "Eliminar")
+            {
+                try
+                {
+                    new VentaNegocio().BajaLogicaVenta(idVenta);
+                    CargarVentas(); // Re-lista después de anular
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ventaAnulada",
+                        "Swal.fire('Anulada', 'La venta fue anulada correctamente.', 'success');", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorAnular",
+                        $"Swal.fire('Error', 'No se pudo anular la venta: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+                }
             }
         }
 

@@ -135,13 +135,22 @@
                                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                                             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
                                             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
+                                            <asp:TemplateField HeaderText="Acciones">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btnQuitar" runat="server"
+                                                        Text="Quitar"
+                                                        OnClick="btnQuitar_Click"
+                                                        CommandArgument='<%# Eval("Producto.Id") %>'
+                                                        CssClass="btn btn-danger btn-sm" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
 
                                     <div class="text-end mt-3">
                                         <asp:Button ID="btnVaciarDetalleVenta" runat="server" Text="Vaciar lista"
                                             CssClass="btn btn-outline-danger"
-                                            OnClick="btnVaciarDetalleVenta_Click" />
+                                            OnClick="btnVaciarDetalleVenta_Click" />                         
                                     </div>
                                 </asp:Panel>
 

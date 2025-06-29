@@ -83,14 +83,14 @@ namespace Comercio
             int idCliente = Convert.ToInt32(gvClientes.SelectedDataKey.Value);
             hfIdClienteSeleccionado.Value = idCliente.ToString();
             ScriptManager.RegisterStartupScript(this, this.GetType(), "cerrarPanel", @"
-            setTimeout(function() {
-            var myCollapse = document.getElementById('collapseBuscarCliente');
-            if (myCollapse) {
-                var bsCollapse = bootstrap.Collapse.getOrCreateInstance(myCollapse);
-                bsCollapse.hide();
-            }
-        }, 100);
-    ", true);
+                    setTimeout(function() {
+                    var myCollapse = document.getElementById('collapseBuscarCliente');
+                    if (myCollapse) {
+                        var bsCollapse = bootstrap.Collapse.getOrCreateInstance(myCollapse);
+                        bsCollapse.hide();
+                    }
+                }, 100);
+            ", true);
         }
 
         protected void txtBuscarProducto_TextChanged(object sender, EventArgs e)
@@ -142,12 +142,14 @@ namespace Comercio
                     return;
                 }
 
-                if (cantidad > producto.Stock)
+                int stockFinal = producto.Stock - cantidad;
+                if (stockFinal < producto.StockMin)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "stockInsuficiente",
-                        $"Swal.fire('Stock insuficiente', 'Solo hay {producto.Stock} unidades disponibles.', 'warning');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "stockMinimo",
+                        $"Swal.fire('Stock mínimo', 'No podés agregar esa cantidad. El stock quedaría por debajo del mínimo permitido ({producto.StockMin}).', 'warning');", true);
                     return;
                 }
+
 
                 // Descontar stock "en memoria"
                 producto.Stock -= cantidad;
@@ -174,6 +176,36 @@ namespace Comercio
 
 
             }
+        }
+        protected void btnQuitar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int idProducto = Convert.ToInt32(btn.CommandArgument);
+
+            var detalle = Session["VentaDetalle"] as List<DetalleVenta>;
+            var productos = Productos;
+
+            var item = detalle.FirstOrDefault(d => d.Producto.Id == idProducto);
+            if (item != null)
+            {
+                detalle.Remove(item);
+
+                Producto original = productos.FirstOrDefault(p => p.Id == idProducto);
+                if (original != null)
+                    original.Stock += item.Cantidad;
+
+                Session["VentaDetalle"] = detalle;
+                Productos = productos;
+
+                gvDetalleVenta.DataSource = detalle;
+                gvDetalleVenta.DataBind();
+
+                dgvProductos.DataSource = productos;
+                dgvProductos.DataBind();
+
+                lbPrecio.Text = detalle.Sum(d => d.Subtotal).ToString("C2");
+            }
+
         }
 
         protected void btnVaciarDetalleVenta_Click(object sender, EventArgs e)
@@ -345,5 +377,6 @@ namespace Comercio
             }
 
         }
+
     }
 }

@@ -124,23 +124,56 @@ namespace Negocio
         }
 
 
-        public void BajaLogicaVenta(Venta venta)
+        public void BajaLogicaVenta(int idVenta)
         {
-            AccesoDatos data = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                data.SetearConsulta("UPDATE VENTA SET Activo = 0 WHERE IdVenta = @Id");
-                data.SetearParametro("@Id", venta.Id);
-                data.EjecutarAccion();
+
+                datos.AbrirConexion();
+                datos.ComenzarTransaccion();
+
+                // Obtener detalles de la venta
+                datos.SetearConsulta("SELECT IdProducto, Cantidad FROM DETALLEVENTA WHERE IdVenta = @IdVenta AND Activo = 1");
+                datos.SetearParametro("@IdVenta", idVenta);
+                datos.EjecutarLectura();
+
+                var stockARevertir = new List<(int IdProducto, int Cantidad)>();
+                while (datos.Lector.Read())
+                {
+                    stockARevertir.Add((
+                        (int)datos.Lector["IdProducto"],
+                        (int)datos.Lector["Cantidad"]
+                    ));
+                }
+                datos.CerrarLector();
+
+                // Restaurar stock
+                foreach (var item in stockARevertir)
+                {
+                    datos.SetearConsulta("UPDATE PRODUCTO SET Stock = Stock + @Cantidad WHERE Id = @IdProducto");
+                    datos.SetearParametro("@Cantidad", item.Cantidad);
+                    datos.SetearParametro("@IdProducto", item.IdProducto);
+                    datos.EjecutarAccion();
+                }
+
+                // Desactivar la venta
+                datos.SetearConsulta("UPDATE VENTA SET Activo = 0 WHERE Id = @IdVenta");
+                datos.SetearParametro("@IdVenta", idVenta);
+                datos.EjecutarAccion();
+
+                datos.ConfirmarTransaccion();
             }
             catch (Exception ex)
             {
-                throw ex;
+                datos.RollbackTransaccion();
+                throw new Exception("Error al anular la venta: " + ex.Message, ex);
             }
             finally
             {
-                data.CerrarConexion();
+                datos.CerrarConexion();
             }
+
         }
 
         public int ObtenerUltimoNumeroFactura()

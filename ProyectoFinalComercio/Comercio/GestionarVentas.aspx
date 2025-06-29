@@ -66,6 +66,7 @@
                     <asp:BoundField DataField="Usuario" HeaderText="Registrado por:" />
                     <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
                     <asp:ButtonField ButtonType="Button" Text="Modificar" CommandName="Modificar" ControlStyle-CssClass="btn btn-warning btn-sm" />
+                    <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Eliminar" ControlStyle-CssClass="btn btn-warning btn-sm" />
                 </Columns>
             </asp:GridView>
         </div>
