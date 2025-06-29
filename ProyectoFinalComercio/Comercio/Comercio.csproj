@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CatalogoProductos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -224,6 +225,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CatalogoProductos.aspx.cs">
+      <DependentUpon>CatalogoProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CatalogoProductos.aspx.designer.cs">
+      <DependentUpon>CatalogoProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionarUsuarios.aspx.cs">
       <DependentUpon>GestionarUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

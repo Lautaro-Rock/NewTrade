@@ -27,6 +27,7 @@ namespace Comercio
                     CargarVentaParaModificar(idVenta);
                     btnConfirmarVenta.Visible = false;
                     btnModificarVenta.Visible = true;
+                    Session["IdVentaEnEdicion"] = idVenta;
                 }
                 else
                 {
@@ -38,8 +39,47 @@ namespace Comercio
                 {
                     Productos = new ProductoNegocio().ListarProductos();
 
+                    // Si venís del catálogo, se descuenta del stock lo que ya está en el carrito
+                    if (Session["DesdeCatalogo"] != null && (bool)Session["DesdeCatalogo"])
+                    {
+                        var detalleCatalogo = Session["VentaDetalle"] as List<DetalleVenta>;
+                        if (detalleCatalogo != null && detalleCatalogo.Any())
+                        {
+                            foreach (var d in detalleCatalogo)
+                            {
+                                Producto original = Productos.FirstOrDefault(p => p.Id == d.Producto.Id);
+                                if (original != null)
+                                    original.Stock -= d.Cantidad;
+                            }
+                        }
+
+                        // No vaciamos Session["VentaDetalle"], solo actualizamos stock en memoria
+                        Session["DesdeCatalogo"] = null;
+
+                        // Cargamos los productos agregados al carrito
+                        if (detalleCatalogo != null && detalleCatalogo.Any())
+                        {
+                            gvDetalleVenta.DataSource = detalleCatalogo;
+                            gvDetalleVenta.DataBind();
+                            lbPrecio.Text = detalleCatalogo.Sum(d => d.Subtotal).ToString("C2");
+                        }
+
+                        // Validamos si estabamos en modo edicion:
+                        if (Session["IdVentaEnEdicion"] != null)
+                        {
+                            btnConfirmarVenta.Visible = false;
+                            btnModificarVenta.Visible = true;
+                            hfIdVenta.Value = Session["IdVentaEnEdicion"].ToString();
+                        }
+
+                    }
+
                     var negocioCliente = new NegocioCliente();
                     Session["lista"] = negocioCliente.ListarClientes();
+
+                    gvClientes.DataSource = Session["lista"];
+                    gvClientes.DataBind();
+
 
                     dgvProductos.DataSource = Productos;
                     dgvProductos.DataBind();
@@ -378,5 +418,31 @@ namespace Comercio
 
         }
 
+        protected void btnVerCatalogoDetallado_Click(object sender, EventArgs e)
+        {
+            // Si ya tenemos productos agregados al carrito antes de ir al catalogo, los transportamos
+            if (Session["VentaDetalle"] != null)
+            {
+                Session["DetalleDesdeVenta"] = Session["VentaDetalle"];
+            }
+
+            Session["DesdeVenta"] = true;
+            Response.Redirect("CatalogoProductos.aspx");
+
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Session["IdVentaEnEdicion"] = null;
+
+            if (((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
+            {
+                Response.Redirect("GestionarVentas.aspx");
+            }
+            else
+            {
+                Response.Redirect("PanelCtrlAdmin.aspx");
+            }
+        }
     }
 }

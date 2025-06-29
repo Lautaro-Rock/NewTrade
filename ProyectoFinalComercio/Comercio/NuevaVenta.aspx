@@ -96,6 +96,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <asp:Button ID="btnVerCatalogoDetallado" runat="server"
+                                    Text="Ver catálogo detallado"
+                                    CssClass="btn btn-outline-primary mt-3 w-100"
+                                    OnClick="btnVerCatalogoDetallado_Click" />
 
                                     <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False" OnRowCommand="dgvProductos_RowCommand" CssClass="table table-bordered table-hover">
                                         <Columns>
@@ -189,6 +193,10 @@
                         Text="Modificar venta"
                         CssClass="btn btn-warning w-100 mt-2"
                         OnClick="btnModificarVenta_Click" />
+                    <asp:Button ID="btnVolver" runat="server"
+                    Text="Salir"
+                    CssClass="btn btn-secondary mt-3 me-2"
+                    OnClick="btnVolver_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
 
