@@ -132,7 +132,9 @@
                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelect" />
                 <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelect" OnSelectedIndexChanged="ddlCampoSelect_SelectedIndexChanged">
                     <asp:ListItem Text="Nombre" />
+                    <asp:ListItem Text="Apellido" />
                     <asp:ListItem Text="DNI" />
+                    <asp:ListItem Text="Email" />
                 </asp:DropDownList>
             </div>
             <div class="col-md-2">

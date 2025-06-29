@@ -329,10 +329,14 @@ namespace Comercio
             if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Razon Social")
             {
                 ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
             }
             else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Cuit")
             {
                 ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
             }
             else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Email")
             {
@@ -341,6 +345,8 @@ namespace Comercio
             else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Direccion")
             {
                 ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
             }
         }
 

@@ -182,105 +182,111 @@
     <asp:UpdatePanel ID="updPanelFiltro" runat="server">
         <ContentTemplate>
             <asp:Panel ID="PanelListarProd" runat="server">
-                <h1>Gestión de Productos..</h1>
-                <!-- BÚSQUEDA RÁPIDA Y CHECK FILTRO -->
-                <div class="row align-items-end pb-3">
-                    <div class="col-md-6">
-                        <label for="txtFiltroRapido" class="form-label fw-bold">Búsqueda rápida</label>
-                        <div class="input-group">
-                            <span class="input-group-text" id="buscar-icono">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <asp:TextBox
-                                ID="txtFiltroRapido"
-                                runat="server"
-                                AutoPostBack="true"
-                                OnTextChanged="txtFiltroRapido_TextChanged"
-                                CssClass="form-control"
-                                placeholder="Escriba para buscar..."
-                                aria-describedby="buscar-icono" />
-                        </div>
-                    </div>
-                    <div class="col-md-6 d-flex align-items-center mt-3 mt-md-0">
-                        <asp:CheckBox ID="chkFiltroActivo" runat="server" CssClass="form-check-input me-2" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
-                        <label class="form-check-label mb-0">Activar filtros avanzados</label>
-                    </div>
-                </div>
-                <!-- FILTRO AVANZADO -->
-                <% if (chkFiltroActivo.Checked)
-                    { %>
-                <div class="row g-3 pb-3">
-                    <div class="col-md-3">
-                        <asp:Label ID="lbCampo" runat="server" Text="Campo" CssClass="form-label fw-bold" />
-                        <asp:DropDownList ID="ddlCampo" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
-                            <asp:ListItem Text="Por nombre" Value="Nombre"></asp:ListItem>
-                            <asp:ListItem Text="Por marca" Value="Marca"></asp:ListItem>
-                            <asp:ListItem Text="Por tipo" Value="Tipo"></asp:ListItem>
-                            <asp:ListItem Text="Por precio" Value="Precio"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="lbCriterio" runat="server" Text="Criterio" CssClass="form-label fw-bold" />
-                        <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select" />
-                    </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="lbFiltro" runat="server" Text="Filtro" CssClass="form-label fw-bold" />
-                        <asp:TextBox ID="txtFiltroAvanzado" runat="server" CssClass="form-control" />
-                    </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="lbActivo" runat="server" Text="Activo" CssClass="form-label fw-bold" />
-                        <asp:DropDownList ID="ddlActivo" runat="server" CssClass="form-select">
-                            <asp:ListItem Text="Todos" Value="Todos"></asp:ListItem>
-                            <asp:ListItem Text="Solo los activos" Value="Activos"></asp:ListItem>
-                            <asp:ListItem Text="Solo los inactivos" Value="Inactivos"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div class="row pb-3">
-                    <div class="col-12 d-flex flex-wrap gap-3">
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-light" OnClick="btnBuscar_Click" />
-                        <asp:Button ID="btnLimpiarFiltroAvanzado" runat="server" Text="Limpiar" CssClass="btn btn-outline-warning" OnClick="btnLimpiarFiltroAvanzado_Click1" />
-                    </div>
-                </div>
+             
 
-                <% } %>
-                <div class="row mb-4">
-                    <div class="col-12 text-end">
-                        <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success" Visible="false" />
-                    </div>
-                </div>
-                <div class="row g-4">
-                    <asp:Repeater ID="repProductos" runat="server">
-                        <ItemTemplate>
-                            <div class="col-12 col-md-6">
-                                <div class="card mb-3 shadow-sm border-warning" style="max-width: 100%;">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-md-4 text-center bg-light p-2 rounded-start">
-                                            <img src='<%# Eval("UrlImgProducto") %>' class="img-fluid rounded" alt="Imagen del producto" style="max-height: 120px; object-fit: contain;" />
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-1"><strong><%# Eval("Nombre") %></strong></h5>
-                                                <p class="mb-1"><strong>Marca:</strong> <%# Eval("Marca") %></p>
-                                                <p class="mb-1"><strong>Tipo:</strong> <%# Eval("TipoProducto") %></p>
-                                                <p class="mb-0"><strong>Precio:</strong> $<%# Eval("Precio", "{0:N2}") %></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 d-flex flex-column align-items-end justify-content-center pe-3">
-                                            <asp:Button ID="btnModificarPListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning btn-sm mb-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarPListado_Click" Visible="true" UseSubmitBehavior="true" CausesValidation="false" />
-                                            <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger btn-sm mb-2 w-100" CommandArgument='<%# Eval("Id") %>' Visible="true" OnClick="btnEliminarProductoListado_Click"
-                                                OnClientClick="return confirm('¿Estás seguro que deseas eliminar este producto?');" />
-                                        </div>
-                                    </div>
+<h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
+  Lista de Productos del sistema de nuestra app!
+</h1>
+
+<div class="container mt-3 mb-4">
+    <!-- FILTRO RÁPIDO -->
+    <div class="row justify-content-center align-items-center g-3">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <asp:Label Text="Filtrar" runat="server" AssociatedControlID="txtFiltroRapido" CssClass="me-2 mb-0 fw-bold" />
+            <asp:TextBox
+               ID="txtFiltroRapido"
+                runat="server"
+                AutoPostBack="true"
+                OnTextChanged="txtFiltroRapido_TextChanged"
+                CssClass="form-control"
+                placeholder="Escriba para buscar..."
+                style="max-width: 250px;" />
+        </div>
+        <div class="col-md-2 d-flex align-items-center">
+            <asp:CheckBox ID="chkFiltroActivo" runat="server" CssClass="form-check-input me-2" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
+            <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="chkFiltroActivo" CssClass="form-check-label mb-0" />
+        </div>
+    </div>
+
+    <!-- FILTRO AVANZADO -->
+    <% if (chkFiltroActivo.Checked) { %>
+        <div class="row justify-content-center g-3 mt-3">
+            <div class="col-md-2">
+                <asp:Label ID="lbCampo" runat="server" Text="Campo" CssClass="form-label fw-bold" />
+                <asp:DropDownList ID="ddlCampo" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                    <asp:ListItem Text="Por nombre" Value="Nombre"></asp:ListItem>
+                    <asp:ListItem Text="Por marca" Value="Marca"></asp:ListItem>
+                    <asp:ListItem Text="Por tipo" Value="Tipo"></asp:ListItem>
+                    <asp:ListItem Text="Por precio" Value="Precio"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="col-md-2">
+                <asp:Label ID="lbCriterio" runat="server" Text="Criterio" CssClass="form-label fw-bold" />
+                <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select" />
+            </div>
+            <div class="col-md-2">
+                <asp:Label ID="lbFiltro" runat="server" Text="Filtro" CssClass="form-label fw-bold" />
+                <asp:TextBox ID="txtFiltroAvanzado" runat="server" CssClass="form-control" />
+            </div>
+            <div class="col-md-2">
+                <asp:Label ID="lbActivo" runat="server" Text="Estado" CssClass="form-label fw-bold" />
+                <asp:DropDownList ID="ddlActivo" runat="server" CssClass="form-select">
+                    <asp:ListItem Text="Todos" Value="Todos"></asp:ListItem>
+                    <asp:ListItem Text="Solo los activos" Value="Activos"></asp:ListItem>
+                    <asp:ListItem Text="Solo los inactivos" Value="Inactivos"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col text-center">
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary w-25" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+    <% } %>
+</div>
+
+
+</div>
+<div class="row mb-4">
+    <div class="col-12 text-end">
+        <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success" Visible="false" />
+    </div>
+</div>
+<div class="row g-4 justify-content-center">
+    <asp:Repeater ID="repProductos" runat="server">
+        <ItemTemplate>
+            <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+                <div class="card card-uniforme mb-3 w-100 border-warning shadow-sm">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 fondo-imagen">
+                            <img src='<%# Eval("UrlImgProducto") %>' class="img-fluid rounded-start h-100 object-fit-contain" alt="Imagen del producto" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body card-body-uniforme d-flex flex-column justify-content-between">
+                                <div class="contenido-texto">
+                                    <h5 class="card-title"><strong><%# Eval("Nombre") %></strong></h5>
+                                    <p class="card-text mb-1"><strong>Marca:</strong> <%# Eval("Marca") %></p>
+                                    <p class="card-text mb-1"><strong>Tipo:</strong> <%# Eval("TipoProducto") %></p>
+                                    <p class="card-text mb-1"><strong>Precio:</strong> $<%# Eval("Precio", "{0:N2}") %></p>
+                                </div>
+                                <div>
+                                    <asp:Button ID="btnModificarPListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarPListado_Click" />
+                                    <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarProductoListado_Click" OnClientClick="return confirm('¿Estás seguro que deseas eliminar este producto?');" />
                                 </div>
                             </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                        </div>
+                    </div>
                 </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
 </div>
+</asp:Panel>
+</ContentTemplate>
+</asp:UpdatePanel>
+</div>
+
 
         <%-- Panel del eliminar producto --%>
         <asp:Panel ID="PanelEliminarProducto" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
