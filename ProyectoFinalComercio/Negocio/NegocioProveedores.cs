@@ -142,6 +142,12 @@ namespace Negocio
                         case "Igual a":
                             consulta += " AND RazonSocial = '" + filtro + "'";
                             break;
+                        case "Comienza con":
+                            consulta += " AND RazonSocial like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND RazonSocial like '%" + filtro + "'";
+                            break;
                     }
                 }
                 else if (campo == "Cuit")
@@ -151,6 +157,13 @@ namespace Negocio
                         case "Igual a":
                             consulta += " AND Cuit = '" + filtro + "'";
                             break;
+                        case "Comienza con":
+                            consulta += " AND Cuit like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND Cuit like '%" + filtro + "'";
+                            break;
+
                     }
                 }
                 else if (campo == "Email")
@@ -169,6 +182,13 @@ namespace Negocio
                         case "Igual a":
                             consulta += " AND Direccion = '" + filtro + "'";
                             break;
+                        case "Comienza con":
+                            consulta += " AND Cuit Direccion '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND Cuit Direccion '%" + filtro + "'";
+                            break;
+
                     }
                 }
 

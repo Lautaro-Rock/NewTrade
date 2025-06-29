@@ -66,6 +66,30 @@ namespace Negocio
                             break;
                     }
                 }
+                else if (campo == "Apellido")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " AND Apellido like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND Apellido like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " AND Apellido like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Email")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " AND Email = '" + filtro + "'";
+                            break;
+                    }
+                }
                 else if (campo == "DNI")
                 {
                     switch (criterio)

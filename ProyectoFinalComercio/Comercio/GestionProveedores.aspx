@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-    <asp:Label AssociatedControlID="txtTelefonoProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Teléfono</asp:Label>
+      <asp:Label AssociatedControlID="txtTelefonoProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Teléfono</asp:Label>
     <asp:TextBox ID="txtTelefonoProveedor" runat="server" CssClass="form-control" placeholder="Ej: 54321912345" />
     
     <asp:RequiredFieldValidator  
@@ -87,14 +87,16 @@
         ForeColor="Red"  
         ValidationGroup="AltaProveedor" />
     
-    <asp:RegularExpressionValidator  
-        ID="revTelefonoProveedor"  
-        runat="server"  
-        ControlToValidate="txtTelefonoProveedor"  
-        ValidationExpression="^\d{11}$"  
-        ErrorMessage="Agregar los 11 digitos requeridos!"  
-        ForeColor="Red"  
-        ValidationGroup="AltaProveedor" />
+   <asp:RegularExpressionValidator  
+    ID="revTelefonoProveedor"  
+    runat="server"  
+    ControlToValidate="txtTelefonoProveedor"  
+    ValidationExpression="^\d{11}$"  
+    ErrorMessage="Agregar los 11 digitos requeridos!"  
+    ForeColor="Red"  
+    ValidationGroup="AltaProveedor" 
+    CssClass="d-block" />
+
 </div>
  </div>
 
@@ -117,14 +119,16 @@
         ForeColor="Red"  
         ValidationGroup="AltaProveedor" />
     
-    <asp:RegularExpressionValidator  
-        ID="revEmailProveedor"  
-        runat="server"  
-        ControlToValidate="txtEmailProveedor"  
-        ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"  
-        ErrorMessage="El formato del email no es válido"  
-        ForeColor="Red"  
-        ValidationGroup="AltaProveedor" />
+<asp:RegularExpressionValidator  
+    ID="revEmailProveedor"  
+    runat="server"  
+    ControlToValidate="txtEmailProveedor"  
+    ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"  
+    ErrorMessage="El formato del email no es válido"  
+    ForeColor="Red"  
+    ValidationGroup="AltaProveedor" 
+    CssClass="d-block text-start" />
+
 </div>
              <div class="d-grid mt-4">
              <asp:Button ID="btnGuardarProveedor" runat="server" Text="Agregar proveedor" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProveedor_Click" ValidationGroup="AltaProveedor" />
@@ -136,7 +140,7 @@
         </div>
 
          <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
-         Lista de Proveedores
+         Lista de Proveedores de nuestra app!
          </h1>
         <div class="container mt-3 mb-4">
   <div class="row justify-content-center align-items-center g-3">

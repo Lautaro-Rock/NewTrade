@@ -333,6 +333,15 @@ namespace Comercio
                 ddlCriterio.Items.Add("Comienza con");
                 ddlCriterio.Items.Add("Termina con");
             }
+            else if (ddlCampoSelect.SelectedItem.ToString() == "Apellido")
+            {
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+            else if (ddlCampoSelect.SelectedItem.ToString() == "Email")
+            {
+                ddlCriterio.Items.Add("Igual a");
+            }
 
         }
 
