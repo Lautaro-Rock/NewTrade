@@ -35,18 +35,29 @@ namespace Negocio
 
         public void EjecutarLectura()
         {
-            comando.Connection = conexion;
             try
             {
-                conexion.Open();
+                if (lector != null && !lector.IsClosed)
+                {
+                    lector.Close();
+                    lector = null;
+                }
+
+                comando.Connection = conexion;
+                if (transaccion != null)
+                    comando.Transaction = transaccion;
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+
                 lector = comando.ExecuteReader();
 
             }
+
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
 
         public object EjecutarScalar()
@@ -97,7 +108,21 @@ namespace Negocio
         public void RollbackTransaccion()
         {
             if (transaccion != null)
-                transaccion.Rollback();
+            {
+                try
+                {
+                    transaccion.Rollback();
+                }
+                catch (Exception ex)
+                {
+                    // Opción: loguear o simplemente ignorar si la transacción ya se cerró
+                    throw new Exception("Error al hacer rollback de la transacción: " + ex.Message, ex);
+                }
+                finally
+                {
+                    transaccion = null;
+                }
+            }
         }
 
 
@@ -134,7 +159,17 @@ namespace Negocio
 
         }
 
+        public void CerrarLector()
+        {
+            if (lector != null)
+            {
+                if (!lector.IsClosed)
+                    lector.Close();
 
+                lector = null;
+            }
+
+        }
         public void CerrarConexion()
         {
             if (lector != null)

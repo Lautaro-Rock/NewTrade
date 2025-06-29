@@ -33,6 +33,7 @@
                                     <div class="mb-3">
                                         <asp:TextBox ID="txtClienteSeleccionado" runat="server" CssClass="form-control txt-cliente-seleccionado-color w-50" Placeholder="Haga clic en 'Buscar cliente'" Enabled="false" />
                                         <asp:HiddenField ID="hfIdClienteSeleccionado" runat="server" />
+                                        <asp:HiddenField ID="hfIdVenta" runat="server" />
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -175,6 +176,10 @@
                         Text="Confirmar venta"
                         CssClass="btn btn-warning w-100 mt-2"
                         OnClick="btnConfirmarVenta_Click" />
+                    <asp:Button ID ="btnModificarVenta" runat="server" 
+                        Text="Modificar venta"
+                        CssClass="btn btn-warning w-100 mt-2"
+                        OnClick="btnModificarVenta_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
 
