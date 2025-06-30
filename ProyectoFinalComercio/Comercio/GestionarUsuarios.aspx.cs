@@ -22,7 +22,7 @@ namespace Comercio
             }
 
             UsuarioNegocio negocio = new UsuarioNegocio();
-            Usuario = negocio.ListarUsuarios();
+            Usuario = negocio.ListarUsuarios().Where(u => u.Rol == "Vendedor").ToList();
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
             {
@@ -159,7 +159,7 @@ namespace Comercio
         {
             // Actualizar usuarios
             UsuarioNegocio negocio = new UsuarioNegocio();
-            Usuario = negocio.ListarUsuarios();
+            Usuario = negocio.ListarUsuarios().Where(u => u.Rol == "Vendedor").ToList();
             ddlUsuarioEliminar.DataSource = Usuario;
             ddlUsuarioEliminar.DataValueField = "Id";
             ddlUsuarioEliminar.DataTextField = "Nombre";

@@ -168,6 +168,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtCUITProveedor;
 
         /// <summary>
+        /// Control revCUIT.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCUIT;
+
+        /// <summary>
         /// Control txtEmailProveedor.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModificarProveedor;
+
+        /// <summary>
+        /// Control PanelListarProveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelListarProveedor;
 
         /// <summary>
         /// Control filtroUno.
@@ -265,15 +283,6 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscarUsuario;
-
-        /// <summary>
-        /// Control PanelListarProveedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelListarProveedor;
 
         /// <summary>
         /// Control rptProveedores.

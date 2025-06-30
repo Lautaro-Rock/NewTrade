@@ -21,6 +21,11 @@ namespace Comercio
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             MarcaNegocio marcas = new MarcaNegocio();
             lista_marcas = marcas.ListarMarcas();
 

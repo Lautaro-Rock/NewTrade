@@ -231,6 +231,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btnModificarUsuario;
 
         /// <summary>
+        /// Control PanelListarUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelListarUsuario;
+
+        /// <summary>
         /// Control filtroUno.
         /// </summary>
         /// <remarks>
@@ -292,15 +301,6 @@ namespace Comercio
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscarUsuario;
-
-        /// <summary>
-        /// Control PanelListarUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelListarUsuario;
 
         /// <summary>
         /// Control rptUsuarios.

@@ -106,30 +106,39 @@
                             <asp:Label AssociatedControlID="txtCUITProveedor" runat="server" CssClass="form-label fw-semibold text-dark">CUIT</asp:Label>
                             <asp:TextBox ID="txtCUITProveedor" runat="server" CssClass="form-control" placeholder="Ej: 23-3219876-2" />
                             <asp:RequiredFieldValidator ErrorMessage="El CUIT es obligatorio" ControlToValidate="txtCUITProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
+                            <asp:RegularExpressionValidator
+                            ID="revCUIT"
+                            runat="server"
+                            ControlToValidate="txtCUITProveedor"
+                            ValidationExpression="^\d{2}-\d{8}-\d{1}$"
+                            ErrorMessage="El formato debe ser XX-XXXXXXXX-X (ej: 20-12345678-3)"
+                            ForeColor="Red"
+                            ValidationGroup="AltaProveedor"
+                            CssClass="d-block text-start" />
+
                         </div>
 
                    <div class="form-group mb-3">
-    <asp:Label AssociatedControlID="txtEmailProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
-    <asp:TextBox ID="txtEmailProveedor" runat="server" CssClass="form-control" placeholder="Ej: comsys@email.com" />
+                    <asp:Label AssociatedControlID="txtEmailProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
+                    <asp:TextBox ID="txtEmailProveedor" runat="server" CssClass="form-control" placeholder="Ej: comsys@email.com" />
+                    <asp:RequiredFieldValidator  
+                        ErrorMessage="El email es obligatorio"  
+                        ControlToValidate="txtEmailProveedor"  
+                        runat="server"  
+                        ForeColor="Red"  
+                        ValidationGroup="AltaProveedor" />
     
-    <asp:RequiredFieldValidator  
-        ErrorMessage="El email es obligatorio"  
-        ControlToValidate="txtEmailProveedor"  
-        runat="server"  
-        ForeColor="Red"  
-        ValidationGroup="AltaProveedor" />
-    
-<asp:RegularExpressionValidator  
-    ID="revEmailProveedor"  
-    runat="server"  
-    ControlToValidate="txtEmailProveedor"  
-    ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"  
-    ErrorMessage="El formato del email no es válido"  
-    ForeColor="Red"  
-    ValidationGroup="AltaProveedor" 
-    CssClass="d-block text-start" />
+                    <asp:RegularExpressionValidator  
+                        ID="revEmailProveedor"  
+                        runat="server"  
+                        ControlToValidate="txtEmailProveedor"  
+                        ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"  
+                        ErrorMessage="El formato del email no es válido"  
+                        ForeColor="Red"  
+                        ValidationGroup="AltaProveedor" 
+                        CssClass="d-block text-start" />
 
-</div>
+                    </div>
              <div class="d-grid mt-4">
              <asp:Button ID="btnGuardarProveedor" runat="server" Text="Agregar proveedor" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProveedor_Click" ValidationGroup="AltaProveedor" />
             <asp:Button ID="btnModificarProveedor" runat="server" Text="Modificar proveedor" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProveedor_Click" Visible="false" ValidationGroup="AltaProveedor" />
@@ -138,6 +147,8 @@
            </div>
          </asp:Panel>
         </div>
+
+  <asp:Panel ID="PanelListarProveedor" runat="server">
 
          <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
          Lista de Proveedores de nuestra app!
@@ -195,7 +206,6 @@
 
         <%-- Panel del listado de proveedores --%>
      <div class="container" style="max-width: 1100px;">
-  <asp:Panel ID="PanelListarProveedor" runat="server">
     <div class="row g-4 justify-content-center">
       <asp:Repeater ID="rptProveedores" runat="server">
         <ItemTemplate>

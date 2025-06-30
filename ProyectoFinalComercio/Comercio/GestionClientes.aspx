@@ -109,6 +109,8 @@
             </asp:Panel>
         </div>
         
+<asp:Panel ID="PanelListarCliente" runat="server">
+
 <h1 class="text-center text-white mb-4 mt-2" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;"> 
   Lista de Clientes de nuestra app!
 </h1>
@@ -167,7 +169,6 @@
 
         <%-- Panel del listado de clientes --%>
    <div class="container" style="max-width: 1100px;">
-  <asp:Panel ID="PanelListarCliente" runat="server">
     <div class="row g-4 justify-content-center">
       <asp:Repeater ID="rptClientes" runat="server">
         <ItemTemplate>

@@ -52,8 +52,6 @@ namespace Comercio
                                     original.Stock -= d.Cantidad;
                             }
                         }
-
-                        // No vaciamos Session["VentaDetalle"], solo actualizamos stock en memoria
                         Session["DesdeCatalogo"] = null;
 
                         // Cargamos los productos agregados al carrito
@@ -70,6 +68,13 @@ namespace Comercio
                             btnConfirmarVenta.Visible = false;
                             btnModificarVenta.Visible = true;
                             hfIdVenta.Value = Session["IdVentaEnEdicion"].ToString();
+                        }
+
+                        // Validamos si ya había un cliente seleccionado 
+                        if (Session["IdClienteSeleccionado"] != null)
+                        {
+                            hfIdClienteSeleccionado.Value = Session["IdClienteSeleccionado"].ToString();
+                            txtClienteSeleccionado.Text = Session["NombreClienteSeleccionado"].ToString();
                         }
 
                     }
@@ -330,6 +335,10 @@ namespace Comercio
 
                 lbPrecio.Text = "$0.00";
 
+                Session["IdClienteSeleccionado"] = null;
+                Session["NombreClienteSeleccionado"] = null;
+
+
                 Productos = new ProductoNegocio().ListarProductos();
                 dgvProductos.DataSource = Productos;
                 dgvProductos.DataBind();
@@ -409,6 +418,21 @@ namespace Comercio
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ventaModificada",
                     "Swal.fire('¡Venta modificada!', 'Los cambios fueron guardados correctamente.', 'success');", true);
+
+                Session["VentaDetalle"] = new List<DetalleVenta>();
+                gvDetalleVenta.DataSource = null;
+                gvDetalleVenta.DataBind();
+
+                lbPrecio.Text = "$0.00";
+
+                Session["IdClienteSeleccionado"] = null;
+                Session["NombreClienteSeleccionado"] = null;
+
+
+                Productos = new ProductoNegocio().ListarProductos();
+                dgvProductos.DataSource = Productos;
+                dgvProductos.DataBind();
+
             }
             catch (Exception ex)
             {
@@ -425,6 +449,13 @@ namespace Comercio
             {
                 Session["DetalleDesdeVenta"] = Session["VentaDetalle"];
             }
+            // Si ya tenemos un cliente asignado tambien lo guardamos
+            if (!string.IsNullOrEmpty(hfIdClienteSeleccionado.Value))
+            {
+                Session["IdClienteSeleccionado"] = hfIdClienteSeleccionado.Value;
+                Session["NombreClienteSeleccionado"] = txtClienteSeleccionado.Text;
+            }
+
 
             Session["DesdeVenta"] = true;
             Response.Redirect("CatalogoProductos.aspx");
@@ -433,7 +464,11 @@ namespace Comercio
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
+            // Reseteamos los sessions
             Session["IdVentaEnEdicion"] = null;
+            Session["IdClienteSeleccionado"] = null;
+            Session["NombreClienteSeleccionado"] = null;
+
 
             if (((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
             {
