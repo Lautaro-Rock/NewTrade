@@ -52,6 +52,59 @@ namespace Negocio
             }
         }
 
+        public List<Producto> ListarProductosxProveedor(int id_proveedor)
+        {
+            AccesoDatos data = new AccesoDatos();
+            List<Producto> lista = new List<Producto>();
+            try
+            {
+                data.SetearConsulta(
+           "SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
+           "FROM Producto P " +
+           "INNER JOIN ProductoProveedor PP ON PP.IdProducto = P.Id " +
+           "INNER JOIN Marca M ON M.Id = P.IdMarca " +
+           "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto " +
+           "WHERE PP.IdProveedor = " + id_proveedor + " AND P.Activo = 1"
+       );
+                data.EjecutarLectura();
+                while (data.Lector.Read())
+                {
+                    Producto nuevo = new Producto();
+
+                    nuevo.Id = (int)data.Lector["Id"];
+                    nuevo.Nombre = (string)data.Lector["Nombre"];
+                    nuevo.Marca = new Marca();
+                    nuevo.Marca.Nombre = (string)data.Lector["Marca"];
+                    nuevo.Precio = data.Lector["Precio"] != DBNull.Value ? Convert.ToDecimal(data.Lector["Precio"]) : 0m;
+                    nuevo.Stock = (int)data.Lector["Stock"];
+                    nuevo.StockMin = (int)data.Lector["StockMinimo"];
+                    nuevo.UrlImgProducto = (string)data.Lector["UrlImgProducto"];
+                    nuevo.TipoProducto = new TipoProducto();
+                    nuevo.TipoProducto.Nombre = (string)data.Lector["Categoria"];
+
+                    lista.Add(nuevo);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         public List<Producto> Fitrar(string campo, string criterio, string filtro, string estado)
         {
 

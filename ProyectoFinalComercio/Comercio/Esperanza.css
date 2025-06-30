@@ -1,20 +1,12 @@
 ﻿﻿body {
     background-color: #1a093a;
-    color: #fff;
+    color: #ffffff;
 }
 
-.txt-cliente-seleccionado-color {
-    background-color: #2a1f44;
-    color: black;
-    border: 1px solid #3c2a5d;
+#form1 {
+    background-color: #1a093a;
+    color: #ffffff;
 }
-
-    .txt-cliente-seleccionado-color::placeholder {
-        color: black;
-    }
-
-
-
 
 
 .txt-color-personalizado {

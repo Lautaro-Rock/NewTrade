@@ -1,0 +1,71 @@
+﻿﻿body {
+    background-color: #1a093a;
+    color: #ffffff;
+}
+
+#form1 {
+    background-color: #1a093a;
+    color: #ffffff;
+}
+
+.color-table-personalizado thead {
+    border-top: none !important;
+}
+
+.color-table-personalizado {
+    background-color: #1a093a;
+    color: #ffffff;
+    border-collapse: collapse;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+    .color-table-personalizado th {
+        background-color: #1a093a;
+        border-top: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .color-table-personalizado td {
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        border-left: none;
+        border-right: none;
+        background-color: #1a093a;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .color-table-personalizado tr:hover td {
+        background-color: #2a1f44;
+        color: white;
+        transition: background-color 0.3s;
+    }
+
+    .color-table-personalizado .btn {
+        background-color: #daa520;
+        color: white;
+        border: none;
+    }
+
+        .color-table-personalizado .btn:hover {
+            background-color: #00796b;
+        }
+
+
+.color-personalizado-cart {
+    background-color: #2a1f44;
+    color: white;
+    border: none;
+}
+
+
+
