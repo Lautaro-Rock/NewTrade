@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Compras.css" />
     <Content Include="CatalogoProductos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -152,6 +153,7 @@
     <Content Include="Login.aspx" />
     <Content Include="GestiónDeProductos.aspx" />
     <Content Include="GestionClientes.aspx" />
+    <Content Include="RegistrarCompra.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -319,6 +321,13 @@
     </Compile>
     <Compile Include="GestionClientes.aspx.designer.cs">
       <DependentUpon>GestionClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarCompra.aspx.cs">
+      <DependentUpon>RegistrarCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarCompra.aspx.designer.cs">
+      <DependentUpon>RegistrarCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
