@@ -7,7 +7,7 @@ namespace Dominio
 {
     public class Compra
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public Proveedor Proveedor { get; set; }
 
         public Usuario Usuario { get; set; }
@@ -15,6 +15,8 @@ namespace Dominio
         public List<DetalleCompra> DetalleList { get; set; }
 
         public DateTime Fecha { get; set; }
+
+        public decimal Total { get; set; }
 
         public bool Activo { get; set; }
     }

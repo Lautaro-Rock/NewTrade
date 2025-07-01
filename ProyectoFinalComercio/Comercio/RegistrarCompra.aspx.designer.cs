@@ -213,6 +213,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.GridView dgvProductos;
 
         /// <summary>
+        /// Control upDetalleCompra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDetalleCompra;
+
+        /// <summary>
         /// Control PanelDetalleCompra.
         /// </summary>
         /// <remarks>
@@ -240,6 +249,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btnVaciarDetalleCompra;
 
         /// <summary>
+        /// Control upTotalCompra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upTotalCompra;
+
+        /// <summary>
         /// Control lbTotal.
         /// </summary>
         /// <remarks>
@@ -258,13 +276,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Label lbPrecio;
 
         /// <summary>
-        /// Control txtObservaciones.
+        /// Control upBtnConfirmarCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+        protected global::System.Web.UI.UpdatePanel upBtnConfirmarCompra;
 
         /// <summary>
         /// Control btnConfirmarCompra.
