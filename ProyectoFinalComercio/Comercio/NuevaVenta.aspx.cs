@@ -419,19 +419,8 @@ namespace Comercio
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ventaModificada",
                     "Swal.fire('¡Venta modificada!', 'Los cambios fueron guardados correctamente.', 'success');", true);
 
-                Session["VentaDetalle"] = new List<DetalleVenta>();
-                gvDetalleVenta.DataSource = null;
-                gvDetalleVenta.DataBind();
-
-                lbPrecio.Text = "$0.00";
-
                 Session["IdClienteSeleccionado"] = null;
                 Session["NombreClienteSeleccionado"] = null;
-
-
-                Productos = new ProductoNegocio().ListarProductos();
-                dgvProductos.DataSource = Productos;
-                dgvProductos.DataBind();
 
             }
             catch (Exception ex)

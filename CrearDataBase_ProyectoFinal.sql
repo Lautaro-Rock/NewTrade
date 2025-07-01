@@ -77,9 +77,12 @@ GO
 CREATE TABLE Compra (
     Id INT PRIMARY KEY IDENTITY(1,1),
     IdProveedor INT NOT NULL,
+    IdUsuario INT NOT NULL,
     Fecha DATETIME NOT NULL,
+    Total DECIMAL(18,2) NOT NULL DEFAULT 0,
     Activo BIT NOT NULL DEFAULT 1,
-    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(Id)
+    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(Id),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 GO
 

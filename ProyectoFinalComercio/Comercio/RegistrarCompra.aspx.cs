@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
 using Microsoft.Ajax.Utilities;
+using Dominio;
 using Negocio;
 
 namespace Comercio
@@ -24,7 +24,6 @@ namespace Comercio
             set { Session["Productos"] = value; }
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,8 +35,15 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorInit",
+                        $"Swal.fire('Error', 'No se pudieron cargar los proveedores: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
+
+            }
+            else
+            {
+                if (Session["Productos"] != null)
+                    Productos = Session["Productos"] as List<Producto>;
             }
         }
 
@@ -102,8 +108,17 @@ namespace Comercio
                     txtResultBusqRap.Text = "";
                     gvProveedores.DataSource = null;
                     gvProveedores.DataBind();
-                    dgvProductos.DataSource = new ProductoNegocio().ListarProductosxProveedor(id_proveedor);
+                    Productos = new ProductoNegocio().ListarProductosxProveedor(id_proveedor);
+                    dgvProductos.DataSource = Productos;
                     dgvProductos.DataBind();
+
+                    Session["ProveedorSeleccionado"] = id_proveedor;
+
+                    // Si se cambia de proveedor, reseteamos el carrito
+                    Session["CompraDetalle"] = new List<DetalleCompra>();
+                    gvDetalleCompra.DataSource = null;
+                    gvDetalleCompra.DataBind();
+                    lbPrecio.Text = "$0.00";
 
 
                 }
@@ -152,8 +167,18 @@ namespace Comercio
                     txtFiltro.Text = "";
                     ddlCampoProv.SelectedIndex = 0; 
                     DdlEstado.SelectedIndex = 0;
-                    dgvProductos.DataSource = new ProductoNegocio().ListarProductosxProveedor(id_proveedor);
+                    Productos = new ProductoNegocio().ListarProductosxProveedor(id_proveedor);
+                    dgvProductos.DataSource = Productos;
                     dgvProductos.DataBind();
+
+                    Session["ProveedorSeleccionado"] = id_proveedor;
+
+                    // Si se cambia de proveedor, reseteamos el carrito
+                    Session["CompraDetalle"] = new List<DetalleCompra>();
+                    gvDetalleCompra.DataSource = null;
+                    gvDetalleCompra.DataBind();
+                    lbPrecio.Text = "$0.00";
+
 
 
                 }
@@ -166,6 +191,187 @@ namespace Comercio
 
         }
 
+        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Agregar")
+            {
+                GridViewRow fila = ((Control)e.CommandSource).NamingContainer as GridViewRow;
+                int rowIndex = fila.RowIndex;
+                int idProducto = (int)dgvProductos.DataKeys[rowIndex].Value;
 
+                TextBox txtCantidad = fila.FindControl("txtCantidad") as TextBox;
+
+                if (!int.TryParse(txtCantidad.Text, out int cantidad) || cantidad <= 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "cantidadInvalida",
+                        "Swal.fire('Cantidad inválida', 'Debe ingresar una cantidad mayor a cero.', 'warning');", true);
+                    return;
+                }
+
+                List<Producto> productos = Session["Productos"] as List<Producto>;
+                Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
+                if (producto == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "productoNoEncontrado",
+                        "Swal.fire('Error', 'No se encontró el producto en sesión.', 'error');", true);
+                    return;
+                }
+
+
+                List<DetalleCompra> detalle = Session["CompraDetalle"] as List<DetalleCompra> ?? new List<DetalleCompra>();
+
+                if (detalle.Any(d => d.Producto.Id == producto.Id))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "productoRepetido",
+                        "Swal.fire('Ya agregado', 'Este producto ya fue agregado a la compra.', 'info');", true);
+                    return;
+                }
+
+                // Sumamos el stock en memoria
+                producto.Stock += cantidad;
+                Productos = productos;
+
+                DetalleCompra nuevo = new DetalleCompra
+                {
+                    Producto = producto,
+                    Cantidad = cantidad,
+                    PrecioUnitario = producto.Precio, // o podrías permitir ingresar precio de compra
+                    Activo = true
+                };
+
+                detalle.Add(nuevo);
+                Session["CompraDetalle"] = detalle;
+
+                // Pintar grilla detalle
+                gvDetalleCompra.DataSource = detalle;
+                gvDetalleCompra.DataBind();
+                lbPrecio.Text = detalle.Sum(d => d.Subtotal).ToString("C2");
+
+
+                // Refrescar tabla de productos
+                dgvProductos.DataSource = productos;
+                dgvProductos.DataBind();
+            }
+
+        }
+
+        protected void btnVaciarDetalleCompra_Click(object sender, EventArgs e)
+        {
+            List<DetalleCompra> detalle = Session["CompraDetalle"] as List<DetalleCompra>;
+            if (detalle != null)
+            {
+                foreach (var item in detalle)
+                {
+                    Producto prod = Productos.FirstOrDefault(p => p.Id == item.Producto.Id);
+                    if (prod != null)
+                        prod.Stock -= item.Cantidad; // Revertimos el stock sumado
+                }
+            }
+
+            // Limpiar carrito
+            Session["CompraDetalle"] = new List<DetalleCompra>();
+            gvDetalleCompra.DataSource = null;
+            gvDetalleCompra.DataBind();
+            lbPrecio.Text = "$0.00";
+
+            // Refrescar listado de productos
+            dgvProductos.DataSource = Productos;
+            dgvProductos.DataBind();
+
+
+        }
+
+        protected void btnQuitar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int idProducto = int.Parse(btn.CommandArgument);
+
+            List<DetalleCompra> detalle = Session["CompraDetalle"] as List<DetalleCompra>;
+            if (detalle != null)
+            {
+                var item = detalle.FirstOrDefault(d => d.Producto.Id == idProducto);
+                if (item != null)
+                {
+                    // Restaurar stock en memoria si querés deshacer el aumento
+                    Producto prod = Productos.FirstOrDefault(p => p.Id == idProducto);
+                    if (prod != null)
+                        prod.Stock -= item.Cantidad;
+
+                    detalle.Remove(item);
+                    Session["CompraDetalle"] = detalle;
+                }
+
+                gvDetalleCompra.DataSource = detalle;
+                gvDetalleCompra.DataBind();
+
+                lbPrecio.Text = detalle.Sum(d => d.Subtotal).ToString("C2");
+
+                // Refrescar productos
+                dgvProductos.DataSource = Productos;
+                dgvProductos.DataBind();
+            }
+
+        }
+
+        protected void btnConfirmarCompra_Click(object sender, EventArgs e)
+        {
+            List<DetalleCompra> detalle = Session["CompraDetalle"] as List<DetalleCompra>;
+
+            if (detalle == null || !detalle.Any())
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "detalleVacio",
+                    "Swal.fire('Carrito vacío', 'Debés agregar al menos un producto antes de confirmar.', 'warning');", true);
+                return;
+            }
+
+            if (Session["ProveedorSeleccionado"] == null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "sinProveedor",
+                    "Swal.fire('Falta proveedor', 'Seleccioná un proveedor antes de confirmar la compra.', 'warning');", true);
+                return;
+            }
+
+            Usuario usuarioLogueado = Session["usuario"] as Usuario;
+
+            if (usuarioLogueado == null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "usuarioNoLogueado",
+                    "Swal.fire('Error', 'Debés iniciar sesión para registrar una compra.', 'error');", true);
+                return;
+            }
+
+            Compra nuevaCompra = new Compra
+            {
+                Fecha = DateTime.Now,
+                Proveedor = new Proveedor { Id = (int)Session["ProveedorSeleccionado"] },
+                Usuario = new Usuario { Id = usuarioLogueado.Id },
+                Total = detalle.Sum(d => d.Subtotal),
+                DetalleList = detalle
+            };
+
+            try
+            {
+                new CompraNegocio().AgregarCompraCompleta(nuevaCompra);
+
+                // Limpiar todo
+                Session["CompraDetalle"] = new List<DetalleCompra>();
+                gvDetalleCompra.DataSource = null;
+                gvDetalleCompra.DataBind();
+                lbPrecio.Text = "$0.00";
+
+                Productos = new ProductoNegocio().ListarProductosxProveedor(nuevaCompra.Proveedor.Id);
+                dgvProductos.DataSource = Productos;
+                dgvProductos.DataBind();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "compraOk",
+                    "Swal.fire('¡Compra registrada!', 'Los productos fueron agregados al stock correctamente.', 'success');", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorCompra",
+                    $"Swal.fire('Error', 'No se pudo registrar la compra. Detalles: {ex.Message}', 'error');", true);
+            }
+
+        }
     }
 }
