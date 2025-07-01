@@ -17,6 +17,14 @@ namespace Comercio
             get { return Session["Productos"] as List<Producto>; }
             set { Session["Productos"] = value; }
         }
+
+        public List<Proveedor> Proveedores
+        {
+            get { return Session["Proveedores"] as List<Proveedor>; }
+            set { Session["Proveedores"] = value; }
+        }
+
+
         public List<Marca> lista_marcas = new List<Marca>();
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
@@ -36,10 +44,11 @@ namespace Comercio
             {
                 ProductoNegocio negocio = new ProductoNegocio();
                 Productos = negocio.ListarProductos();
+                Proveedores = new NegocioProveedores().ListarProveedores();
 
                 PanelFormAltaProd.Visible = false;
                 PanelListarProd.Visible = true;
-                PanelAgregarMarca.Visible= false;
+                PanelAgregarMarca.Visible = false;
                 PanelEliminarProducto.Visible = false;
                 PanelEliminarMarca.Visible = false;
                 PanelEliminarCategoria.Visible = false;
@@ -227,10 +236,9 @@ namespace Comercio
             {
                 return;
             }
-
+            List<int> idsProvedores = new List<int>();
             ProductoNegocio data = new ProductoNegocio();
             Producto producto = new Producto();
-
             producto.Nombre = txtNombreProd.Text.Trim();
             producto.Marca = new Marca { Id = int.Parse(ddlMarcas.SelectedValue) };
             producto.TipoProducto = new TipoProducto { Id = int.Parse(ddlTipoDeProducto.SelectedValue) };
@@ -244,15 +252,23 @@ namespace Comercio
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Precio no valido.');", true);
                 return;
-            }
-
+            }            
             try
             {
-
-                data.AgregarProductos(producto);
+                int id_del_prod_insertado = data.AgregarProductos(producto);                
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-               "Swal.fire('¡Producto agregado!', '', 'success');", true);
+                "Swal.fire('¡Producto agregado!', '', 'success');", true);
                 ActualizarListas();
+                foreach (ListItem item in chkProveedores.Items)
+                {
+                    if (item.Selected)
+                    {
+                        idsProvedores.Add(int.Parse(item.Value));                        
+                        
+                    }
+                }
+                data.AsociarProductoAProveedores(id_del_prod_insertado, idsProvedores);
+
 
                 // Limpiamos los campos del form :)
                 limpiarCampos();
@@ -366,7 +382,7 @@ namespace Comercio
             Page.Validate("AltaProducto");
             if (!Page.IsValid)
             {
-                return; 
+                return;
             }
 
             int idProducto;
@@ -389,7 +405,7 @@ namespace Comercio
 
             Producto producto = new Producto { Id = idProducto };
             ProductoNegocio data = new ProductoNegocio();
-            
+
             producto.Nombre = txtNombreProd.Text.Trim();
             producto.Marca = new Marca { Id = int.Parse(ddlMarcas.SelectedValue) };
             producto.TipoProducto = new TipoProducto { Id = int.Parse(ddlTipoDeProducto.SelectedValue) };
@@ -444,7 +460,7 @@ namespace Comercio
         protected void btnAgregarMarcaClick(object sender, EventArgs e)
         {
             MarcaNegocio marcas = new MarcaNegocio();
-            List <Marca> lista_marcas_act = marcas.ListarMarcas();
+            List<Marca> lista_marcas_act = marcas.ListarMarcas();
 
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
@@ -453,10 +469,10 @@ namespace Comercio
                 return;
             }
             bool existe = false;
-            
+
             foreach (Marca recorrer in lista_marcas_act)
             {
-                if(recorrer.Nombre.Equals(txtNombreMarca.Text, StringComparison.OrdinalIgnoreCase))
+                if (recorrer.Nombre.Equals(txtNombreMarca.Text, StringComparison.OrdinalIgnoreCase))
                 {
                     existe = true;
                     break;
@@ -480,7 +496,9 @@ namespace Comercio
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                      "Swal.fire('¡Marca agregada!', '', 'success');", true);
 
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
 
                     string mensaje = ex.Message.Replace("'", "\\'");
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
@@ -597,7 +615,7 @@ namespace Comercio
                "Swal.fire('¡Marca agregada!', 'Marca modificada', 'success');", true);
 
                 ActualizarListas();
-                txtNombreMarca.Text = ""; 
+                txtNombreMarca.Text = "";
             }
             catch (Exception ex)
             {
@@ -750,7 +768,7 @@ namespace Comercio
             }
             catch (Exception ex)
             {
-                 string mensaje = ex.Message.Replace("'", "\\'");
+                string mensaje = ex.Message.Replace("'", "\\'");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                 $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
             }
@@ -863,7 +881,7 @@ namespace Comercio
 
             ddlCategoriaModificar.DataSource = lista_tipos;
             ddlCategoriaModificar.DataValueField = "Id";
-            ddlCategoriaModificar.DataTextField = "Nombre"; 
+            ddlCategoriaModificar.DataTextField = "Nombre";
             ddlCategoriaModificar.DataBind();
             ddlCategoriaModificar.Items.Insert(0, new ListItem("Seleccione un Tipo de Producto", "0"));
 
@@ -888,7 +906,7 @@ namespace Comercio
 
         protected void btnModificarPListado_Click(object sender, EventArgs e)
         {
-            
+
             PanelListarProd.Visible = false;
             PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
@@ -910,9 +928,9 @@ namespace Comercio
             if (int.TryParse(btn.CommandArgument, out idProducto) && idProducto > 0)
             {
                 Producto producto = Productos.FirstOrDefault(p => p.Id == idProducto);
-                 if (producto != null)
-                 {
-                     setearCamposProductoSeleccionado(producto);
+                if (producto != null)
+                {
+                    setearCamposProductoSeleccionado(producto);
                     ddlProductoModificar.SelectedValue = producto.Id.ToString();
                 }
             }
@@ -968,7 +986,7 @@ namespace Comercio
             txtFiltroRapido.Text = string.Empty;
             txtFiltroAvanzado.Text = string.Empty;
             ddlCampo.SelectedIndex = 0;
-            ddlCriterio.Items.Clear(); 
+            ddlCriterio.Items.Clear();
             ddlActivo.SelectedIndex = 0;
 
             // Recargar todos los productos
@@ -976,6 +994,19 @@ namespace Comercio
             Productos = negocio.ListarProductos();
             repProductos.DataSource = Productos;
             repProductos.DataBind();
+        }
+
+        protected void txtFiltroProveedor_TextChanged(object sender, EventArgs e)
+        {
+            List<Proveedor> lista_rap_prov = Proveedores.FindAll(p =>
+            p.RazonSocial.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper()) ||
+            p.Cuit.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper())
+            );
+            chkProveedores.DataSource = lista_rap_prov;
+            chkProveedores.DataValueField = "Id";
+            chkProveedores.DataTextField = "RazonSocial";
+            chkProveedores.DataBind();
+
         }
     }
 }

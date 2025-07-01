@@ -20,3 +20,14 @@ C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Helpers\obj\De
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.Up2Date
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.dll
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Helpers.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Helpers.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Dominio.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Negocio.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Dominio.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\bin\Debug\Negocio.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.AssemblyReference.cache
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.CoreCompileInputs.cache
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.csproj.Up2Date
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Helpers\obj\Debug\Helpers.pdb

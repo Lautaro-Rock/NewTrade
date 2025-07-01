@@ -12,6 +12,7 @@
 </head>
 <body runat="server" id="bodyTag">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
         <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
         <div id="sidebar" class="sidebar">
             <h1 class="sidebar-title">Comsys</h1>
@@ -50,201 +51,164 @@
 
         <div id="blurOverlay" class="blur-overlay"></div>
 
-        <%-- Panel del formulario de alta proveedor --%>
         <div class="container p-5">
             <asp:Panel ID="PanelFormAltaProveedor" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
                 <asp:Label ID="lblTituloAgregarProveedor" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar proveedor"></asp:Label>
                 <asp:Label ID="lblTituloModificarProveedor" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar proveedor" Visible="false"></asp:Label>
-
                 <div class="mb-3" runat="server" id="divProveedorModificar" visible="false">
                     <asp:Label AssociatedControlID="ddlProveedorModificar" runat="server" CssClass="form-label fw-semibold text-dark">Proveedor</asp:Label>
                     <asp:DropDownList ID="ddlProveedorModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProveedorModificar_SelectedIndexChanged" />
                 </div>
-
-                <div class="row g-4">
-                    <!-- Columna izquierda -->
-                    <div class="col-12 col-md-6">
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtNombreProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Razón social</asp:Label>
-                            <asp:TextBox ID="txtNombreProveedor" runat="server" CssClass="form-control" placeholder="Ej: Comsys SA" />
-                            <asp:RequiredFieldValidator ErrorMessage="La razón social es obligatoria" ControlToValidate="txtNombreProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtDireccionProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Dirección</asp:Label>
-                            <asp:TextBox ID="txtDireccionProveedor" runat="server" CssClass="form-control" placeholder="Ej: Machain 9321" />
-                            <asp:RequiredFieldValidator ErrorMessage="La dirección es obligatoria" ControlToValidate="txtDireccionProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
-                        </div>
-
-                        <div class="form-group mb-3">
-      <asp:Label AssociatedControlID="txtTelefonoProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Teléfono</asp:Label>
-    <asp:TextBox ID="txtTelefonoProveedor" runat="server" CssClass="form-control" placeholder="Ej: 54321912345" />
-    
-    <asp:RequiredFieldValidator  
-        ErrorMessage="El número de teléfono es obligatorio"  
-        ControlToValidate="txtTelefonoProveedor"  
-        runat="server"  
-        ForeColor="Red"  
-        ValidationGroup="AltaProveedor" />
-    
-   <asp:RegularExpressionValidator  
-    ID="revTelefonoProveedor"  
-    runat="server"  
-    ControlToValidate="txtTelefonoProveedor"  
-    ValidationExpression="^\d{11}$"  
-    ErrorMessage="Agregar los 11 digitos requeridos!"  
-    ForeColor="Red"  
-    ValidationGroup="AltaProveedor" 
-    CssClass="d-block" />
-
-</div>
- </div>
-
-    <!-- Columna derecha -->
-                    <div class="col-12 col-md-6">
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtCUITProveedor" runat="server" CssClass="form-label fw-semibold text-dark">CUIT</asp:Label>
-                            <asp:TextBox ID="txtCUITProveedor" runat="server" CssClass="form-control" placeholder="Ej: 23-3219876-2" />
-                            <asp:RequiredFieldValidator ErrorMessage="El CUIT es obligatorio" ControlToValidate="txtCUITProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
-                            <asp:RegularExpressionValidator
-                            ID="revCUIT"
-                            runat="server"
-                            ControlToValidate="txtCUITProveedor"
-                            ValidationExpression="^\d{2}-\d{8}-\d{1}$"
-                            ErrorMessage="El formato debe ser XX-XXXXXXXX-X (ej: 20-12345678-3)"
-                            ForeColor="Red"
-                            ValidationGroup="AltaProveedor"
-                            CssClass="d-block text-start" />
-
-                        </div>
-
-                   <div class="form-group mb-3">
-                    <asp:Label AssociatedControlID="txtEmailProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
-                    <asp:TextBox ID="txtEmailProveedor" runat="server" CssClass="form-control" placeholder="Ej: comsys@email.com" />
-                    <asp:RequiredFieldValidator  
-                        ErrorMessage="El email es obligatorio"  
-                        ControlToValidate="txtEmailProveedor"  
-                        runat="server"  
-                        ForeColor="Red"  
-                        ValidationGroup="AltaProveedor" />
-    
-                    <asp:RegularExpressionValidator  
-                        ID="revEmailProveedor"  
-                        runat="server"  
-                        ControlToValidate="txtEmailProveedor"  
-                        ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"  
-                        ErrorMessage="El formato del email no es válido"  
-                        ForeColor="Red"  
-                        ValidationGroup="AltaProveedor" 
-                        CssClass="d-block text-start" />
-
+                <div class="row mb-3 mt-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtNombreProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Razón social</asp:Label>
+                        <asp:TextBox ID="txtNombreProveedor" runat="server" CssClass="form-control" placeholder="Ej: Comsys SA" />
+                        <asp:RequiredFieldValidator ErrorMessage="La razón social es obligatoria" ControlToValidate="txtNombreProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
                     </div>
-             <div class="d-grid mt-4">
-             <asp:Button ID="btnGuardarProveedor" runat="server" Text="Agregar proveedor" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProveedor_Click" ValidationGroup="AltaProveedor" />
-            <asp:Button ID="btnModificarProveedor" runat="server" Text="Modificar proveedor" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProveedor_Click" Visible="false" ValidationGroup="AltaProveedor" />
-           </div>
-         </div>
-           </div>
-         </asp:Panel>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtDireccionProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Dirección</asp:Label>
+                        <asp:TextBox ID="txtDireccionProveedor" runat="server" CssClass="form-control" placeholder="Ej: Machain 9321" />
+                        <asp:RequiredFieldValidator ErrorMessage="La dirección es obligatoria" ControlToValidate="txtDireccionProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtTelefonoProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Teléfono</asp:Label>
+                        <asp:TextBox ID="txtTelefonoProveedor" runat="server" CssClass="form-control" placeholder="Ej: 54321912345" />
+                        <asp:RequiredFieldValidator ErrorMessage="El número de teléfono es obligatorio" ControlToValidate="txtTelefonoProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
+                        <asp:RegularExpressionValidator ID="revTelefonoProveedor" runat="server" ControlToValidate="txtTelefonoProveedor" ValidationExpression="^\d{11}$" ErrorMessage="Agregar los 11 digitos requeridos!" ForeColor="Red" ValidationGroup="AltaProveedor" CssClass="d-block" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtCUITProveedor" runat="server" CssClass="form-label fw-semibold text-dark">CUIT</asp:Label>
+                        <asp:TextBox ID="txtCUITProveedor" runat="server" CssClass="form-control" placeholder="Ej: 23-3219876-2" />
+                        <asp:RequiredFieldValidator ErrorMessage="El CUIT es obligatorio" ControlToValidate="txtCUITProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
+                        <asp:RegularExpressionValidator ID="revCUIT" runat="server" ControlToValidate="txtCUITProveedor" ValidationExpression="^\d{2}-\d{8}-\d{1}$" ErrorMessage="El formato debe ser XX-XXXXXXXX-X (ej: 20-12345678-3)" ForeColor="Red" ValidationGroup="AltaProveedor" CssClass="d-block text-start" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtEmailProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Email</asp:Label>
+                        <asp:TextBox ID="txtEmailProveedor" runat="server" CssClass="form-control" placeholder="Ej: comsys@email.com" />
+                        <asp:RequiredFieldValidator ErrorMessage="El email es obligatorio" ControlToValidate="txtEmailProveedor" runat="server" ForeColor="Red" ValidationGroup="AltaProveedor" />
+                        <asp:RegularExpressionValidator ID="revEmailProveedor" runat="server" ControlToValidate="txtEmailProveedor" ValidationExpression="^[\w\.-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$" ErrorMessage="El formato del email no es válido" ForeColor="Red" ValidationGroup="AltaProveedor" CssClass="d-block text-start" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:UpdatePanel ID="UpPnlCheckListProd" runat="server">
+                            <ContentTemplate>
+                                <asp:Label AssociatedControlID="txtFiltroProducto" runat="server" CssClass="form-label fw-semibold text-dark">Asociar productos</asp:Label>
+                                <asp:TextBox ID="txtFiltroProducto" runat="server" CssClass="form-control mb-2" Placeholder="Filtrar por nombre o tipo" AutoPostBack="true" OnTextChanged="txtFiltroProducto_TextChanged" />
+                                <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                                    <asp:CheckBoxList ID="chkProductos" runat="server" CssClass="form-check text-dark" RepeatLayout="Table" RepeatDirection="Vertical" />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <div class="row mt-4">
+                            <div class="col-12 d-grid">
+                                <asp:Button ID="btnGuardarProveedor" runat="server" Text="Agregar proveedor" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProveedor_Click" ValidationGroup="AltaProveedor" />
+                                <asp:Button ID="btnModificarProveedor" runat="server" Text="Modificar proveedor" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProveedor_Click" Visible="false" ValidationGroup="AltaProveedor" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
         </div>
 
-  <asp:Panel ID="PanelListarProveedor" runat="server">
 
-         <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
-         Lista de Proveedores de nuestra app!
-         </h1>
-        <div class="container mt-3 mb-4">
-  <div class="row justify-content-center align-items-center g-3">
-    <div class="col-md-3 d-flex justify-content-center align-items-center">
-      <asp:Label Text="Filtrar" runat="server" AssociatedControlID="filtroUno" class="me-2 mb-0" />
-      <asp:TextBox runat="server" ID="filtroUno" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtroUno_TextChanged"  style="max-width: 250px;" />
-    </div>
-    <div class="col-md-2 d-flex align-items-center">
-      <asp:CheckBox ID="checkFiltrarAvanzado" runat="server" AutoPostBack="true" OnCheckedChanged="checkFiltrarAvanzado_CheckedChanged"/>
-      <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="checkFiltrarAvanzado" CssClass="ms-1 mb-0" />
-    </div>
-  </div>
-</div>
+        <asp:Panel ID="PanelListarProveedor" runat="server">
 
-    <% if (FiltroAvanzado) { %>
-        <div class="row justify-content-center g-3 ">
-            <div class="col-md-2">
-                <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelectUsuario" />
-                <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelectUsuario" OnSelectedIndexChanged="ddlCampoSelectUsuario_SelectedIndexChanged">
-                    <asp:ListItem Text="Razon Social" />
-                    <asp:ListItem Text="Cuit" />
-                    <asp:ListItem Text="Email" />
-                    <asp:ListItem Text="Direccion" />
-                </asp:DropDownList>
+            <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">Lista de Proveedores de nuestra app!
+            </h1>
+            <div class="container mt-3 mb-4">
+                <div class="row justify-content-center align-items-center g-3">
+                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                        <asp:Label Text="Filtrar" runat="server" AssociatedControlID="filtroUno" class="me-2 mb-0" />
+                        <asp:TextBox runat="server" ID="filtroUno" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtroUno_TextChanged" Style="max-width: 250px;" />
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <asp:CheckBox ID="checkFiltrarAvanzado" runat="server" AutoPostBack="true" OnCheckedChanged="checkFiltrarAvanzado_CheckedChanged" />
+                        <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="checkFiltrarAvanzado" CssClass="ms-1 mb-0" />
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2">
-                <asp:Label Text="Criterio" runat="server" AssociatedControlID="ddlCriterio" />
-                <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-control" />
+
+            <% if (FiltroAvanzado)
+                { %>
+            <div class="row justify-content-center g-3 ">
+                <div class="col-md-2">
+                    <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelectUsuario" />
+                    <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelectUsuario" OnSelectedIndexChanged="ddlCampoSelectUsuario_SelectedIndexChanged">
+                        <asp:ListItem Text="Razon Social" />
+                        <asp:ListItem Text="Cuit" />
+                        <asp:ListItem Text="Email" />
+                        <asp:ListItem Text="Direccion" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col-md-2">
+                    <asp:Label Text="Criterio" runat="server" AssociatedControlID="ddlCriterio" />
+                    <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <asp:Label Text="Filtro" runat="server" AssociatedControlID="ddlFiltroAvanzado" />
+                    <asp:TextBox runat="server" ID="ddlFiltroAvanzado" CssClass="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <asp:Label Text="Estado" runat="server" AssociatedControlID="ddlEstado" />
+                    <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">
+                        <asp:ListItem Text="Todos" />
+                        <asp:ListItem Text="Activo" />
+                        <asp:ListItem Text="Inactivo" />
+                    </asp:DropDownList>
+                </div>
             </div>
-            <div class="col-md-2">
-                <asp:Label Text="Filtro" runat="server" AssociatedControlID="ddlFiltroAvanzado" />
-                <asp:TextBox runat="server" ID="ddlFiltroAvanzado" CssClass="form-control" />
+            <div class="row my-4">
+                <div class="col text-center">
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarUsuario" OnClick="btnBuscarUsuario_Click" />
+                </div>
             </div>
-            <div class="col-md-2">
-                <asp:Label Text="Estado" runat="server" AssociatedControlID="ddlEstado" />
-                <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">
-                    <asp:ListItem Text="Todos" />
-                    <asp:ListItem Text="Activo" />
-                    <asp:ListItem Text="Inactivo" />
-                </asp:DropDownList>
-            </div>
+
+            <% } %>
+
+            <%-- Panel del listado de proveedores --%>
+            <div class="container" style="max-width: 1100px;">
+                <div class="row g-4 justify-content-center">
+                    <asp:Repeater ID="rptProveedores" runat="server">
+                        <ItemTemplate>
+                            <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+                                <div class="card card-uniforme mb-3 w-100">
+                                    <div class="row g-0 h-100">
+                                        <div class="col-md-4 fondo-imagen d-flex align-items-center justify-content-center" style="background-color: #f4f4f4; padding: 10px;">
+                                            <img src="/images/delivery-truck.png"
+                                                class="img-fluid rounded"
+                                                style="max-height: 100px; object-fit: contain;"
+                                                alt="Proveedor">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body card-body-uniforme">
+                                                <div class="contenido-texto">
+                                                    <h5 class="card-title"><%# Eval("RazonSocial") %></h5>
+                                                    <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
+                                                    <p class="card-text mb-1"><strong>CUIT:</strong> <%# Eval("Cuit") %></p>
+                                                    <p class="card-text mb-1"><strong>Teléfono:</strong> <%# Eval("Telefono") %></p>
+                                                    <p class="card-text mb-1"><strong>Dirección:</strong> <%# Eval("Direccion") %></p>
+                                                </div>
+                                                <div>
+                                                    <asp:Button ID="btnModificarProveedorListado" runat="server" Text="Modificar"
+                                                        CssClass="btn btn-outline-warning me-2 w-100"
+                                                        CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarProveedorListado_Click" />
+                                                    <asp:Button ID="btnEliminarProveedorListado" runat="server" Text="Eliminar"
+                                                        CssClass="btn btn-outline-danger mt-2 me-2 w-100"
+                                                        CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarProveedorListado_Click" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+        </asp:Panel>
         </div>
-<div class="row my-4">
-    <div class="col text-center">
-        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarUsuario" OnClick="btnBuscarUsuario_Click" />
-    </div>
-</div>
-
-    <% } %>
-
-
-
-        <%-- Panel del listado de proveedores --%>
-     <div class="container" style="max-width: 1100px;">
-    <div class="row g-4 justify-content-center">
-      <asp:Repeater ID="rptProveedores" runat="server">
-        <ItemTemplate>
-          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
-            <div class="card card-uniforme mb-3 w-100">
-              <div class="row g-0 h-100">
-                <div class="col-md-4 fondo-imagen d-flex align-items-center justify-content-center" style="background-color: #f4f4f4; padding: 10px;">
-                  <img src="/images/delivery-truck.png"
-                       class="img-fluid rounded"
-                       style="max-height: 100px; object-fit: contain;"
-                       alt="Proveedor">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body card-body-uniforme">
-                    <div class="contenido-texto">
-                      <h5 class="card-title"><%# Eval("RazonSocial") %></h5>
-                      <p class="card-text mb-1"><strong>Email:</strong> <%# Eval("Email") %></p>
-                      <p class="card-text mb-1"><strong>CUIT:</strong> <%# Eval("Cuit") %></p>
-                      <p class="card-text mb-1"><strong>Teléfono:</strong> <%# Eval("Telefono") %></p>
-                      <p class="card-text mb-1"><strong>Dirección:</strong> <%# Eval("Direccion") %></p>
-                    </div>
-                    <div>
-                      <asp:Button ID="btnModificarProveedorListado" runat="server" Text="Modificar"
-                                  CssClass="btn btn-outline-warning me-2 w-100"
-                                  CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarProveedorListado_Click" />
-                      <asp:Button ID="btnEliminarProveedorListado" runat="server" Text="Eliminar"
-                                  CssClass="btn btn-outline-danger mt-2 me-2 w-100"
-                                CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarProveedorListado_Click" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ItemTemplate>
-      </asp:Repeater>
-    </div>
-  </asp:Panel>
-</div>
 
         <%-- Panel del eliminar proveedor --%>
         <asp:Panel ID="PanelEliminarProveedor" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">

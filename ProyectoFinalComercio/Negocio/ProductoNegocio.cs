@@ -96,15 +96,6 @@ namespace Negocio
             }
         }
 
-
-
-
-
-
-
-
-
-
         public List<Producto> Fitrar(string campo, string criterio, string filtro, string estado)
         {
 
@@ -219,14 +210,15 @@ namespace Negocio
         }
 
 
-        public void AgregarProductos(Producto nuevo)
+        public int AgregarProductos(Producto nuevo)
         {
             AccesoDatos data = new AccesoDatos();
             try
             {
 
                 data.SetearConsulta("INSERT INTO Producto (Nombre, IdMarca, Precio, Stock, StockMinimo, IdTipoProducto, UrlImgProducto, Activo) " +
-                    "VALUES (@Nombre, @IdMarca, @Precio, @Stock, @StockMinimo, @IdTipoProducto, @UrlImgProducto, @Activo);");
+                    "VALUES (@Nombre, @IdMarca, @Precio, @Stock, @StockMinimo, @IdTipoProducto, @UrlImgProducto, @Activo);"+
+                    "SELECT SCOPE_IDENTITY();");
                 data.SetearParametro("@Nombre", nuevo.Nombre);
                 data.SetearParametro("@IdMarca", nuevo.Marca.Id);
                 data.SetearParametro("@Precio", nuevo.Precio.ToString(CultureInfo.InvariantCulture));
@@ -235,7 +227,11 @@ namespace Negocio
                 data.SetearParametro("@IdTipoProducto", nuevo.TipoProducto.Id);
                 data.SetearParametro("@UrlImgProducto", nuevo.UrlImgProducto ?? (object)DBNull.Value);
                 data.SetearParametro("@Activo", nuevo.Activo);
-                data.EjecutarAccion();
+                //Lo comento porque me duplica el registro de productos
+                //data.EjecutarAccion();
+
+                int id_insertado = Convert.ToInt32(data.EjecutarScalar());
+                return id_insertado;
             }
             catch (Exception ex)
             {
@@ -301,6 +297,31 @@ namespace Negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                data.CerrarConexion();
+            }
+        }
+
+        public void AsociarProductoAProveedores(int id_producto, List<int> ids_proveedores)
+        {
+            AccesoDatos data = new AccesoDatos();
+            try
+            {
+
+                foreach (int id_proveedor in ids_proveedores)
+                {
+                    data.SetearConsulta("INSERT INTO ProductoProveedor (IdProducto, IdProveedor) VALUES (@IdProducto, @IdProveedor);");
+                    data.SetearParametro("@IdProducto", id_producto);
+                    data.SetearParametro("@IdProveedor", id_proveedor);
+                    data.EjecutarAccion();
+                }
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
             finally

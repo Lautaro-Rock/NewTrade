@@ -13,6 +13,12 @@ namespace Comercio
     {
         public List<Proveedor> Proveedor = new List<Proveedor>();
 
+        public List<Producto> Productos
+        {
+            get { return Session["Productos"] as List<Producto>; }
+            set { Session["Productos"] = value; }
+        }
+
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +32,7 @@ namespace Comercio
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
             {
+                Productos = new ProductoNegocio().ListarProductos();
                 ActualizarListas();
                 PanelFormAltaProveedor.Visible = false;
                 PanelListarProveedor.Visible = true;
@@ -371,6 +378,17 @@ namespace Comercio
                     throw ex;
                 }
             }
+        }
+
+        protected void txtFiltroProducto_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista_rap_prov = Productos.FindAll(p =>
+            p.Nombre.ToUpper().Contains(txtFiltroProducto.Text.ToUpper()));
+            chkProductos.DataSource = lista_rap_prov;
+            chkProductos.DataValueField = "Id";
+            chkProductos.DataTextField = "Nombre";
+            chkProductos.DataBind();
+
         }
     }
 }
