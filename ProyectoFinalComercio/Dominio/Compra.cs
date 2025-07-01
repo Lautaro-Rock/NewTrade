@@ -8,11 +8,14 @@ namespace Dominio
     public class Compra
     {
         int Id { get; set; }
-        Proveedor Proveedor { get; set; }
-        
-        List<DetalleCompra> DetalleList { get; set; }
+        public Proveedor Proveedor { get; set; }
+
+        public Usuario Usuario { get; set; }
+
+        public List<DetalleCompra> DetalleList { get; set; }
+
+        public DateTime Fecha { get; set; }
 
         public bool Activo { get; set; }
-        DateTime Fecha { get; set; }
     }
 }

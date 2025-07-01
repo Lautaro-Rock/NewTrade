@@ -138,12 +138,15 @@
                     </div>
                 </div>
             </div>
+            <asp:HiddenField ID="hfIdProveedorSeleccionado" runat="server" />
+
             <!-- Esto es lo que tendrá productos -->
             <div class="mb-4 border border-white p-3 rounded">
                 <h4 class="text-white mb-3"><i class="bi bi-box-seam me-2"></i>Productos relacionados al proveedor seleccionado</h4>
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
-                        <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False" CssClass="table color-table-personalizado mt-5">
+                        <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False" OnRowCommand="dgvProductos_RowCommand" DataKeyNames="Id" 
+                            CssClass="table color-table-personalizado mt-5">
                             <Columns>
                                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                 <asp:BoundField DataField="Precio" HeaderText="Precio" />
@@ -158,7 +161,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Agregar">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-outline-primary" Text="Agregar" />
+                                        <asp:Button ID="btnAgregar" runat="server"
+                                        CssClass="btn btn-outline-primary"
+                                        Text="Agregar"
+                                        CommandName="Agregar"
+                                        CommandArgument='<%# Eval("Id") %>' />
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -166,6 +174,39 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+            <asp:Panel ID="PanelDetalleCompra" runat="server" CssClass="bg-light rounded shadow-sm p-4 mt-4 mb-3">
+
+            <h5 class="fw-bold text-dark mb-3">Detalle de productos seleccionados</h5>
+
+            <asp:GridView ID="gvDetalleCompra" runat="server"
+                AutoGenerateColumns="False"
+                CssClass="table table-striped table-bordered text-dark"
+                EmptyDataText="Todavía no se agregó ningún producto.">
+                <Columns>
+                    <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
+                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
+                    <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
+                    <asp:TemplateField HeaderText="Acciones">
+                        <ItemTemplate>
+                            <asp:Button ID="btnQuitar" runat="server"
+                                Text="Quitar"
+                                OnClick="btnQuitar_Click"
+                                CommandArgument='<%# Eval("Producto.Id") %>'
+                                CssClass="btn btn-danger btn-sm" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+
+            <div class="text-end mt-3">
+                <asp:Button ID="btnVaciarDetalleCompra" runat="server"
+                    Text="Vaciar lista"
+                    CssClass="btn btn-outline-danger"
+                    OnClick="btnVaciarDetalleCompra_Click" />
+            </div>
+        </asp:Panel>
+
             <!-- Para ver el total y confirmar compra -->
             <div class="card p-4 color-personalizado-cart">
                 <div class="row mb-3">
@@ -185,5 +226,6 @@
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
