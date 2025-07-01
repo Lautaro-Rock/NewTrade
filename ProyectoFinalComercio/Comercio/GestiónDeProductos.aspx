@@ -13,6 +13,7 @@
 </head>
 <body runat="server" id="bodyTag">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
         <div id="sidebar" class="sidebar">
             <h1 class="sidebar-title">Comsys</h1>
@@ -48,7 +49,7 @@
                             <asp:LinkButton ID="btnPanelAgregarMarca" runat="server" OnClick="btnPanelAgregarMarcaClick" CssClass="sidebar-link hover-effect">Agregar marca</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelModificarMarca" runat="server" OnClick="btnPanelModificarMarca_Click" CssClass="sidebar-link hover-effect">Modificar marca</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelEliminarMarca" runat="server" OnClick="btnPanelEliminarMarcaClick" CssClass="sidebar-link hover-effect">Eliminar marca</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect" Visible ="false">Listar marcas</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="sidebar-link hover-effect" Visible="false">Listar marcas</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                             <asp:LinkButton ID="btnPanelAgregarTipo" runat="server" OnClick="btnPanelAgregarTipo_Click" CssClass="sidebar-link hover-effect">Agregar tipo de producto</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelModificarTipo" runat="server" OnClick="btnPanelModificarTipo_Click" CssClass="sidebar-link hover-effect">Modificar tipo de producto</asp:LinkButton>
                             <asp:LinkButton ID="btnPanelEliminarTipo" runat="server" OnClick="btnPanelEliminarTipo_Click" CssClass="sidebar-link hover-effect">Eliminar tipo de producto</asp:LinkButton>
-                            <asp:LinkButton ID="btnListarTipo" runat="server" CssClass="sidebar-link hover-effect" Visible ="false">Listar todos los tipos de productos</asp:LinkButton>
+                            <asp:LinkButton ID="btnListarTipo" runat="server" CssClass="sidebar-link hover-effect" Visible="false">Listar todos los tipos de productos</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -79,11 +80,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
         <div id="blurOverlay" class="blur-overlay"></div>
 
         <%-- Panel del formulario de alta producto --%>
@@ -91,201 +89,234 @@
             <asp:Panel ID="PanelFormAltaProd" runat="server" CssClass="container bg-light rounded-4 shadow-lg p-4 mt-5">
                 <asp:Label ID="lblTituloAgregar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para agregar producto"></asp:Label>
                 <asp:Label ID="lblTituloModificar" runat="server" CssClass="h2 text-center mb-4 text-dark fw-bold" Text="Formulario para modificar producto" Visible="false"></asp:Label>
-
                 <div class="mb-3" runat="server" id="divProductoModificar" visible="false">
                     <asp:Label AssociatedControlID="ddlProductoModificar" runat="server" CssClass="form-label fw-semibold text-dark">Producto</asp:Label>
                     <asp:DropDownList ID="ddlProductoModificar" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProductoModificar_SelectedIndexChanged" />
                 </div>
-
-                <div class="row g-4">
-                    <!-- Columna izquierda -->
-                    <div class="col-12 col-md-6">
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtNombreProd" runat="server" CssClass="form-label fw-semibold text-dark">Nombre del producto</asp:Label>
-                            <asp:TextBox ID="txtNombreProd" runat="server" CssClass="form-control" placeholder="Ej: Taladro Black+Decker" />
-                            <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtNombreProd" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="ddlMarcas" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
-                            <asp:DropDownList ID="ddlMarcas" runat="server" CssClass="form-select" />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="ddlTipoDeProducto" runat="server" CssClass="form-label fw-semibold text-dark">Tipo de producto</asp:Label>
-                            <asp:DropDownList ID="ddlTipoDeProducto" runat="server" CssClass="form-select" />
-                        </div>
-
-                    <div class="form-group mb-3">
-    <asp:Label AssociatedControlID="txtPrecio" runat="server" CssClass="form-label fw-semibold text-dark">Precio</asp:Label>
-    <div class="input-group align-items-center">
-        <span class="input-group-text bg-secondary text-white">$</span>
-        <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
-
-        <!-- Contenedor para validadores alineados junto al input -->
-        <span style="display: inline-flex; flex-direction: column; margin-left: 10px;">
-            <asp:RequiredFieldValidator 
-                ErrorMessage="El precio es obligatorio" 
-                ControlToValidate="txtPrecio" 
-                runat="server" 
-                ForeColor="Red" 
-                ValidationGroup="AltaProducto" 
-                Display="Dynamic" />
-            <asp:CompareValidator  
-                ID="cvPrecioMayorCero"    
-                runat="server"  
-                ControlToValidate="txtPrecio"  
-                Operator="GreaterThan" 
-                ValueToCompare="0"  
-                Type="Double" 
-                ErrorMessage="El precio debe ser mayor a cero" 
-                ForeColor="Red" 
-                ValidationGroup="AltaProducto" 
-                Display="Dynamic" />
-        </span>
-    </div>
-</div>
-         </div>
-                    <!-- Columna derecha -->
-                    <div class="col-12 col-md-6">
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtStock" runat="server" CssClass="form-label fw-semibold text-dark">Stock</asp:Label>
-                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="Ej: 100 unidades" TextMode="Number" />
-                            <asp:RequiredFieldValidator ErrorMessage="El stock es obligatorio" ControlToValidate="txtStock" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
-                            <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
-                            <asp:RequiredFieldValidator ErrorMessage="El stock minimo es obligatorio" ControlToValidate="txtStockMin" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
-                            <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
-                            <asp:RequiredFieldValidator ErrorMessage="Complete con cualquier URL" ControlToValidate="txtUrlImagen" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
-                        </div>
-
-                        <div class="d-grid mt-4">
-                            <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" ValidationGroup="AltaProducto" />
-                            <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" ValidationGroup="AltaProducto" />
-                        </div>
+                <div class="row mb-3 mt-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtNombreProd" runat="server" CssClass="form-label fw-semibold text-dark">Nombre del producto</asp:Label>
+                        <asp:TextBox ID="txtNombreProd" runat="server" CssClass="form-control" placeholder="Ej: Taladro Black+Decker" />
+                        <asp:RequiredFieldValidator ErrorMessage="El nombre es obligatorio" ControlToValidate="txtNombreProd" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtStock" runat="server" CssClass="form-label fw-semibold text-dark">Stock</asp:Label>
+                        <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="Ej: 100 unidades" TextMode="Number" />
+                        <asp:RequiredFieldValidator ErrorMessage="El stock es obligatorio" ControlToValidate="txtStock" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
                     </div>
                 </div>
-            </asp:Panel>
-
-        </div>
-
-        <%-- Panel del listado de productos --%>
-<div class="container">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="updPanelFiltro" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="PanelListarProd" runat="server">
-             
-
-<h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">
-  Lista de Productos del sistema de nuestra app!
-</h1>
-
-<div class="container mt-3 mb-4">
-    <!-- FILTRO RÁPIDO -->
-    <div class="row justify-content-center align-items-center g-3">
-        <div class="col-md-3 d-flex justify-content-center align-items-center">
-            <asp:Label Text="Filtrar" runat="server" AssociatedControlID="txtFiltroRapido" CssClass="me-2 mb-0 fw-bold" />
-            <asp:TextBox
-               ID="txtFiltroRapido"
-                runat="server"
-                AutoPostBack="true"
-                OnTextChanged="txtFiltroRapido_TextChanged"
-                CssClass="form-control"
-                placeholder="Escriba para buscar..."
-                style="max-width: 250px;" />
-        </div>
-        <div class="col-md-2 d-flex align-items-center">
-            <asp:CheckBox ID="chkFiltroActivo" runat="server" CssClass="form-check-input me-2" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
-            <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="chkFiltroActivo" CssClass="form-check-label mb-0" />
-        </div>
-    </div>
-
-    <!-- FILTRO AVANZADO -->
-    <% if (chkFiltroActivo.Checked) { %>
-        <div class="row justify-content-center g-3 mt-3">
-            <div class="col-md-2">
-                <asp:Label ID="lbCampo" runat="server" Text="Campo" CssClass="form-label fw-bold" />
-                <asp:DropDownList ID="ddlCampo" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
-                    <asp:ListItem Text="Por nombre" Value="Nombre"></asp:ListItem>
-                    <asp:ListItem Text="Por marca" Value="Marca"></asp:ListItem>
-                    <asp:ListItem Text="Por tipo" Value="Tipo"></asp:ListItem>
-                    <asp:ListItem Text="Por precio" Value="Precio"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="col-md-2">
-                <asp:Label ID="lbCriterio" runat="server" Text="Criterio" CssClass="form-label fw-bold" />
-                <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select" />
-            </div>
-            <div class="col-md-2">
-                <asp:Label ID="lbFiltro" runat="server" Text="Filtro" CssClass="form-label fw-bold" />
-                <asp:TextBox ID="txtFiltroAvanzado" runat="server" CssClass="form-control" />
-            </div>
-            <div class="col-md-2">
-                <asp:Label ID="lbActivo" runat="server" Text="Estado" CssClass="form-label fw-bold" />
-                <asp:DropDownList ID="ddlActivo" runat="server" CssClass="form-select">
-                    <asp:ListItem Text="Todos" Value="Todos"></asp:ListItem>
-                    <asp:ListItem Text="Solo los activos" Value="Activos"></asp:ListItem>
-                    <asp:ListItem Text="Solo los inactivos" Value="Inactivos"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-        </div>
-
-        <div class="row my-4">
-            <div class="col text-center">
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary w-25" OnClick="btnBuscar_Click" />
-            </div>
-        </div>
-    <% } %>
-</div>
-
-
-</div>
-<div class="row mb-4">
-    <div class="col-12 text-end">
-        <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success" Visible="false" />
-    </div>
-</div>
-<div class="row g-4 justify-content-center">
-    <asp:Repeater ID="repProductos" runat="server">
-        <ItemTemplate>
-            <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
-                <div class="card card-uniforme mb-3 w-100 border-warning shadow-sm">
-                    <div class="row g-0 h-100">
-                        <div class="col-md-4 fondo-imagen">
-                            <img src='<%# Eval("UrlImgProducto") %>' class="img-fluid rounded-start h-100 object-fit-contain" alt="Imagen del producto" />
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="ddlMarcas" runat="server" CssClass="form-label fw-semibold text-dark">Marca</asp:Label>
+                        <asp:DropDownList ID="ddlMarcas" runat="server" CssClass="form-select" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtStockMin" runat="server" CssClass="form-label fw-semibold text-dark">Stock mínimo</asp:Label>
+                        <asp:TextBox ID="txtStockMin" runat="server" CssClass="form-control" placeholder="Ej: 10" TextMode="Number" />
+                        <asp:RequiredFieldValidator ErrorMessage="El stock minimo es obligatorio" ControlToValidate="txtStockMin" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="ddlTipoDeProducto" runat="server" CssClass="form-label fw-semibold text-dark">Tipo de producto</asp:Label>
+                        <asp:DropDownList ID="ddlTipoDeProducto" runat="server" CssClass="form-select" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtUrlImagen" runat="server" CssClass="form-label fw-semibold text-dark">URL de la imagen</asp:Label>
+                        <asp:TextBox ID="txtUrlImagen" runat="server" CssClass="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                        <asp:RequiredFieldValidator ErrorMessage="Complete con cualquier URL" ControlToValidate="txtUrlImagen" runat="server" ForeColor="Red" ValidationGroup="AltaProducto" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtPrecio" runat="server" CssClass="form-label fw-semibold text-dark">Precio</asp:Label>
+                        <div class="input-group align-items-center">
+                            <span class="input-group-text bg-secondary text-white">$</span>
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" />
+                            <span style="display: inline-flex; flex-direction: column; margin-left: 10px;">
+                                <asp:RequiredFieldValidator
+                                    ErrorMessage="El precio es obligatorio"
+                                    ControlToValidate="txtPrecio"
+                                    runat="server"
+                                    ForeColor="Red"
+                                    ValidationGroup="AltaProducto"
+                                    Display="Dynamic" />
+                                <asp:CompareValidator
+                                    ID="cvPrecioMayorCero"
+                                    runat="server"
+                                    ControlToValidate="txtPrecio"
+                                    Operator="GreaterThan"
+                                    ValueToCompare="0"
+                                    Type="Double"
+                                    ErrorMessage="El precio debe ser mayor a cero"
+                                    ForeColor="Red"
+                                    ValidationGroup="AltaProducto"
+                                    Display="Dynamic" />
+                            </span>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body card-body-uniforme d-flex flex-column justify-content-between">
-                                <div class="contenido-texto">
-                                    <h5 class="card-title"><strong><%# Eval("Nombre") %></strong></h5>
-                                    <p class="card-text mb-1"><strong>Marca:</strong> <%# Eval("Marca") %></p>
-                                    <p class="card-text mb-1"><strong>Tipo:</strong> <%# Eval("TipoProducto") %></p>
-                                    <p class="card-text mb-1"><strong>Precio:</strong> $<%# Eval("Precio", "{0:N2}") %></p>
-                                </div>
-                                <div>
-                                    <asp:Button ID="btnModificarPListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarPListado_Click" />
-                                    <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarProductoListado_Click" OnClientClick="return confirm('¿Estás seguro que deseas eliminar este producto?');" />
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label AssociatedControlID="txtPorcentajeGanancia" runat="server" CssClass="form-label fw-semibold text-dark">Porcentaje de ganancia</asp:Label>
+                        <div class="input-group align-items-center">
+                            <span class="input-group-text bg-secondary text-white">%</span>
+                            <asp:TextBox ID="txtPorcentajeGanancia" runat="server" CssClass="form-control" placeholder="Ej: 25" TextMode="Number" />
+                            <span style="display: inline-flex; flex-direction: column; margin-left: 10px;">
+                                <asp:RequiredFieldValidator
+                                    ErrorMessage="El porcentaje es obligatorio"
+                                    ControlToValidate="txtPorcentajeGanancia"
+                                    runat="server"
+                                    ForeColor="Red"
+                                    ValidationGroup="AltaProducto"
+                                    Display="Dynamic" />
+                                <asp:RangeValidator
+                                    ID="rvPorcentaje"
+                                    runat="server"
+                                    ControlToValidate="txtPorcentajeGanancia"
+                                    MinimumValue="0"
+                                    MaximumValue="100"
+                                    Type="Double"
+                                    ErrorMessage="Debe estar entre 0 y 100"
+                                    ForeColor="Red"
+                                    ValidationGroup="AltaProducto"
+                                    Display="Dynamic" />
+                            </span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <asp:UpdatePanel ID="UpPnlCheckListProv" runat="server">
+                                <ContentTemplate>
+                                    <asp:Label AssociatedControlID="txtFiltroProveedor" runat="server" CssClass="form-label fw-semibold text-dark">Asociar proveedores</asp:Label>
+                                    <asp:TextBox ID="txtFiltroProveedor" runat="server" CssClass="form-control mb-2" Placeholder="Filtrar por nombre o CUIT" AutoPostBack="true" OnTextChanged="txtFiltroProveedor_TextChanged" />
+                                    <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                                        <asp:CheckBoxList ID="chkProveedores" runat="server"
+                                            CssClass="form-check text-dark"
+                                            RepeatLayout="Table"
+                                            RepeatDirection="Vertical" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-grid">
+                                <asp:Button ID="btnGuardarProducto" runat="server" Text="Agregar producto" CssClass="btn btn-success btn-lg fw-bold" OnClick="btnGuardarProducto_Click" ValidationGroup="AltaProducto" />
+                                <asp:Button ID="btnModificarProducto" runat="server" Text="Modificar producto" CssClass="btn btn-warning btn-lg fw-bold" OnClick="btnModificarProducto_Click" Visible="false" ValidationGroup="AltaProducto" />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
-</div>
-</asp:Panel>
-</ContentTemplate>
-</asp:UpdatePanel>
-</div>
+            </asp:Panel>
+        </div>
+
+
+        <%-- Panel del listado de productos --%>
+        <div class="container">
+
+            <asp:UpdatePanel ID="updPanelFiltro" runat="server">
+                <ContentTemplate>
+                    <asp:Panel ID="PanelListarProd" runat="server">
+
+
+                        <h1 class="text-center text-white mb-4" style="font-family: 'Special Elite', monospace; font-size: 2.5rem;">Lista de Productos del sistema de nuestra app!
+                        </h1>
+
+                        <div class="container mt-3 mb-4">
+                            <!-- FILTRO RÁPIDO -->
+                            <div class="row justify-content-center align-items-center g-3">
+                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                    <asp:Label Text="Filtrar" runat="server" AssociatedControlID="txtFiltroRapido" CssClass="me-2 mb-0 fw-bold" />
+                                    <asp:TextBox
+                                        ID="txtFiltroRapido"
+                                        runat="server"
+                                        AutoPostBack="true"
+                                        OnTextChanged="txtFiltroRapido_TextChanged"
+                                        CssClass="form-control"
+                                        placeholder="Escriba para buscar..."
+                                        Style="max-width: 250px;" />
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center">
+                                    <asp:CheckBox ID="chkFiltroActivo" runat="server" CssClass="form-check-input me-2" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
+                                    <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="chkFiltroActivo" CssClass="form-check-label mb-0" />
+                                </div>
+                            </div>
+
+                            <!-- FILTRO AVANZADO -->
+                            <% if (chkFiltroActivo.Checked)
+                                { %>
+                            <div class="row justify-content-center g-3 mt-3">
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbCampo" runat="server" Text="Campo" CssClass="form-label fw-bold" />
+                                    <asp:DropDownList ID="ddlCampo" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                                        <asp:ListItem Text="Por nombre" Value="Nombre"></asp:ListItem>
+                                        <asp:ListItem Text="Por marca" Value="Marca"></asp:ListItem>
+                                        <asp:ListItem Text="Por tipo" Value="Tipo"></asp:ListItem>
+                                        <asp:ListItem Text="Por precio" Value="Precio"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbCriterio" runat="server" Text="Criterio" CssClass="form-label fw-bold" />
+                                    <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select" />
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbFiltro" runat="server" Text="Filtro" CssClass="form-label fw-bold" />
+                                    <asp:TextBox ID="txtFiltroAvanzado" runat="server" CssClass="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbActivo" runat="server" Text="Estado" CssClass="form-label fw-bold" />
+                                    <asp:DropDownList ID="ddlActivo" runat="server" CssClass="form-select">
+                                        <asp:ListItem Text="Todos" Value="Todos"></asp:ListItem>
+                                        <asp:ListItem Text="Solo los activos" Value="Activos"></asp:ListItem>
+                                        <asp:ListItem Text="Solo los inactivos" Value="Inactivos"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+
+                            <div class="row my-4">
+                                <div class="col text-center">
+                                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary w-25" OnClick="btnBuscar_Click" />
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+
+
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12 text-end">
+                                <asp:Button ID="btnAgregarProducto" runat="server" Text="Nuevo producto" CssClass="btn btn-success" Visible="false" />
+                            </div>
+                        </div>
+                        <div class="row g-4 justify-content-center">
+                            <asp:Repeater ID="repProductos" runat="server">
+                                <ItemTemplate>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+                                        <div class="card card-uniforme mb-3 w-100 border-warning shadow-sm">
+                                            <div class="row g-0 h-100">
+                                                <div class="col-md-4 fondo-imagen">
+                                                    <img src='<%# Eval("UrlImgProducto") %>' class="img-fluid rounded-start h-100 object-fit-contain" alt="Imagen del producto" />
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body card-body-uniforme d-flex flex-column justify-content-between">
+                                                        <div class="contenido-texto">
+                                                            <h5 class="card-title"><strong><%# Eval("Nombre") %></strong></h5>
+                                                            <p class="card-text mb-1"><strong>Marca:</strong> <%# Eval("Marca") %></p>
+                                                            <p class="card-text mb-1"><strong>Tipo:</strong> <%# Eval("TipoProducto") %></p>
+                                                            <p class="card-text mb-1"><strong>Precio:</strong> $<%# Eval("Precio", "{0:N2}") %></p>
+                                                        </div>
+                                                        <div>
+                                                            <asp:Button ID="btnModificarPListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarPListado_Click" />
+                                                            <asp:Button ID="btnEliminarProductoListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarProductoListado_Click" OnClientClick="return confirm('¿Estás seguro que deseas eliminar este producto?');" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
 
 
         <%-- Panel del eliminar producto --%>

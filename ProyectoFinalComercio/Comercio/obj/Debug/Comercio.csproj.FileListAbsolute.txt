@@ -400,3 +400,5 @@ C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio
 C:\Users\joasa\OneDrive\Desktop\Repo TPC\NewTrade\ProyectoFinalComercio\Comercio\bin\Helpers.pdb
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Comercio\bin\Helpers.dll
 C:\Users\Lauty\OneDrive\Escritorio\NewTrade\ProyectoFinalComercio\Comercio\bin\Helpers.pdb
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Comercio\bin\Helpers.dll
+C:\Users\Marcos\Desktop\AppFinal\NewTrade\ProyectoFinalComercio\Comercio\bin\Helpers.pdb
