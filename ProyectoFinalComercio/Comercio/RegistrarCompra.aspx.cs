@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Antlr.Runtime.Misc;
+using Dominio;
+using Microsoft.Ajax.Utilities;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.Ajax.Utilities;
-using Dominio;
-using Negocio;
 
 namespace Comercio
 {
@@ -26,6 +27,11 @@ namespace Comercio
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             if (!IsPostBack)
             {
 
@@ -140,8 +146,8 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    Session.Add("Error", ex);
-                    throw;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorInit",
+                     $"Swal.fire('Error', 'No se pudieron cargar los proveedores: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
 
             }
@@ -151,14 +157,15 @@ namespace Comercio
         {
             try
             {
-                gvProvFiltroAvanzado.DataSource = new NegocioProveedores().Fitrar(ddlCampoProv.SelectedValue, ddlCriterioProv.SelectedItem.Text, txtFiltro.Text, DdlEstado.SelectedItem.Text);
+                gvProvFiltroAvanzado.DataSource = new NegocioProveedores().Fitrar(ddlCampoProv.SelectedValue, ddlCriterioProv.SelectedItem.Text, txtFiltro.Text, "Solamente Activos");
                 gvProvFiltroAvanzado.DataBind();
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                throw;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                 $"Swal.fire('Error al filtrar', '{ex.Message.Replace("'", "\\'")}', 'error');", true);
             }
+
         }
 
         protected void gvProvFiltroAvanzado_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -182,7 +189,6 @@ namespace Comercio
                     gvProvFiltroAvanzado.DataBind();
                     txtFiltro.Text = "";
                     ddlCampoProv.SelectedIndex = 0; 
-                    DdlEstado.SelectedIndex = 0;
                     Productos = new ProductoNegocio().ListarProductosxProveedor(id_proveedor);
                     dgvProductos.DataSource = Productos;
                     dgvProductos.DataBind();
@@ -200,8 +206,8 @@ namespace Comercio
                 }
                 catch (Exception ex)
                 {
-                    Session.Add("Error", ex);
-                    throw;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorInit",
+                    $"Swal.fire('Error', 'No se pudieron cargar los proveedores: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
             }
 
