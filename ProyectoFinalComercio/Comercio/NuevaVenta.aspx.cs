@@ -19,10 +19,16 @@ namespace Comercio
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+               Response.Redirect("Default.aspx");
+            }
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["id"] != null)
                 {
+
                     int idVenta = int.Parse(Request.QueryString["id"]);
                     CargarVentaParaModificar(idVenta);
                     btnConfirmarVenta.Visible = false;
@@ -355,22 +361,40 @@ namespace Comercio
 
         private void CargarVentaParaModificar(int idVenta)
         {
-            Venta venta = new VentaNegocio().ObtenerVentaPorId(idVenta);
+            try
+            {
+                Venta venta = new VentaNegocio().ObtenerVentaPorId(idVenta);
 
-            // Setear cliente
-            txtClienteSeleccionado.Text = $"{venta.Cliente.Nombre}, {venta.Cliente.Apellido}";
-            hfIdClienteSeleccionado.Value = venta.Cliente.Id.ToString();
+                if (((Dominio.Usuario)Session["usuario"]).Rol == "Vendedor" && venta.Usuario.Id != ((Dominio.Usuario)Session["usuario"]).Id)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                        "Swal.fire('Acceso denegado', 'No podés modificar una venta que no registraste.', 'error');", true);
+                    Response.Redirect("GestionarVentas.aspx");
+                    return;
+                }
 
-            // Setear detalles de la venta
-            Session["VentaDetalle"] = venta.DetalleList;
-            gvDetalleVenta.DataSource = venta.DetalleList;
-            gvDetalleVenta.DataBind();
+                // Setear cliente
+                txtClienteSeleccionado.Text = $"{venta.Cliente.Nombre}, {venta.Cliente.Apellido}";
+                hfIdClienteSeleccionado.Value = venta.Cliente.Id.ToString();
 
-            // Mostrar precio total
-            lbPrecio.Text = venta.Total.ToString("C2");
+                // Setear detalles de la venta
+                Session["VentaDetalle"] = venta.DetalleList;
+                gvDetalleVenta.DataSource = venta.DetalleList;
+                gvDetalleVenta.DataBind();
 
-            // Guardar ID de la venta en un hidden field
-            hfIdVenta.Value = venta.Id.ToString();
+                // Mostrar precio total
+                lbPrecio.Text = venta.Total.ToString("C2");
+
+                // Guardar ID de la venta en un hidden field
+                hfIdVenta.Value = venta.Id.ToString();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorCargandoVenta",
+                    $"Swal.fire('Error', 'No se pudo cargar la venta: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+                return;
+            }
+
         }
 
         protected void btnModificarVenta_Click(object sender, EventArgs e)

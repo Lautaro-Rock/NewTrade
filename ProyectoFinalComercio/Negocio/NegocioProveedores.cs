@@ -142,7 +142,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al aplicar filtros: " + ex.Message);
             }
             finally
             {

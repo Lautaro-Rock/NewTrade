@@ -96,15 +96,6 @@
                                         </div>
                                         <div class="row g-3 mt-2">
                                             <div class="col-md-4">
-                                                <asp:Label ID="lbEstado" runat="server" CssClass="form-label" Text="Estado"></asp:Label>
-                                                <asp:DropDownList ID="DdlEstado" runat="server" CssClass="form-select">
-                                                    <asp:ListItem Text="-- Seleccione un estado --" Value="?" />
-                                                    <asp:ListItem Text="Solamente Activos" Value="Activos"></asp:ListItem>
-                                                    <asp:ListItem Text="Solamente Inactivos" Value="Inactivos"></asp:ListItem>
-                                                    <asp:ListItem Text="Todos" Value="Todos"></asp:ListItem>
-                                                </asp:DropDownList>
-                                            </div>
-                                            <div class="col-md-4">
                                                 <asp:Button ID="btnBuscarProveedor_avanzado" runat="server" CssClass="btn btn-primary mt-3" Text="Buscar proveedor" OnClick="btnBuscarProveedor_avanzado_Click" />
                                             </div>
                                         </div>
@@ -122,7 +113,7 @@
                                                     <i class='<%# Convert.ToBoolean(Eval("Activo")) ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger" %>'></i>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Seleccione una proveedor">
+                                            <asp:TemplateField HeaderText="Seleccione un proveedor">
                                                 <ItemTemplate>
                                                     <asp:Button ID="btnSeleccionar_prov_avanzado" runat="server"
                                                         CommandName="Este"
