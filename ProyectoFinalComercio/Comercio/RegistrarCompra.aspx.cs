@@ -28,6 +28,22 @@ namespace Comercio
         {
             if (!IsPostBack)
             {
+
+                if (Request.QueryString["id"] != null)
+                {
+                    int idCompra = int.Parse(Request.QueryString["id"]);
+                    CargarCompraParaModificar(idCompra);
+                    btnConfirmarCompra.Visible = false;
+                    btnModificarCompra.Visible = true;
+                    Session["IdCompraEnEdicion"] = idCompra;
+                }
+                else
+                {
+                    btnConfirmarCompra.Visible = true;
+                    btnModificarCompra.Visible = false;
+                }
+
+
                 try
                 {
                     Proveedores = new NegocioProveedores().ListarProveedores();
@@ -264,7 +280,13 @@ namespace Comercio
                 {
                     Producto prod = Productos.FirstOrDefault(p => p.Id == item.Producto.Id);
                     if (prod != null)
-                        prod.Stock -= item.Cantidad; // Revertimos el stock sumado
+                    {
+                        bool enEdicion = Request.QueryString["id"] != null;
+
+                        if (!enEdicion && prod != null)
+                            prod.Stock -= item.Cantidad;
+                    }
+                        
                 }
             }
 
@@ -292,7 +314,7 @@ namespace Comercio
                 var item = detalle.FirstOrDefault(d => d.Producto.Id == idProducto);
                 if (item != null)
                 {
-                    // Restaurar stock en memoria si querés deshacer el aumento
+                    // Restaurar stock correctamente
                     Producto prod = Productos.FirstOrDefault(p => p.Id == idProducto);
                     if (prod != null)
                         prod.Stock -= item.Cantidad;
@@ -310,7 +332,6 @@ namespace Comercio
                 dgvProductos.DataSource = Productos;
                 dgvProductos.DataBind();
             }
-
         }
 
         protected void btnConfirmarCompra_Click(object sender, EventArgs e)
@@ -373,5 +394,101 @@ namespace Comercio
             }
 
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            // Reseteamos los sessions
+            Session["CompraDetalle"] = null;
+            Session["ProveedorSeleccionado"] = null;
+            Session["Productos"] = null;
+            Session["IdCompraEnEdicion"] = null;
+
+            if (((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
+            {
+                Response.Redirect("GestionCompras.aspx");
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
+
+        private void CargarCompraParaModificar(int idCompra)
+        {
+            Compra compra = new CompraNegocio().ObtenerCompraPorId(idCompra); // este método lo vemos ahora abajo
+
+            Session["CompraDetalle"] = compra.DetalleList;
+            gvDetalleCompra.DataSource = compra.DetalleList;
+            gvDetalleCompra.DataBind();
+
+            lbPrecio.Text = compra.Total.ToString("C2");
+
+            Session["ProveedorSeleccionado"] = compra.Proveedor.Id;
+            txtProveedorSeleccionado.Text = compra.Proveedor.RazonSocial;
+
+            Productos = new ProductoNegocio().ListarProductosxProveedor(compra.Proveedor.Id);
+            dgvProductos.DataSource = Productos;
+            dgvProductos.DataBind();
+
+
+            hfIdCompra.Value = compra.Id.ToString();
+        }
+
+        protected void btnModificarCompra_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(hfIdCompra.Value, out int idCompra))
+                return;
+
+            List<DetalleCompra> detalle = Session["CompraDetalle"] as List<DetalleCompra>;
+
+            if (detalle == null || !detalle.Any())
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    "Swal.fire('Sin productos', 'Debés agregar al menos un producto para confirmar.', 'warning');", true);
+                return;
+            }
+
+            if (Session["ProveedorSeleccionado"] == null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    "Swal.fire('Proveedor no asignado', 'Seleccioná un proveedor válido para continuar.', 'warning');", true);
+                return;
+            }
+
+            Usuario usuario = Session["usuario"] as Usuario;
+            if (usuario == null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    "Swal.fire('Error', 'No se encontró el usuario logueado.', 'error');", true);
+                return;
+            }
+
+            Compra compra = new Compra
+            {
+                Id = idCompra,
+                Usuario = new Usuario { Id = usuario.Id },
+                Proveedor = new Proveedor { Id = (int)Session["ProveedorSeleccionado"] },
+                DetalleList = detalle,
+                Fecha = DateTime.Now,
+                Total = detalle.Sum(d => d.Subtotal),
+                Activo = true
+            };
+
+            try
+            {
+                new CompraNegocio().ModificarCompraCompleta(compra);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    "Swal.fire('¡Compra modificada!', 'Los cambios fueron guardados correctamente.', 'success');", true);
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    $"Swal.fire('Error', 'No se pudo modificar la compra: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+            }
+        }
+
+
     }
 }

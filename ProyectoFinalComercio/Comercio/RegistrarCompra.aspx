@@ -234,10 +234,21 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
 
+            <asp:HiddenField ID="hfIdCompra" runat="server" />
+
                 <asp:UpdatePanel ID="upBtnConfirmarCompra" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:Button ID="btnConfirmarCompra" runat="server" Text="Confirmar compra"
                             OnClick="btnConfirmarCompra_Click" CssClass="btn btn-warning w-100 mt-2" />
+                        <asp:Button ID="btnModificarCompra" runat="server" Text="Modificar compra"
+                        CssClass="btn btn-warning w-100 mt-2"
+                        OnClick="btnModificarCompra_Click"
+                        Visible="false" />
+
+                         <asp:Button ID="btnVolver" runat="server"
+                         Text="Salir"
+                         CssClass="btn btn-secondary mt-3 me-2"
+                         OnClick="btnVolver_Click" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
 

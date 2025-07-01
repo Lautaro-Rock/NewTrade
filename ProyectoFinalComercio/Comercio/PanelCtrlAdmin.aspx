@@ -19,7 +19,7 @@
     <% } %>
 
       <div class="col-md-4">
-        <a href="RegistrarCompra.aspx" style="text-decoration: none;">
+        <a href="GestionCompras.aspx" style="text-decoration: none;">
           <div class="card card-custom">
             <img src="\images\shopping-cart (1).png" alt="Carro" class="card-img" />
             <h5 class="card-title">Gestión de compras</h5>
