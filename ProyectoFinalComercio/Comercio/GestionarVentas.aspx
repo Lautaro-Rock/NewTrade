@@ -57,6 +57,53 @@
                 Gestión de Ventas
             </h1>
 
+            <div class="container mt-3 mb-4">
+  <div class="row justify-content-center align-items-center g-3">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      <asp:Label Text="Filtrar" runat="server" AssociatedControlID="filtroUno" class="me-2 mb-0" />
+      <asp:TextBox runat="server" ID="filtroUno" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtroUno_TextChanged"  style="max-width: 250px;" />
+    </div>
+    <div class="col-md-2 d-flex align-items-center">
+      <asp:CheckBox ID="checkFiltrarAvanzado" runat="server" AutoPostBack="true" OnCheckedChanged="checkFiltrarAvanzado_CheckedChanged"/>
+      <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="checkFiltrarAvanzado" CssClass="ms-1 mb-0" />
+    </div>
+  </div>
+</div>
+
+    <% if (FiltroAvanzado) { %>
+        <div class="row justify-content-center g-3 ">
+            <div class="col-md-2">
+                <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelectUsuario" />
+                <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelectUsuario" OnSelectedIndexChanged="ddlCampoSelectUsuario_SelectedIndexChanged">
+                    <asp:ListItem Text="Factura" />
+                    <asp:ListItem Text="Cliente" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-md-2">
+                <asp:Label Text="Criterio" runat="server" AssociatedControlID="ddlCriterio" />
+                <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-control" default="Selecciona un campo" />
+            </div>
+            <div class="col-md-2">
+                <asp:Label Text="Filtro" runat="server" AssociatedControlID="ddlFiltroAvanzado" />
+                <asp:TextBox runat="server" ID="ddlFiltroAvanzado" CssClass="form-control" />
+            </div>
+            <div class="col-md-2">
+                <asp:Label Text="Estado" runat="server" AssociatedControlID="ddlEstado" />
+                <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">
+                    <asp:ListItem Text="Todos" />
+                    <asp:ListItem Text="Activo" />
+                    <asp:ListItem Text="Inactivo" />
+                </asp:DropDownList>
+            </div>
+        </div>
+<div class="row my-4">
+    <div class="col text-center">
+        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarUsuario" OnClick="btnBuscarUsuario_Click" />
+    </div>
+</div>
+
+    <% } %>
+
             <asp:GridView ID="gvVentas" runat="server" DataKeyNames="Id" AutoGenerateColumns="False"
                 CssClass="table table-dark table-hover text-white mt-4" OnRowCommand="gvVentas_RowCommand">
                 <Columns>
