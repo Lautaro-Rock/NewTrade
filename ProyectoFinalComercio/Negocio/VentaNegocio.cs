@@ -369,7 +369,63 @@ namespace Negocio
             }
         }
 
+        public List<Venta> FiltrarVenta(string campo, string criterio, string filtro, string estado)
+        {
 
+            List<Venta> list_filtrada = new List<Venta>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT Id, NumeroFactura, IdCliente, IdVendedor, Activo, Total FROM Venta WHERE 1=1 ";
+
+                if (campo == "Factura")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " AND NumeroFactura like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " AND NumeroFactura like '%" + filtro + "'";
+                            break;
+                        case "Igual a":
+                            consulta += " AND NumeroFactura = '" + filtro + "'";
+                            break;
+                    }
+                }
+
+               
+                if (estado == "Activo")
+                {
+                    consulta += " AND Activo = 1";
+                }
+                else if (estado == "Inactivo")
+                {
+                    consulta += " AND Activo = 0";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Venta aux = new Venta();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.NumeroFactura = (string)datos.Lector["NumeroFactura"];
+                    list_filtrada.Add(aux);
+                }
+                return list_filtrada;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
+
 }

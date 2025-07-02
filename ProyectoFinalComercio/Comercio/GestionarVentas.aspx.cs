@@ -11,8 +11,10 @@ namespace Comercio
 {
     public partial class GestionarVentas : System.Web.UI.Page
     {
+        public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
                 CargarVentas();
         }
@@ -75,5 +77,52 @@ namespace Comercio
             }
         }
 
+        protected void filtroUno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void checkFiltrarAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = checkFiltrarAvanzado.Checked;
+            filtroUno.Enabled = !FiltroAvanzado;
+        }
+
+        protected void ddlCampoSelectUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Factura")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+            else if (ddlCampoSelectUsuario.SelectedItem.ToString() == "Cliente")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+        }
+
+        protected void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+            VentaNegocio user = new VentaNegocio();
+            try
+            {
+                string campo = ddlCampoSelectUsuario.Text;
+                string criterio = ddlCriterio.Text;
+                string filtro = ddlFiltroAvanzado.Text.Trim();
+                string estado = ddlEstado.SelectedValue;
+
+                gvVentas.DataSource = user.FiltrarVenta(campo, criterio, filtro, estado);
+                gvVentas.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw ex;
+            }
+        }
     }
 }
