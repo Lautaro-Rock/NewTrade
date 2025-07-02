@@ -123,7 +123,29 @@ namespace Negocio
             }
         }
 
-
+        public void OcultarVenta(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.AbrirConexion();
+                datos.ComenzarTransaccion();
+                // Desactivar la venta
+                datos.SetearConsulta("UPDATE VENTA SET Activo = 0 WHERE Id = @IdVenta");
+                datos.SetearParametro("@IdVenta", idVenta);
+                datos.EjecutarAccion();
+                datos.ConfirmarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RollbackTransaccion();
+                throw new Exception("Error al ocultar la venta: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void BajaLogicaVenta(int idVenta)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -376,7 +398,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT Id, NumeroFactura, IdCliente, IdVendedor, Activo, Total FROM Venta WHERE 1=1 ";
+                string consulta = @"SELECT V.Id, V.NumeroFactura, V.Fecha, V.Total, V.Activo, C.IdCliente AS IdCliente, C.Nombre AS NombreCliente, 
+                C.Apellido AS ApellidoCliente, U.Id AS IdUsuario, U.Nombre AS NombreUsuario, U.Apellido AS ApellidoUsuario 
+                FROM Venta V 
+                INNER JOIN Cliente C ON V.IdCliente = C.IdCliente 
+                INNER JOIN Usuario U ON V.IdVendedor = U.Id";
 
                 if (campo == "Factura")
                 {
@@ -394,15 +420,16 @@ namespace Negocio
                     }
                 }
 
-               
+
                 if (estado == "Activo")
                 {
-                    consulta += " AND Activo = 1";
+                    consulta += " AND V.Activo = 1";
                 }
                 else if (estado == "Inactivo")
                 {
-                    consulta += " AND Activo = 0";
+                    consulta += " AND V.Activo = 0";
                 }
+
 
                 datos.SetearConsulta(consulta);
                 datos.EjecutarLectura();
@@ -411,6 +438,21 @@ namespace Negocio
                     Venta aux = new Venta();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.NumeroFactura = (string)datos.Lector["NumeroFactura"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.Cliente = new Cliente()
+                    {
+                        Id = (int)datos.Lector["IdCliente"],
+                        Nombre = datos.Lector["NombreCliente"].ToString(),
+                        Apellido = datos.Lector["ApellidoCliente"].ToString()
+                    };
+
+                    aux.Usuario = new Usuario()
+                    {
+                        Id = (int)datos.Lector["IdUsuario"],
+                        Nombre = datos.Lector["NombreUsuario"].ToString(),
+                        Apellido = datos.Lector["ApellidoUsuario"].ToString()
+                    };
+                    aux.Total = (decimal)datos.Lector["Total"];
                     list_filtrada.Add(aux);
                 }
                 return list_filtrada;

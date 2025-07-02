@@ -192,6 +192,10 @@
 <div class="row my-4">
     <div class="col text-center">
         <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarUsuario" OnClick="btnBuscarUsuario_Click" />
+        <asp:Button ID="btnLimpiarFiltro" runat="server"
+        Text="Limpiar Filtros"
+        CssClass="btn btn-secondary"
+        OnClick="btnLimpiarFiltro_Click" />
     </div>
 </div>
 
@@ -217,7 +221,7 @@
                     </div>
                     <div>
                       <asp:Button ID="btnModificarUsuarioListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarUsuarioListado_Click" />
-                      <asp:Button ID="btnEliminarUsuarioListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarUsuarioListado_Click" />
+                      <button type="button" class="btn btn-outline-danger mt-2 me-2 w-100" onclick="confirmarEliminacion('<%# Eval("Id") %>')">Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -269,5 +273,25 @@
             toggleBtn.classList.remove('move-right');
         });
     </script>
+
+    <script>
+        function confirmarEliminacion(idCompra) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción eliminará el usuario.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack('EliminarUsuarioDesdeListado', idCompra);
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>

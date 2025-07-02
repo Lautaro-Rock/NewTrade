@@ -24,7 +24,29 @@ namespace Comercio
                 Response.Redirect("Default.aspx");
             }
 
+            string target = Request["__EVENTTARGET"];
+            string argument = Request["__EVENTARGUMENT"];
+
             NegocioCliente negocio = new NegocioCliente();
+
+            if (target == "EliminarClienteDesdeListado" && int.TryParse(argument, out int idCliente))
+            {
+                try
+                {
+                    Cliente cliente = new Cliente { Id = idCliente };
+                    negocio.DeleteClienteLogico(cliente);
+                    ActualizarListas();
+
+                }
+                catch (Exception ex)
+                {
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+                }
+            }
+
+
             Cliente = negocio.ListarClientes();
             FiltroAvanzado = checkAvanzado.Checked;
             if (!IsPostBack)
@@ -253,28 +275,6 @@ namespace Comercio
             }
         }
 
-        protected void btnEliminarClienteListado_Click(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-            int idCliente;
-            if (int.TryParse(btn.CommandArgument, out idCliente))
-            {
-                NegocioCliente negocio = new NegocioCliente();
-                Cliente cliente = new Cliente { Id = idCliente };
-                try
-                {
-                    negocio.DeleteClienteLogico(cliente);
-                    ActualizarListas();
-                }
-                catch (Exception ex)
-                {
-                    string mensaje = ex.Message.Replace("'", "\\'");
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
-                }
-            }
-        }
-
         protected void btnModificarClienteListado_Click(object sender, EventArgs e)
         {
             PanelListarCliente.Visible = false;
@@ -312,6 +312,15 @@ namespace Comercio
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
+            string filtro = txtFiltro.Text.Trim().ToUpper();
+
+            List<Cliente> filtrados = Cliente.Where(c =>
+                (!string.IsNullOrEmpty(c.Nombre) && c.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(c.Apellido) && c.Apellido.ToUpper().Contains(filtro)) ||
+                c.Dni.ToString().Contains(filtro)).ToList();
+
+            rptClientes.DataSource = filtrados;
+            rptClientes.DataBind();
 
         }
 
@@ -351,8 +360,18 @@ namespace Comercio
             {
                 NegocioCliente negocio = new NegocioCliente();
 
+                if (ddlCampoSelect.SelectedIndex == 0 || ddlCampoSelect.SelectedValue == "0")
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "Swal.fire('Campo no seleccionado', 'Elegí un campo antes de aplicar el filtro.', 'warning');", true);
+                    return;
+                }
+
+
                 string campo = ddlCampoSelect.SelectedItem.Text;
+
                 string criterio = ddlCriterio.SelectedItem.Text;
+
                 string filtro = ddlFiltroAvanzado.Text.Trim();
                 string estado = ddlEstado.SelectedValue;
 
@@ -364,6 +383,22 @@ namespace Comercio
                 Session.Add("error", ex);
                 throw;
             }
+        }
+
+        protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            ddlCampoSelect.SelectedIndex = 0;
+            ddlCriterio.Items.Clear();
+            ddlFiltroAvanzado.Text = "";
+            ddlEstado.SelectedIndex = 0;
+
+            checkAvanzado.Checked = false;
+            txtFiltro.Text = "";
+            txtFiltro.Enabled = true;
+
+            NegocioCliente negocio = new NegocioCliente();
+            rptClientes.DataSource = negocio.ListarClientes();
+            rptClientes.DataBind();
         }
 
     }

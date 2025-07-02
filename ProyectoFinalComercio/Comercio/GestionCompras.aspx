@@ -69,6 +69,15 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
                     <asp:ButtonField ButtonType="Button" Text="Modificar/Ver detalle" CommandName="Ver" ControlStyle-CssClass="btn btn-warning btn-sm" />
+                    <asp:TemplateField>
+                    <ItemTemplate>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion('<%# Eval("Id") %>')">
+                            Eliminar
+                        </button>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+
                 </Columns>
             </asp:GridView>
 
@@ -94,5 +103,24 @@
                 toggleBtn.classList.remove('move-right');
             });
     </script>
+    <script>
+        function confirmarEliminacion(idCompra) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción ocultará la compra.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack('EliminarCompra', idCompra);
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>

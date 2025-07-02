@@ -43,9 +43,32 @@ namespace Comercio
             NegocioTipoProducto tipos = new NegocioTipoProducto();
             lista_tipos = tipos.ListarTiposDeProductos();
 
+            string target = Request["__EVENTTARGET"];
+            string argument = Request["__EVENTARGUMENT"];
+
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            if (target == "EliminarProductoListado" && int.TryParse(argument, out int idProd))
+            {
+                try
+                {
+                    Producto producto = new Producto { Id = idProd };
+                    negocio.EliminarProductoLogico(producto);
+                    ActualizarListas();
+                    repProductos.DataSource = Productos;
+                    repProductos.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+                }
+            }
+
+
             if (!IsPostBack)
             {
-                ProductoNegocio negocio = new ProductoNegocio();
                 Productos = negocio.ListarProductos();
                 Proveedores = new NegocioProveedores().ListarProveedores();
 
@@ -993,30 +1016,6 @@ namespace Comercio
             {
                 // Limpiar campos si no hay producto seleccionado
                 limpiarCampos();
-            }
-        }
-
-        protected void btnEliminarProductoListado_Click(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-            int idProducto;
-            if (int.TryParse(btn.CommandArgument, out idProducto))
-            {
-                ProductoNegocio negocio = new ProductoNegocio();
-                Producto producto = new Producto { Id = idProducto };
-                try
-                {
-                    negocio.EliminarProductoLogico(producto);
-                    ActualizarListas();
-                    txtFiltroRapido_TextChanged(txtFiltroRapido, EventArgs.Empty);
-
-                }
-                catch (Exception ex)
-                {
-                    string mensaje = ex.Message.Replace("'", "\\'");
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
-                }
             }
         }
 

@@ -28,6 +28,27 @@ namespace Comercio
             }
 
             NegocioProveedores negocio = new NegocioProveedores();
+
+            string target = Request["__EVENTTARGET"];
+            string argument = Request["__EVENTARGUMENT"];
+
+            if (target == "EliminarProveedorDesdeListado" && int.TryParse(argument, out int idProveedor))
+            {
+                try
+                {
+                    Proveedor proveedor = new Proveedor { Id = idProveedor };
+                    negocio.EliminarProveedoresLogico(proveedor);
+                    ActualizarListas();
+
+                }
+                catch (Exception ex)
+                {
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+                }
+            }
+
             Proveedor = negocio.ListarProveedores();
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
@@ -386,9 +407,17 @@ namespace Comercio
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             filtroUno.Enabled = !FiltroAvanzado;
         }
+
         protected void filtroUno_TextChanged(object sender, EventArgs e)
         {
+            string filtro = filtroUno.Text.Trim().ToUpper();
 
+            List<Proveedor> filtrados = Proveedor.FindAll(p =>
+                p.RazonSocial.ToUpper().Contains(filtro) ||
+                p.Cuit.ToUpper().Contains(filtro));
+
+            rptProveedores.DataSource = filtrados;
+            rptProveedores.DataBind();
         }
 
         protected void ddlCampoSelectUsuario_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,5 +517,22 @@ namespace Comercio
             }
 
         }
+
+        protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            ddlCampoSelectUsuario.SelectedIndex = 0;
+            ddlCriterio.Items.Clear();
+            ddlFiltroAvanzado.Text = "";
+            ddlEstado.SelectedIndex = 0;
+
+            checkFiltrarAvanzado.Checked = false;
+            filtroUno.Text = "";
+            filtroUno.Enabled = true;
+
+            NegocioProveedores prov = new NegocioProveedores();
+            rptProveedores.DataSource = prov.ListarProveedores();
+            rptProveedores.DataBind();
+        }
+
     }
 }

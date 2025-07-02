@@ -14,6 +14,25 @@ namespace Comercio
         {
             if (!IsPostBack)
                 CargarCompras();
+
+            string evento = Request["__EVENTTARGET"];
+            string argumento = Request["__EVENTARGUMENT"];
+
+            if (evento == "EliminarCompra" && int.TryParse(argumento, out int idCompra))
+            {
+                try
+                {
+                    CompraNegocio negocio = new CompraNegocio();
+                    negocio.OcultarCompra(idCompra);
+                    CargarCompras();
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
+                        $"Swal.fire('Error', 'No se pudo eliminar la compra: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+                }
+            }
+
         }
 
         private void CargarCompras()
