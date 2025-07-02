@@ -329,5 +329,51 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
+        public List<int> ObtenerIdsProveedoresPorProducto(int idProducto)
+        {
+            List<int> ids = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT IdProveedor FROM ProductoProveedor WHERE IdProducto = @idProducto");
+                datos.SetearParametro("@idProducto", idProducto);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                    ids.Add((int)datos.Lector["IdProveedor"]);
+
+                return ids;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void EliminarAsociacionesProducto(int idProducto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE FROM ProductoProveedor WHERE IdProducto = @idProducto");
+                datos.SetearParametro("@idProducto", idProducto);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
     }
 }

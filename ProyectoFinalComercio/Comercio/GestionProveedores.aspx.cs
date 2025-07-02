@@ -50,6 +50,8 @@ namespace Comercio
             txtCUITProveedor.Text = "";
             txtEmailProveedor.Text = "";
             txtTelefonoProveedor.Text = "";
+
+            chkProductos.ClearSelection();
         }
 
         protected void btnGuardarProveedor_Click(object sender, EventArgs e)
@@ -73,10 +75,22 @@ namespace Comercio
             try
             {
 
-                data.AgregarProveedores(proveedor);
+                int id_del_proveedor_insertado = data.AgregarProveedores(proveedor);
+
+                // Obtenemos los productos seleccionados directo del control
+                List<int> productosSeleccionados = new List<int>();
+                foreach (ListItem item in chkProductos.Items)
+                {
+                    if (item.Selected)
+                        productosSeleccionados.Add(int.Parse(item.Value));
+                }
+                data.AsociarProductos(id_del_proveedor_insertado, productosSeleccionados);
+
+                // Mostramos éxito
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-               "Swal.fire('¡Proveedor agregado!', '', 'success');", true);
+                "Swal.fire('¡Proveedor agregado!', '', 'success');", true);
                 ActualizarListas();
+
 
                 // Limpiamos los campos del form :)
                 limpiarCampos();
@@ -147,6 +161,14 @@ namespace Comercio
             {
 
                 data.ModificarProveedores(proveedor);
+
+                // Obtener seleccionados
+                List<int> productosAsociados = Session["ProductosSeleccionados"] as List<int> ?? new List<int>();
+
+                NegocioProveedores negocio = new NegocioProveedores();
+                negocio.EliminarProductosAsociados(proveedor.Id);
+                negocio.AsociarProductos(proveedor.Id, productosAsociados);
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                 "Swal.fire('¡Proveedor modificado correctamente!', '', 'success');", true);
                 ActualizarListas();
@@ -191,6 +213,7 @@ namespace Comercio
         //Eventos relacionados a la seccion General
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
+            Session["ProductosSeleccionados"] = null;
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
@@ -226,6 +249,8 @@ namespace Comercio
 
         protected void btnAgregarProveedor_Click(object sender, EventArgs e)
         {
+            Session["ProductosSeleccionados"] = null;
+
             PanelListarProveedor.Visible = false;
             PanelEliminarProveedor.Visible = false;
             PanelFormAltaProveedor.Visible = true;
@@ -239,20 +264,61 @@ namespace Comercio
             ActualizarListas();
         }
 
+        private void CargarProveedorParaModificar(int idProveedor)
+        {
+            Session["ProductosSeleccionados"] = null;
+
+            Proveedor proveedor = Proveedor.FirstOrDefault(p => p.Id == idProveedor);
+            if (proveedor == null)
+            {
+                limpiarCampos();
+                return;
+            }
+
+            try
+            {
+                // Cargar productos asociados
+                List<int> asociados = new NegocioProveedores().ObtenerProductosAsociados(idProveedor);
+                Session["ProductosSeleccionados"] = asociados;
+
+                chkProductos.DataSource = Productos;
+                chkProductos.DataValueField = "Id";
+                chkProductos.DataTextField = "Nombre";
+                chkProductos.DataBind();
+
+                foreach (ListItem item in chkProductos.Items)
+                {
+                    if (int.TryParse(item.Value, out int id) && asociados.Contains(id))
+                        item.Selected = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message.Replace("'", "\\'");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                $"Swal.Fire('Ocurrió un error', '{mensaje}', 'error');", true);
+            }
+
+            // Setear campos del proveedor
+            txtNombreProveedor.Text = proveedor.RazonSocial;
+            txtDireccionProveedor.Text = proveedor.Direccion;
+            txtCUITProveedor.Text = proveedor.Cuit;
+            txtEmailProveedor.Text = proveedor.Email;
+            txtTelefonoProveedor.Text = proveedor.Telefono;
+        }
+
+
         protected void ddlProveedorModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["ProductosSeleccionados"] = null;
+
             int idProveedor;
             if (int.TryParse(ddlProveedorModificar.SelectedValue, out idProveedor) && idProveedor > 0)
             {
                 Proveedor proveedor = Proveedor.FirstOrDefault(p => p.Id == idProveedor);
                 if (proveedor != null)
                 {
-
-                    txtNombreProveedor.Text = proveedor.RazonSocial;
-                    txtDireccionProveedor.Text = proveedor.Direccion;
-                    txtCUITProveedor.Text = proveedor.Cuit;
-                    txtEmailProveedor.Text = proveedor.Email;
-                    txtTelefonoProveedor.Text = proveedor.Telefono;
+                    CargarProveedorParaModificar(idProveedor);
                 }
             }
             else
@@ -304,13 +370,8 @@ namespace Comercio
                 Proveedor proveedor = Proveedor.FirstOrDefault(p => p.Id == idProveedor);
                 if (proveedor != null)
                 {
-                    txtNombreProveedor.Text = proveedor.RazonSocial;
-                    txtDireccionProveedor.Text = proveedor.Direccion;
-                    txtCUITProveedor.Text = proveedor.Cuit;
-                    txtEmailProveedor.Text = proveedor.Email;
-                    txtTelefonoProveedor.Text = proveedor.Telefono;
-                    // Actualizar el dropdown para modificar
-                    ddlProveedorModificar.SelectedValue = proveedor.Id.ToString();
+                    ddlProveedorModificar.SelectedValue = idProveedor.ToString();
+                    CargarProveedorParaModificar(idProveedor);
                 }
             }
             else
@@ -382,12 +443,49 @@ namespace Comercio
 
         protected void txtFiltroProducto_TextChanged(object sender, EventArgs e)
         {
-            List<Producto> lista_rap_prov = Productos.FindAll(p =>
-            p.Nombre.ToUpper().Contains(txtFiltroProducto.Text.ToUpper()));
-            chkProductos.DataSource = lista_rap_prov;
+            // Obtener los seleccionados de antes
+            List<int> anteriores = Session["ProductosSeleccionados"] as List<int> ?? new List<int>();
+
+            // Obtener los nuevos seleccionados por el usuario
+            List<int> visiblesTildados = chkProductos.Items
+                .Cast<ListItem>()
+                .Where(i => i.Selected)
+                .Select(i => int.Parse(i.Value))
+                .ToList();
+
+            // Eliminar de la session los proveedores que el usuario destildó
+            List<int> visiblesDestildados = chkProductos.Items
+                .Cast<ListItem>()
+                .Where(i => !i.Selected)
+                .Select(i => int.Parse(i.Value))
+                .ToList();
+
+            // Armar nueva lista en base a las 3 anteriores
+            List<int> seleccionados = anteriores
+                .Union(visiblesTildados)
+                .Except(visiblesDestildados)
+                .Distinct()
+                .ToList();
+
+            Session["ProductosSeleccionados"] = seleccionados;
+
+            // Aplicar filtro
+            List<Producto> filtrados = Productos
+                .FindAll(p => p.Nombre.ToUpper().Contains(txtFiltroProducto.Text.ToUpper()));
+
+            chkProductos.DataSource = filtrados;
             chkProductos.DataValueField = "Id";
             chkProductos.DataTextField = "Nombre";
             chkProductos.DataBind();
+
+            // Restaurar seleccionados
+            foreach (ListItem item in chkProductos.Items)
+            {
+                int id;
+                if (int.TryParse(item.Value, out id) && seleccionados.Contains(id))
+                    item.Selected = true;
+
+            }
 
         }
     }

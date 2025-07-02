@@ -74,11 +74,14 @@ namespace Comercio
             txtStock.Text = "";
             txtStockMin.Text = "";
             txtUrlImagen.Text = "";
+
+            chkProveedores.ClearSelection();
         }
 
         //Agregar producto
         protected void btnAgregarProdClick(object sender, EventArgs e)
         {
+            Session["ProveedoresSeleccionados"] = null;
             PanelListarProd.Visible = false;
             PanelAgregarMarca.Visible = false;
             PanelEliminarProducto.Visible = false;
@@ -336,6 +339,17 @@ namespace Comercio
             txtStock.Text = producto.Stock.ToString();
             txtStockMin.Text = producto.StockMin.ToString();
             txtUrlImagen.Text = producto.UrlImgProducto;
+
+            // Cargar proveedores asociados al producto 
+            List<int> idsAsociados = new ProductoNegocio().ObtenerIdsProveedoresPorProducto(producto.Id);
+            Session["ProveedoresSeleccionados"] = idsAsociados;
+
+
+            foreach (ListItem item in chkProveedores.Items)
+            {
+                item.Selected = idsAsociados.Contains(int.Parse(item.Value));
+            }
+
         }
 
         protected void ddlProductoModificar_SelectedIndexChanged(object sender, EventArgs e)
@@ -361,6 +375,7 @@ namespace Comercio
                 ddlTipoDeProducto.DataBind();
             }
 
+            Session["ProveedoresSeleccionados"] = null;
 
             int idProducto;
             if (int.TryParse(ddlProductoModificar.SelectedValue, out idProducto) && idProducto > 0)
@@ -413,19 +428,28 @@ namespace Comercio
             producto.Stock = int.Parse(txtStock.Text.Trim());
             producto.StockMin = int.Parse(txtStockMin.Text.Trim());
             producto.UrlImgProducto = txtUrlImagen.Text.Trim();
+
+
             producto.Activo = true;
 
             try
             {
 
                 data.ModificarProducto(producto);
+
+                // Actualizar proveedores asociados
+                List<int> idsProveedores = new List<int>();
+                foreach (ListItem item in chkProveedores.Items)
+                {
+                    if (item.Selected)
+                        idsProveedores.Add(int.Parse(item.Value));
+                }
+                data.EliminarAsociacionesProducto(producto.Id); // Borramos las anteriores asociaciones por las dudas
+                data.AsociarProductoAProveedores(producto.Id, idsProveedores); // Cargamos las nuevas
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                 "Swal.fire('¡Producto modificado!', '', 'success');", true);
                 ActualizarListas();
-
-                // Limpiamos los campos del form :)
-                limpiarCampos();
-
 
             }
             catch (Exception ex)
@@ -901,6 +925,7 @@ namespace Comercio
         //Eventos relacionados a la seccion General
         protected void btnVolverPanelClick(object sender, EventArgs e)
         {
+            Session["ProveedoresSeleccionados"] = null;
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
@@ -998,14 +1023,50 @@ namespace Comercio
 
         protected void txtFiltroProveedor_TextChanged(object sender, EventArgs e)
         {
-            List<Proveedor> lista_rap_prov = Proveedores.FindAll(p =>
-            p.RazonSocial.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper()) ||
-            p.Cuit.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper())
+            // Restaurar seleccionados anteriores desde Session (si existen)
+            List<int> seleccionadosAnteriores = Session["ProveedoresSeleccionados"] as List<int> ?? new List<int>();
+
+            // Obtener seleccionados actuales (visibles) antes de aplicar el nuevo filtro
+            List<int> visiblesSeleccionados = chkProveedores.Items
+                .Cast<ListItem>()
+                .Where(i => i.Selected)
+                .Select(i => int.Parse(i.Value))
+                .ToList();
+
+            // Eliminar de la session los proveedores que el usuario destildó
+            List<int> visiblementeDeseleccionados = chkProveedores.Items
+                .Cast<ListItem>()
+                .Where(i => !i.Selected)
+                .Select(i => int.Parse(i.Value))
+                .ToList();
+
+            //  Armar la nueva lista combinada
+            List<int> seleccionados = seleccionadosAnteriores
+                .Union(visiblesSeleccionados)    // Agrego nuevos marcados
+                .Except(visiblementeDeseleccionados) // Quito los que el usuario desmarcó
+                .ToList();
+
+            // Guardamos en Session
+            Session["ProveedoresSeleccionados"] = seleccionados;
+
+            // Aplicar el filtro de búsqueda
+            List<Proveedor> listaFiltrada = Proveedores.FindAll(p =>
+                p.RazonSocial.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper()) ||
+                p.Cuit.ToUpper().Contains(txtFiltroProveedor.Text.ToUpper())
             );
-            chkProveedores.DataSource = lista_rap_prov;
+
+            chkProveedores.DataSource = listaFiltrada;
             chkProveedores.DataValueField = "Id";
             chkProveedores.DataTextField = "RazonSocial";
             chkProveedores.DataBind();
+
+            // Restaurar los seleccionados después del DataBind
+            foreach (ListItem item in chkProveedores.Items)
+            {
+                if (seleccionados.Contains(int.Parse(item.Value)))
+                    item.Selected = true;
+            }
+
 
         }
     }

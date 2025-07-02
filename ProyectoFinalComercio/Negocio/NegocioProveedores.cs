@@ -150,38 +150,28 @@ namespace Negocio
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void AgregarProveedores(Proveedor nuevo)
+        public int AgregarProveedores(Proveedor proveedor)
         {
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("INSERT INTO Proveedor (RazonSocial, Cuit, Email, Telefono, Direccion) " +
-                 "VALUES (@RazonSocial, @Cuit, @Email, @Telefono, @Direccion);");
+                data.SetearConsulta(
+                    "INSERT INTO Proveedor (RazonSocial, Direccion, Cuit, Email, Telefono, Activo) " +
+                    "VALUES (@RazonSocial, @Direccion, @Cuit, @Email, @Telefono, 1); " +
+                    "SELECT SCOPE_IDENTITY();"
+                );
 
-                data.SetearParametro("@RazonSocial", nuevo.RazonSocial);
-                data.SetearParametro("@Cuit", nuevo.Cuit);
-                data.SetearParametro("@Email", nuevo.Email);
-                data.SetearParametro("@Telefono", nuevo.Telefono);
-                data.SetearParametro("@Direccion", nuevo.Direccion);
-                data.EjecutarAccion();
+                data.SetearParametro("@RazonSocial", proveedor.RazonSocial);
+                data.SetearParametro("@Direccion", proveedor.Direccion);
+                data.SetearParametro("@Cuit", proveedor.Cuit);
+                data.SetearParametro("@Email", proveedor.Email);
+                data.SetearParametro("@Telefono", proveedor.Telefono);
+
+                int id_insertado = Convert.ToInt32(data.EjecutarScalar());
+                return id_insertado;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -189,6 +179,7 @@ namespace Negocio
                 data.CerrarConexion();
             }
         }
+
         public void ModificarProveedores(Proveedor nuevo)
         {
             AccesoDatos data = new AccesoDatos();
@@ -353,5 +344,55 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<int> ObtenerProductosAsociados(int idProveedor)
+        {
+            List<int> ids = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT IdProducto FROM ProductoProveedor WHERE IdProveedor = @id");
+                datos.SetearParametro("@id", idProveedor);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                    ids.Add((int)datos.Lector["IdProducto"]);
+                return ids;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.CerrarConexion(); }
+
+        }
+
+        public void EliminarProductosAsociados(int idProveedor)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE FROM ProductoProveedor WHERE IdProveedor = @id");
+                datos.SetearParametro("@id", idProveedor);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.CerrarConexion(); }
+        }
+
+        public void AsociarProductos(int idProveedor, List<int> idsProductos)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                foreach (int id in idsProductos)
+                {
+                    datos.SetearConsulta("INSERT INTO ProductoProveedor (IdProducto, IdProveedor) VALUES (@idProd, @idProv)");
+                    datos.SetearParametro("@idProd", id);
+                    datos.SetearParametro("@idProv", idProveedor);
+                    datos.EjecutarAccion();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.CerrarConexion(); }
+        }
+
+
     }
 }
