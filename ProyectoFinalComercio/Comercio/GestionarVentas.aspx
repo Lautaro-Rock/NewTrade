@@ -98,7 +98,11 @@
         </div>
 <div class="row my-4">
     <div class="col text-center">
-        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarUsuario" OnClick="btnBuscarUsuario_Click" />
+        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscarVenta" OnClick="btnBuscarVenta_Click" />
+        <asp:Button ID="btnLimpiarFiltro" runat="server"
+        Text="Limpiar Filtros"
+        CssClass="btn btn-secondary"
+        OnClick="btnLimpiarFiltro_Click" />
     </div>
 </div>
 
@@ -113,7 +117,13 @@
                     <asp:BoundField DataField="Usuario" HeaderText="Registrado por:" />
                     <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
                     <asp:ButtonField ButtonType="Button" Text="Modificar" CommandName="Modificar" ControlStyle-CssClass="btn btn-warning btn-sm" />
-                    <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Eliminar" ControlStyle-CssClass="btn btn-warning btn-sm" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion('<%# Eval("Id") %>')">
+                                    Eliminar
+                                </button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
@@ -137,6 +147,25 @@
             blurOverlay.classList.remove('active');
             toggleBtn.classList.remove('move-right');
         });
+    </script>
+
+    <script>
+        function confirmarEliminacion(idCompra) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción eliminará la venta.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack('EliminarVenta', idCompra);
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -119,7 +119,7 @@ namespace Comercio
                     int id_proveedor = Convert.ToInt32(e.CommandArgument);
                     Button btn = (Button)e.CommandSource;
                     GridViewRow fila = (GridViewRow)btn.NamingContainer;
-                    txtProveedorSeleccionado.Text = fila.Cells[0].Text;
+                    txtProveedorSeleccionado.Text = HttpUtility.HtmlDecode(fila.Cells[0].Text);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarCollapseRapido", @"
                  var myCollapse = document.getElementById('collapseFiltroRapidoProveedor');
                  if (myCollapse) {
@@ -177,7 +177,7 @@ namespace Comercio
                 {
                     int id_proveedor = Convert.ToInt32(e.CommandArgument);
                     GridViewRow fila = ((Control)e.CommandSource).NamingContainer as GridViewRow;
-                    txtProveedorSeleccionado.Text = fila.Cells[0].Text;
+                    txtProveedorSeleccionado.Text = HttpUtility.HtmlDecode(fila.Cells[0].Text);
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarCollapseRapido", @"
                  var myCollapse = document.getElementById('collapseFiltroAvanzadoProveedor');
                  if (myCollapse) {

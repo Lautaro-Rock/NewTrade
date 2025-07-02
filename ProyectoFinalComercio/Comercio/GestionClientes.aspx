@@ -133,6 +133,7 @@
             <div class="col-md-2">
                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelect" />
                 <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelect" OnSelectedIndexChanged="ddlCampoSelect_SelectedIndexChanged">
+                    <asp:ListItem Text="Seleccione un campo" Value="0" />
                     <asp:ListItem Text="Nombre" />
                     <asp:ListItem Text="Apellido" />
                     <asp:ListItem Text="DNI" />
@@ -159,6 +160,10 @@
 <div class="row my-3">
     <div class="col text-center">
         <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary w-25" ID="btnBuscar" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnLimpiarFiltro" runat="server"
+        Text="Limpiar Filtros"
+        CssClass="btn btn-secondary"
+        OnClick="btnLimpiarFiltro_Click" />
     </div>
 </div>
 
@@ -187,7 +192,7 @@
                     </div>
                     <div>
                       <asp:Button ID="btnModificarClienteListado" runat="server" Text="Modificar" CssClass="btn btn-outline-warning me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnModificarClienteListado_Click" />
-                      <asp:Button ID="btnEliminarClienteListado" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger mt-2 me-2 w-100" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminarClienteListado_Click" />
+                      <button type="button" class="btn btn-outline-danger mt-2 me-2 w-100" onclick="confirmarEliminacion('<%# Eval("Id") %>')">Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -201,7 +206,7 @@
 </div>
 
 
-        <%-- Panel del eliminar producto --%>
+        <%-- Panel del eliminar cliente --%>
         <asp:Panel ID="PanelEliminarCliente" runat="server" CssClass="container bg-light text-dark rounded-4 shadow p-4 mt-4" Style="max-width: 750px;">
             <h3 class="text-center fw-bold mb-4">Eliminar cliente</h3>
 
@@ -240,5 +245,25 @@
             toggleBtn.classList.remove('move-right');
         });
     </script>
+
+    <script>
+        function confirmarEliminacion(idCompra) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción eliminará el cliente.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack('EliminarClienteDesdeListado', idCompra);
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>

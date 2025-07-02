@@ -289,5 +289,25 @@ namespace Negocio
             }
         }
 
+        public void OcultarCompra(int idCompra)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.AbrirConexion();
+                datos.SetearConsulta("UPDATE COMPRA SET Activo = 0 WHERE Id = @IdCompra");
+                datos.SetearParametro("@IdCompra", idCompra);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ocultar la compra: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

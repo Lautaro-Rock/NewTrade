@@ -47,7 +47,7 @@
                                     <asp:GridView ID="gvProveedores" runat="server" AutoGenerateColumns="False" CssClass="table color-table-personalizado"
                                         OnRowCommand="gvProveedores_RowCommand">
                                         <Columns>
-                                            <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" />
+                                            <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" HtmlEncode="false"  />
                                             <asp:BoundField DataField="Cuit" HeaderText="CUIT" />
                                             <asp:BoundField DataField="Email" HeaderText="Email" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Télefono" />

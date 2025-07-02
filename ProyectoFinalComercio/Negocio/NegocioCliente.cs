@@ -51,64 +51,67 @@ namespace Negocio
             {
                 string consulta = "SELECT IdCliente, Nombre, Apellido, DNI, Email, Rol, Activo FROM CLIENTE WHERE 1=1 ";
 
-                if (campo == "Nombre")
+                if (!string.IsNullOrWhiteSpace(filtro))
                 {
-                    switch (criterio)
+                    if (campo == "Nombre")
                     {
-                        case "Comienza con":
-                            consulta += " AND Nombre like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += " AND Nombre like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += " AND Nombre like '%" + filtro + "%'";
-                            break;
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += " AND Nombre like '" + filtro + "%' ";
+                                break;
+                            case "Termina con":
+                                consulta += " AND Nombre like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += " AND Nombre like '%" + filtro + "%'";
+                                break;
+                        }
                     }
-                }
-                else if (campo == "Apellido")
-                {
-                    switch (criterio)
+                    else if (campo == "Apellido")
                     {
-                        case "Comienza con":
-                            consulta += " AND Apellido like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += " AND Apellido like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += " AND Apellido like '%" + filtro + "%'";
-                            break;
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += " AND Apellido like '" + filtro + "%' ";
+                                break;
+                            case "Termina con":
+                                consulta += " AND Apellido like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += " AND Apellido like '%" + filtro + "%'";
+                                break;
+                        }
                     }
-                }
-                else if (campo == "Email")
-                {
-                    switch (criterio)
+                    else if (campo == "Email")
                     {
-                        case "Igual a":
-                            consulta += " AND Email = '" + filtro + "'";
-                            break;
+                        switch (criterio)
+                        {
+                            case "Igual a":
+                                consulta += " AND Email = '" + filtro + "'";
+                                break;
+                        }
                     }
-                }
-                else if (campo == "DNI")
-                {
-                    switch (criterio)
+                    else if (campo == "DNI")
                     {
-                        case "Igual a":
-                            consulta += " AND DNI = '" + filtro + "'";
-                            break;
+                        switch (criterio)
+                        {
+                            case "Igual a":
+                                consulta += " AND DNI = '" + filtro + "'";
+                                break;
+                        }
                     }
-                }
 
 
-                if (estado == "Activo")
-                {
-                    consulta += " AND Activo = 1";
                 }
-                else if (estado == "Inactivo")
-                {
-                    consulta += " AND Activo = 0";
-                }
+                    if (estado == "Activo")
+                    {
+                        consulta += " AND Activo = 1";
+                    }
+                    else if (estado == "Inactivo")
+                    {
+                        consulta += " AND Activo = 0";
+                    }
 
                 datos.SetearConsulta(consulta);
                 datos.EjecutarLectura();

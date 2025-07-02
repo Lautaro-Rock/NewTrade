@@ -17,6 +17,24 @@ namespace Comercio
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
                 CargarVentas();
+
+            string evento = Request["__EVENTTARGET"];
+            string argumento = Request["__EVENTARGUMENT"];
+
+            if (evento == "EliminarVenta" && int.TryParse(argumento, out int idVenta))
+            {
+                try
+                {
+                    VentaNegocio negocio = new VentaNegocio();
+                    negocio.OcultarVenta(idVenta);
+                    CargarVentas(); 
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
+                        $"Swal.fire('Error', 'No se pudo eliminar la venta: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+                }
+            }
         }
 
         private void CargarVentas()
@@ -60,7 +78,7 @@ namespace Comercio
                 Response.Redirect("NuevaVenta.aspx?id=" + idVenta);
             }
 
-            if (e.CommandName == "Eliminar")
+            /* if (e.CommandName == "Eliminar") NO EN USO POR AHORA
             {
                 try
                 {
@@ -75,10 +93,31 @@ namespace Comercio
                         $"Swal.fire('Error', 'No se pudo anular la venta: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
             }
+            */
         }
 
         protected void filtroUno_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                string filtro = filtroUno.Text.Trim().ToUpper();
+                VentaNegocio negocio = new VentaNegocio();
+
+                List<Venta> ventas = negocio.ListarVentas();
+                List<Venta> filtradas = ventas.Where(v =>
+                    (!string.IsNullOrEmpty(v.Cliente?.Nombre) && v.Cliente.Nombre.ToUpper().Contains(filtro)) ||
+                    (!string.IsNullOrEmpty(v.Cliente?.Apellido) && v.Cliente.Apellido.ToUpper().Contains(filtro)) ||
+                    (!string.IsNullOrEmpty(v.NumeroFactura) && v.NumeroFactura.ToUpper().Contains(filtro))
+                ).ToList();
+
+                gvVentas.DataSource = filtradas;
+                gvVentas.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorFiltro",
+                    $"Swal.fire('Error', 'No se pudo aplicar el filtro rápido: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+            }
 
         }
 
@@ -105,7 +144,7 @@ namespace Comercio
             }
         }
 
-        protected void btnBuscarUsuario_Click(object sender, EventArgs e)
+        protected void btnBuscarVenta_Click(object sender, EventArgs e)
         {
             VentaNegocio user = new VentaNegocio();
             try
@@ -123,6 +162,22 @@ namespace Comercio
                 Session.Add("error", ex);
                 throw ex;
             }
+        }
+
+        protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            ddlCampoSelectUsuario.SelectedIndex = 0;
+            ddlCriterio.Items.Clear();
+            ddlFiltroAvanzado.Text = "";
+            ddlEstado.SelectedIndex = 0;
+
+            checkFiltrarAvanzado.Checked = false;
+            filtroUno.Text = "";
+            filtroUno.Enabled = true;
+
+            VentaNegocio user = new VentaNegocio();
+            gvVentas.DataSource = user.ListarVentas();
+            gvVentas.DataBind();
         }
     }
 }

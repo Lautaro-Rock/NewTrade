@@ -22,6 +22,27 @@ namespace Comercio
             }
 
             UsuarioNegocio negocio = new UsuarioNegocio();
+
+            string target = Request["__EVENTTARGET"];
+            string argument = Request["__EVENTARGUMENT"];
+
+            if (target == "EliminarUsuarioDesdeListado" && int.TryParse(argument, out int idUsuario))
+            {
+                try
+                {
+                    Usuario usuario = new Usuario { Id = idUsuario };
+                    negocio.EliminarUsuarioLogico(usuario);
+                    ActualizarListas();
+
+                }
+                catch (Exception ex)
+                {
+                    string mensaje = ex.Message.Replace("'", "\\'");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
+                }
+            }
+
             Usuario = negocio.ListarUsuarios().Where(u => u.Rol == "Vendedor").ToList();
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
@@ -251,28 +272,6 @@ namespace Comercio
             }
         }
 
-        protected void btnEliminarUsuarioListado_Click(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-            int idUsuario;
-            if (int.TryParse(btn.CommandArgument, out idUsuario))
-            {
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                Usuario usuario = new Usuario { Id = idUsuario };
-                try
-                {
-                    negocio.EliminarUsuarioLogico(usuario);
-                    ActualizarListas();
-                }
-                catch (Exception ex)
-                {
-                    string mensaje = ex.Message.Replace("'", "\\'");
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                    $"Swal.fire('Ocurrió un error', '{mensaje}', 'error');", true);
-                }
-            }
-        }
-
         protected void btnModificarUsuarioListado_Click(object sender, EventArgs e)
         {
             PanelListarUsuario.Visible = false;
@@ -311,7 +310,15 @@ namespace Comercio
 
         protected void filtroUno_TextChanged(object sender, EventArgs e)
         {
+            string filtro = filtroUno.Text.Trim().ToUpper();
 
+            List<Usuario> filtrados = Usuario.Where(c =>
+                (!string.IsNullOrEmpty(c.Nombre) && c.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(c.Apellido) && c.Apellido.ToUpper().Contains(filtro)) ||
+                c.Dni.ToString().Contains(filtro)).ToList();
+
+            rptUsuarios.DataSource = filtrados;
+            rptUsuarios.DataBind();
         }
 
         protected void checkFiltrarAvanzado_CheckedChanged(object sender, EventArgs e)
@@ -363,5 +370,22 @@ namespace Comercio
             }
             
         }
+
+        protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            ddlCampoSelectUsuario.SelectedIndex = 0;
+            ddlCriterio.Items.Clear();
+            ddlFiltroAvanzado.Text = "";
+            ddlEstado.SelectedIndex = 0;
+
+            checkFiltrarAvanzado.Checked = false;
+            filtroUno.Text = "";
+            filtroUno.Enabled = true;
+
+            UsuarioNegocio user = new UsuarioNegocio();
+            rptUsuarios.DataSource = user.ListarUsuarios().Where(u => u.Rol == "Vendedor").ToList();
+            rptUsuarios.DataBind();
+        }
+
     }
 }
