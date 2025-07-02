@@ -91,6 +91,8 @@
                                         <p class="card-text"><strong>Tipo:</strong> <%# Eval("TipoProducto.Nombre") %></p>
                                         <p class="card-text"><strong>Precio:</strong> $<%# Eval("Precio", "{0:N2}") %></p>
                                         <p class="card-text"><strong>Stock:</strong> <%# Eval("Stock") %> | Mín: <%# Eval("StockMin") %></p>
+                                        <p class="card-text"><strong>Ganancia:</strong> <%# Eval("PorcentajeGanancia", "{0:0.##}") %>%</p>
+
 
                                         <div class="mt-auto">
                                             <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control form-control-sm mb-2" Text="1" TextMode="Number" />

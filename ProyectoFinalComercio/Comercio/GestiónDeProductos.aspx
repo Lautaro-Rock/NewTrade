@@ -141,17 +141,16 @@
                                     ForeColor="Red"
                                     ValidationGroup="AltaProducto"
                                     Display="Dynamic" />
-                                <asp:CompareValidator
-                                    ID="cvPrecioMayorCero"
-                                    runat="server"
-                                    ControlToValidate="txtPrecio"
-                                    Operator="GreaterThan"
-                                    ValueToCompare="0"
-                                    Type="Double"
-                                    ErrorMessage="El precio debe ser mayor a cero"
-                                    ForeColor="Red"
-                                    ValidationGroup="AltaProducto"
-                                    Display="Dynamic" />
+                                <asp:CustomValidator
+                                ID="cvPrecioCustom"
+                                runat="server"
+                                ControlToValidate="txtPrecio"
+                                OnServerValidate="cvPrecioCustom_ServerValidate"
+                                ErrorMessage="El precio debe ser mayor que 0"
+                                ForeColor="Red"
+                                ValidationGroup="AltaProducto"
+                                Display="Dynamic" />
+
                             </span>
                         </div>
                     </div>

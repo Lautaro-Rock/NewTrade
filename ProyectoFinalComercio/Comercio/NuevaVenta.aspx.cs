@@ -65,7 +65,14 @@ namespace Comercio
                         {
                             gvDetalleVenta.DataSource = detalleCatalogo;
                             gvDetalleVenta.DataBind();
-                            lbPrecio.Text = detalleCatalogo.Sum(d => d.Subtotal).ToString("C2");
+                            decimal totalConGanancia = detalleCatalogo.Sum(d =>
+                            {
+                                decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                                decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                                return precioFinal * d.Cantidad;
+                            });
+                            lbPrecio.Text = totalConGanancia.ToString("C2");
+
                         }
 
                         // Validamos si estabamos en modo edicion:
@@ -102,6 +109,18 @@ namespace Comercio
                     $"Swal.fire('Error', 'Detalle: {ex.Message.Replace("'", "\\'")}', 'error');", true);
                 }
             }
+        }
+
+        protected string ObtenerSubtotalConGanancia(object dataItem)
+        {
+            var detalle = dataItem as DetalleVenta;
+            if (detalle == null) return "";
+
+            decimal porcentaje = detalle.Producto.PorcentajeGanancia ?? 0;
+            decimal precioFinal = detalle.PrecioUnitario * (1 + porcentaje / 100);
+            decimal subtotalFinal = precioFinal * detalle.Cantidad;
+
+            return subtotalFinal.ToString("C2");
         }
 
         protected void txtBuscarCliente_TextChanged(object sender, EventArgs e)
@@ -221,7 +240,14 @@ namespace Comercio
                 gvDetalleVenta.DataBind();
 
                 // Total actualizado
-                lbPrecio.Text = articulosAgregados.Sum(d => d.Cantidad * d.PrecioUnitario).ToString("C2");
+                decimal totalConGanancia = articulosAgregados.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                    return precioFinal * d.Cantidad;
+                });
+                lbPrecio.Text = totalConGanancia.ToString("C2");
+
                 dgvProductos.DataSource = productos;
                 dgvProductos.DataBind();
 
@@ -254,7 +280,14 @@ namespace Comercio
                 dgvProductos.DataSource = productos;
                 dgvProductos.DataBind();
 
-                lbPrecio.Text = detalle.Sum(d => d.Subtotal).ToString("C2");
+                decimal totalConGanancia = detalle.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                    return precioFinal * d.Cantidad;
+                });
+                lbPrecio.Text = totalConGanancia.ToString("C2");
+
             }
 
         }
@@ -481,6 +514,7 @@ namespace Comercio
             Session["IdVentaEnEdicion"] = null;
             Session["IdClienteSeleccionado"] = null;
             Session["NombreClienteSeleccionado"] = null;
+            Session["VentaDetalle"] = null;
 
 
             if (((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")

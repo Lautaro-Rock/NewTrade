@@ -36,7 +36,14 @@ namespace Comercio
                         // También cargar el carrito en la vista
                         gvDetalleCatalogo.DataSource = detalle;
                         gvDetalleCatalogo.DataBind();
-                        lblTotalCatalogo.Text = "Total: " + detalle.Sum(d => d.Subtotal).ToString("C2");
+                        decimal totalConGanancia = detalle.Sum(d =>
+                        {
+                            decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                            decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                            return precioFinal * d.Cantidad;
+                        });
+                        lblTotalCatalogo.Text = "Total: " + totalConGanancia.ToString("C2");
+
 
                         // Y que permanezca disponible para seguir trabajando
                         Session["VentaDetalle"] = detalle;
@@ -102,7 +109,13 @@ namespace Comercio
 
                 gvDetalleCatalogo.DataSource = detalle;
                 gvDetalleCatalogo.DataBind();
-                lblTotalCatalogo.Text = "Total: " + detalle.Sum(d => d.Subtotal).ToString("C2");
+                decimal totalConGanancia = detalle.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    return d.PrecioUnitario * (1 + ganancia / 100) * d.Cantidad;
+                });
+                lblTotalCatalogo.Text = "Total: " + totalConGanancia.ToString("C2");
+
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "agregado",
                     "Swal.fire('Agregado', 'El producto se agregó correctamente.', 'success');", true);
@@ -120,7 +133,14 @@ namespace Comercio
             {
                 gvDetalleCatalogo.DataSource = detalle;
                 gvDetalleCatalogo.DataBind();
-                lblTotalCatalogo.Text = "Total: " + detalle.Sum(d => d.Subtotal).ToString("C2");
+                decimal totalConGanancia = detalle.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                    return precioFinal * d.Cantidad;
+                });
+                lblTotalCatalogo.Text = "Total: " + totalConGanancia.ToString("C2");
+
             }
 
         }
@@ -221,9 +241,19 @@ namespace Comercio
 
                     gvDetalleCatalogo.DataSource = detalle;
                     gvDetalleCatalogo.DataBind();
-                    lblTotalCatalogo.Text = detalle.Any()
-                        ? "Total: " + detalle.Sum(d => d.Subtotal).ToString("C2")
-                        : "";
+                    if (detalle.Any())
+                    {
+                        decimal totalConGanancia = detalle.Sum(d =>
+                        {
+                            decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                            return d.PrecioUnitario * (1 + ganancia / 100) * d.Cantidad;
+                        });
+                        lblTotalCatalogo.Text = "Total: " + totalConGanancia.ToString("C2");
+                    }
+                    else
+                    {
+                        lblTotalCatalogo.Text = "";
+                    }
 
                     repCatalogo.DataSource = productos;
                     repCatalogo.DataBind();

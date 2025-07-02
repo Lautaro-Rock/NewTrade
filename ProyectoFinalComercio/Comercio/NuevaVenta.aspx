@@ -107,6 +107,7 @@
                                             <asp:BoundField DataField="Precio" HeaderText="Precio" />
                                             <asp:BoundField DataField="Stock" HeaderText="Stock" />
                                             <asp:BoundField DataField="StockMin" HeaderText="Stock Mínimo" />
+                                            <asp:BoundField DataField="PorcentajeGanancia" HeaderText="% Ganancia" DataFormatString="{0:0.##}%" />
                                             <asp:BoundField DataField="Marca" HeaderText="Marca" />
                                             <asp:BoundField DataField="TipoProducto" HeaderText="Categoría" />
                                             <asp:TemplateField HeaderText="Cantidad">
@@ -139,6 +140,12 @@
                                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                                             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
                                             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
+                                            <asp:TemplateField HeaderText="Subtotal con Ganancia">
+                                                <ItemTemplate>
+                                                    <%# ObtenerSubtotalConGanancia(Container.DataItem) %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Acciones">
                                                 <ItemTemplate>
                                                     <asp:Button ID="btnQuitar" runat="server"
@@ -165,7 +172,7 @@
                 </div>
             </div>
 
-            <!-- TOTAL + OBSERVACIONES -->
+            <!-- TOTAL -->
             <div class="card bg-dark-subtle p-4 text-white">
                 <div class="row mb-3">
                     <div class="col-6 fs-3">
@@ -178,10 +185,6 @@
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Observaciones</label>
-                    <asp:TextBox ID="txtObservaciones" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control txt-color-personalizado" />
                 </div>
                 <asp:UpdatePanel ID="upConfirmarVenta" runat="server">
                 <ContentTemplate>

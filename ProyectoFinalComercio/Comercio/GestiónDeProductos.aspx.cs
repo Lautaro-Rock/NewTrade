@@ -29,6 +29,9 @@ namespace Comercio
         public List<TipoProducto> lista_tipos = new List<TipoProducto>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("es-AR");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
+
             if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
             {
                 Response.Redirect("Default.aspx");
@@ -61,6 +64,14 @@ namespace Comercio
 
         }
 
+        // Validación del precio
+        protected void cvPrecioCustom_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            decimal precio;
+            args.IsValid = decimal.TryParse(args.Value, NumberStyles.Any, new CultureInfo("es-AR"), out precio) && precio > 0;
+        }
+
+
         //Eventos relacionados a la seccion productos
         //
         protected void limpiarCampos()
@@ -74,6 +85,7 @@ namespace Comercio
             txtStock.Text = "";
             txtStockMin.Text = "";
             txtUrlImagen.Text = "";
+            txtPorcentajeGanancia.Text = "";
 
             chkProveedores.ClearSelection();
         }
@@ -249,13 +261,22 @@ namespace Comercio
             producto.Stock = int.Parse(txtStock.Text.Trim());
             producto.StockMin = int.Parse(txtStockMin.Text.Trim());
             producto.UrlImgProducto = txtUrlImagen.Text.Trim();
+            producto.PorcentajeGanancia = decimal.Parse(txtPorcentajeGanancia.Text.Trim());
             producto.Activo = true;
 
             if (producto.Precio < 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Precio no valido.');", true);
                 return;
-            }            
+            }
+
+            if (producto.Stock < 0 || producto.StockMin < 0)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Dato inválido', 'Stock y Stock mínimo no pueden ser menores que cero.', 'warning');", true);
+                return;
+            }
+
             try
             {
                 int id_del_prod_insertado = data.AgregarProductos(producto);                
@@ -339,6 +360,7 @@ namespace Comercio
             txtStock.Text = producto.Stock.ToString();
             txtStockMin.Text = producto.StockMin.ToString();
             txtUrlImagen.Text = producto.UrlImgProducto;
+            txtPorcentajeGanancia.Text = producto.PorcentajeGanancia.HasValue ? producto.PorcentajeGanancia.Value.ToString(CultureInfo.InvariantCulture) : "0";
 
             // Cargar proveedores asociados al producto 
             List<int> idsAsociados = new ProductoNegocio().ObtenerIdsProveedoresPorProducto(producto.Id);
@@ -428,9 +450,17 @@ namespace Comercio
             producto.Stock = int.Parse(txtStock.Text.Trim());
             producto.StockMin = int.Parse(txtStockMin.Text.Trim());
             producto.UrlImgProducto = txtUrlImagen.Text.Trim();
+            producto.PorcentajeGanancia = decimal.Parse(txtPorcentajeGanancia.Text.Trim());
 
 
             producto.Activo = true;
+
+            if (producto.Stock < 0 || producto.StockMin < 0)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire('Dato inválido', 'Stock y Stock mínimo no pueden ser menores que cero.', 'warning');", true);
+                return;
+            }
 
             try
             {

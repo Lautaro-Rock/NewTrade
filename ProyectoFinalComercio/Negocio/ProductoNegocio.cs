@@ -17,7 +17,7 @@ namespace Negocio
             List<Producto> lista = new List<Producto>();
             try
             {
-                data.SetearConsulta("SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
+                data.SetearConsulta("SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, P.PorcentajeGanancia, T.Nombre AS Categoria " +
                     "FROM Producto P " +
                     "INNER JOIN Marca M ON M.Id = P.IdMarca " +
                     "INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto " +
@@ -35,6 +35,7 @@ namespace Negocio
                     nuevo.Stock = (int)data.Lector["Stock"];
                     nuevo.StockMin = (int)data.Lector["StockMinimo"];
                     nuevo.UrlImgProducto = (string)data.Lector["UrlImgProducto"];
+                    nuevo.PorcentajeGanancia = data.Lector["PorcentajeGanancia"] != DBNull.Value ? Convert.ToDecimal(data.Lector["PorcentajeGanancia"]) : (decimal?)null;
                     nuevo.TipoProducto = new TipoProducto();
                     nuevo.TipoProducto.Nombre = (string)data.Lector["Categoria"];
 
@@ -59,7 +60,7 @@ namespace Negocio
             try
             {
                 data.SetearConsulta(
-           "SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, T.Nombre AS Categoria " +
+           "SELECT P.Id AS ID, P.Nombre, M.Nombre AS Marca, P.Precio, P.Stock, P.StockMinimo, P.UrlImgProducto, P.PorcentajeGanancia, T.Nombre AS Categoria " +
            "FROM Producto P " +
            "INNER JOIN ProductoProveedor PP ON PP.IdProducto = P.Id " +
            "INNER JOIN Marca M ON M.Id = P.IdMarca " +
@@ -79,6 +80,7 @@ namespace Negocio
                     nuevo.Stock = (int)data.Lector["Stock"];
                     nuevo.StockMin = (int)data.Lector["StockMinimo"];
                     nuevo.UrlImgProducto = (string)data.Lector["UrlImgProducto"];
+                    nuevo.PorcentajeGanancia = data.Lector["PorcentajeGanancia"] != DBNull.Value ? Convert.ToDecimal(data.Lector["PorcentajeGanancia"]) : (decimal?)null;
                     nuevo.TipoProducto = new TipoProducto();
                     nuevo.TipoProducto.Nombre = (string)data.Lector["Categoria"];
 
@@ -216,8 +218,8 @@ namespace Negocio
             try
             {
 
-                data.SetearConsulta("INSERT INTO Producto (Nombre, IdMarca, Precio, Stock, StockMinimo, IdTipoProducto, UrlImgProducto, Activo) " +
-                    "VALUES (@Nombre, @IdMarca, @Precio, @Stock, @StockMinimo, @IdTipoProducto, @UrlImgProducto, @Activo);"+
+                data.SetearConsulta("INSERT INTO Producto (Nombre, IdMarca, Precio, Stock, StockMinimo, IdTipoProducto, UrlImgProducto, Activo, PorcentajeGanancia) " +
+                    "VALUES (@Nombre, @IdMarca, @Precio, @Stock, @StockMinimo, @IdTipoProducto, @UrlImgProducto, @Activo, @PorcentajeGanancia);"+
                     "SELECT SCOPE_IDENTITY();");
                 data.SetearParametro("@Nombre", nuevo.Nombre);
                 data.SetearParametro("@IdMarca", nuevo.Marca.Id);
@@ -227,8 +229,7 @@ namespace Negocio
                 data.SetearParametro("@IdTipoProducto", nuevo.TipoProducto.Id);
                 data.SetearParametro("@UrlImgProducto", nuevo.UrlImgProducto ?? (object)DBNull.Value);
                 data.SetearParametro("@Activo", nuevo.Activo);
-                //Lo comento porque me duplica el registro de productos
-                //data.EjecutarAccion();
+                data.SetearParametro("@PorcentajeGanancia", nuevo.PorcentajeGanancia ?? (object)DBNull.Value);
 
                 int id_insertado = Convert.ToInt32(data.EjecutarScalar());
                 return id_insertado;
@@ -248,13 +249,14 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.SetearConsulta("UPDATE Producto SET Nombre = @Nombre, Precio = @Precio, Stock = @Stock, StockMinimo = @StockMinimo, IdMarca = @IdMarca, IdTipoProducto = @IdTipoProducto WHERE Id = @id;");
+                data.SetearConsulta("UPDATE Producto SET Nombre = @Nombre, Precio = @Precio, Stock = @Stock, StockMinimo = @StockMinimo, IdMarca = @IdMarca, IdTipoProducto = @IdTipoProducto, PorcentajeGanancia = @PorcentajeGanancia WHERE Id = @id;");
                 data.SetearParametro("@Nombre", nuevo.Nombre);
                 data.SetearParametro("@Precio", nuevo.Precio.ToString(CultureInfo.InvariantCulture));
                 data.SetearParametro("@Stock", nuevo.Stock);
                 data.SetearParametro("@StockMinimo", nuevo.StockMin);
                 data.SetearParametro("@IdMarca", nuevo.Marca.Id);
                 data.SetearParametro("@IdTipoProducto", nuevo.TipoProducto.Id);
+                data.SetearParametro("@PorcentajeGanancia", nuevo.PorcentajeGanancia ?? (object)DBNull.Value);
                 data.SetearParametro("@id", nuevo.Id);
                 data.EjecutarAccion();
             }
