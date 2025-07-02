@@ -13,5 +13,23 @@ namespace Comercio
 
     public partial class PanellCtrlAdmin
     {
+
+        /// <summary>
+        /// Control PanelAdministrador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAdministrador;
+
+        /// <summary>
+        /// Control PanelVendedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelVendedor;
     }
 }

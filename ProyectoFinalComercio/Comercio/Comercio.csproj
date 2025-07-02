@@ -126,8 +126,10 @@
     <Content Include="GestionCompras.aspx" />
     <Content Include="GestionProveedores.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HistorialVentas.aspx" />
     <Content Include="images\acquisition.png" />
     <Content Include="images\analysis.png" />
+    <Content Include="images\cashflow.png" />
     <Content Include="images\client.png" />
     <Content Include="images\delivery-truck.png" />
     <Content Include="images\empty-cart.png">
@@ -271,6 +273,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialVentas.aspx.cs">
+      <DependentUpon>HistorialVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialVentas.aspx.designer.cs">
+      <DependentUpon>HistorialVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logins.Master.cs">
       <DependentUpon>Logins.Master</DependentUpon>

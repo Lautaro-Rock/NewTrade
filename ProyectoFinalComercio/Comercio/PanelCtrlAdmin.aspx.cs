@@ -11,9 +11,24 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Session["usuario"] != null))
+            if (!IsPostBack)
             {
-                Response.Redirect("Default.aspx");
+                if (Session["usuario"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                    return;
+                }
+
+                var usuario = (Dominio.Usuario)Session["usuario"];
+
+                if (usuario.Rol == "Administrador")
+                {
+                    PanelAdministrador.Visible = true;
+                }
+                else if (usuario.Rol == "Vendedor")
+                {
+                    PanelVendedor.Visible = true;
+                }
             }
 
         }
