@@ -123,6 +123,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btnBuscarAvanzado;
 
         /// <summary>
+        /// Control btnLimpiarAvanzado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLimpiarAvanzado;
+
+        /// <summary>
         /// Control GvHistVentas.
         /// </summary>
         /// <remarks>

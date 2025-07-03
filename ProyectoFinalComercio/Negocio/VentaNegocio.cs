@@ -391,54 +391,83 @@ namespace Negocio
             }
         }
 
-        public List<Venta> FiltrarVenta(string campo, string criterio, string filtro, string estado)
+        public List<Venta> FiltrarVenta(string campo, string criterio, string filtro, string estado, int? idUsuario = null)
         {
-
             List<Venta> list_filtrada = new List<Venta>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = @"SELECT V.Id, V.NumeroFactura, V.Fecha, V.Total, V.Activo, C.IdCliente AS IdCliente, C.Nombre AS NombreCliente, 
-                C.Apellido AS ApellidoCliente, U.Id AS IdUsuario, U.Nombre AS NombreUsuario, U.Apellido AS ApellidoUsuario 
-                FROM Venta V 
-                INNER JOIN Cliente C ON V.IdCliente = C.IdCliente 
-                INNER JOIN Usuario U ON V.IdVendedor = U.Id";
+                string consulta = @"SELECT V.Id, V.NumeroFactura, V.Fecha, V.Total, V.Activo, 
+                                   C.IdCliente AS IdCliente, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, 
+                                   U.Id AS IdUsuario, U.Nombre AS NombreUsuario, U.Apellido AS ApellidoUsuario 
+                            FROM Venta V  
+                            INNER JOIN Cliente C ON V.IdCliente = C.IdCliente  
+                            INNER JOIN Usuario U ON V.IdVendedor = U.Id 
+                            WHERE 1=1 "; 
 
-                if (campo == "Factura")
+                if (!string.IsNullOrWhiteSpace(campo) &&
+                    !string.IsNullOrWhiteSpace(criterio) &&
+                    !string.IsNullOrWhiteSpace(filtro))
                 {
-                    switch (criterio)
+                    filtro = filtro.Trim();
+
+                    if (campo == "Factura")
                     {
-                        case "Comienza con":
-                            consulta += " AND NumeroFactura like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += " AND NumeroFactura like '%" + filtro + "'";
-                            break;
-                        case "Igual a":
-                            consulta += " AND NumeroFactura = '" + filtro + "'";
-                            break;
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += " AND V.NumeroFactura LIKE '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += " AND V.NumeroFactura LIKE '%" + filtro + "'";
+                                break;
+                            case "Igual a":
+                                consulta += " AND V.NumeroFactura = '" + filtro + "'";
+                                break;
+                        }
+                    }
+                    else if (campo == "Cliente")
+                    {
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += " AND C.Nombre LIKE '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += " AND C.Nombre LIKE '%" + filtro + "'";
+                                break;
+                            case "Igual a":
+                                consulta += " AND C.Nombre = '" + filtro + "'";
+                                break;
+                        }
                     }
                 }
 
 
                 if (estado == "Activo")
-                {
                     consulta += " AND V.Activo = 1";
-                }
                 else if (estado == "Inactivo")
-                {
                     consulta += " AND V.Activo = 0";
-                }
 
+
+                if (idUsuario.HasValue)
+                    consulta += " AND V.IdVendedor = @IdUsuario";
 
                 datos.SetearConsulta(consulta);
+
+                if (idUsuario.HasValue)
+                    datos.SetearParametro("@IdUsuario", idUsuario.Value);
+
                 datos.EjecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Venta aux = new Venta();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.NumeroFactura = (string)datos.Lector["NumeroFactura"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.Total = (decimal)datos.Lector["Total"];
+
                     aux.Cliente = new Cliente()
                     {
                         Id = (int)datos.Lector["IdCliente"],
@@ -452,21 +481,22 @@ namespace Negocio
                         Nombre = datos.Lector["NombreUsuario"].ToString(),
                         Apellido = datos.Lector["ApellidoUsuario"].ToString()
                     };
-                    aux.Total = (decimal)datos.Lector["Total"];
+
                     list_filtrada.Add(aux);
                 }
-                return list_filtrada;
 
+                return list_filtrada;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al filtrar ventas: " + ex.Message, ex);
             }
             finally
             {
                 datos.CerrarConexion();
             }
         }
+
 
     }
 

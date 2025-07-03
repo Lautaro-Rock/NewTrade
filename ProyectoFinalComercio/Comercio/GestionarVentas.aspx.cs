@@ -14,6 +14,11 @@ namespace Comercio
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Rol == "Administrador"))
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             FiltroAvanzado = checkFiltrarAvanzado.Checked;
             if (!IsPostBack)
                 CargarVentas();

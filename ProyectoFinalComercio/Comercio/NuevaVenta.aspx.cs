@@ -26,81 +26,125 @@ namespace Comercio
 
             if (!IsPostBack)
             {
-                if (Request.QueryString["id"] != null)
-                {
-
-                    int idVenta = int.Parse(Request.QueryString["id"]);
-                    CargarVentaParaModificar(idVenta);
-                    btnConfirmarVenta.Visible = false;
-                    btnModificarVenta.Visible = true;
-                    Session["IdVentaEnEdicion"] = idVenta;
-                }
-                else
-                {
-                    btnConfirmarVenta.Visible = true;
-                    btnModificarVenta.Visible = false;
-                }
-
                 try
                 {
-                    Productos = new ProductoNegocio().ListarProductos();
-
-                    // Si venís del catálogo, se descuenta del stock lo que ya está en el carrito
-                    if (Session["DesdeCatalogo"] != null && (bool)Session["DesdeCatalogo"])
-                    {
-                        var detalleCatalogo = Session["VentaDetalle"] as List<DetalleVenta>;
-                        if (detalleCatalogo != null && detalleCatalogo.Any())
-                        {
-                            foreach (var d in detalleCatalogo)
-                            {
-                                Producto original = Productos.FirstOrDefault(p => p.Id == d.Producto.Id);
-                                if (original != null)
-                                    original.Stock -= d.Cantidad;
-                            }
-                        }
-                        Session["DesdeCatalogo"] = null;
-
-                        // Cargamos los productos agregados al carrito
-                        if (detalleCatalogo != null && detalleCatalogo.Any())
-                        {
-                            gvDetalleVenta.DataSource = detalleCatalogo;
-                            gvDetalleVenta.DataBind();
-                            decimal totalConGanancia = detalleCatalogo.Sum(d =>
-                            {
-                                decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
-                                decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
-                                return precioFinal * d.Cantidad;
-                            });
-                            lbPrecio.Text = totalConGanancia.ToString("C2");
-
-                        }
-
-                        // Validamos si estabamos en modo edicion:
-                        if (Session["IdVentaEnEdicion"] != null)
-                        {
-                            btnConfirmarVenta.Visible = false;
-                            btnModificarVenta.Visible = true;
-                            hfIdVenta.Value = Session["IdVentaEnEdicion"].ToString();
-                        }
-
-                        // Validamos si ya había un cliente seleccionado 
-                        if (Session["IdClienteSeleccionado"] != null)
-                        {
-                            hfIdClienteSeleccionado.Value = Session["IdClienteSeleccionado"].ToString();
-                            txtClienteSeleccionado.Text = Session["NombreClienteSeleccionado"].ToString();
-                        }
-
-                    }
-
                     var negocioCliente = new NegocioCliente();
                     Session["lista"] = negocioCliente.ListarClientes();
+                    Productos = new ProductoNegocio().ListarProductos();
 
-                    gvClientes.DataSource = Session["lista"];
-                    gvClientes.DataBind();
+                    if (Request.QueryString["id"] != null)
+                    {
+                        int idVenta = int.Parse(Request.QueryString["id"]);
+                        CargarVentaParaModificar(idVenta);
+                        btnConfirmarVenta.Visible = false;
+                        btnModificarVenta.Visible = true;
+                        Session["IdVentaEnEdicion"] = idVenta;
 
 
-                    dgvProductos.DataSource = Productos;
-                    dgvProductos.DataBind();
+                        if (Session["ModoVisualizacion"] != null && (bool)Session["ModoVisualizacion"])
+                        {
+                            btnConfirmarVenta.Visible = false;
+                            btnModificarVenta.Visible = false;
+                            btnVaciarDetalleVenta.Visible = false;
+                            btnVerCatalogoDetallado.Visible = false;
+
+                            gvDetalleVenta.Enabled = false;
+                            dgvProductos.Enabled = false;
+                            dgvProductos.Visible = false;
+
+                            // Ocultar columna "Acciones" en gvDetalleVenta
+                            gvDetalleVenta.Columns[gvDetalleVenta.Columns.Count - 1].Visible = false;
+
+                            // Y el boton de elegir cliente
+                            gvClientes.Columns[gvClientes.Columns.Count - 1].Visible = false;
+
+                            txtBuscarCliente.Visible = false; 
+                            txtBuscarProducto.Visible = false;
+                            dgvProductos.Visible = false;
+                            btnVerCatalogoDetallado.Visible = false;
+
+                            gvClientes.Enabled = false;
+
+                            if (Session["IdClienteSeleccionado"] != null)
+                            {
+                                int idCliente = int.Parse(Session["IdClienteSeleccionado"].ToString());
+                                var lista = Session["lista"] as List<Cliente>;
+
+                                var clienteAsignado = lista?.Where(c => c.Id == idCliente).ToList();
+
+                                gvClientes.DataSource = clienteAsignado;
+                                gvClientes.DataBind();
+                            }
+
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        btnConfirmarVenta.Visible = true;
+                        btnModificarVenta.Visible = false;
+                    }
+
+
+                        // Si venís del catálogo, se descuenta del stock lo que ya está en el carrito
+                        if (Session["DesdeCatalogo"] != null && (bool)Session["DesdeCatalogo"])
+                        {
+                            var detalleCatalogo = Session["VentaDetalle"] as List<DetalleVenta>;
+                            if (detalleCatalogo != null && detalleCatalogo.Any())
+                            {
+                                foreach (var d in detalleCatalogo)
+                                {
+                                    Producto original = Productos.FirstOrDefault(p => p.Id == d.Producto.Id);
+                                    if (original != null)
+                                        original.Stock -= d.Cantidad;
+                                }
+                            }
+                            Session["DesdeCatalogo"] = null;
+
+                            // Cargamos los productos agregados al carrito
+                            if (detalleCatalogo != null && detalleCatalogo.Any())
+                            {
+                                gvDetalleVenta.DataSource = detalleCatalogo;
+                                gvDetalleVenta.DataBind();
+                                decimal totalConGanancia = detalleCatalogo.Sum(d =>
+                                {
+                                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                                    return precioFinal * d.Cantidad;
+                                });
+                                lbPrecio.Text = totalConGanancia.ToString("C2");
+
+                            }
+
+                            // Validamos si estabamos en modo edicion:
+                            if (Session["IdVentaEnEdicion"] != null)
+                            {
+                                btnConfirmarVenta.Visible = false;
+                                btnModificarVenta.Visible = true;
+                                hfIdVenta.Value = Session["IdVentaEnEdicion"].ToString();
+                            }
+
+                            // Validamos si ya había un cliente seleccionado 
+                            if (Session["IdClienteSeleccionado"] != null)
+                            {
+                                hfIdClienteSeleccionado.Value = Session["IdClienteSeleccionado"].ToString();
+                                txtClienteSeleccionado.Text = Session["NombreClienteSeleccionado"].ToString();
+                            }
+
+                        }
+
+
+                        if (!(Session["ModoVisualizacion"] != null && (bool)Session["ModoVisualizacion"]))
+                        {
+                            gvClientes.DataSource = Session["lista"];
+                            gvClientes.DataBind();
+                        }
+
+
+                        dgvProductos.DataSource = Productos;
+                        dgvProductos.DataBind();
 
                 }
                 catch (Exception ex)
@@ -356,7 +400,12 @@ namespace Comercio
                 Usuario = new Usuario { Id = usuario.Id },
                 DetalleList = detalle,
                 NumeroFactura = VentasHelper.GenerarNumeroFactura(),
-                Total = detalle.Sum(d => d.Subtotal),
+                Total = detalle.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                    return precioFinal * d.Cantidad;
+                }),
                 Fecha = DateTime.Now,
                 Activo = true
             };
@@ -402,18 +451,34 @@ namespace Comercio
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                         "Swal.fire('Acceso denegado', 'No podés modificar una venta que no registraste.', 'error');", true);
-                    Response.Redirect("GestionarVentas.aspx");
+                    Response.Redirect("PanelCtrlAdmin.aspx");
                     return;
                 }
 
                 // Setear cliente
                 txtClienteSeleccionado.Text = $"{venta.Cliente.Nombre}, {venta.Cliente.Apellido}";
                 hfIdClienteSeleccionado.Value = venta.Cliente.Id.ToString();
+                Session["IdClienteSeleccionado"] = venta.Cliente.Id;
+                Session["NombreClienteSeleccionado"] = txtClienteSeleccionado.Text;
+
+
+                // Obtener Porcentaje de ganancia del producto para calcular el subtotal con ganancia
+                List<Producto> productosActuales = Productos;
+                foreach (var detalle in venta.DetalleList)
+                {
+                    var productoOriginal = productosActuales.FirstOrDefault(p => p.Id == detalle.Producto.Id);
+                    if (productoOriginal != null)
+                    {
+                        detalle.Producto.PorcentajeGanancia = productoOriginal.PorcentajeGanancia;
+                    }
+                }
 
                 // Setear detalles de la venta
                 Session["VentaDetalle"] = venta.DetalleList;
                 gvDetalleVenta.DataSource = venta.DetalleList;
                 gvDetalleVenta.DataBind();
+
+
 
                 // Mostrar precio total
                 lbPrecio.Text = venta.Total.ToString("C2");
@@ -460,12 +525,19 @@ namespace Comercio
                 return;
             }
 
+
+
             Venta venta = new Venta
             {
                 Id = idVenta,
                 Cliente = new Cliente { Id = idCliente },
                 DetalleList = detalle,
-                Total = detalle.Sum(d => d.Subtotal),
+                Total = detalle.Sum(d =>
+                {
+                    decimal ganancia = d.Producto.PorcentajeGanancia ?? 0;
+                    decimal precioFinal = d.PrecioUnitario * (1 + ganancia / 100);
+                    return precioFinal * d.Cantidad;
+                }),
                 Activo = true
             };
 
@@ -515,7 +587,10 @@ namespace Comercio
             Session["IdClienteSeleccionado"] = null;
             Session["NombreClienteSeleccionado"] = null;
             Session["VentaDetalle"] = null;
-
+            Session["ModoVisualizacion"] = null;
+            Session["DesdeVenta"] = null;
+            Session["DetalleDesdeVenta"] = null;
+            Session["VentaDetalle"] = null; 
 
             if (((Dominio.Usuario)Session["usuario"]).Rol == "Administrador")
             {

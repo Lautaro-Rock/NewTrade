@@ -54,6 +54,9 @@
                         <div class="row align-items-end g-3 mt-3">
                             <div class="col-md-2 d-flex align-items-end mb-3">
                                 <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnBuscarAvanzado_Click" />
+                                <asp:Button ID="btnLimpiarAvanzado" runat="server" Text="Limpiar filtro"
+                                    CssClass="btn btn-secondary w-100"
+                                    OnClick="btnLimpiarAvanzado_Click" />
                             </div>
                         </div>
                     </asp:Panel>
@@ -64,16 +67,12 @@
                             <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
-                            <asp:BoundField DataField="Usuario" HeaderText="Registrado por:" />
                             <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
                             <asp:TemplateField HeaderText="Acciones">
                                 <ItemTemplate>
-                                    <asp:Button ID="BtnModificar" runat="server" Text="Modificar"
-                                        CommandName="Modificar" CommandArgument='<%# Eval("Id") %>'
+                                    <asp:Button ID="BtnVer" runat="server" Text="Ver"
+                                        CommandName="Ver" CommandArgument='<%# Eval("Id") %>'
                                         CssClass="btn btn-outline-info btn-sm me-2" />
-                                    <asp:Button ID="BtnEliminar" runat="server" Text="Eliminar"
-                                        CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>'
-                                        CssClass="btn btn-outline-danger btn-sm" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
