@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <title>Gestión de Ventas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="StyleGestionProductos.css" rel="stylesheet" />
+    <link href="Ventas.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body runat="server" id="bodyTag">
@@ -75,6 +75,7 @@
             <div class="col-md-2">
                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelectUsuario" />
                 <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelectUsuario" OnSelectedIndexChanged="ddlCampoSelectUsuario_SelectedIndexChanged">
+                    <asp:ListItem Text="--> Seleccione un campo <--" Value="" />
                     <asp:ListItem Text="Factura" />
                     <asp:ListItem Text="Cliente" />
                 </asp:DropDownList>
@@ -109,7 +110,7 @@
     <% } %>
 
             <asp:GridView ID="gvVentas" runat="server" DataKeyNames="Id" AutoGenerateColumns="False"
-                CssClass="table table-dark table-hover text-white mt-4" OnRowCommand="gvVentas_RowCommand">
+                CssClass="table color-table-personalizado" OnRowCommand="gvVentas_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />

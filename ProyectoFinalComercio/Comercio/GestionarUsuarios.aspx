@@ -166,6 +166,7 @@
             <div class="col-md-2">
                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampoSelectUsuario" />
                 <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampoSelectUsuario" OnSelectedIndexChanged="ddlCampoSelectUsuario_SelectedIndexChanged">
+                    <asp:ListItem Text="--> Seleccione un campo <--" Value="" />
                     <asp:ListItem Text="Nombre" />
                     <asp:ListItem Text="Apellido" />
                     <asp:ListItem Text="DNI" />

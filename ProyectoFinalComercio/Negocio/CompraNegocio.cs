@@ -145,7 +145,6 @@ namespace Negocio
                     compra.Id = (int)datos.Lector["Id"];
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
                     compra.Total = (decimal)datos.Lector["Total"];
-                    compra.Activo = (bool)datos.Lector["Activo"];
 
                     compra.Proveedor = new Proveedor
                     {
@@ -309,6 +308,81 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Compra> FiltrarCompras(string campo, string criterio, string filtro, string estadoFiltro)
+        {
+            List<Compra> lista = new List<Compra>();
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = @"
+            SELECT C.Id, C.Fecha, C.Total,
+                   P.Id AS IdProveedor, P.RazonSocial AS NombreProveedor,
+                   U.Id AS IdUsuario, U.Nombre AS NombreUsuario, U.Apellido AS ApellidoUsuario
+            FROM COMPRA C
+            INNER JOIN PROVEEDOR P ON C.IdProveedor = P.Id
+            INNER JOIN USUARIO U ON C.IdUsuario = U.Id
+            WHERE 1=1 ";
+
+            // Armar condición dinámica
+
+            if (estadoFiltro != "todos")
+            {
+                consulta += $" AND C.Activo = {(estadoFiltro == "1" ? 1 : 0)}";
+            }
+
+
+            switch (campo)
+            {
+                case "Por Fecha":
+                    consulta += "AND CONVERT(VARCHAR, C.Fecha, 103) LIKE '%" + filtro + "%'";
+                    break;
+
+                case "Por Total":
+                    consulta += criterio == "Mayor a" ? "AND C.Total > " + filtro :
+                               criterio == "Menor a" ? "AND C.Total < " + filtro :
+                               "AND C.Total = " + filtro;
+                    break;
+
+                case "Por Nombre del Proveedor":
+                    consulta += "AND P.RazonSocial LIKE '%" + filtro + "%'";
+                    break;
+
+                case "Por Nombre del Usuario":
+                    consulta += "AND U.Nombre LIKE '%" + filtro + "%'";
+                    break;
+
+                case "Por Apellido del Usuario":
+                    consulta += "AND U.Apellido LIKE '%" + filtro + "%'";
+                    break;
+            }
+
+            consulta += " ORDER BY C.Fecha DESC";
+            datos.SetearConsulta(consulta);
+            datos.EjecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                Compra c = new Compra();
+                c.Id = (int)datos.Lector["Id"];
+                c.Fecha = (DateTime)datos.Lector["Fecha"];
+                c.Total = (decimal)datos.Lector["Total"];
+                c.Proveedor = new Proveedor
+                {
+                    Id = (int)datos.Lector["IdProveedor"],
+                    RazonSocial = datos.Lector["NombreProveedor"].ToString()
+                };
+                c.Usuario = new Usuario
+                {
+                    Id = (int)datos.Lector["IdUsuario"],
+                    Nombre = datos.Lector["NombreUsuario"].ToString(),
+                    Apellido = datos.Lector["ApellidoUsuario"].ToString()
+                };
+
+                lista.Add(c);
+            }
+
+            return lista;
+        }
+
 
     }
 }

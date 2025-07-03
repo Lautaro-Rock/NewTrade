@@ -78,6 +78,31 @@ namespace Comercio
 
         protected void TxtFiltroRápidoCompras_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                string filtro = TxtFiltroRápidoCompras.Text.Trim().ToLower();
+
+                if (string.IsNullOrEmpty(filtro))
+                {
+                    CargarCompras();
+                    return;
+                }
+
+                var todas = new CompraNegocio().ListarCompras();
+
+                var filtradas = todas.Where(c =>
+                    c.Proveedor.RazonSocial.ToLower().Contains(filtro) ||
+                    c.Usuario.Nombre.ToLower().Contains(filtro)
+                ).ToList();
+
+                gvCompras.DataSource = filtradas;
+                gvCompras.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorFiltroRapido",
+                    $"Swal.fire('Error', 'No se pudo aplicar el filtro rápido: {ex.Message.Replace("'", "\\'")}', 'error');", true);
+            }
 
         }
 
@@ -107,16 +132,70 @@ namespace Comercio
 
         protected void DdlCampoCompras_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DdlCriterioCompras.Items.Clear();
+            string campo = DdlCampoCompras.SelectedItem.Text;
+
+            if (campo == "Por Fecha")
+            {
+                DdlCriterioCompras.Items.Add("Contiene");
+            }
+            else if (campo == "Por Total")
+            {
+                DdlCriterioCompras.Items.Add("Mayor a");
+                DdlCriterioCompras.Items.Add("Menor a");
+                DdlCriterioCompras.Items.Add("Igual a");
+            }
+            else
+            {
+                DdlCriterioCompras.Items.Add("Contiene");
+                DdlCriterioCompras.Items.Add("Comienza con");
+                DdlCriterioCompras.Items.Add("Termina con");
+                DdlCriterioCompras.Items.Add("Es igual a");
+            }
 
         }
 
         protected void BtnBuscarAvanzadoCompras_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string campo = DdlCampoCompras.SelectedItem.Text;
+
+                if (string.IsNullOrEmpty(campo) || campo == "--> Seleccione un campo <--")
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "campoInvalido",
+                        "Swal.fire('Campo no válido', 'Por favor seleccioná un campo para aplicar el filtro.', 'warning');", true);
+                    return;
+                }
+
+
+                string criterio = DdlCriterioCompras.SelectedItem.Text;
+                string filtro = TxtFiltroAvanzadoCompras.Text;
+                string estadoFiltro = ddlEstadoCompra.SelectedValue;
+
+                var resultados = new CompraNegocio().FiltrarCompras(campo, criterio, filtro, estadoFiltro);
+
+                gvCompras.DataSource = resultados;
+                gvCompras.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorFiltro",
+                    $"Swal.fire('Error al filtrar', '{ex.Message.Replace("'", "\\'")}', 'error');", true);
+                return; 
+            }
 
         }
 
         protected void BtnLimpiarAvanzadoMarca_Click(object sender, EventArgs e)
         {
+            TxtFiltroAvanzadoCompras.Text = "";
+            DdlCampoCompras.SelectedIndex = 0;
+            DdlCriterioCompras.Items.Clear();
+            PnlFiltroAvanzadoCompras.Visible = false;
+            CheckFiltroAvanzadoCompras.Checked = false;
+            TxtFiltroRápidoCompras.Enabled = true;
+            CargarCompras(); 
 
         }
     }

@@ -108,11 +108,6 @@
                                             <asp:BoundField DataField="Email" HeaderText="Email" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Télefono" />
                                             <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-                                            <asp:TemplateField HeaderText="Estado">
-                                                <ItemTemplate>
-                                                    <i class='<%# Convert.ToBoolean(Eval("Activo")) ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger" %>'></i>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Seleccione un proveedor">
                                                 <ItemTemplate>
                                                     <asp:Button ID="btnSeleccionar_prov_avanzado" runat="server"
@@ -143,8 +138,18 @@
                                 <asp:BoundField DataField="Precio" HeaderText="Precio" />
                                 <asp:BoundField DataField="Stock" HeaderText="Stock" />
                                 <asp:BoundField DataField="StockMin" HeaderText="Stock Mínimo" />
-                                <asp:BoundField DataField="Marca" HeaderText="Marca" />
-                                <asp:BoundField DataField="TipoProducto" HeaderText="Categoría" />
+                                <asp:TemplateField HeaderText="Marca">
+                                    <ItemTemplate>
+                                        <%# Eval("Marca.Nombre") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Categoría">
+                                    <ItemTemplate>
+                                        <%# Eval("TipoProducto.Nombre") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Cantidad">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control w-75" TextMode="Number" Text="0" />

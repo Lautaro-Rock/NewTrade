@@ -15,10 +15,6 @@
         <button id="toggleSidebar" type="button" class="btn btn-warning">☰</button>
         <div id="sidebar" class="sidebar">
             <h4>Menú</h4>
-            <a href="#" class="sidebar-link">Inicio</a>
-            <a href="#" class="sidebar-link">Productos</a>
-            <a href="#" class="sidebar-link">Ventas</a>
-            <a href="#" class="sidebar-link">Clientes</a>
             <a href="Default.aspx" class="sidebar-link">Cerrar sesión</a>
         </div>
         <div id="blurOverlay" class="blur-overlay"></div>

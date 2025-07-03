@@ -83,9 +83,9 @@
                                     <asp:ListItem Text="--> Seleccione un campo <--" Value="" />
                                     <asp:ListItem Text="Por Fecha" Value="Nombre" />
                                     <asp:ListItem Text="Por Total" Value="Id" />
-                                    <asp:ListItem Text="Por Nombre del Proveedor" Value="Id" />
-                                    <asp:ListItem Text="Por Nombre del Usuario" Value="Id" />
-                                    <asp:ListItem Text="Por Apellido del Usuario" Value="Id" />
+                                    <asp:ListItem Text="Por Nombre del Proveedor" Value="ProveedorNombre" />
+                                    <asp:ListItem Text="Por Nombre del Usuario" Value="UsuarioNombre" />
+                                    <asp:ListItem Text="Por Apellido del Usuario" Value="UsuarioApellido" />
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-3">
@@ -97,6 +97,16 @@
                                 <asp:TextBox runat="server" ID="TxtFiltroAvanzadoCompras" CssClass="form-control" />
                             </div>
                         </div>
+
+                        <div class="col-md-3">
+                            <asp:Label ID="lblEstadoCompra" runat="server" CssClass="form-label text-white" Text="Estado de la compra" />
+                            <asp:DropDownList ID="ddlEstadoCompra" runat="server" CssClass="form-select">
+                                <asp:ListItem Text="Solo activos" Value="1" />
+                                <asp:ListItem Text="Solo inactivos" Value="0" />
+                                <asp:ListItem Text="Todos" Value="todos" />
+                            </asp:DropDownList>
+                        </div>
+
 
                         <div class="row g-3 mt-3">
                             <div class="col-md-3 d-flex gap-2">
@@ -116,12 +126,6 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
-                            <asp:TemplateField HeaderText="Estado">
-                                <ItemTemplate>
-                                    <i style='<%# Convert.ToBoolean(Eval("Activo")) ? "color:#00FF6A": "color:#FF4E4E" %>'
-                                        class='<%# Convert.ToBoolean(Eval("Activo")) ? "bi bi-check-circle-fill" : "bi bi-x-circle-fill" %>'></i>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             <asp:ButtonField ButtonType="Button" Text="Modificar/Ver detalle" CommandName="Ver" ControlStyle-CssClass="btn btn-warning btn-sm" />
                             <asp:TemplateField>
                                 <ItemTemplate>
