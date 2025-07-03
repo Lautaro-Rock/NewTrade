@@ -20,7 +20,7 @@
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
                         <div class="mb-3">
-                            <asp:TextBox ID="txtProveedorSeleccionado" runat="server" CssClass="form-control w-50" Placeholder="Haga clic en 'Buscar proveedor' o 'Nuevo proveedor'" Enabled="false" />
+                            <asp:TextBox ID="txtProveedorSeleccionado" runat="server" CssClass="form-control w-50" Placeholder="Precione un filtro para buscar y seleccionar un proveedor" Enabled="false" />
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -47,7 +47,7 @@
                                     <asp:GridView ID="gvProveedores" runat="server" AutoGenerateColumns="False" CssClass="table color-table-personalizado"
                                         OnRowCommand="gvProveedores_RowCommand">
                                         <Columns>
-                                            <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" HtmlEncode="false"  />
+                                            <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" HtmlEncode="false" />
                                             <asp:BoundField DataField="Cuit" HeaderText="CUIT" />
                                             <asp:BoundField DataField="Email" HeaderText="Email" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Télefono" />
@@ -86,8 +86,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <asp:Label ID="lbCriterioProv" runat="server" CssClass="form-label" Text="Criterio"></asp:Label>
-                                                <asp:DropDownList ID="ddlCriterioProv" runat="server" CssClass="form-select">                                                    
-                                                </asp:DropDownList>                                                                                
+                                                <asp:DropDownList ID="ddlCriterioProv" runat="server" CssClass="form-select">
+                                                </asp:DropDownList>
                                             </div>
                                             <div class="col-md-4">
                                                 <asp:Label ID="lbFiltro" runat="server" CssClass="form-label" Text="Filtro"></asp:Label>
@@ -136,7 +136,7 @@
                 <h4 class="text-white mb-3"><i class="bi bi-box-seam me-2"></i>Productos relacionados al proveedor seleccionado</h4>
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
-                        <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False" OnRowCommand="dgvProductos_RowCommand" DataKeyNames="Id" 
+                        <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False" OnRowCommand="dgvProductos_RowCommand" DataKeyNames="Id"
                             CssClass="table color-table-personalizado mt-5">
                             <Columns>
                                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -153,11 +153,10 @@
                                 <asp:TemplateField HeaderText="Agregar">
                                     <ItemTemplate>
                                         <asp:Button ID="btnAgregar" runat="server"
-                                        CssClass="btn btn-outline-primary"
-                                        Text="Agregar"
-                                        CommandName="Agregar"
-                                        CommandArgument='<%# Eval("Id") %>' />
-
+                                            CssClass="btn btn-outline-primary"
+                                            Text="Agregar"
+                                            CommandName="Agregar"
+                                            CommandArgument='<%# Eval("Id") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -165,48 +164,43 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-
-
-            <asp:UpdatePanel ID="upDetalleCompra" runat="server">
-            <ContentTemplate>
-                <asp:Panel ID="PanelDetalleCompra" runat="server" CssClass="bg-light rounded shadow-sm p-4 mt-4 mb-3">
-                    <h5 class="fw-bold text-dark mb-3">Detalle de productos seleccionados</h5>
-
-                    <asp:GridView ID="gvDetalleCompra" runat="server"
-                        AutoGenerateColumns="False"
-                        CssClass="table table-striped table-bordered text-dark"
-                        EmptyDataText="Todavía no se agregó ningún producto.">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Producto">
-                                <ItemTemplate>
-                                    <%# Eval("Producto.Nombre") %>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                            <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
-                            <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <asp:Button ID="btnQuitar" runat="server"
-                                        Text="Quitar"
-                                        OnClick="btnQuitar_Click"
-                                        CommandArgument='<%# Eval("Producto.Id") %>'
-                                        CssClass="btn btn-danger btn-sm" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-
-                    <div class="text-end mt-3">
-                        <asp:Button ID="btnVaciarDetalleCompra" runat="server"
-                            Text="Vaciar lista"
-                            CssClass="btn btn-outline-danger"
-                            OnClick="btnVaciarDetalleCompra_Click" />
-                    </div>
-                </asp:Panel>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-
+            <div class="mb-4 border border-white p-3 rounded">
+                <h4 class="text-white mb-3"><i class="bi bi-person me-2"></i>Detalle de productos seleccionados</h4>
+                <asp:UpdatePanel ID="upDetalleCompra" runat="server">
+                    <ContentTemplate>
+                        <asp:GridView ID="gvDetalleCompra" runat="server"
+                            AutoGenerateColumns="False"
+                            CssClass="table color-table-personalizado mt-5"
+                            EmptyDataText="Todavía no se agregó ningún producto.">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Producto">
+                                    <ItemTemplate>
+                                        <%# Eval("Producto.Nombre") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C2}" />
+                                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C2}" />
+                                <asp:TemplateField HeaderText="Acciones">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnQuitar" runat="server"
+                                            Text="Quitar"
+                                            OnClick="btnQuitar_Click"
+                                            CommandArgument='<%# Eval("Producto.Id") %>'
+                                            CssClass="btn btn-danger btn-sm" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                        <div class="text-end mt-3">
+                            <asp:Button ID="btnVaciarDetalleCompra" runat="server"
+                                Text="Vaciar lista"
+                                CssClass="btn btn-outline-danger"
+                                OnClick="btnVaciarDetalleCompra_Click" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
 
             <!-- Para ver el total y confirmar compra -->
             <asp:UpdatePanel ID="upTotalCompra" runat="server">
@@ -221,30 +215,30 @@
                             </div>
                         </div>
 
-                         </div>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
 
             <asp:HiddenField ID="hfIdCompra" runat="server" />
 
-                <asp:UpdatePanel ID="upBtnConfirmarCompra" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:Button ID="btnConfirmarCompra" runat="server" Text="Confirmar compra"
-                            OnClick="btnConfirmarCompra_Click" CssClass="btn btn-warning w-100 mt-2" />
-                        <asp:Button ID="btnModificarCompra" runat="server" Text="Modificar compra"
+            <asp:UpdatePanel ID="upBtnConfirmarCompra" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:Button ID="btnConfirmarCompra" runat="server" Text="Confirmar compra"
+                        OnClick="btnConfirmarCompra_Click" CssClass="btn btn-warning w-100 mt-2" />
+                    <asp:Button ID="btnModificarCompra" runat="server" Text="Modificar compra"
                         CssClass="btn btn-warning w-100 mt-2"
                         OnClick="btnModificarCompra_Click"
                         Visible="false" />
 
-                         <asp:Button ID="btnVolver" runat="server"
-                         Text="Salir"
-                         CssClass="btn btn-secondary mt-3 me-2"
-                         OnClick="btnVolver_Click" />
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                    <asp:Button ID="btnVolver" runat="server"
+                        Text="Salir"
+                        CssClass="btn btn-secondary mt-3 me-2"
+                        OnClick="btnVolver_Click" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
 
-            </div>
+        </div>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
