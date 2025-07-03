@@ -76,6 +76,48 @@ namespace Comercio
             Response.Redirect("PanelCtrlAdmin.aspx");
         }
 
+        protected void TxtFiltroRápidoCompras_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void CheckFiltroAvanzadoCompras_CheckedChanged(object sender, EventArgs e)
+        {
+            bool se_activo = CheckFiltroAvanzadoCompras.Checked;
+           
+
+            if (se_activo)
+            {                
+                PnlFiltroAvanzadoCompras.Visible = se_activo;
+                TxtFiltroRápidoCompras.Text = "";
+                TxtFiltroRápidoCompras.Enabled = !se_activo;
+                TxtFiltroAvanzadoCompras.Visible = se_activo;
+                
+
+            }
+            else {
+                PnlFiltroAvanzadoCompras.Visible = se_activo;
+                TxtFiltroAvanzadoCompras.Text = "";
+                TxtFiltroRápidoCompras.Enabled = !se_activo;
+                DdlCampoCompras.SelectedIndex = 0;
+                DdlCriterioCompras.Items.Clear();
+
+            }
+        }
+
+        protected void DdlCampoCompras_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnBuscarAvanzadoCompras_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnLimpiarAvanzadoMarca_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

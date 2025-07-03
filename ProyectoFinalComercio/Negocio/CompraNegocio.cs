@@ -145,6 +145,7 @@ namespace Negocio
                     compra.Id = (int)datos.Lector["Id"];
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
                     compra.Total = (decimal)datos.Lector["Total"];
+                    compra.Activo = (bool)datos.Lector["Activo"];
 
                     compra.Proveedor = new Proveedor
                     {
