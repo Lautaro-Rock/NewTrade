@@ -53,7 +53,7 @@
                         </div>
                         <div class="row align-items-end g-3 mt-3">
                             <div class="col-md-2 d-flex align-items-end mb-3">
-                                <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnBuscarAvanzado_Click" />
+                                <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary w-100 me-2" OnClick="btnBuscarAvanzado_Click" />
                                 <asp:Button ID="btnLimpiarAvanzado" runat="server" Text="Limpiar filtro"
                                     CssClass="btn btn-secondary w-100"
                                     OnClick="btnLimpiarAvanzado_Click" />
