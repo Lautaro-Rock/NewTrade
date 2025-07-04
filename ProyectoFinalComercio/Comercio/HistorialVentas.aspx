@@ -38,6 +38,7 @@
                             <div class="col-md-2">
                                 <asp:Label Text="Campo" runat="server" AssociatedControlID="ddlCampo" CssClass="form-label text-white" />
                                 <asp:DropDownList runat="server" ID="ddlCampo" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                                    <asp:ListItem Text="--> Seleccione un campo <--" Value="" />
                                     <asp:ListItem Text="Factura" />
                                     <asp:ListItem Text="Cliente" />
                                 </asp:DropDownList>
