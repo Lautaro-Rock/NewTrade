@@ -21,7 +21,7 @@
 
             <div class="accordion accordion-flush" id="accordionSidebar">
 
-                <%--COLUMNAS DE LA IZQUIERDA--%>
+               
 
                 <div class="accordion-item bg-transparent border-0">
                     <h2 class="accordion-header">
@@ -218,7 +218,7 @@
                         </h1>
 
                         <div class="container mt-3 mb-4">
-                            <!-- FILTRO RÁPIDO -->
+               
                             <div class="row justify-content-center align-items-center g-3">
                                 <div class="col-md-3 d-flex justify-content-center align-items-center">
                                     <asp:Label Text="Filtrar" runat="server" AssociatedControlID="txtFiltroRapido" CssClass="me-2 mb-0 fw-bold" />
@@ -232,12 +232,12 @@
                                         Style="max-width: 250px;" />
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">
-                                    <asp:CheckBox ID="chkFiltroActivo" runat="server" CssClass="form-check-input me-2" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
+                                    <asp:CheckBox ID="chkFiltroActivo" runat="server" AutoPostBack="true" OnCheckedChanged="chkFiltroActivo_CheckedChanged" />
                                     <asp:Label Text="Filtro Avanzado" runat="server" AssociatedControlID="chkFiltroActivo" CssClass="form-check-label mb-0" />
                                 </div>
                             </div>
 
-                            <!-- FILTRO AVANZADO -->
+               
                             <% if (chkFiltroActivo.Checked)
                                 { %>
                             <div class="row justify-content-center g-3 mt-3">
